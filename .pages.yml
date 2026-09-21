@@ -1,0 +1,119 @@
+media:
+  - name: images
+    label: Images
+    input: media/images
+    output: /media/images
+    rename: safe
+    categories: [image]
+  - name: documents
+    label: Documents
+    input: media/docs
+    output: /media/docs
+    rename: safe
+    categories: [document]
+
+content:
+  - name: site
+    label: Profile and site settings
+    type: file
+    path: content/site.json
+    format: json
+    fields:
+      - { name: name, label: Name, type: string, required: true }
+      - { name: role, label: Professional description, type: string }
+      - { name: headline, label: Main heading, type: text }
+      - { name: intro, label: Introduction, type: text }
+      - { name: about, label: About, type: text }
+      - { name: email, label: Contact email, type: string }
+      - name: cvUrl
+        label: CV
+        type: file
+        options: { media: documents, extensions: [pdf], rename: safe }
+      - { name: contact, label: Contact message, type: text }
+      - name: heroImage
+        label: Hero photograph
+        type: image
+        options: { media: images, path: hero, rename: safe }
+      - { name: interests, label: Interests, type: string, list: true }
+      - name: theme
+        label: Earth colour palette
+        type: object
+        fields:
+          - { name: forest, label: Forest, type: string }
+          - { name: clay, label: Clay, type: string }
+          - { name: sand, label: Sand, type: string }
+          - { name: cream, label: Cream, type: string }
+          - { name: ink, label: Charcoal, type: string }
+      - name: services
+        label: Services
+        type: object
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{title}"
+        fields:
+          - { name: title, label: Title, type: string }
+          - { name: text, label: Description, type: text }
+      - name: socials
+        label: Social links
+        type: object
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{label}"
+        fields:
+          - { name: label, label: Platform, type: string }
+          - { name: url, label: Profile URL, type: string }
+
+  - name: blogs
+    label: Blog posts
+    type: file
+    path: content/blogs.json
+    format: json
+    list: true
+    fields:
+      - { name: title, label: Title, type: string, required: true }
+      - name: category
+        label: Category
+        type: select
+        options:
+          values: [Lab Notes, Science Explained, Beyond Chemistry, Personal Notes]
+      - { name: date, label: Date or status, type: string }
+      - { name: excerpt, label: Short introduction, type: text }
+      - { name: body, label: Full article, type: text }
+      - { name: link, label: External article link, type: string }
+      - name: image
+        label: Cover image
+        type: image
+        options: { media: images, path: blog, rename: safe }
+
+  - name: gallery
+    label: Gallery
+    type: file
+    path: content/gallery.json
+    format: json
+    list: true
+    fields:
+      - name: image
+        label: Photograph
+        type: image
+        required: true
+        options: { media: images, path: gallery, rename: safe }
+      - { name: caption, label: Caption, type: string }
+
+  - name: videos
+    label: Videos
+    type: file
+    path: content/videos.json
+    format: json
+    list: true
+    fields:
+      - { name: title, label: Title, type: string }
+      - { name: url, label: YouTube, Vimeo, MP4 or WebM URL, type: string, required: true }
+
+settings:
+  commit:
+    templates:
+      create: "Add {path} through Pages CMS"
+      update: "Update {path} through Pages CMS"
+      delete: "Remove {path} through Pages CMS"

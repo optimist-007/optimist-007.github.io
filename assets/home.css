@@ -66,3 +66,9 @@ a{color:inherit}
   .home-section-head p{margin-top:15px}
   .explore-links{grid-template-columns:1fr}
 }
+
+.home-contact{padding:86px 0 78px;border-top:1px solid var(--line);text-align:center}
+.home-contact .eyebrow{font:600 .7rem var(--mono);text-transform:uppercase;letter-spacing:.13em;color:var(--clay)}
+.home-contact h2{font:500 clamp(3rem,5.5vw,5.4rem)/.9 var(--serif);letter-spacing:-.05em;color:var(--forest);margin:8px auto 16px;max-width:780px}
+.home-contact p{max-width:650px;margin:0 auto 24px;color:var(--muted);font-size:1.04rem}
+.home-contact a{display:inline-block;color:var(--forest);font:700 .78rem var(--mono);text-transform:uppercase;letter-spacing:.1em;text-decoration:none;border-bottom:1px solid var(--forest);padding-bottom:4px}

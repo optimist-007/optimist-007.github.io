@@ -22,7 +22,7 @@
 </div>
 <div class="status" id="status">Unable to load content.</div>
 <script>
-const fallback={identity:{label:'Creative side',title:'What stays with me.',intro:'Notes on films, books and the stories that continue to live in my mind after the final scene or last page.',aside:'This space begins with reviews. Other creative work can arrive when it is ready.'},featured:{type:'Film or book',title:'Your next review begins here.',date:'',image:'',excerpt:'A reflective opening for the film or book you most want visitors to notice.',review:'',quote:'',link:''},posts:[],future:[],theme:{paper:'#eee8dc',ink:'#342b2b',wine:'#6a3044',gold:'#9b783d'},comments:'true'};
+const fallback={identity:{label:'Creative side',title:'What stays with me.',intro:'Notes on films, books and the stories that continue to live in my mind after the final scene or last page.',aside:'This space begins with reviews. Other creative work can arrive when it is ready.'},featured:{type:'Film or book',title:'Your next review begins here.',date:'',image:'',excerpt:'A reflective opening for the film or book you most want visitors to notice.',review:'',quote:'',link:''},posts:[{type:'Movie',title:'Obsession',date:'',image:'',excerpt:'',review:'',quote:'',link:''}],future:[{title:'Stories',text:'A future doorway to fiction and Wattpad work.'},{title:'Visual practice',text:'Painting and visual experiments can arrive later.'},{title:'Other forms',text:'Space reserved without pressure to fill it.'}],theme:{paper:'#eee8dc',ink:'#342b2b',wine:'#6a3044',gold:'#9b783d'},comments:'true'};
 const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const nl=v=>esc(v).replace(/\n/g,'<br>');
 const app=document.getElementById('app'),modal=document.getElementById('modal'),dialog=document.getElementById('dialogContent');
@@ -42,7 +42,7 @@ function render(d){
 document.getElementById('close').addEventListener('click',()=>{modal.classList.remove('open');modal.setAttribute('aria-hidden','true')});
 modal.addEventListener('click',e=>{if(e.target===modal){modal.classList.remove('open');modal.setAttribute('aria-hidden','true')}});
 document.addEventListener('keydown',e=>{if(e.key==='Escape'){modal.classList.remove('open');modal.setAttribute('aria-hidden','true')}});
-fetch('./content/creative-content.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw new Error('Content file not found');return r.json()}).then(render).catch(()=>{app.innerHTML='<div class="eyebrow">Creative side</div><h1>Your content is not connected yet.</h1><p class="intro">Upload <b>creative-content.json</b> to the GitHub site at <b>content/creative-content.json</b>, next to this <b>index.html</b>.</p>';document.getElementById('status').style.display='block'});
+fetch('./content/creative-content.json?v='+Date.now(),{cache:'no-store'}).then(r=>{if(!r.ok)throw new Error('Content file not found');return r.json()}).then(render).catch(()=>{console.warn('Could not load creative-content.json; showing built-in fallback content.');render(fallback)});
 </script>
 </body>
 </html>

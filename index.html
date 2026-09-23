@@ -136,6 +136,11 @@
   if(!d){const q=await fetch('./content/home.json?v='+Date.now(),{cache:'no-store'});if(q.ok)d=await q.json();}
   if(!d)return;
   const set=(s,v)=>{const e=document.querySelector(s);if(e&&v!=null)e.textContent=v};
+  const ap=d.academicProfile||{};
+  set('.academic-kicker',ap.eyebrow);
+  set('.academic-degree',ap.degree);
+  const apSummary=document.querySelector('.academic-profile p');if(apSummary&&ap.summary!=null)apSummary.textContent=ap.summary;
+  const apTags=document.querySelector('.academic-tags');if(apTags&&Array.isArray(ap.tags))apTags.innerHTML=ap.tags.map(x=>'<span>'+escStudio(x)+'</span>').join('');
   set('.hero-kicker',d.kicker);set('.hero h1',d.headline);set('.hero-lead',d.intro);
   document.querySelectorAll('.identity span').forEach((e,i)=>{if(d.identity?.[i]!=null)e.textContent=d.identity[i]});
   document.querySelectorAll('.rail span').forEach((e,i)=>{if(d.rail?.[i]!=null)e.innerHTML='<b>0'+(i+1)+'</b> '+d.rail[i]});

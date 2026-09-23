@@ -131,9 +131,19 @@
   if(custom){
     custom.innerHTML=(d.customSections||[]).filter(s=>s.enabled!==false).map((s,i)=>'<section class="home-shell studio-custom-section" style="--studio-accent:'+(s.accent||'var(--forest)')+'"><div class="eyebrow">'+escStudio(s.eyebrow||'')+'</div><h2>'+escStudio(s.title||'')+'</h2><p>'+escStudio(s.text||'').replace(/\n/g,'<br>')+'</p>'+(s.link?'<a href="'+escStudio(s.link)+'">'+escStudio(s.linkLabel||'Explore ↗')+'</a>':'')+'</section>').join('');
   }
-  const custom=document.getElementById('studioCustomSections');
-  if(custom){
-    custom.innerHTML=(d.customSections||[]).filter(s=>s.enabled!==false).map((s,i)=>'<section class="home-shell studio-custom-section" style="--studio-accent:'+(s.accent||'var(--forest)')+'"><div class="eyebrow">'+escStudio(s.eyebrow||'')+'</div><h2>'+escStudio(s.title||'')+'</h2><p>'+escStudio(s.text||'').replace(/\n/g,'<br>')+'</p>'+(s.link?'<a href="'+escStudio(s.link)+'">'+escStudio(s.linkLabel||'Explore ↗')+'</a>':'')+'</section>').join('');
+  const homeOrder=d.homeOrder||['hero','rail','focus','contact'];
+  const sectionVisibility=d.sectionVisibility||{};
+  const main=document.querySelector('main');
+  if(main){
+    const map={
+      hero:main.querySelector('.hero'),
+      rail:main.querySelector('.signal-rail'),
+      focus:main.querySelector('.focus'),
+      contact:main.querySelector('.contact')
+    };
+    homeOrder.forEach(id=>{const el=map[id];if(el&&sectionVisibility[id]!==false)main.appendChild(el);});
+    Object.entries(map).forEach(([id,el])=>{if(el)el.style.display=sectionVisibility[id]===false?'none':'';});
+    const customEl=document.getElementById('studioCustomSections');if(customEl)main.appendChild(customEl);
   }
   try{
     let theme=null;

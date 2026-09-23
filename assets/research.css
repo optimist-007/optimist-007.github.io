@@ -118,33 +118,3 @@ body:before{
 @media(max-width:900px){.hero-grid,.philosophy-layout,.two-door-grid{grid-template-columns:1fr}.research-orbit{min-height:390px}.overview-grid{grid-template-columns:1fr 1fr}.overview-card{border-bottom:1px solid var(--line)}.project-preview-grid{grid-template-columns:1fr}.current-strip{grid-template-columns:1fr}.article-grid{grid-template-columns:1fr}}
 @media(max-width:620px){.hero-grid{padding:65px 0 52px}.hero h1{font-size:3.55rem}.overview-grid{grid-template-columns:1fr}.overview-card{border-right:0}.research-orbit{min-height:340px}.orbit-one{width:230px;height:140px}.orbit-two{width:210px;height:270px}.orbit-three{width:300px;height:300px}.orbit-core{width:145px;height:145px}.node-a{left:5%;top:13%}.node-b{right:4%;top:17%}.node-c{left:6%;bottom:12%}.node-d{right:7%;bottom:9%}.loop-list>div{grid-template-columns:38px 92px 1fr}}
 
-/* Shared research-page readability */
-:root{
- --forest:#244838;
- --forest-2:#37624f;
- --clay:#a75f49;
- --sand:#c8aa73;
- --cream:#f8f7f3;
- --paper:#eef1ec;
- --ink:#242923;
- --muted:#59635c;
- --line:rgba(36,72,56,.17);
- --serif:"Cormorant Garamond",Georgia,serif;
- --sans:"DM Sans",Arial,sans-serif;
- --mono:"DM Mono",Consolas,monospace;
- --base-size:18px;
-}
-html,body{background:var(--cream);color:var(--ink)}
-body{font-family:var(--sans);color:var(--ink);font-size:var(--base-size);line-height:1.72} .nav-links a{font-size:.68rem} .hero-lead{font-size:1.15rem;line-height:1.6} .section-head p,.light-panel p,.dark-panel p,.article-card p,.project-card .body p{font-size:1rem;line-height:1.72}
-.site-header{background:rgba(248,247,243,.96);border-bottom:1px solid var(--line)}
-.nav-links a{color:#4d5851}
-.nav-links a:hover,.nav-links a.active{color:var(--forest)}
-.brand{color:var(--forest)}
-.page-hero h1,h1,h2,h3,h4{font-family:var(--serif);color:var(--forest)}
-.page-hero .hero-lead,.section p,.card p,.index-box,.muted{color:var(--muted)}
-.band{background:var(--forest);color:var(--cream)}
-.band h2{color:var(--cream)}
-.dark-panel{background:var(--forest)}
-.light-panel,.card,.project-card,.article-card{background:var(--paper);color:var(--ink)}
-.eyebrow,.status,.tag{color:var(--clay)}
-.meta,.nav a,.tag,.eyebrow{font-family:var(--mono)}

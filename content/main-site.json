@@ -1,0 +1,26 @@
+{
+  "siteTitle":"Simran Sainand Revankar | Materials Research",
+  "nav":[
+    {"label":"Research","href":"research.html"},
+    {"label":"Projects","href":"projects.html"},
+    {"label":"Blogs","href":"blogs.html"},
+    {"label":"Publications","href":"publications.html"},
+    {"label":"Media","href":"media.html"},
+    {"label":"Collaborate","href":"collaborate.html"},
+    {"label":"CV ↗","href":"media/docs/CV.pdf"},
+    {"label":"Creative side ↗","href":"creative.html","className":"creative"}
+  ],
+  "theme":{
+    "forest":"#244838",
+    "forest2":"#37624f",
+    "clay":"#a75f49",
+    "sand":"#c8aa73",
+    "cream":"#f8f7f3",
+    "paper":"#eef1ec",
+    "ink":"#242923",
+    "muted":"#667069",
+    "serif":"Cormorant Garamond",
+    "sans":"DM Sans",
+    "mono":"DM Mono"
+  }
+}

@@ -507,6 +507,14 @@ function setupComments(d){
 
 async function load(){
   try{
+    try{
+      const p=localStorage.getItem('websiteStudioPreview');
+      if(p){
+        const x=JSON.parse(p);
+        const preview=x?.files?.['content/creative-content.json'];
+        if(preview) return preview;
+      }
+    }catch(e){}
     const res = await fetch('./content/creative-content.json?v='+Date.now(),{cache:'no-store'});
     if(!res.ok) throw new Error('Content file not found');
     return await res.json();

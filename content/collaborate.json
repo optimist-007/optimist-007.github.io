@@ -1,0 +1,9 @@
+{
+  "hero":{"eyebrow":"Collaboration","title":"Defined work, clearly scoped.","intro":"I am interested in research-adjacent work where my experimental materials background, scientific writing, literature experience and data skills can contribute to a concrete outcome.","sideNote":"The best fit is a focused question with a clear starting point and a useful result at the end."},
+  "services":[
+    {"tag":"01 · Research support","title":"Literature & scientific thinking","text":"Focused literature searches, synthesis of a defined question, and helping turn a broad research idea into a clearer scientific direction."},
+    {"tag":"02 · Communication","title":"Scientific writing & visualisation","text":"Structuring technical material, improving scientific figures, and turning complex results into clear writing without flattening the science."},
+    {"tag":"03 · Data","title":"Analysis & presentation","text":"Organising experimental data and building clear plots or visual stories using appropriate analysis tools."}
+  ],
+  "closing":{"eyebrow":"Contact","title":"Let's see whether the question fits.","text":"Send a short note about the research problem, writing or analysis you have in mind.","email":"simirevankar01@gmail.com"}
+}

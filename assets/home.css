@@ -72,3 +72,8 @@ a{color:inherit}
 .home-contact h2{font:500 clamp(3rem,5.5vw,5.4rem)/.9 var(--serif);letter-spacing:-.05em;color:var(--forest);margin:8px auto 16px;max-width:780px}
 .home-contact p{max-width:650px;margin:0 auto 24px;color:var(--muted);font-size:1.04rem}
 .home-contact a{display:inline-block;color:var(--forest);font:700 .78rem var(--mono);text-transform:uppercase;letter-spacing:.1em;text-decoration:none;border-bottom:1px solid var(--forest);padding-bottom:4px}
+
+.home-visual{position:relative;align-self:stretch;min-height:430px;display:flex;align-items:center;justify-content:center}
+.home-visual img{display:block;width:100%;max-width:560px;height:auto;filter:drop-shadow(0 22px 35px rgba(35,71,55,.08))}
+.visual-note{position:absolute;right:5%;bottom:4%;font:700 .65rem var(--mono);letter-spacing:.11em;text-transform:uppercase;color:var(--forest);background:rgba(248,246,241,.9);padding:9px 12px;border:1px solid var(--line)}
+@media(max-width:900px){.home-visual{min-height:330px}.home-visual img{max-width:620px}}

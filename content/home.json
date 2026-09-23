@@ -4,10 +4,10 @@
   "intro":"My work is grounded in experimental research across functional nanomaterials, thin films, interfaces and devices. I am interested in energy, sensing and semiconductor-related problems, and I am building computational skills to make future experiments more deliberate.",
   "identity":["Question-driven","Experimental","Always learning"],
   "rail":["functional materials","energy & sensing","semiconductor systems","sustainable technology"],
-  "questions":[
-    {"number":"01","title":"How can materials do useful work?","text":"Functional materials, interfaces and device behaviour that connect material properties to something measurable and useful."},
-    {"number":"02","title":"Can experiments become more informed?","text":"Using theory, computation and eventually machine learning alongside the experimental judgement built through hands-on research."},
-    {"number":"03","title":"Can better materials solve real constraints?","text":"Energy, sensing and semiconductor-related problems considered with resource use, practicality and eventual application in mind."}
-  ],
-  "contact":{"eyebrow":"Collaborate","title":"Have a defined research question or project?","text":"I am open to well-scoped research, scientific writing, literature synthesis, and data or visualisation work where my materials background can be useful.","email":"simirevankar01@gmail.com"}
+  "focusEyebrow":"What I am interested in",
+  "focusTitle":"A few questions guide the work.",
+  "focusIntro":"The rest belongs on the research and project pages. This is only the glimpse.",
+  "questions":[{"number":"01","title":"How can materials do useful work?","text":"Functional materials, interfaces and device behaviour that connect material properties to something measurable and useful."},{"number":"02","title":"Can experiments become more informed?","text":"Using theory, computation and eventually machine learning alongside the experimental judgement built through hands-on research."},{"number":"03","title":"Can better materials solve real constraints?","text":"Energy, sensing and semiconductor-related problems considered with resource use, practicality and eventual application in mind."}],
+  "contact":{"eyebrow":"Collaborate","title":"Have a defined research question or project?","text":"I am open to well-scoped research, scientific writing, literature synthesis, and data or visualisation work where my materials background can be useful.","email":"simirevankar01@gmail.com"},
+  "footerLeft":"Materials · devices · questions"
 }

@@ -533,7 +533,14 @@ async function load(){
   const d = await load();
   applyTheme(d);
   const design=d.__site?.design||{};
+  const siteTheme=d.__site?.theme||{};
   const root=document.documentElement;
+  if(d.__site?.serif)root.style.setProperty('--serif','"'+d.__site.serif+'",Georgia,serif');
+  if(d.__site?.sans)root.style.setProperty('--sans','"'+d.__site.sans+'",Arial,sans-serif');
+  if(siteTheme.paper)root.style.setProperty('--paper',siteTheme.paper);
+  if(siteTheme.ink)root.style.setProperty('--ink',siteTheme.ink);
+  if(siteTheme.wine)root.style.setProperty('--wine',siteTheme.wine);
+  if(siteTheme.gold)root.style.setProperty('--gold',siteTheme.gold);
   if(design.baseFontSize)root.style.fontSize=design.baseFontSize+'px';
   if(design.maxWidth){document.querySelector('.wrap').style.maxWidth=design.maxWidth+'px';}
   if(design.h1Size)root.style.setProperty('--studio-h1-size',design.h1Size+'rem');

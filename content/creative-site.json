@@ -1,0 +1,100 @@
+{
+  "page": {
+    "label": "Creative side",
+    "issue": "Personal culture notes · 001",
+    "title": "What stays with me.",
+    "intro": "Notes on films, books and the stories that continue to live in my mind after the final scene or last page.",
+    "aside": "This space begins with reviews. Other creative work can arrive when it is ready.",
+    "marginLabel": "A note from the margins",
+    "marginText": "Not a catalogue.",
+    "marginAccent": "Just the things that refused to leave."
+  },
+  "navigation": {
+    "researchLabel": "Research ↗",
+    "reviewsLabel": "Reviews",
+    "quotesLabel": "Quotes",
+    "nowLabel": "Now",
+    "commentsLabel": "Comments"
+  },
+  "ticker": {
+    "enabled": true,
+    "speed": 26,
+    "items": [
+      "films",
+      "books",
+      "favourite lines",
+      "current obsessions",
+      "stories",
+      "visual scraps",
+      "things worth returning to"
+    ]
+  },
+  "sections": {
+    "reviews": {
+      "enabled": true,
+      "order": 1,
+      "eyebrow": "The archive",
+      "title": "Pages worth returning to.",
+      "description": "A shelf for reviews and other pieces you want people to spend time with.",
+      "showFilters": true
+    },
+    "quotes": {
+      "enabled": true,
+      "order": 2,
+      "eyebrow": "Lines that stayed",
+      "title": "Favourite quotes.",
+      "description": "A shelf for sentences that kept echoing after the story was over."
+    },
+    "obsessions": {
+      "enabled": true,
+      "order": 3,
+      "eyebrow": "Current page",
+      "title": "Currently obsessed with.",
+      "description": "A film, a book, a writer, a song, a sentence, or whatever has taken up too much room in your head lately.",
+      "label": "right now",
+      "headline": "What is occupying the brain."
+    },
+    "future": {
+      "enabled": true,
+      "order": 4,
+      "eyebrow": "Other rooms",
+      "title": "More things can live here.",
+      "description": "Books, stories, visual work and future rabbit holes can enter without changing the character of the page."
+    },
+    "comments": {
+      "enabled": true,
+      "order": 5,
+      "eyebrow": "Margin notes",
+      "title": "Leave a thought.",
+      "description": "Sign in with GitHub to leave a note."
+    }
+  },
+  "footer": {
+    "left": "Made for things that linger.",
+    "middle": "Films · books · stories · visual scraps · whatever comes next.",
+    "researchLabel": "Back to research ↗",
+    "researchUrl": "https://optimist-007.github.io/"
+  },
+  "design": {
+    "paper": "#eee8dc",
+    "paper2": "#f5f0e7",
+    "ink": "#342b2b",
+    "muted": "#6c6060",
+    "wine": "#6a3044",
+    "wine2": "#87445b",
+    "gold": "#9b783d",
+    "card": "#e5ded2",
+    "lineOpacity": 0.16,
+    "maxWidth": 1240,
+    "baseFontSize": 16,
+    "posterHeight": 70,
+    "posterRotation": -1.2,
+    "shadowStrength": 12,
+    "tickerSpeed": 26,
+    "motion": "normal",
+    "serifFont": "Cormorant Garamond",
+    "sansFont": "DM Sans",
+    "monoFont": "DM Mono",
+    "customCss": ""
+  }
+}

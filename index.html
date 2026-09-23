@@ -125,7 +125,16 @@
   document.querySelectorAll('.question-grid article').forEach((e,i)=>{const q=d.questions?.[i];if(q){set.call(null,'',null);e.querySelector('span').textContent=q.number||String(i+1).padStart(2,'0');e.querySelector('h3').textContent=q.title||'';e.querySelector('p').textContent=q.text||'';}});
   set('.contact .eyebrow',d.contact?.eyebrow);set('.contact h2',d.contact?.title);set('.contact p',d.contact?.text);
   const a=document.querySelector('.contact a');if(a&&d.contact?.email){a.href='mailto:'+d.contact.email+'?subject=Research%20collaboration%20through%20website';}
+  const escStudio=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   set('.footer span:first-child',d.footerLeft);
+  const custom=document.getElementById('studioCustomSections');
+  if(custom){
+    custom.innerHTML=(d.customSections||[]).filter(s=>s.enabled!==false).map((s,i)=>'<section class="home-shell studio-custom-section" style="--studio-accent:'+(s.accent||'var(--forest)')+'"><div class="eyebrow">'+escStudio(s.eyebrow||'')+'</div><h2>'+escStudio(s.title||'')+'</h2><p>'+escStudio(s.text||'').replace(/\n/g,'<br>')+'</p>'+(s.link?'<a href="'+escStudio(s.link)+'">'+escStudio(s.linkLabel||'Explore ↗')+'</a>':'')+'</section>').join('');
+  }
+  const custom=document.getElementById('studioCustomSections');
+  if(custom){
+    custom.innerHTML=(d.customSections||[]).filter(s=>s.enabled!==false).map((s,i)=>'<section class="home-shell studio-custom-section" style="--studio-accent:'+(s.accent||'var(--forest)')+'"><div class="eyebrow">'+escStudio(s.eyebrow||'')+'</div><h2>'+escStudio(s.title||'')+'</h2><p>'+escStudio(s.text||'').replace(/\n/g,'<br>')+'</p>'+(s.link?'<a href="'+escStudio(s.link)+'">'+escStudio(s.linkLabel||'Explore ↗')+'</a>':'')+'</section>').join('');
+  }
   try{
     let theme=null;
     const p=localStorage.getItem('websiteStudioPreview');

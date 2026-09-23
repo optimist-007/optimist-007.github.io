@@ -22,17 +22,5 @@
     "details":["Ferroelectric thin films","Polarisation and P-E hysteresis","PUND analysis","DC probe-station characterisation","Interface-focused interpretation"],
     "what_it_shows":"It adds a device-physics and interface perspective to my materials background, with emphasis on understanding the mechanisms behind measured behaviour.",
     "next":"The longer-term aim is to connect experimental measurements with theoretical and computational approaches so that promising device conditions can be identified earlier."
-  },
-  {
-    "slug":"computational-edge",
-    "kicker":"In development · computation",
-    "status":"Building",
-    "title":"Building a computational edge for materials research",
-    "summary":"An active learning track in DFT, Python and AI/ML, designed to complement an already strong experimental foundation.",
-    "problem":"How can computation help reduce blind trial-and-error and guide which material or device experiments are worth doing next?",
-    "approach":"Developing practical workflows in electronic-structure calculations, data analysis and machine learning, with an emphasis on questions that can eventually be validated experimentally.",
-    "details":["DFT foundations","Quantum ESPRESSO","Python data workflows","Machine learning foundations","Experiment-guided modelling"],
-    "what_it_shows":"This is intentionally not presented as a finished project. It is the next capability I am building so that theory and experiment can inform each other.",
-    "next":"A concrete project will appear here once the method, question and result are strong enough to deserve their own research story."
   }
 ]

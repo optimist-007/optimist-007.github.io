@@ -51,5 +51,18 @@
     "rail",
     "focus",
     "contact"
-  ]
+  ],
+  "academicProfile": {
+    "eyebrow": "Academic profile",
+    "degree": "M.Sc. Chemistry",
+    "summary": "Materials research at the intersection of functional nanomaterials, thin films, interfaces and device behaviour.",
+    "tags": [
+      "Functional nanomaterials",
+      "Thin films",
+      "Interfaces",
+      "Energy & sensing",
+      "Semiconductor systems",
+      "Computational materials"
+    ]
+  }
 }

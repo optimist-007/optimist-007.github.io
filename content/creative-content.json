@@ -1,0 +1,51 @@
+{
+  "identity": {
+    "label": "Creative side",
+    "title": "What stays with me.",
+    "intro": "Notes on films, books and the stories that continue to live in my mind after the final scene or last page.",
+    "aside": "This space begins with reviews. Other creative work can arrive when it is ready."
+  },
+  "featured": {
+    "type": "Film or book",
+    "title": "Your next review begins here.",
+    "date": "",
+    "image": "",
+    "excerpt": "A reflective opening for the film or book you most want visitors to notice.",
+    "review": "",
+    "quote": "",
+    "link": ""
+  },
+  "posts": [
+    {
+      "type": "Movie",
+      "title": "Obsession",
+      "date": "",
+      "image": "",
+      "excerpt": "",
+      "review": "",
+      "quote": "",
+      "link": ""
+    }
+  ],
+  "future": [
+    {
+      "title": "Stories",
+      "text": "A future doorway to fiction and Wattpad work."
+    },
+    {
+      "title": "Visual practice",
+      "text": "Painting and visual experiments can arrive later."
+    },
+    {
+      "title": "Other forms",
+      "text": "Space reserved without pressure to fill it."
+    }
+  ],
+  "theme": {
+    "paper": "#eee8dc",
+    "ink": "#342b2b",
+    "wine": "#6a3044",
+    "gold": "#9b783d"
+  },
+  "comments": "true"
+}

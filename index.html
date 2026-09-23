@@ -107,5 +107,27 @@
   <span>Materials · devices · questions</span>
   <span>© 2026 Simran Sainand Revankar</span>
 </footer>
+<script>
+(async()=>{
+ try{
+  let d=null;
+  try{
+   const p=localStorage.getItem('websiteStudioPreview');
+   if(p){const x=JSON.parse(p);d=x?.files?.['content/home.json']||null;}
+  }catch(e){}
+  if(!d){const q=await fetch('./content/home.json?v='+Date.now(),{cache:'no-store'});if(q.ok)d=await q.json();}
+  if(!d)return;
+  const set=(s,v)=>{const e=document.querySelector(s);if(e&&v!=null)e.textContent=v};
+  set('.hero-kicker',d.kicker);set('.hero h1',d.headline);set('.hero-lead',d.intro);
+  document.querySelectorAll('.identity span').forEach((e,i)=>{if(d.identity?.[i]!=null)e.textContent=d.identity[i]});
+  document.querySelectorAll('.rail span').forEach((e,i)=>{if(d.rail?.[i]!=null)e.innerHTML='<b>0'+(i+1)+'</b> '+d.rail[i]});
+  set('.focus-heading .eyebrow',d.focusEyebrow);set('.focus-heading h2',d.focusTitle);set('.focus-heading p',d.focusIntro);
+  document.querySelectorAll('.question-grid article').forEach((e,i)=>{const q=d.questions?.[i];if(q){set.call(null,'',null);e.querySelector('span').textContent=q.number||String(i+1).padStart(2,'0');e.querySelector('h3').textContent=q.title||'';e.querySelector('p').textContent=q.text||'';}});
+  set('.contact .eyebrow',d.contact?.eyebrow);set('.contact h2',d.contact?.title);set('.contact p',d.contact?.text);
+  const a=document.querySelector('.contact a');if(a&&d.contact?.email){a.href='mailto:'+d.contact.email+'?subject=Research%20collaboration%20through%20website';}
+  set('.footer span:first-child',d.footerLeft);
+ }catch(e){console.warn('Website Studio content load failed',e);}
+})();
+</script>
 </body>
 </html>

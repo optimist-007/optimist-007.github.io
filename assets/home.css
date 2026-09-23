@@ -9,3 +9,17 @@
 .contact{padding:84px 0 78px;border-top:1px solid var(--line);text-align:center;background:#eef0eb}.contact h2{font:500 clamp(3.1rem,5.6vw,5.3rem)/.9 var(--serif);color:var(--forest);letter-spacing:-.05em;max-width:780px;margin:8px auto 18px}.contact p{max-width:650px;color:var(--muted);margin:0 auto 23px}.contact a{display:inline-block;text-decoration:none;color:var(--forest);font:700 .75rem var(--mono);text-transform:uppercase;letter-spacing:.1em;border-bottom:1px solid var(--forest);padding-bottom:4px}.footer{padding:28px 0;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;color:var(--muted);font:600 .65rem var(--mono);text-transform:uppercase;letter-spacing:.08em}
 @media(max-width:880px){.home-navlinks{gap:13px}.hero{grid-template-columns:1fr;padding-top:65px}.hero-art{min-height:380px}.question-grid{grid-template-columns:1fr}.focus-heading{display:block}.focus-heading p{margin-top:15px}}
 @media(max-width:560px){.home-shell{width:min(100% - 28px,1160px)}.home-navlinks{display:none}.hero h1{font-size:4rem}.hero{padding-top:54px}.hero-art{min-height:330px}.rail{justify-content:flex-start}.focus{padding:62px 0}.question-grid article{min-height:205px}}
+
+/* Website Studio design controls */
+:root{--studio-base-size:18px;--studio-max-width:1160px;--studio-section-space:84px;--studio-radius:0px;--studio-serif-weight:500;--studio-motion:1}
+body{font-size:var(--studio-base-size)}
+.home-shell{width:min(var(--studio-max-width),calc(100% - 52px))}
+.home-brand{font-family:var(--sans)}
+.hero h1,.focus-heading h2,.question-grid h3,.contact h2{font-family:var(--serif);font-weight:var(--studio-serif-weight)}
+.hero{padding-top:var(--studio-section-space);padding-bottom:calc(var(--studio-section-space) * .86)}
+.focus{padding-top:var(--studio-section-space);padding-bottom:var(--studio-section-space)}
+.question-grid article{border-radius:var(--studio-radius)}
+.studio-custom-section{padding:var(--studio-section-space) 0;border-top:1px solid var(--line);max-width:var(--studio-max-width)}
+.studio-custom-section h2{font:var(--studio-serif-weight) clamp(2.7rem,5vw,5rem)/.92 var(--serif);color:var(--forest);letter-spacing:-.05em;margin:8px 0 15px;max-width:820px}
+.studio-custom-section p{max-width:760px;color:var(--muted);margin:0 0 20px}
+.studio-custom-section a{color:var(--forest);font:700 .75rem var(--mono);text-transform:uppercase;letter-spacing:.1em}

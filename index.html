@@ -141,6 +141,17 @@
     if(p){const x=JSON.parse(p);theme=x?.files?.['content/site-theme.json']||null;}
     if(!theme){const q=await fetch('./content/site-theme.json?v='+Date.now(),{cache:'no-store'});if(q.ok)theme=await q.json();}
     if(theme) Object.entries(theme).forEach(([k,v])=>document.documentElement.style.setProperty('--'+k,v));
+    if(theme){
+      const root=document.documentElement;
+      if(theme.baseFontSize)root.style.setProperty('--studio-base-size',theme.baseFontSize+'px');
+      if(theme.maxWidth)root.style.setProperty('--studio-max-width',theme.maxWidth+'px');
+      if(theme.sectionSpacing)root.style.setProperty('--studio-section-space',theme.sectionSpacing+'px');
+      if(theme.cardRadius!==undefined)root.style.setProperty('--studio-radius',theme.cardRadius+'px');
+      if(theme.serifWeight)root.style.setProperty('--studio-serif-weight',theme.serifWeight);
+      if(theme.serif)root.style.setProperty('--serif','"'+theme.serif+'",Georgia,serif');
+      if(theme.sans)root.style.setProperty('--sans','"'+theme.sans+'",Arial,sans-serif');
+      if(theme.mono)root.style.setProperty('--mono','"'+theme.mono+'",monospace');
+    }
   }catch(e){}
  }catch(e){console.warn('Website Studio content load failed',e);}
 })();

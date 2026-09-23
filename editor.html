@@ -78,10 +78,10 @@ textarea{min-height:120px;resize:vertical}
   <h1>Main website</h1>
   <p class="muted">Edit the homepage content here. Changes stay in this browser until you publish.</p>
   <div id="homeFields"></div>
-  <h2>Questions</h2>
+  <h2>Academic profile</h2><div id="academicFields"></div><h2>Questions</h2>
   <div id="questions"></div>
   <div class="row"><button id="addQuestion">+ Add question</button></div>
-  <h2>Collaboration</h2>
+  <h2>Publications</h2><div id="publications"></div><div class="row"><button id="addPublication">+ Add publication</button></div><h2>Collaboration</h2>
   <div id="contactFields"></div>
 </section>
 
@@ -181,6 +181,7 @@ textarea{min-height:120px;resize:vertical}
     <option>content/main-site.json</option>
     <option>content/creative-site.json</option>
     <option>content/media-library.json</option>
+    <option>content/publications.json</option>
   </select></div>
   <textarea id="sourceText" class="source" spellcheck="false"></textarea>
   <div class="row"><button class="secondary" id="loadSource">Load file</button><button id="stageSource">Stage file</button></div>
@@ -224,6 +225,7 @@ var state={
   creativeSite:{},
   mainSite:{},
   media:[],
+  publications:[],
   source:{}
 };
 
@@ -233,7 +235,8 @@ var paths={
   theme:'content/site-theme.json',
   creativeSite:'content/creative-site.json',
   mainSite:'content/main-site.json',
-  media:'content/media-library.json'
+  media:'content/media-library.json',
+  publications:'content/publications.json'
 };
 var FALLBACK={
  home:{
@@ -666,6 +669,9 @@ function normalize(){
 
   if(!state.mainSite)state.mainSite={};
   if(!Array.isArray(state.media))state.media=[];
+  if(!state.home.academicProfile)state.home.academicProfile={eyebrow:'Academic profile',degree:'M.Sc. Chemistry',summary:'',tags:[]};
+  if(!Array.isArray(state.home.academicProfile.tags))state.home.academicProfile.tags=[];
+  if(!Array.isArray(state.publications))state.publications=[];
 }
 
 async function getFile(path){
@@ -691,6 +697,7 @@ async function loadAll(){
   state.creativeSite=await safeJson(paths.creativeSite,FALLBACK.creativeSite);
   state.mainSite=await safeJson(paths.mainSite,FALLBACK.mainSite);
   state.media=await safeJson(paths.media,FALLBACK.media);
+  state.publications=await safeJson(paths.publications,[]);
   normalize();
   renderAll();
   var saved=sessionStorage.getItem('websiteStudioToken')||localStorage.getItem('websiteStudioToken');
@@ -721,6 +728,9 @@ function bind(root,obj){
 
 function renderHome(){
   var h=state.home;
+  var a=h.academicProfile;
+  $('academicFields').innerHTML=field('Eyebrow','academicProfile.eyebrow',a.eyebrow)+field('Degree','academicProfile.degree',a.degree)+field('Summary','academicProfile.summary',a.summary,true)+a.tags.map(function(t,i){return field('Research tag '+(i+1),'academicProfile.tags.'+i,t);}).join('');
+  bind($('academicFields'),h);
   $('homeFields').innerHTML=
     field('Small label','kicker',h.kicker,false)+
     field('Headline','headline',h.headline,true)+
@@ -755,6 +765,11 @@ function renderHome(){
 function creativeTypes(current){
   var types=['Movie','Book','Painting','Anime','Travel','Food','Music','Journal','Story','Photography','Other'];
   return types.map(function(t){return '<option value="'+escapeHtml(t)+'" '+(t===current?'selected':'')+'>'+escapeHtml(t)+'</option>';}).join('');
+}
+
+function renderPublications(){
+  $('publications').innerHTML=state.publications.map(function(p,i){return '<div class="card"><div class="cardhead"><b>Publication '+(i+1)+'</b><button class="danger remove-publication" data-index="'+i+'">Remove</button></div>'+field('Title','publications.'+i+'.title',p.title,true)+field('Journal','publications.'+i+'.journal',p.journal)+field('Role','publications.'+i+'.role',p.role)+field('Year','publications.'+i+'.year',p.year)+field('Volume','publications.'+i+'.volume',p.volume)+field('Article number','publications.'+i+'.article',p.article)+field('DOI','publications.'+i+'.doi',p.doi)+field('Link','publications.'+i+'.link',p.link)+'</div>';}).join('');
+  bind($('publications'),state);wireButtons($('publications'),'.remove-publication',function(i){state.publications.splice(i,1);renderPublications();});
 }
 
 function renderCreative(){
@@ -935,6 +950,7 @@ function renderGraphics(){
 
 function renderAll(){
   renderHome();
+  renderPublications();
   renderCreative();
   renderDesign();
   renderOrganization();
@@ -959,7 +975,8 @@ function snapshot(){
     theme:state.theme,
     creativeSite:state.creativeSite,
     mainSite:state.mainSite,
-    media:state.media
+    media:state.media,
+    publications:state.publications
   };
 }
 
@@ -972,7 +989,8 @@ function savePreview(){
       'content/site-theme.json':state.theme,
       'content/creative-site.json':state.creativeSite,
       'content/main-site.json':state.mainSite,
-      'content/media-library.json':state.media
+      'content/media-library.json':state.media,
+      'content/publications.json':state.publications
     }
   }));
   var frame=$('previewFrame');
@@ -1079,6 +1097,7 @@ async function publish(){
       var y={};for(var k in x)if(k!=='data')y[k]=x[k];return y;
     });
     await putText(paths.media,JSON.stringify(mediaOut,null,2),msg);
+    await putText(paths.publications,JSON.stringify(state.publications,null,2),msg);
 
     localStorage.removeItem('websiteStudioPreview');
     status('Published successfully. GitHub Pages may take a short time to show the changes.');
@@ -1128,6 +1147,8 @@ var tabButtons=document.querySelectorAll('aside button');
 for(var i=0;i<tabButtons.length;i++){
   tabButtons[i].addEventListener('click',function(){switchTab(this.getAttribute('data-tab'));});
 }
+
+$('addPublication').addEventListener('click',function(){state.publications.push({title:'',journal:'',role:'',year:'',volume:'',article:'',doi:'',link:''});renderPublications();});
 
 $('addQuestion').addEventListener('click',function(){
   state.home.questions.push({number:String(state.home.questions.length+1).padStart(2,'0'),title:'New question',text:''});

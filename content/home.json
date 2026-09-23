@@ -45,5 +45,11 @@
     "hero": true,
     "focus": true,
     "contact": true
-  }
+  },
+  "homeOrder": [
+    "hero",
+    "rail",
+    "focus",
+    "contact"
+  ]
 }

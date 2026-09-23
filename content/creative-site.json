@@ -76,6 +76,11 @@
     "researchUrl": "https://optimist-007.github.io/"
   },
   "design": {
+    "baseFontSize": 16,
+    "maxWidth": 1240,
+    "sectionSpacing": 80,
+    "posterHeight": 70,
+    "posterRotation": -1.2,
     "paper": "#eee8dc",
     "paper2": "#f5f0e7",
     "ink": "#342b2b",
@@ -85,10 +90,6 @@
     "gold": "#9b783d",
     "card": "#e5ded2",
     "lineOpacity": 0.16,
-    "maxWidth": 1240,
-    "baseFontSize": 16,
-    "posterHeight": 70,
-    "posterRotation": -1.2,
     "shadowStrength": 12,
     "tickerSpeed": 26,
     "motion": "normal",
@@ -97,8 +98,15 @@
     "monoFont": "DM Mono",
     "customCss": "",
     "h1Size": 10.5,
-    "h2Size": 5.2,
-    "sectionSpacing": 80
+    "h2Size": 5.2
   },
-  "customSections": []
+  "customSections": [],
+  "serif": "Cormorant Garamond",
+  "sans": "DM Sans",
+  "theme": {
+    "paper": "#eee8dc",
+    "ink": "#342b2b",
+    "wine": "#6a3044",
+    "gold": "#9b783d"
+  }
 }

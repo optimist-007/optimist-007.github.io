@@ -108,5 +108,34 @@
     "ink": "#342b2b",
     "wine": "#6a3044",
     "gold": "#9b783d"
-  }
+  },
+  "order": [
+    "reviews",
+    "quotes",
+    "obsessions",
+    "future",
+    "comments"
+  ],
+  "nav": [
+    {
+      "label": "Research ↗",
+      "href": "https://optimist-007.github.io/"
+    },
+    {
+      "label": "Reviews",
+      "href": "#reviews"
+    },
+    {
+      "label": "Quotes",
+      "href": "#quotes"
+    },
+    {
+      "label": "Now",
+      "href": "#obsessions"
+    },
+    {
+      "label": "Comments",
+      "href": "#comments"
+    }
+  ]
 }

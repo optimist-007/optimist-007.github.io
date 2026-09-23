@@ -126,6 +126,13 @@
   set('.contact .eyebrow',d.contact?.eyebrow);set('.contact h2',d.contact?.title);set('.contact p',d.contact?.text);
   const a=document.querySelector('.contact a');if(a&&d.contact?.email){a.href='mailto:'+d.contact.email+'?subject=Research%20collaboration%20through%20website';}
   set('.footer span:first-child',d.footerLeft);
+  try{
+    let theme=null;
+    const p=localStorage.getItem('websiteStudioPreview');
+    if(p){const x=JSON.parse(p);theme=x?.files?.['content/site-theme.json']||null;}
+    if(!theme){const q=await fetch('./content/site-theme.json?v='+Date.now(),{cache:'no-store'});if(q.ok)theme=await q.json();}
+    if(theme) Object.entries(theme).forEach(([k,v])=>document.documentElement.style.setProperty('--'+k,v));
+  }catch(e){}
  }catch(e){console.warn('Website Studio content load failed',e);}
 })();
 </script>

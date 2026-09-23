@@ -95,6 +95,10 @@
     "serifFont": "Cormorant Garamond",
     "sansFont": "DM Sans",
     "monoFont": "DM Mono",
-    "customCss": ""
-  }
+    "customCss": "",
+    "h1Size": 10.5,
+    "h2Size": 5.2,
+    "sectionSpacing": 80
+  },
+  "customSections": []
 }

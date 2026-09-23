@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Creative side</title>
+<style>
+:root{--ink:#342b2b;--wine:#6a3044;--paper:#eee8dc;--card:#e5ded2;--gold:#9b783d;--line:rgba(52,43,43,.18)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.7 Arial,sans-serif}a{color:var(--wine)}.wrap{max-width:1120px;margin:0 auto;padding:36px 5vw 80px}.eyebrow{font:700 .72rem Arial,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--wine)}h1,h2,h3{font-family:Georgia,serif;font-weight:normal;letter-spacing:-.035em}h1{font-size:clamp(3rem,8vw,6.5rem);line-height:.92;margin:12px 0 24px}h2{font-size:2.3rem;line-height:1.05;margin:0 0 15px}h3{font-size:1.55rem;line-height:1.15;margin:6px 0 10px}.intro{max-width:760px;font-size:1.12rem;color:#5c5151}.aside{border-left:3px solid var(--wine);padding:12px 0 12px 18px;max-width:700px;margin:25px 0 42px;color:#665b5b}.feature{background:var(--ink);color:var(--paper);padding:30px;margin:35px 0 50px}.feature a{color:#fff}.meta{font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;opacity:.75}.feature img{width:100%;max-height:420px;object-fit:cover;display:block;margin:20px 0}.feature .quote{border-left:2px solid var(--gold);padding-left:15px;font-family:Georgia,serif;font-size:1.08rem;margin:22px 0}.section-title{display:flex;justify-content:space-between;align-items:end;gap:16px;border-bottom:1px solid var(--line);padding-bottom:10px;margin-bottom:15px}.posts{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.post{background:var(--card);padding:18px;cursor:pointer;transition:transform .15s ease}.post:hover{transform:translateY(-2px)}.post img{width:100%;aspect-ratio:4/3;object-fit:cover;margin-bottom:10px}.post p{margin-bottom:0;color:#5e5555}.future{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:15px}.future .post{cursor:default}.footer{margin-top:60px;padding-top:16px;border-top:1px solid var(--line);font-size:.86rem;color:#6f6464}.empty{color:#756b6b}.modal{position:fixed;inset:0;background:rgba(20,15,15,.68);display:none;align-items:center;justify-content:center;padding:20px;z-index:20}.modal.open{display:flex}.dialog{background:var(--paper);color:var(--ink);max-width:820px;max-height:90vh;overflow:auto;padding:28px;width:100%;position:relative}.close{position:absolute;right:15px;top:10px;border:0;background:none;font-size:28px;cursor:pointer;color:var(--ink)}.dialog img{width:100%;max-height:480px;object-fit:cover}.review-body{white-space:pre-wrap}.quote-dark{border-left:3px solid var(--gold);padding-left:15px;font-family:Georgia,serif}.status{position:fixed;right:15px;bottom:15px;background:var(--ink);color:var(--paper);padding:9px 12px;font-size:.85rem;display:none}
+@media(max-width:800px){.posts,.future{grid-template-columns:1fr}.wrap{padding-top:25px}.feature{padding:22px}}
+</style>
+</head>
+<body>
+<main class="wrap">
+  <div id="app"><p class="empty">Loading…</p></div>
+</main>
+<div class="modal" id="modal" aria-hidden="true">
+  <div class="dialog" role="dialog" aria-modal="true">
+    <button class="close" id="close" aria-label="Close">×</button>
+    <div id="dialogContent"></div>
+  </div>
+</div>
+<div class="status" id="status">Unable to load content.</div>
+<script>
+const fallback={identity:{label:'Creative side',title:'What stays with me.',intro:'Notes on films, books and the stories that continue to live in my mind after the final scene or last page.',aside:'This space begins with reviews. Other creative work can arrive when it is ready.'},featured:{type:'Film or book',title:'Your next review begins here.',date:'',image:'',excerpt:'A reflective opening for the film or book you most want visitors to notice.',review:'',quote:'',link:''},posts:[],future:[],theme:{paper:'#eee8dc',ink:'#342b2b',wine:'#6a3044',gold:'#9b783d'},comments:'true'};
+const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const nl=v=>esc(v).replace(/\n/g,'<br>');
+const app=document.getElementById('app'),modal=document.getElementById('modal'),dialog=document.getElementById('dialogContent');
+function applyTheme(d){const t=d.theme||{};document.documentElement.style.setProperty('--paper',t.paper||fallback.theme.paper);document.documentElement.style.setProperty('--ink',t.ink||fallback.theme.ink);document.documentElement.style.setProperty('--wine',t.wine||fallback.theme.wine);document.documentElement.style.setProperty('--gold',t.gold||fallback.theme.gold);}
+function openReview(r){dialog.innerHTML='<div class="eyebrow">'+esc(r.type||'Review')+'</div><h2>'+esc(r.title||'Untitled review')+'</h2>'+(r.date?'<div class="meta">'+esc(r.date)+'</div>':'')+(r.image?'<img src="'+esc(r.image)+'" alt="">':'')+(r.review?'<div class="review-body">'+nl(r.review)+'</div>':'')+(r.quote?'<p class="quote-dark">'+nl(r.quote)+'</p>':'')+(r.link?'<p><a href="'+esc(r.link)+'" target="_blank" rel="noopener">Open book/movie link ↗</a></p>':'');modal.classList.add('open');modal.setAttribute('aria-hidden','false');}
+function render(d){
+ applyTheme(d);
+ const i=d.identity||fallback.identity,f=d.featured||fallback.featured,posts=Array.isArray(d.posts)?d.posts:[],future=Array.isArray(d.future)?d.future:[];
+ document.title=i.title||'Creative side';
+ app.innerHTML='<div class="eyebrow">'+esc(i.label)+'</div><h1>'+esc(i.title)+'</h1><p class="intro">'+nl(i.intro)+'</p>'+(i.aside?'<p class="aside">'+nl(i.aside)+'</p>':'')+
+ '<section class="feature">'+(f.type?'<div class="meta">'+esc(f.type)+'</div>':'')+'<h2>'+esc(f.title)+'</h2>'+(f.date?'<div class="meta">'+esc(f.date)+'</div>':'')+(f.image?'<img src="'+esc(f.image)+'" alt="">':'')+(f.excerpt?'<p>'+nl(f.excerpt)+'</p>':'')+(f.review?'<div class="review-body">'+nl(f.review)+'</div>':'')+(f.quote?'<p class="quote">'+nl(f.quote)+'</p>':'')+(f.link?'<p><a href="'+esc(f.link)+'" target="_blank" rel="noopener">Open book/movie link ↗</a></p>':'')+'</section>'+ 
+ '<section><div class="section-title"><h2>Recent reviews</h2></div><div class="posts">'+(posts.length?posts.map((r,idx)=>'<article class="post" data-index="'+idx+'">'+(r.image?'<img src="'+esc(r.image)+'" alt="">':'')+'<div class="meta">'+esc(r.type||'Review')+(r.date?' · '+esc(r.date):'')+'</div><h3>'+esc(r.title||'Untitled review')+'</h3><p>'+nl(r.excerpt||r.review||'')+'</p></article>').join(''):'<p class="empty">No reviews published yet.</p>')+'</div></section>'+ 
+ '<section style="margin-top:55px"><div class="section-title"><h2>Future spaces</h2></div><div class="future">'+(future.length?future.map(r=>'<article class="post"><div class="meta">Coming later</div><h3>'+esc(r.title||'Untitled')+'</h3><p>'+nl(r.text||'')+'</p></article>').join(''):'<p class="empty">More spaces will arrive when they are ready.</p>')+'</div></section>'+ 
+ '<footer class="footer">'+(d.comments==='true'?'':'')+'</footer>';
+ app.querySelectorAll('.post[data-index]').forEach(card=>card.addEventListener('click',()=>openReview(posts[Number(card.dataset.index)])));
+}
+document.getElementById('close').addEventListener('click',()=>{modal.classList.remove('open');modal.setAttribute('aria-hidden','true')});
+modal.addEventListener('click',e=>{if(e.target===modal){modal.classList.remove('open');modal.setAttribute('aria-hidden','true')}});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){modal.classList.remove('open');modal.setAttribute('aria-hidden','true')}});
+fetch('./content/creative-content.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw new Error('Content file not found');return r.json()}).then(render).catch(()=>{app.innerHTML='<div class="eyebrow">Creative side</div><h1>Your content is not connected yet.</h1><p class="intro">Upload <b>creative-content.json</b> to the GitHub site at <b>content/creative-content.json</b>, next to this <b>index.html</b>.</p>';document.getElementById('status').style.display='block'});
+</script>
+</body>
+</html>

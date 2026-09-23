@@ -537,6 +537,8 @@ async function load(){
   const root=document.documentElement;
   if(d.__site?.serif)root.style.setProperty('--serif','"'+d.__site.serif+'",Georgia,serif');
   if(d.__site?.sans)root.style.setProperty('--sans','"'+d.__site.sans+'",Arial,sans-serif');
+  const cfonts=[d.__site?.serif,d.__site?.sans].filter(Boolean).filter(f=>!['Georgia','Arial'].includes(f));
+  if(cfonts.length){const link=document.createElement('link');link.rel='stylesheet';link.href='https://fonts.googleapis.com/css2?'+cfonts.map(f=>'family='+encodeURIComponent(f).replace(/%20/g,'+')+':wght@400;500;600;700').join('&')+'&display=swap';document.head.appendChild(link);}
   if(siteTheme.paper)root.style.setProperty('--paper',siteTheme.paper);
   if(siteTheme.ink)root.style.setProperty('--ink',siteTheme.ink);
   if(siteTheme.wine)root.style.setProperty('--wine',siteTheme.wine);

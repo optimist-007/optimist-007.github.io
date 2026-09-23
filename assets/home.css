@@ -75,3 +75,12 @@ body{background:var(--cream);color:var(--ink)}
  .hero:before{right:0;bottom:42%}
  .hero-art{min-height:400px}
 }
+
+.academic-profile{padding:58px 0 64px;border-top:1px solid rgba(36,72,56,.12);border-bottom:1px solid rgba(36,72,56,.12)}
+.academic-kicker{font:700 .72rem var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--clay);margin-bottom:20px}
+.academic-grid{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:50px;align-items:center}
+.academic-degree{font:500 clamp(2rem,4vw,3.4rem)/1 var(--serif);color:var(--forest)}
+.academic-profile p{max-width:590px;color:#4d574f;font-size:1.05rem}
+.academic-tags{display:flex;flex-wrap:wrap;gap:9px}
+.academic-tags span{padding:9px 12px;background:#eef1ec;border:1px solid rgba(36,72,56,.12);font:700 .67rem var(--mono);letter-spacing:.04em;text-transform:uppercase;color:var(--forest)}
+@media(max-width:880px){.academic-grid{grid-template-columns:1fr;gap:22px}.academic-profile{padding:45px 0}}

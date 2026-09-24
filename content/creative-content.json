@@ -85,6 +85,54 @@
       "audio": "",
       "alt": "",
       "enabled": true
+    },
+    {
+      "collection": "travel",
+      "mediaType": "Beach visit",
+      "title": "Mumbai",
+      "date": "",
+      "text": "Beaches visited in Mumbai this year. Photos and memories from the visit will live here.",
+      "image": "",
+      "video": "",
+      "audio": "",
+      "alt": "",
+      "enabled": true
+    },
+    {
+      "collection": "travel",
+      "mediaType": "Beach visit",
+      "title": "Calicut",
+      "date": "",
+      "text": "Beaches visited in Calicut this year. Photos and memories from the visit will live here.",
+      "image": "",
+      "video": "",
+      "audio": "",
+      "alt": "",
+      "enabled": true
+    },
+    {
+      "collection": "travel",
+      "mediaType": "Beach visit",
+      "title": "Thiruvananthapuram",
+      "date": "",
+      "text": "Beaches visited in Thiruvananthapuram this year. Photos and memories from the visit will live here.",
+      "image": "",
+      "video": "",
+      "audio": "",
+      "alt": "",
+      "enabled": true
+    },
+    {
+      "collection": "travel",
+      "mediaType": "Beach visit",
+      "title": "Goa",
+      "date": "",
+      "text": "Beaches visited in Goa this year. Photos and memories from the visit will live here.",
+      "image": "",
+      "video": "",
+      "audio": "",
+      "alt": "",
+      "enabled": true
     }
   ]
 }

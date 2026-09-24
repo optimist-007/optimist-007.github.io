@@ -191,6 +191,22 @@ h3{font-size:clamp(2rem,3.5vw,3.5rem);line-height:.9;margin:7px 0 12px}
 .media-entry audio{width:100%;margin-top:15px}
 @media(max-width:760px){.media-shelf{grid-template-columns:1fr}}
 
+.journal-bottom{margin-top:48px;padding:22px 0 0;border-top:1px solid var(--line);max-width:900px}
+.journal-bottom-head{margin-bottom:12px}
+.journal-bottom .journal-shelf{margin:0;padding:0}
+.journal-bottom .journal-shelf>.eyebrow,
+.journal-bottom .journal-shelf>h2,
+.journal-bottom .journal-shelf>p{display:none}
+.journal-bottom .media-shelf{display:block}
+.journal-bottom .journal-card{grid-template-columns:92px 1fr;gap:14px;padding:8px;max-width:760px}
+.journal-bottom .journal-thumb{min-height:92px;padding:10px}
+.journal-bottom .journal-thumb .media-kind{font-size:.58rem}
+.journal-bottom .journal-thumb-title{font-size:.95rem}
+.journal-bottom .journal-card-copy{padding:3px}
+.journal-bottom .journal-card-copy .media-kind{font-size:.58rem}
+.journal-bottom .journal-card-copy h3{font-size:1.05rem;margin:4px 0 5px}
+.journal-bottom .journal-card-copy p{font-size:.78rem;line-height:1.4;margin:0 0 6px}
+.journal-bottom .read-link{font-size:.62rem}
 .journal-bottom{margin-top:72px;padding-top:28px;border-top:1px solid var(--line)}
 .journal-bottom-head{margin-bottom:16px}
 .journal-bottom .journal-shelf{margin-top:0}
@@ -300,12 +316,12 @@ h3{font-size:clamp(2rem,3.5vw,3.5rem);line-height:.9;margin:7px 0 12px}
     </div>
   </section>
 
-  <section class="journal-bottom" id="journalRandomThoughts">
+  <div id="journalRandomThoughts" class="journal-bottom">
     <div class="journal-bottom-head">
       <div class="eyebrow">Journal / random thoughts</div>
     </div>
     <div id="journalShelf"></div>
-  </section>
+  </div>
 
 
 </main>
@@ -475,7 +491,7 @@ function renderFuture(d){
 
 function renderJournalShelf(d){
   const entries=Array.isArray(d.mediaEntries)
-    ? d.mediaEntries.filter(x=>x&&x.enabled!==false&&String(x.collection||'').toLowerCase()==='journal')
+    ? d.mediaEntries.filter(x=>x&&x.enabled!==false&&String(x.collection||'').toLowerCase()==='journal'&&String(x.text||'').trim())
     : [];
   const host=$('journalShelf');
   if(!host)return;

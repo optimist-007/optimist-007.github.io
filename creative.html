@@ -456,13 +456,6 @@ function renderObsessions(d){
   }).join('');
 }
 
-function renderFuture(d){
-  const future = Array.isArray(d.future) ? d.future : [];
-  $('futureList').innerHTML = future.map((r,i)=>
-    '<article class="archive-card reveal"><div class="tiny-label">0'+(i+1)+' · coming later</div><h3>'+esc(r.title||'Untitled')+'</h3><p>'+nl(r.text||'')+'</p></article>'
-  ).join('');
-}
-
 function renderMediaShelves(d){
   const entries=Array.isArray(d.mediaEntries)?d.mediaEntries.filter(x=>x&&x.enabled!==false):[];
   const groups=[
@@ -623,7 +616,6 @@ async function load(){
   createFilters();
   renderReviews();
   renderObsessions(d);
-  renderFuture(d);
   renderMediaShelves(d);
   setupComments(d);
   observeReveals();

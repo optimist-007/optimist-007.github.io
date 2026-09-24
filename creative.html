@@ -182,13 +182,13 @@ h3{font-size:clamp(2rem,3.5vw,3.5rem);line-height:.9;margin:7px 0 12px}
 .studio-creative-section h2{font-size:clamp(2.8rem,5vw,5.2rem)}
 .studio-creative-section p{max-width:760px;color:var(--muted);white-space:pre-wrap}
 .studio-creative-section a{font-family:var(--mono);font-size:.72rem;text-transform:uppercase;letter-spacing:.12em}
-.media-shelf{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.media-shelf{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
 .media-entry{background:var(--paper-2);border:1px solid var(--line);padding:24px;box-shadow:var(--shadow)}
-.media-entry h3{margin-top:6px}
-.media-entry .media-caption{color:var(--muted);margin:8px 0 16px}
-.media-entry img,.media-entry video{width:100%;max-height:430px;object-fit:cover;display:block;margin-top:14px}
-.media-entry audio{width:100%;margin-top:16px}
+.media-entry h3{margin:7px 0 10px}
+.media-entry .media-caption{color:var(--muted);white-space:pre-wrap}
 .media-entry .media-kind{color:var(--wine);font:600 .65rem var(--mono);text-transform:uppercase;letter-spacing:.12em}
+.media-entry img,.media-entry video{width:100%;max-height:430px;object-fit:cover;display:block;margin-top:15px}
+.media-entry audio{width:100%;margin-top:15px}
 @media(max-width:760px){.media-shelf{grid-template-columns:1fr}}
 </style>
 </head>
@@ -273,15 +273,6 @@ h3{font-size:clamp(2rem,3.5vw,3.5rem);line-height:.9;margin:7px 0 12px}
     <div class="archive-strip" id="futureList"></div>
   </section>
 
-
-  <section class="section" id="journal">
-    <div class="section-head reveal"><div><div class="eyebrow">Journal / random thoughts</div><h2>Things I needed to write down.</h2></div><p class="section-kicker">Fragments, observations and thoughts that kept circling back.</p></div>
-    <article class="studio-creative-section reveal" style="margin-top:0;padding:35px 0;cursor:pointer" id="journalEntry">
-      <div class="eyebrow">A reflection</div><h3>On kindness, boundaries &amp; moving on</h3>
-      <p>We learn, we understand, and we move ahead. That’s all.</p>
-      <a href="#" class="read-link" id="openJournal">Open entry ↗</a>
-    </article>
-  </section>
   <div id="studioCreativeSections"></div>
 
   <section class="section" id="creativeMedia">
@@ -290,7 +281,7 @@ h3{font-size:clamp(2rem,3.5vw,3.5rem);line-height:.9;margin:7px 0 12px}
         <div class="eyebrow">Loose pages</div>
         <h2>Things I make, keep and collect.</h2>
       </div>
-      <p class="section-kicker">Not everything needs to become a long written post. Some things are better as a voice note, photograph, recipe, travel fragment or small piece of evidence from a place I have worked.</p>
+      <p class="section-kicker">Some things are better as a voice note, photograph, recipe, travel fragment or a small record of the places I have worked.</p>
     </div>
     <div id="mediaShelves"></div>
   </section>
@@ -491,21 +482,26 @@ function renderMediaShelves(d){
     ['research','Research archive','Images from places I have worked and moments that document the journey without turning this into another CV.'],
     ['recipes','Recipes','Baking, cooking and recipes worth keeping.'],
     ['travel','Travel stories','Places, photographs and the stories behind them.'],
-    ['visual','Visual scraps','Photography, paintings and other things made or collected.']
+    ['visual','Visual scraps','Photography, paintings and other visual pieces.']
   ];
-  const html=groups.map(g=>{
-    const items=entries.filter(x=String(x.collection||'').toLowerCase()===g[0]);
+  const chunks=groups.map(function(g){
+    const items=entries.filter(function(x){return String(x.collection||'').toLowerCase()===g[0];});
     if(!items.length)return '';
-    return '<section class="studio-creative-section"><div class="eyebrow">'+esc(g[1])+'</div><h2>'+esc(g[1])+'.</h2><p>'+esc(g[2])+'</p><div class="media-shelf">'+items.map(x=>{
-      const kind=x.mediaType||'Note';
-      return '<article class="media-entry reveal"><div class="media-kind">'+esc(kind)+(x.date?' · '+esc(x.date):'')+'</div><h3>'+esc(x.title||'Untitled')+'</h3>'+(x.text?'<div class="media-caption">'+nl(x.text)+'</div>':'')+
-      (x.image?'<img src="'+esc(x.image)+'" alt="'+esc(x.alt||x.title||'Creative image')+'" loading="lazy">':'')+
-      (x.video?'<video controls preload="metadata" src="'+esc(x.video)+'"></video>':'')+
-      (x.audio?'<audio controls preload="metadata" src="'+esc(x.audio)+'"></audio>':'')+
-      '</article>';
-    }).join('')+'</div></section>';
+    return '<section class="studio-creative-section">'+
+      '<div class="eyebrow">'+esc(g[1])+'</div><h2>'+esc(g[1])+'.</h2><p>'+esc(g[2])+'</p>'+
+      '<div class="media-shelf">'+items.map(function(x){
+        return '<article class="media-entry reveal">'+
+          '<div class="media-kind">'+esc(x.mediaType||'Entry')+(x.date?' · '+esc(x.date):'')+'</div>'+
+          '<h3>'+esc(x.title||'Untitled')+'</h3>'+
+          (x.text?'<div class="media-caption">'+nl(x.text)+'</div>':'')+
+          (x.image?'<img src="'+esc(x.image)+'" alt="'+esc(x.alt||x.title||'Creative image')+'" loading="lazy">':'')+
+          (x.video?'<video controls preload="metadata" src="'+esc(x.video)+'"></video>':'')+
+          (x.audio?'<audio controls preload="metadata" src="'+esc(x.audio)+'"></audio>':'')+
+          '</article>';
+      }).join('')+
+      '</div></section>';
   }).join('');
-  $('mediaShelves').innerHTML=html||'<div class="empty-review">The shelves are empty for now. Add something from the editor.</div>';
+  $('mediaShelves').innerHTML=chunks||'<div class="empty-review">Your shelves are ready. Add the first piece from the editor.</div>';
 }
 
 function openReview(r){
@@ -561,9 +557,11 @@ function setupComments(d){
 async function load(){
   try{
     let content=null,site=null;
-    const res=await fetch('./content/creative-content.json?v='+Date.now(),{cache:'no-store'});
-    if(!res.ok)throw new Error('Content file not found');
-    content=await res.json();
+    try{
+      const p=localStorage.getItem('websiteStudioPreview');
+      if(p){const x=JSON.parse(p);content=x?.files?.['content/creative-content.json']||null;site=x?.files?.['content/creative-site.json']||null;}
+    }catch(e){}
+    if(!content){const res=await fetch('./content/creative-content.json?v='+Date.now(),{cache:'no-store'});if(!res.ok)throw new Error('Content file not found');content=await res.json();}
     if(!site){try{const sr=await fetch('./content/creative-site.json?v='+Date.now(),{cache:'no-store'});if(sr.ok)site=await sr.json();}catch(e){}}
     content.__site=site||{};
     return content;
@@ -597,7 +595,7 @@ async function load(){
   if(design.sectionSpacing)root.style.setProperty('--studio-section-space',design.sectionSpacing+'px');
   if(design.posterHeight)root.style.setProperty('--studio-poster-height',design.posterHeight+'vh');
   if(design.posterRotation!==undefined)root.style.setProperty('--studio-poster-rotation',design.posterRotation+'deg');
-  const sectionOrder=['reviews','obsessions','comments'];
+  const sectionOrder=d.__site?.order||['reviews','quotes','obsessions','future','comments'];
   const sectionMap={
     reviews:document.getElementById('reviews'),
     quotes:document.getElementById('quotes'),
@@ -608,7 +606,7 @@ async function load(){
   const creativeMain=document.querySelector('main');
   if(creativeMain){
     sectionOrder.forEach(id=>{const el=sectionMap[id];if(el&&d.__site?.sections?.[id]?.enabled!==false)creativeMain.appendChild(el);});
-    Object.entries(sectionMap).forEach(([id,el])=>{if(el)el.style.display=(id==='quotes'||id==='future'||d.__site?.sections?.[id]?.enabled===false)?'none':'';});
+    Object.entries(sectionMap).forEach(([id,el])=>{if(el)el.style.display=d.__site?.sections?.[id]?.enabled===false?'none':'';});
     const custom=document.getElementById('studioCreativeSections');if(custom)creativeMain.appendChild(custom);
   }
   const cs=document.getElementById('studioCreativeSections');
@@ -622,9 +620,6 @@ async function load(){
   renderFuture(d);
   renderMediaShelves(d);
   setupComments(d);
-  const journalText="I’ve had this same opinion for a long time. But they got access to our lives because we allowed them to, so I don’t think they are completely at fault either.\n\nI’ve been told several times that I tend to view the world the way I view myself, and I think that is exactly why I’ve been betrayed on several occasions. I truly understood what that meant eventually. Being too kind, warm and soft with the wrong people can lead to unnecessary pain and scars that stay with us for a lifetime.\n\nBut I also believe we have to forgive them and focus on ourselves. If God, who is superior to all of us, forgives our sins and gives us another day to unlearn, learn and relearn, then who are we to hold on to these trivial matters forever?\n\nAnd honestly, holding on to feelings from the past can hurt our present more than the people who caused them ever did. To me, that is a bigger blunder than letting these people into our lives in the first place.\n\nI actually appreciate that such people exist in our lives because they teach us that being too kind can also be injurious. There has to be a balance. Sometimes we keep committing to things forever simply because we are constantly thinking about everyone else. But these people teach us that it is okay to take a stand for yourself before anybody else.\n\nThere’s one catch, though. These ruthless people should have the ability to understand and imbibe the kindness they receive, but most of them never will. And honestly, that’s their loss. Because without learning that, they can never really build stable, long-term relationships with people.\n\nWe learn, we understand, and we move ahead. That’s all.\n\nThere’s so much more I could add to this. I’ll probably add it someday soon.";
-  const journalBtn=document.getElementById('openJournal');
-  if(journalBtn)journalBtn.addEventListener('click',e=>{e.preventDefault();$('dialogImage').innerHTML='';$('dialogContent').innerHTML='<div class="eyebrow">Journal / random thoughts</div><h2>On kindness, boundaries & moving on</h2><div class="review-body">'+nl(journalText)+'</div>';$('modal').classList.add('open');$('modal').setAttribute('aria-hidden','false');document.body.style.overflow='hidden';});
   observeReveals();
 })();
 </script>

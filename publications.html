@@ -20,25 +20,20 @@
 <div class="wrap page-hero">
   <div>
     <a class="backlink" href="index.html">← Home</a>
-    <div class="eyebrow">Publications</div>
-    <h1>A few things made public.</h1>
-    <p class="hero-lead">Three publications sit in this record, with two additional papers to be added alongside the work already listed below.</p>
+    <div class="eyebrow" id="pubHeroEyebrow">Publications</div>
+    <h1 id="pubHeroTitle">A few things made public.</h1>
+    <p class="hero-lead" id="pubHeroLead">Three publications sit in this record, with two additional papers to be added alongside the work already listed below.</p>
   </div>
 </div>
 
 <section class="pub-context">
   <div class="wrap pub-context-grid">
     <div class="context-copy">
-      <div class="eyebrow">The direction</div>
-      <h2>A sense of the trajectory.</h2>
-      <p>The details will change as the questions change. The consistent thread is a move from understanding materials and interfaces toward designing systems where that understanding matters.</p>
+      <div class="eyebrow" id="pubDirectionEyebrow">The direction</div>
+      <h2 id="pubDirectionTitle">A sense of the trajectory.</h2>
+      <p id="pubDirectionText">The details will change as the questions change. The consistent thread is a move from understanding materials and interfaces toward designing systems where that understanding matters.</p>
     </div>
-    <div class="direction-list">
-      <div class="direction-item"><div class="eyebrow">01</div><strong>Semiconductor materials</strong><span>Materials, interfaces and electronic behaviour.</span></div>
-      <div class="direction-item"><div class="eyebrow">02</div><strong>Computational materials</strong><span>DFT, Python and machine learning as research tools.</span></div>
-      <div class="direction-item"><div class="eyebrow">03</div><strong>Energy & sensing</strong><span>Self-powered and efficient device concepts.</span></div>
-      <div class="direction-item"><div class="eyebrow">04</div><strong>Sustainable technology</strong><span>Low-resource, practical approaches to real constraints.</span></div>
-    </div>
+    <div class="direction-list" id="directionList"></div>
   </div>
 </section>
 
@@ -46,4 +41,15 @@
   <div class="wrap" id="pubs"></div>
 </section>
 </main><footer class="wrap site-footer"><span>Research · publications</span></footer>
-<script>const esc=v=>String(v??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));fetch('content/publications.json',{cache:'no-store'}).then(r=>r.json()).then(ps=>{document.getElementById('pubs').innerHTML=ps.map(p=>'<article class="pub"><div class="pub-year">'+esc(p.year||'Published')+'</div><div><h3>'+esc(p.title)+'</h3><div class="journal">'+esc(p.journal||'')+' · '+esc(p.role||'')+'</div>'+(p.link?'<a href="'+esc(p.link)+'" target="_blank" rel="noopener">View publication ↗</a>':'')+'</div></article>').join('')})</script></body></html>
+<script>const esc=v=>String(v??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));Promise.all([
+ fetch('content/publications-site.json',{cache:'no-store'}).then(r=>r.ok?r.json():null).catch(()=>null),
+ fetch('content/publications.json',{cache:'no-store'}).then(r=>r.json())
+]).then(([site,ps])=>{
+ const s=site||{};
+ document.getElementById('pubHeroEyebrow').textContent=s.heroEyebrow||'Publications';
+ document.getElementById('pubHeroTitle').textContent=s.heroTitle||'A few things made public.';
+ document.getElementById('pubHeroLead').textContent=s.heroLead||'';
+ document.getElementById('pubDirectionEyebrow').textContent=s.directionEyebrow||'The direction';
+ document.getElementById('pubDirectionTitle').textContent=s.directionTitle||'';
+ document.getElementById('pubDirectionText').textContent=s.directionText||'';
+ document.getElementById('directionList').innerHTML=(s.directions||[]).map(d=>'<div class="direction-item"><div class="eyebrow">'+esc(d.number||'')+'</div><strong>'+esc(d.title||'')+'</strong><span>'+esc(d.text||'')+'</span></div>').join('');document.getElementById('pubs').innerHTML=ps.map(p=>'<article class="pub"><div class="pub-year">'+esc(p.year||'Published')+'</div><div><h3>'+esc(p.title)+'</h3><div class="journal">'+esc(p.journal||'')+' · '+esc(p.role||'')+'</div>'+(p.link?'<a href="'+esc(p.link)+'" target="_blank" rel="noopener">View publication ↗</a>':'')+'</div></article>').join('')})</script></body></html>

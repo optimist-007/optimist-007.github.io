@@ -52,4 +52,23 @@
  document.getElementById('pubDirectionEyebrow').textContent=s.directionEyebrow||'The direction';
  document.getElementById('pubDirectionTitle').textContent=s.directionTitle||'';
  document.getElementById('pubDirectionText').textContent=s.directionText||'';
- document.getElementById('directionList').innerHTML=(s.directions||[]).map(d=>'<div class="direction-item"><div class="eyebrow">'+esc(d.number||'')+'</div><strong>'+esc(d.title||'')+'</strong><span>'+esc(d.text||'')+'</span></div>').join('');document.getElementById('pubs').innerHTML=ps.map(p=>'<article class="pub"><div class="pub-year">'+esc(p.year||'Published')+'</div><div><h3>'+esc(p.title)+'</h3><div class="journal">'+esc(p.journal||'')+' · '+esc(p.role||'')+'</div>'+(p.link?'<a href="'+esc(p.link)+'" target="_blank" rel="noopener">View publication ↗</a>':'')+'</div></article>').join('')})</script></body></html>
+ document.getElementById('directionList').innerHTML=(s.directions||[]).map(d=>'<div class="direction-item"><div class="eyebrow">'+esc(d.number||'')+'</div><strong>'+esc(d.title||'')+'</strong><span>'+esc(d.text||'')+'</span></div>').join('');document.getElementById('pubs').innerHTML=ps.map(p=>'<article class="pub"><div class="pub-year">'+esc(p.year||'Published')+'</div><div><h3>'+esc(p.title)+'</h3><div class="journal">'+esc(p.journal||'')+' · '+esc(p.role||'')+'</div>'+(p.link?'<a href="'+esc(p.link)+'" target="_blank" rel="noopener">View publication ↗</a>':'')+'</div></article>').join('')})</script><script>
+(async function renderEditableSiteNav(){
+  try{
+    const r=await fetch('content/main-site.json?v='+Date.now(),{cache:'no-store'});
+    if(!r.ok)return;
+    const d=await r.json(), nav=Array.isArray(d.nav)?d.nav:[];
+    const host=document.querySelector('.nav-links')||document.querySelector('.home-navlinks');
+    if(!host||!nav.length)return;
+    const current=location.pathname.split('/').pop()||'index.html';
+    host.innerHTML=nav.map(function(n){
+      const href=String(n.href||'');
+      const target=href.split('?')[0].split('#')[0];
+      const isActive=target===current || (current==='index.html' && (target===''||target==='/'));
+      const cls=(n.className||'')+(isActive?' active':'');
+      return '<a class="'+cls.trim()+'" href="'+String(href).replace(/&/g,'&amp;').replace(/"/g,'&quot;')+'">'+String(n.label||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')+'</a>';
+    }).join('');
+  }catch(e){}
+})();
+</script>
+</body></html>

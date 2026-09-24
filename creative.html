@@ -179,7 +179,7 @@ h3{font-size:clamp(2rem,3.5vw,3.5rem);line-height:.9;margin:7px 0 12px}
   *,*:before,*:after{scroll-behavior:auto!important;animation:none!important;transition:none!important}
 }
 
-.studio-creative-section{margin-top:80px;padding:55px 0;border-top:1px solid var(--line)}
+.loose-pages{margin-top:32px}.loose-pages .section-head{margin-bottom:14px}.loose-pages .section-head h2{font-size:clamp(2rem,3.5vw,3.4rem)}.loose-pages .section-kicker{font-size:.82rem}.loose-pages .studio-creative-section{margin-top:28px;padding:28px 0;}.studio-creative-section{margin-top:80px;padding:55px 0;border-top:1px solid var(--line)}
 .studio-creative-section h2{font-size:clamp(2.8rem,5vw,5.2rem)}
 .studio-creative-section p{max-width:760px;color:var(--muted);white-space:pre-wrap}
 .studio-creative-section a{font-family:var(--mono);font-size:.72rem;text-transform:uppercase;letter-spacing:.12em}
@@ -246,7 +246,7 @@ h3{font-size:clamp(2rem,3.5vw,3.5rem);line-height:.9;margin:7px 0 12px}
     <div class="journal-card reveal" id="journalContent"></div>
   </section>
 
-  <section class="section" id="quotes">
+  <section class="section" id="quotes" style="display:none">
     <div class="section-head reveal">
       <div>
         <div class="eyebrow">Lines that stayed</div>
@@ -257,7 +257,7 @@ h3{font-size:clamp(2rem,3.5vw,3.5rem);line-height:.9;margin:7px 0 12px}
     <div class="quote-grid" id="quoteGrid"></div>
   </section>
 
-  <section class="section" id="obsessions">
+  <section class="section" id="obsessions" style="display:none">
     <div class="section-head reveal">
       <div>
         <div class="eyebrow">Current page</div>
@@ -276,7 +276,7 @@ h3{font-size:clamp(2rem,3.5vw,3.5rem);line-height:.9;margin:7px 0 12px}
 
   <div id="studioCreativeSections"></div>
 
-  <section class="section" id="creativeMedia">
+  <section class="section loose-pages" id="creativeMedia">
     <div class="section-head reveal">
       <div>
         <div class="eyebrow">Loose pages</div>
@@ -611,7 +611,7 @@ async function load(){
   if(design.sectionSpacing)root.style.setProperty('--studio-section-space',design.sectionSpacing+'px');
   if(design.posterHeight)root.style.setProperty('--studio-poster-height',design.posterHeight+'vh');
   if(design.posterRotation!==undefined)root.style.setProperty('--studio-poster-rotation',design.posterRotation+'deg');
-  const sectionOrder=['reviews','journal','quotes','obsessions','comments'];
+  const sectionOrder=['reviews','journal','comments'];
   const sectionMap={
     reviews:document.getElementById('reviews'),
     journal:document.getElementById('journal'),

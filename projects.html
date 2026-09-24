@@ -10,32 +10,11 @@
   padding:64px 0 78px;
 }
 .projects-page .thinking-intro{
-  display:grid;
-  grid-template-columns:minmax(260px,.72fr) minmax(0,1.28fr);
-  gap:clamp(36px,7vw,96px);
-  align-items:end;
   padding-bottom:30px;
   border-bottom:1px solid var(--line);
 }
-.projects-page .thinking-image-wrap{
-  position:relative;
-  max-width:620px;
-  padding-top:28px;
-}
-.projects-page .thinking-image{
-  display:block;
-  width:100%;
-  height:auto;
-  background:#f5f4ee;
-  border:1px solid var(--line);
-  box-shadow:var(--shadow);
-}
-.projects-page .thinking-image-wrap:after{
-  content:"";
-  position:absolute;
-  inset:28px 0 0 0;
-  pointer-events:none;
-  border:1px solid rgba(40,72,58,.08);
+.projects-page .thinking-intro-copy{
+  max-width:860px;
 }
 .projects-page .thinking-kicker{
   margin:0 0 10px;
@@ -150,8 +129,6 @@
   font-size:1rem
 }
 @media(max-width:860px){
-  .projects-page .thinking-intro{grid-template-columns:1fr;align-items:start}
-  .projects-page .thinking-image-wrap{max-width:760px}
   .projects-page .thought-detail{grid-template-columns:1fr;padding-left:94px}
 }
 @media(max-width:720px){
@@ -182,10 +159,7 @@
 <section class="project-thinking">
   <div class="wrap">
     <div class="thinking-intro">
-      <div class="thinking-image-wrap">
-        <a class="backlink" href="index.html">← Home</a>
-        <img class="thinking-image" src="content/images/projects-thinking.webp" alt="Scientific materials and device research collage">
-      </div>
+      <a class="backlink" href="index.html">← Home</a>
       <div class="thinking-intro-copy">
         <div class="thinking-kicker">The thinking behind the projects</div>
         <p>This is the part of my work that does not fit neatly into a CV. It shows what I have explored, what I know how to use, and what I am trying to grow into next.</p>

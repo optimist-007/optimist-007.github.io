@@ -85,63 +85,6 @@
       "audio": "",
       "alt": "",
       "enabled": true
-    },
-    {
-      "collection": "travel",
-      "mediaType": "Beach visit",
-      "title": "Mumbai",
-      "date": "",
-      "text": "Beaches visited in Mumbai this year. Photos and memories from the visit will live here.",
-      "image": "",
-      "video": "",
-      "audio": "",
-      "alt": "",
-      "enabled": true
-    },
-    {
-      "collection": "travel",
-      "mediaType": "Beach visit",
-      "title": "Calicut",
-      "date": "",
-      "text": "Beaches visited in Calicut this year. Photos and memories from the visit will live here.",
-      "image": "",
-      "video": "",
-      "audio": "",
-      "alt": "",
-      "enabled": true
-    },
-    {
-      "collection": "travel",
-      "mediaType": "Beach visit",
-      "title": "Thiruvananthapuram",
-      "date": "",
-      "text": "Beaches visited in Thiruvananthapuram this year. Photos and memories from the visit will live here.",
-      "image": "",
-      "video": "",
-      "audio": "",
-      "alt": "",
-      "enabled": true
-    },
-    {
-      "collection": "travel",
-      "mediaType": "Beach visit",
-      "title": "Goa",
-      "date": "",
-      "text": "Beaches visited in Goa this year. Photos and memories from the visit will live here.",
-      "image": "",
-      "video": "",
-      "audio": "",
-      "alt": "",
-      "enabled": true
-    },
-    {
-      "collection": "travel",
-      "mediaType": "Beach diary",
-      "title": "Beaches I visited in 2026",
-      "date": "2026",
-      "text": "A year of shorelines across Mumbai, Calicut, Thiruvananthapuram and Goa. A small collection of sand, shells, sunsets, birds and sea air.",
-      "image": "assets/creative/beaches-2026.jpg",
-      "enabled": true
     }
   ]
 }

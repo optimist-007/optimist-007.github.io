@@ -191,6 +191,18 @@ h3{font-size:clamp(2rem,3.5vw,3.5rem);line-height:.9;margin:7px 0 12px}
 .media-entry audio{width:100%;margin-top:15px}
 @media(max-width:760px){.media-shelf{grid-template-columns:1fr}}
 
+.journal-bottom{margin-top:72px;padding-top:28px;border-top:1px solid var(--line)}
+.journal-bottom-head{margin-bottom:16px}
+.journal-bottom .journal-shelf{margin-top:0}
+.journal-bottom .journal-shelf>p{display:none}
+.journal-bottom .journal-shelf h2{font-size:1.25rem}
+.journal-bottom .media-shelf{grid-template-columns:minmax(0,720px)}
+.journal-bottom .journal-card{grid-template-columns:120px 1fr;padding:10px;gap:14px}
+.journal-bottom .journal-thumb{min-height:118px;padding:12px}
+.journal-bottom .journal-thumb-title{font-size:1.05rem}
+.journal-bottom .journal-card-copy{padding:4px}
+.journal-bottom .journal-card-copy h3{font-size:1.2rem}
+.journal-bottom .journal-card-copy p{font-size:.82rem}
 .journal-shelf{margin-top:34px;padding-top:0}
 .journal-shelf.studio-creative-section{margin-top:0;padding:34px 0 0;border-top:0}
 .journal-shelf h2{font-size:clamp(2rem,3.4vw,3.4rem);margin:.15em 0}
@@ -288,13 +300,9 @@ h3{font-size:clamp(2rem,3.5vw,3.5rem);line-height:.9;margin:7px 0 12px}
     </div>
   </section>
 
-  <section class="section" id="journalRandomThoughts">
-    <div class="section-head reveal">
-      <div>
-        <div class="eyebrow">Journal / random thoughts</div>
-        <h2>Things I keep thinking about.</h2>
-      </div>
-      <p class="section-kicker">Fragments, observations and thoughts that keep circling back.</p>
+  <section class="journal-bottom" id="journalRandomThoughts">
+    <div class="journal-bottom-head">
+      <div class="eyebrow">Journal / random thoughts</div>
     </div>
     <div id="journalShelf"></div>
   </section>

@@ -370,7 +370,7 @@ function setupHeader(d){
   const count = allPosts.length;
   const movies = allPosts.filter(p=>cleanType(p.type)==='Movie').length;
   const books = allPosts.filter(p=>cleanType(p.type)==='Book').length;
-  $('archiveCount').textContent = count + ' ' + (count===1?'entry':'entries') + ' · ' + movies + ' movies · ' + books + ' books · more rooms still open';
+  $('archiveCount').textContent = count + ' ' + (count===1?'entry':'entries') + ' · ' + movies + ' movies · ' + books + ' books';
   const tickerBits = [
     'films','books','favourite lines','current obsessions','stories','visual scraps','things worth returning to'
   ];
@@ -610,7 +610,6 @@ async function load(){
   const sectionMap={
     reviews:document.getElementById('reviews'),
     obsessions:document.getElementById('obsessions'),
-    future:document.querySelector('section.section:not(#reviews):not(#quotes):not(#obsessions):not(#comments)'),
     comments:document.getElementById('comments')
   };
   const creativeMain=document.querySelector('main');

@@ -396,6 +396,7 @@ function createFilters(){
       activeFilter = btn.dataset.filter;
       createFilters();
       renderReviews();
+  renderJournal(d);
       observeReveals();
     });
   });
@@ -609,6 +610,7 @@ async function load(){
   const sectionOrder=d.__site?.order||['reviews','obsessions','comments'];
   const sectionMap={
     reviews:document.getElementById('reviews'),
+    journal:document.getElementById('journal'),
     obsessions:document.getElementById('obsessions'),
     comments:document.getElementById('comments')
   };

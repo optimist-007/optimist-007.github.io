@@ -1542,7 +1542,12 @@ $('addPost').addEventListener('click',function(){
 });
 
 $('addMediaEntry').addEventListener('click',function(){
-  state.creative.mediaEntries.push({collection:'journal',mediaType:'Journal entry',title:'New entry',date:'',text:'',image:'',video:'',audio:'',alt:'',enabled:true});
+  state.creative.mediaEntries.push({collection:'voice',mediaType:'Voice note',title:'New entry',date:'',text:'',image:'',video:'',audio:'',alt:'',enabled:true});
+  renderCreative();
+});
+
+$('addJournal').addEventListener('click',function(){
+  state.creative.mediaEntries.push({collection:'journal',mediaType:'Journal entry',title:'New journal entry',date:'',text:'',image:'',video:'',audio:'',alt:'',enabled:true});
   renderCreative();
 });
 
@@ -1582,6 +1587,15 @@ $('previewProjects').addEventListener('click',function(){
 });
 $('previewCreative').addEventListener('click',function(){
   $('previewFrame').src='creative.html?studio='+Date.now();
+});
+$('previewBlogs').addEventListener('click',function(){
+  $('previewFrame').src='blogs.html?studio='+Date.now();
+});
+$('previewPublications').addEventListener('click',function(){
+  $('previewFrame').src='publications.html?studio='+Date.now();
+});
+$('previewMedia').addEventListener('click',function(){
+  $('previewFrame').src='media.html?studio='+Date.now();
 });
 $('clearPreview').addEventListener('click',function(){
   localStorage.removeItem('websiteStudioPreview');

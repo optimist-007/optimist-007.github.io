@@ -1,9 +1,183 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Projects | Simran Sainand Revankar</title><link rel="stylesheet" href="assets/research-readable.css?v=1"></head><body>
-<header class="site-header"><div class="wrap nav"><a class="brand" href="index.html">Simran Sainand Revankar</a><nav class="nav-links"><a href="research.html">Research</a><a class="active" href="projects.html">Projects</a><a href="blogs.html">Blogs</a>
-<a href="media/docs/CV.pdf">CV ↗</a><a class="creative-link" href="creative.html">Creative side ↗</a></nav><a class="menu-note" href="creative.html">Creative side ↗</a></div></header>
-<main><div class="wrap page-hero"><div><a class="backlink" href="index.html">← Home</a><div class="eyebrow">Selected projects</div><h1>Work, shown as stories.</h1><p class="hero-lead">A small research archive. Each project page explains the question, approach and what the work taught me without repeating my entire CV.</p></div><div class="index-box">This page is designed to grow. New projects can be added when there is a real question, real work and something useful to say about the result.</div></div>
-<section class="section"><div class="wrap"><div class="project-grid" id="projectGrid"></div></div></section></main><footer class="wrap site-footer"><span>Selected work · evolving archive</span><span><a href="research.html">Research ↗</a></span></footer>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Projects | Simran Sainand Revankar</title>
+<link rel="stylesheet" href="assets/research-readable.css?v=1">
+<style>
+.projects-page .trajectory{padding:72px 0 80px}
+.projects-page .trajectory-grid{
+  display:grid;grid-template-columns:minmax(0,1.02fr) minmax(350px,.98fr);
+  gap:clamp(35px,6vw,80px);align-items:center
+}
+.projects-page .trajectory-kicker{
+  display:inline-flex;align-items:center;gap:10px;
+  font:600 .7rem var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--clay)
+}
+.projects-page .trajectory-kicker:before{content:"";width:42px;height:1px;background:var(--sand)}
+.projects-page .trajectory h1{
+  margin:20px 0 22px;max-width:760px;font-size:clamp(4rem,8vw,7.4rem);line-height:.82;color:var(--forest)
+}
+.projects-page .trajectory .lead{max-width:700px;font-size:clamp(1.08rem,1.7vw,1.28rem);color:#515850}
+.projects-page .direction-line{display:flex;gap:13px;flex-wrap:wrap;margin-top:30px;padding-top:17px;border-top:1px solid var(--line)}
+.projects-page .direction-line span{font:600 .66rem var(--mono);letter-spacing:.09em;text-transform:uppercase;color:var(--muted)}
+.projects-page .direction-line span:not(:last-child):after{content:" ·";color:var(--sand);margin-left:10px}
+.projects-page .map-plate{position:relative;min-height:430px;background:#edf0eb;border:1px solid var(--line);overflow:hidden;box-shadow:0 18px 45px rgba(36,52,43,.07)}
+.projects-page .map-plate:before{content:"";position:absolute;inset:32px;background:linear-gradient(90deg,transparent 49.7%,rgba(40,72,58,.12) 50%,transparent 50.3%),linear-gradient(transparent 49.7%,rgba(40,72,58,.12) 50%,transparent 50.3%);opacity:.45}
+.projects-page .map-orbit{position:absolute;border:1px solid rgba(40,72,58,.22);border-radius:50%}
+.projects-page .map-orbit.one{width:270px;height:150px;left:45%;top:44%;transform:translate(-50%,-50%) rotate(17deg)}
+.projects-page .map-orbit.two{width:210px;height:310px;left:50%;top:51%;transform:translate(-50%,-50%) rotate(63deg)}
+.projects-page .map-orbit.three{width:345px;height:345px;left:50%;top:50%;transform:translate(-50%,-50%);border-style:dashed;opacity:.65}
+.projects-page .map-core{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:132px;height:132px;border-radius:50%;background:var(--forest);color:var(--cream);display:grid;place-items:center;text-align:center;box-shadow:0 0 0 13px rgba(40,72,58,.08)}
+.projects-page .map-core span{font:600 .62rem var(--mono);letter-spacing:.15em}
+.projects-page .map-core strong{font:500 1.65rem/.88 var(--serif);display:block}
+.projects-page .map-node{position:absolute;background:var(--cream);border:1px solid var(--line);padding:9px 11px;font:600 .6rem var(--mono);letter-spacing:.1em;color:var(--forest);text-transform:uppercase;box-shadow:7px 7px 0 rgba(40,72,58,.055)}
+.projects-page .map-node.past{left:8%;top:18%}
+.projects-page .map-node.now{right:8%;top:21%;border-left:3px solid var(--clay)}
+.projects-page .map-node.next{left:10%;bottom:13%;border-left:3px solid var(--sand)}
+.projects-page .map-arrow{position:absolute;right:8%;bottom:12%;font:500 3rem var(--serif);color:var(--clay);transform:rotate(-12deg)}
+.projects-page .map-label{position:absolute;right:18px;bottom:15px;font:600 .58rem var(--mono);letter-spacing:.12em;color:var(--muted);text-transform:uppercase}
+.projects-page .thinking{padding:72px 0 88px}
+.projects-page .thinking-head{display:grid;grid-template-columns:minmax(0,.72fr) minmax(0,1.28fr);gap:40px;align-items:end;border-bottom:1px solid var(--line);padding-bottom:20px;margin-bottom:7px}
+.projects-page .thinking-head h2{margin:0;font-size:clamp(2.8rem,5.5vw,5.2rem)}
+.projects-page .thinking-head p{margin:0;color:var(--muted);max-width:680px;font-size:1.02rem}
+.projects-page .thought{border-bottom:1px solid var(--line);background:rgba(255,255,255,.24)}
+.projects-page .thought summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:90px minmax(0,1fr) auto;gap:22px;align-items:center;padding:28px 10px}
+.projects-page .thought summary::-webkit-details-marker{display:none}
+.projects-page .thought summary:hover{background:rgba(238,240,235,.65)}
+.projects-page .thought-number{font:500 clamp(2.6rem,5vw,5rem)/.8 var(--serif);color:rgba(40,72,58,.2)}
+.projects-page .thought-title{font:500 clamp(2rem,3.5vw,3.5rem)/.92 var(--serif);color:var(--forest);letter-spacing:-.04em}
+.projects-page .thought-summary{margin-top:8px;color:var(--muted);max-width:720px}
+.projects-page .thought-arrow{font:500 2.5rem var(--serif);color:var(--clay);transition:transform .2s}
+.projects-page .thought[open] .thought-arrow{transform:rotate(45deg)}
+.projects-page .thought-detail{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:30px;padding:0 10px 34px 112px}
+.projects-page .thought-detail .mini-label{font:600 .63rem var(--mono);letter-spacing:.13em;text-transform:uppercase;color:var(--clay);margin-bottom:10px}
+.projects-page .thought-detail p{margin:0;color:#4f574f;font-size:1rem}
+.projects-page .thought-note{background:#eef0eb;border-left:3px solid var(--sand);padding:20px 22px}
+.projects-page .thought-note p{font-family:var(--serif);font-size:1.5rem;line-height:1.05;color:var(--forest)}
+.projects-page .direction{padding:70px 0 82px;border-top:1px solid var(--line);background:#edf0eb}
+.projects-page .direction-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:stretch}
+.projects-page .direction-copy{padding:35px 4px 35px 0}
+.projects-page .direction-copy h2{font-size:clamp(3rem,6vw,5.8rem);margin:14px 0 18px}
+.projects-page .direction-copy p{max-width:670px;color:var(--muted);font-size:1.05rem}
+.projects-page .future-list{display:grid;grid-template-columns:1fr 1fr;gap:11px}
+.projects-page .future-item{border:1px solid var(--line);background:rgba(255,255,255,.7);padding:22px 20px;min-height:150px}
+.projects-page .future-item strong{display:block;color:var(--forest);font:500 1.65rem/.95 var(--serif);margin:8px 0}
+.projects-page .future-item span{color:var(--muted);font-size:.86rem}
+.projects-page .projects-start{padding:80px 0 95px}
+.projects-page .projects-start .section-head{margin-bottom:34px}
+.projects-page .projects-start .section-head h2{font-size:clamp(3rem,5.5vw,5.3rem)}
+@media(max-width:900px){
+ .projects-page .trajectory-grid,.projects-page .thinking-head,.projects-page .direction-grid{grid-template-columns:1fr}
+ .projects-page .map-plate{min-height:380px}
+ .projects-page .thought-detail{grid-template-columns:1fr;padding-left:112px}
+}
+@media(max-width:620px){
+ .projects-page .trajectory{padding:55px 0 65px}
+ .projects-page .trajectory h1{font-size:3.7rem}
+ .projects-page .map-plate{min-height:330px}
+ .projects-page .map-orbit.three{width:270px;height:270px}
+ .projects-page .map-orbit.one{width:210px;height:120px}
+ .projects-page .map-orbit.two{width:170px;height:245px}
+ .projects-page .map-core{width:108px;height:108px}
+ .projects-page .thinking,.projects-page .direction,.projects-page .projects-start{padding:58px 0 70px}
+ .projects-page .thought summary{grid-template-columns:58px minmax(0,1fr) 30px;padding:25px 4px}
+ .projects-page .thought-number{font-size:2.6rem}
+ .projects-page .thought-title{font-size:2.05rem}
+ .projects-page .thought-detail{padding-left:62px}
+ .projects-page .future-list{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body class="projects-page">
+<header class="site-header"><div class="wrap nav">
+<a class="brand" href="index.html">Simran Sainand Revankar</a>
+<nav class="nav-links">
+<a class="active" href="projects.html">Projects</a>
+<a href="blogs.html">Blogs</a>
+<a href="publications.html">Publications</a>
+<a href="media/docs/CV.pdf">CV ↗</a>
+<a class="creative-link" href="creative.html">Creative side ↗</a>
+</nav>
+<a class="menu-note" href="creative.html">Creative side ↗</a>
+</div></header>
+
+<main>
+<section class="trajectory">
+<div class="wrap trajectory-grid">
+<div>
+<a class="backlink" href="index.html">← Home</a>
+<div class="trajectory-kicker">The thinking behind the projects</div>
+<h1>What I have done.<br>What I am learning.<br>Where I am going.</h1>
+<p class="lead">I am interested in materials when the science does not stop at characterisation. I want to understand the behaviour, learn the tools that explain it, and move toward problems where that understanding can become useful technology.</p>
+<div class="direction-line"><span>functional materials</span><span>interfaces</span><span>energy & sensing</span><span>semiconductors</span></div>
+</div>
+<div class="map-plate" aria-label="Trajectory from completed work to future direction">
+<div class="map-orbit one"></div><div class="map-orbit two"></div><div class="map-orbit three"></div>
+<div class="map-core"><div><span>MY WORK</span><strong>material<br>→ device</strong></div></div>
+<div class="map-node past">completed<br>perovskite / UV sensing</div>
+<div class="map-node now">current<br>ferroelectric / interfaces</div>
+<div class="map-node next">next<br>computational + semiconductor</div>
+<div class="map-arrow">↗</div><div class="map-label">a direction, not a finished map</div>
+</div>
+</div>
+</section>
+
+<section class="thinking">
+<div class="wrap">
+<div class="thinking-head">
+<div><div class="eyebrow">Three things behind the work</div><h2>Click a number.<br>Read the thinking.</h2></div>
+<p>This is the part of my work that does not fit neatly into a CV. It shows what I have explored, what I know how to use, and what I am trying to grow into next.</p>
+</div>
+
+<details class="thought" open>
+<summary><span class="thought-number">01</span><span><span class="thought-title">What I have already explored.</span><span class="thought-summary">From self-powered UV sensing with perovskite/polymer nanocomposites to ferroelectric switching and interfacial charge retention.</span></span><span class="thought-arrow">+</span></summary>
+<div class="thought-detail"><div><div class="mini-label">Completed + current</div><p>My completed work focused on fluorescent CsPbBr3@Cs4PbBr6/PU perovskite/polymer nanocomposites and their use in a self-powered UV-sensing device. I am now working on ferroelectric switching and interfacial charge retention in thin-film systems, where electrical behaviour and interfaces become the central questions.</p></div>
+<div class="thought-note"><div class="mini-label">What stayed with me</div><p>I like research where a material property becomes a measurable device behaviour, and where the interesting part is understanding why that behaviour appears.</p></div></div>
+</details>
+
+<details class="thought">
+<summary><span class="thought-number">02</span><span><span class="thought-title">How I am learning to understand it.</span><span class="thought-summary">Experimental characterisation, device measurements and computational tools are becoming one working toolkit rather than separate skills.</span></span><span class="thought-arrow">+</span></summary>
+<div class="thought-detail"><div><div class="mini-label">Tools I already use</div><p>My experimental toolkit includes thin-film and nanomaterial fabrication, XRD with Rietveld refinement, SEM, AFM, UV-Vis-NIR absorption and Tauc analysis, FTIR, Raman spectroscopy, P-E hysteresis, PUND and DC probe-station measurements. I use Python and OriginPro for analysis, and I have experience with DFT through Quantum ESPRESSO.</p></div>
+<div class="thought-note"><div class="mini-label">What I am building</div><p>I want computation to become part of how I ask the next experimental question, not just a separate skill that sits beside the lab work.</p></div></div>
+</details>
+
+<details class="thought">
+<summary><span class="thought-number">03</span><span><span class="thought-title">Where I am headed.</span><span class="thought-summary">Toward semiconductor systems, interfaces, sustainable sensing and energy problems, with stronger computational and machine-learning capability.</span></span><span class="thought-arrow">+</span></summary>
+<div class="thought-detail"><div><div class="mini-label">Future direction</div><p>I want to move deeper into semiconductor materials and interfaces while keeping the experimental grounding that taught me how real materials behave. Sustainable technology, low-carbon energy and sensing remain important anchors, especially where a materials problem connects to a practical environmental or technological constraint.</p></div>
+<div class="thought-note"><div class="mini-label">The direction I am trying to build</div><p>Experimental enough to know what is real. Computational enough to ask better questions. Curious enough to keep moving toward harder materials problems.</p></div></div>
+</details>
+</div>
+</section>
+
+<section class="direction">
+<div class="wrap direction-grid">
+<div class="direction-copy"><div class="eyebrow">The direction</div><h2>A sense of the trajectory.</h2><p>The details will change as the questions change. The consistent thread is a move from understanding materials and interfaces toward designing systems where that understanding matters.</p></div>
+<div class="future-list">
+<div class="future-item"><div class="eyebrow">01</div><strong>Semiconductor materials</strong><span>Materials, interfaces and electronic behaviour.</span></div>
+<div class="future-item"><div class="eyebrow">02</div><strong>Computational materials</strong><span>DFT, Python and machine learning as research tools.</span></div>
+<div class="future-item"><div class="eyebrow">03</div><strong>Energy & sensing</strong><span>Self-powered and efficient device concepts.</span></div>
+<div class="future-item"><div class="eyebrow">04</div><strong>Sustainable technology</strong><span>Low-resource, practical approaches to real constraints.</span></div>
+</div></div>
+</section>
+
+<section class="projects-start">
+<div class="wrap">
+<div class="section-head"><div><div class="eyebrow">Projects</div><h2>Projects that carry the story forward.</h2></div><p>Below are the two projects currently in this archive. Open either one for the question, approach and what it taught me.</p></div>
+<div class="project-grid" id="projectGrid"></div>
+</div>
+</section>
+</main>
+
+<footer class="wrap site-footer"><span>Projects · thinking · direction</span></footer>
 <script>
 const esc=v=>String(v??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-fetch('content/projects.json',{cache:'no-store'}).then(r=>r.json()).then(ps=>{document.getElementById('projectGrid').innerHTML=ps.map((p,i)=>'<a class="project-card reveal" href="project.html?slug='+encodeURIComponent(p.slug)+'"><div class="project-index">'+String(i+1).padStart(2,'0')+'</div><div class="body"><div class="status">'+esc(p.status)+'</div><h3>'+esc(p.title)+'</h3><p>'+esc(p.summary)+'</p><div class="meta">Open project ↗</div></div></a>').join('');const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target)}}),{threshold:.1});document.querySelectorAll('.reveal').forEach(x=>io.observe(x))});
-</script></body></html>
+fetch('content/projects.json',{cache:'no-store'}).then(r=>r.json()).then(ps=>{
+ document.getElementById('projectGrid').innerHTML=ps.map((p,i)=>'<a class="project-card reveal" href="project.html?slug='+encodeURIComponent(p.slug)+'"><div class="project-index">'+String(i+1).padStart(2,'0')+'</div><div class="body"><div class="status">'+esc(p.status)+'</div><h3>'+esc(p.title)+'</h3><p>'+esc(p.summary)+'</p><div class="meta">Open project ↗</div></div></a>').join('');
+ const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target)}}),{threshold:.1});
+ document.querySelectorAll('.reveal').forEach(x=>io.observe(x));
+});
+document.querySelectorAll('.thought').forEach(item=>item.addEventListener('toggle',()=>{if(item.open)document.querySelectorAll('.thought').forEach(other=>{if(other!==item)other.open=false})}));
+</script>
+</body></html>

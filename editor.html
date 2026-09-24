@@ -107,6 +107,10 @@ textarea{min-height:120px;resize:vertical}
   <div id="obsessions"></div>
   <h2>Other / future content</h2>
   <div id="future"></div>
+  <h2>Creative media shelves</h2>
+  <p class="muted">Voice notes, journal fragments, research-place photos, recipes, travel stories and visual scraps. Each entry can carry an image, video and/or audio file.</p>
+  <div class="row"><button id="addMediaEntry">+ Add media entry</button></div>
+  <div id="mediaEntries"></div>
 </section>
 
 <section class="tab" id="design">
@@ -668,6 +672,7 @@ function normalize(){
   if(!Array.isArray(state.creative.posts))state.creative.posts=[];
   if(!Array.isArray(state.creative.currentlyObsessed))state.creative.currentlyObsessed=[];
   if(!Array.isArray(state.creative.future))state.creative.future=[];
+  if(!Array.isArray(state.creative.mediaEntries))state.creative.mediaEntries=[];
 
   if(!state.theme)state.theme={};
 
@@ -851,6 +856,7 @@ function renderCreative(){
   }).join('');
   bind($('posts'),c);
   wirePostControls();
+  renderCreativeMediaEntries();
 
   $('obsessions').innerHTML=c.currentlyObsessed.map(function(p,i){
     return '<div class="card"><div class="cardhead"><b>Current obsession '+(i+1)+'</b><button class="danger remove-obsession" data-index="'+i+'">Remove</button></div>'+
@@ -865,6 +871,44 @@ function renderCreative(){
   }).join('');
   bind($('future'),c);
   wireButtons($('future'),'.remove-future',function(i){state.creative.future.splice(i,1);renderCreative();});
+}
+
+function renderCreativeMediaEntries(){
+  var arr=state.creative.mediaEntries||[];
+  $('mediaEntries').innerHTML=arr.map(function(m,i){
+    return '<div class="card"><div class="cardhead"><b>Media entry '+(i+1)+'</b><button class="danger remove-media-entry" data-index="'+i+'">Remove</button></div>'+
+      '<div class="grid"><div class="field"><label>Section</label><select data-media-collection="'+i+'">'+
+      ['voice|Voice notes','journal|Journal / random thoughts','research|Research archive','recipes|Recipes','travel|Travel stories','visual|Visual scraps'].map(function(x){var a=x.split('|');return '<option value="'+a[0]+'" '+(m.collection===a[0]?'selected':'')+'>'+a[1]+'</option>';}).join('')+
+      '</select></div>'+field('Title','mediaEntries.'+i+'.title',m.title)+'</div>'+
+      '<div class="grid">'+field('Date','mediaEntries.'+i+'.date',m.date)+field('Display label','mediaEntries.'+i+'.mediaType',m.mediaType)+'</div>'+
+      field('Text / caption','mediaEntries.'+i+'.text',m.text,true)+
+      field('Image path or URL','mediaEntries.'+i+'.image',m.image)+
+      '<div class="field"><label>Upload image</label><input type="file" accept="image/*" data-media-file="'+i+'" data-media-kind="image"></div>'+
+      field('Video path or URL','mediaEntries.'+i+'.video',m.video)+
+      '<div class="field"><label>Upload video</label><input type="file" accept="video/*" data-media-file="'+i+'" data-media-kind="video"></div>'+
+      field('Audio path or URL','mediaEntries.'+i+'.audio',m.audio)+
+      '<div class="field"><label>Upload audio / voice note</label><input type="file" accept="audio/*" data-media-file="'+i+'" data-media-kind="audio"></div>'+
+      field('Alt text','mediaEntries.'+i+'.alt',m.alt)+
+      '<label class="check"><input type="checkbox" data-media-enabled="'+i+'" '+(m.enabled!==false?'checked':'')+'> Visible</label>'+
+      '</div>';
+  }).join('');
+  bind($('mediaEntries'),c);
+  wireButtons($('mediaEntries'),'.remove-media-entry',function(i){state.creative.mediaEntries.splice(i,1);renderCreative();});
+  $('mediaEntries').querySelectorAll('[data-media-collection]').forEach(function(el){el.addEventListener('change',function(){state.creative.mediaEntries[Number(el.getAttribute('data-media-collection'))].collection=el.value;});});
+  $('mediaEntries').querySelectorAll('[data-media-enabled]').forEach(function(el){el.addEventListener('change',function(){state.creative.mediaEntries[Number(el.getAttribute('data-media-enabled'))].enabled=el.checked;});});
+  $('mediaEntries').querySelectorAll('[data-media-file]').forEach(function(el){
+    el.addEventListener('change',function(){
+      var file=el.files&&el.files[0];if(!file)return;
+      var rd=new FileReader();
+      rd.onload=function(){
+        var idx=Number(el.getAttribute('data-media-file')),kind=el.getAttribute('data-media-kind');
+        state.creative.mediaEntries[idx][kind]=rd.result;
+        state.creative.mediaEntries[idx]['_'+kind+'UploadName']=file.name;
+        status((kind==='audio'?'Voice note':kind.charAt(0).toUpperCase()+kind.slice(1))+' attached. Publish to upload it.');
+      };
+      rd.readAsDataURL(file);
+    });
+  });
 }
 
 function wirePostControls(){
@@ -1103,6 +1147,21 @@ async function putText(path,content,message){
   return await github(path,{method:'PUT',body:JSON.stringify(body)});
 }
 
+async function putBinaryDataUrl(path,dataUrl,message){
+  var t=token(); if(!t)throw new Error('Add your GitHub token in GitHub settings.');
+  var raw=await github('git/ref/heads/'+BRANCH);
+  var commitSha=raw.object&&raw.object.sha;
+  if(!commitSha)throw new Error('Could not read the current branch.');
+  var commit=await github('git/commits/'+commitSha);
+  var treeSha=commit.tree&&commit.tree.sha;
+  var parts=dataUrl.split(',');
+  if(parts.length<2)throw new Error('Invalid media file.');
+  var blob=await github('git/blobs',{method:'POST',body:JSON.stringify({content:parts[1],encoding:'base64'})});
+  var tree=await github('git/trees',{method:'POST',body:JSON.stringify({base_tree:treeSha,tree:[{path:path,mode:'100644',type:'blob',sha:blob.sha}]})});
+  var next=await github('git/commits',{method:'POST',body:JSON.stringify({message:message,tree:tree.sha,parents:[commitSha]})});
+  await github('git/refs/heads/'+BRANCH,{method:'PATCH',body:JSON.stringify({sha:next.sha,force:false})});
+}
+
 async function putDataUrl(path,dataUrl,message){
   var sha=null;
   try{sha=(await github(path)).sha;}catch(e){if(e.message.indexOf('404')===-1)throw e;}
@@ -1124,6 +1183,22 @@ async function publish(){
 
     for(var p in state.source){
       if(state.source[p])await putText(p,state.source[p],msg);
+    }
+
+    for(var mi=0;mi<state.creative.mediaEntries.length;mi++){
+      var me=state.creative.mediaEntries[mi];
+      for(var mk=0;mk<['image','video','audio'].length;mk++){
+        var kind=['image','video','audio'][mk], raw=String(me[kind]||'');
+        if(raw.indexOf('data:')===0){
+          var safe=(me.title||'media').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'').slice(0,48)||'media';
+          var ext=((raw.match(/^data:([^;]+);/)||[])[1]||'application/octet-stream').split('/')[1]||'bin';
+          if(ext==='jpeg')ext='jpg'; if(ext==='mpeg')ext='mp3'; if(ext==='quicktime')ext='mov';
+          var mp='content/media/'+safe+'-'+kind+'.'+ext;
+          await putBinaryDataUrl(mp,raw,msg);
+          me[kind]=mp;
+          delete me['_'+kind+'UploadName'];
+        }
+      }
     }
 
     for(var i=0;i<state.creative.posts.length;i++){
@@ -1245,6 +1320,11 @@ $('addQuestion').addEventListener('click',function(){
 
 $('addPost').addEventListener('click',function(){
   state.creative.posts.push({type:'Other',title:'New creative piece',date:'',image:'',excerpt:'',review:'',quote:'',link:''});
+  renderCreative();
+});
+
+$('addMediaEntry').addEventListener('click',function(){
+  state.creative.mediaEntries.push({collection:'journal',mediaType:'Journal entry',title:'New entry',date:'',text:'',image:'',video:'',audio:'',alt:'',enabled:true});
   renderCreative();
 });
 

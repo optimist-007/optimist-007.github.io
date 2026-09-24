@@ -794,7 +794,8 @@ function blogTypes(current){
 function renderBlogs(){
   var arr=state.blogs;
   $('blogsEditor').innerHTML=arr.map(function(b,i){
-    return '<div class="card"><div class="cardhead"><b>Blog post '+(i+1)+'</b><button class="danger remove-blog" data-index="'+i+'">Remove</button></div>'+
+    return '<div class="card"><div class="cardhead"><b>Journal entry '+(i+1)+'</b><button class="danger remove-blog" data-index="'+i+'">Remove</button></div>'+
+      '<p class="small">Use <b>Conference experience</b>, <b>Talk / lecture</b> or <b>Workshop</b> to place this entry under the matching journal sub-link. You can add photos, slides or other media below.</p>'+
       '<div class="grid"><div class="field"><label>Format</label><select data-blog-type="'+i+'">'+blogTypes(b.type||b.category||'Research reflection')+'</select></div>'+
       field('Category label','blogs.'+i+'.category',b.category||'')+'</div>'+
       field('Title','blogs.'+i+'.title',b.title||'')+

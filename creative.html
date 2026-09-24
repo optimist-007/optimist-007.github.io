@@ -568,12 +568,10 @@ function setupComments(d){
 async function load(){
   try{
     let content=null,site=null;
-    try{
-      const p=localStorage.getItem('websiteStudioPreview');
-      if(p){const x=JSON.parse(p);content=x?.files?.['content/creative-content.json']||null;site=x?.files?.['content/creative-site.json']||null;}
-    }catch(e){}
-    if(!content){const res=await fetch('./content/creative-content.json?v='+Date.now(),{cache:'no-store'});if(!res.ok)throw new Error('Content file not found');content=await res.json();}
-    if(!site){try{const sr=await fetch('./content/creative-site.json?v='+Date.now(),{cache:'no-store'});if(sr.ok)site=await sr.json();}catch(e){}}
+    const res=await fetch('./content/creative-content.json?v='+Date.now(),{cache:'no-store'});
+    if(!res.ok)throw new Error('Content file not found');
+    content=await res.json();
+    try{const sr=await fetch('./content/creative-site.json?v='+Date.now(),{cache:'no-store'});if(sr.ok)site=await sr.json();}catch(e){}
     content.__site=site||{};
     return content;
   }catch(err){
@@ -623,7 +621,6 @@ async function load(){
   createFilters();
   renderReviews();
   renderObsessions(d);
-  renderFuture(d);
   renderMediaShelves(d);
   setupComments(d);
   observeReveals();

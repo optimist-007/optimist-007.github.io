@@ -435,17 +435,6 @@ h3{font-size:clamp(2rem,3.5vw,3.5rem);line-height:.9;margin:7px 0 12px}
     <div id="reviewList"></div>
   </section>
 
-  <section class="section" id="creativeMedia">
-    <div class="section-head reveal">
-      <div>
-        <div class="eyebrow">Loose pages</div>
-        <h2>Things I make, keep and collect.</h2>
-      </div>
-      <p class="section-kicker">Some things are better as a voice note, photograph, recipe, travel fragment or a small record of the places I have worked.</p>
-    </div>
-    <div id="mediaShelves"></div>
-  </section>
-
   <section class="section" id="obsessions">
     <div class="section-head reveal">
       <div>
@@ -836,7 +825,6 @@ async function load(){
   renderReviews();
   renderObsessions(d);
   renderFuture(d);
-  renderMediaShelves(d);
   renderJournalShelf(d);
   observeReveals();
 })();

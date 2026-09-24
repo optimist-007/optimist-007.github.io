@@ -1131,6 +1131,23 @@ async function github(path,options){
   return data;
 }
 
+async function githubApi(path,options){
+  var t=token();
+  if(!t)throw new Error('Add your GitHub token in GitHub settings.');
+  var opts=options||{};
+  var headers=opts.headers||{};
+  headers.Accept='application/vnd.github+json';
+  headers.Authorization='Bearer '+t;
+  headers['X-GitHub-Api-Version']='2022-11-28';
+  if(opts.body)headers['Content-Type']='application/json';
+  opts.headers=headers;
+  var r=await fetch('https://api.github.com/repos/'+OWNER+'/'+REPO+'/'+path.replace(/^\//,''),opts);
+  var txt=await r.text(),data={};
+  try{data=JSON.parse(txt);}catch(e){}
+  if(!r.ok)throw new Error((data.message||('GitHub returned '+r.status))+' ['+path+']');
+  return data;
+}
+
 function base64Utf8(s){
   var bytes=new TextEncoder().encode(s);
   var binary='';
@@ -1149,17 +1166,17 @@ async function putText(path,content,message){
 
 async function putBinaryDataUrl(path,dataUrl,message){
   var t=token(); if(!t)throw new Error('Add your GitHub token in GitHub settings.');
-  var raw=await github('git/ref/heads/'+BRANCH);
+  var raw=await githubApi('git/ref/heads/'+BRANCH);
   var commitSha=raw.object&&raw.object.sha;
   if(!commitSha)throw new Error('Could not read the current branch.');
-  var commit=await github('git/commits/'+commitSha);
+  var commit=await githubApi('git/commits/'+commitSha);
   var treeSha=commit.tree&&commit.tree.sha;
   var parts=dataUrl.split(',');
   if(parts.length<2)throw new Error('Invalid media file.');
-  var blob=await github('git/blobs',{method:'POST',body:JSON.stringify({content:parts[1],encoding:'base64'})});
-  var tree=await github('git/trees',{method:'POST',body:JSON.stringify({base_tree:treeSha,tree:[{path:path,mode:'100644',type:'blob',sha:blob.sha}]})});
-  var next=await github('git/commits',{method:'POST',body:JSON.stringify({message:message,tree:tree.sha,parents:[commitSha]})});
-  await github('git/refs/heads/'+BRANCH,{method:'PATCH',body:JSON.stringify({sha:next.sha,force:false})});
+  var blob=await githubApi('git/blobs',{method:'POST',body:JSON.stringify({content:parts[1],encoding:'base64'})});
+  var tree=await githubApi('git/trees',{method:'POST',body:JSON.stringify({base_tree:treeSha,tree:[{path:path,mode:'100644',type:'blob',sha:blob.sha}]})});
+  var next=await githubApi('git/commits',{method:'POST',body:JSON.stringify({message:message,tree:tree.sha,parents:[commitSha]})});
+  await githubApi('git/refs/heads/'+BRANCH,{method:'PATCH',body:JSON.stringify({sha:next.sha,force:false})});
 }
 
 async function putDataUrl(path,dataUrl,message){

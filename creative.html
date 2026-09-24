@@ -191,6 +191,14 @@ h3{font-size:clamp(2rem,3.5vw,3.5rem);line-height:.9;margin:7px 0 12px}
 .media-entry img,.media-entry video{width:100%;max-height:430px;object-fit:cover;display:block;margin-top:15px}
 .media-entry audio{width:100%;margin-top:15px}
 @media(max-width:760px){.media-shelf{grid-template-columns:1fr}}
+
+.loose-pages{margin-top:28px!important}.loose-pages-link{
+  display:flex;align-items:center;justify-content:space-between;gap:24px;
+  padding:22px 26px;background:var(--paper-2);border:1px solid var(--line);
+  color:inherit;text-decoration:none;box-shadow:7px 7px 0 rgba(106,48,68,.07);
+  transition:transform .2s ease,box-shadow .2s ease
+}.loose-pages-link:hover{transform:translateY(-3px);box-shadow:10px 10px 0 rgba(106,48,68,.09)}
+.loose-pages-link h2{font-size:clamp(2rem,3.5vw,3.5rem);margin:5px 0}.loose-pages-link p{margin:0;color:var(--muted);font-size:.9rem}.loose-arrow{font:3rem var(--serif);color:var(--wine)}
 </style>
 </head>
 <body>
@@ -235,56 +243,17 @@ h3{font-size:clamp(2rem,3.5vw,3.5rem);line-height:.9;margin:7px 0 12px}
     <div id="reviewList"></div>
   </section>
 
-  <section class="section" id="journal">
-    <div class="section-head reveal">
-      <div>
-        <div class="eyebrow">Journal / random thoughts</div>
-        <h2>On kindness, boundaries &amp; moving on.</h2>
-      </div>
-      <p class="section-kicker">A reflection I wanted to keep somewhere I could return to.</p>
-    </div>
-    <div class="journal-card reveal" id="journalContent"></div>
-  </section>
-
-  <section class="section" id="quotes" style="display:none">
-    <div class="section-head reveal">
-      <div>
-        <div class="eyebrow">Lines that stayed</div>
-        <h2>Favourite quotes.</h2>
-      </div>
-      <p class="section-kicker">A shelf for sentences that kept echoing after the story was over.</p>
-    </div>
-    <div class="quote-grid" id="quoteGrid"></div>
-  </section>
-
-  <section class="section" id="obsessions" style="display:none">
-    <div class="section-head reveal">
-      <div>
-        <div class="eyebrow">Current page</div>
-        <h2>Currently obsessed with.</h2>
-      </div>
-      <p class="section-kicker">This can hold a film, a book, a writer, a song, a sentence, or whatever has taken up too much room in your head lately.</p>
-    </div>
-    <div class="obsession-board">
-      <div class="obsession-label reveal">
-        <div class="tiny-label">right now</div>
-        <h2>What is<br>occupying<br>the brain.</h2>
-      </div>
-      <div class="obsession-items" id="obsessionItems"></div>
-    </div>
-  </section>
-
   <div id="studioCreativeSections"></div>
 
   <section class="section loose-pages" id="creativeMedia">
-    <div class="section-head reveal">
+    <a class="loose-pages-link" href="#creativeMedia" aria-label="Open Loose Pages">
       <div>
         <div class="eyebrow">Loose pages</div>
         <h2>Things I make, keep and collect.</h2>
+        <p>Click to open the creative archive.</p>
       </div>
-      <p class="section-kicker">Some things are better as a voice note, photograph, recipe, travel fragment or a small record of the places I have worked.</p>
-    </div>
-    <div id="mediaShelves"></div>
+      <span class="loose-arrow">↗</span>
+    </a>
   </section>
 
   <section class="section" id="comments">
@@ -611,12 +580,9 @@ async function load(){
   if(design.sectionSpacing)root.style.setProperty('--studio-section-space',design.sectionSpacing+'px');
   if(design.posterHeight)root.style.setProperty('--studio-poster-height',design.posterHeight+'vh');
   if(design.posterRotation!==undefined)root.style.setProperty('--studio-poster-rotation',design.posterRotation+'deg');
-  const sectionOrder=['reviews','journal','comments'];
+  const sectionOrder=['reviews','comments'];
   const sectionMap={
     reviews:document.getElementById('reviews'),
-    journal:document.getElementById('journal'),
-    quotes:document.getElementById('quotes'),
-    obsessions:document.getElementById('obsessions'),
     comments:document.getElementById('comments')
   };
   const creativeMain=document.querySelector('main');
@@ -632,10 +598,8 @@ async function load(){
   createFilters();
   renderReviews();
   renderQuotes();
-  renderJournal(d);
   renderObsessions(d);
   renderFuture(d);
-  renderMediaShelves(d);
   setupComments(d);
   observeReveals();
 })();

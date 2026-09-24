@@ -27,7 +27,7 @@ body{
 body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.18;background-image:linear-gradient(rgba(52,43,43,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(52,43,43,.02) 1px,transparent 1px);background-size:24px 24px;z-index:-1}
 a{color:inherit}
 button{font:inherit}
-.wrap{max-width:1240px;margin:0 auto;padding:26px 5vw 90px}
+.wrap{max-width:1240px;margin:0 auto;padding:20px 5vw 70px}
 .eyebrow,.meta,.issue,.filter,.tiny-label{font-family:var(--mono);text-transform:uppercase;letter-spacing:.12em;font-size:.7rem}
 .eyebrow{color:var(--wine);font-weight:600}
 .meta,.tiny-label{color:var(--muted)}
@@ -37,12 +37,12 @@ h1{font-size:var(--studio-h1-size,clamp(5rem,12vw,10.5rem));line-height:.72;marg
 h2{font-size:var(--studio-h2-size,clamp(2.8rem,5vw,5.2rem));line-height:.9;margin-bottom:18px}
 h3{font-size:clamp(2rem,3.5vw,3.5rem);line-height:.9;margin:7px 0 12px}
 .intro{max-width:690px;font-size:1.08rem;color:#5b5050}
-.topline{display:flex;align-items:center;justify-content:space-between;gap:20px;border-bottom:1px solid var(--line);padding-bottom:14px}
+.topline{display:flex;align-items:center;justify-content:space-between;gap:20px;border-bottom:1px solid var(--line);padding-bottom:10px}
 .topnav{display:flex;gap:16px;flex-wrap:wrap;font-family:var(--mono);font-size:.68rem;letter-spacing:.11em;text-transform:uppercase}
 .topnav a{text-decoration:none;color:var(--muted)}
 .topnav a:hover{color:var(--wine)}
-.masthead{padding:42px 0 22px}
-.mast-grid{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(260px,.65fr);gap:42px;align-items:end}
+.masthead{padding:30px 0 16px}
+.mast-grid{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(260px,.65fr);gap:34px;align-items:end}
 .note{
   position:relative;background:var(--paper-2);border:1px solid var(--line);padding:24px 22px;
   box-shadow:10px 10px 0 rgba(106,48,68,.08);transform:rotate(1.1deg);overflow:hidden
@@ -52,25 +52,25 @@ h3{font-size:clamp(2rem,3.5vw,3.5rem);line-height:.9;margin:7px 0 12px}
 .note .scribble{font-style:italic;color:var(--wine)}
 .hero-rule{display:flex;align-items:center;gap:12px;margin:8px 0 0;color:var(--muted)}
 .hero-rule:before{content:"";width:44px;height:1px;background:var(--wine)}
-.ticker-wrap{margin:12px -5vw 52px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:rgba(245,240,231,.72);overflow:hidden}
+.ticker-wrap{margin:10px -5vw 40px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:rgba(245,240,231,.72);overflow:hidden}
 .ticker{display:flex;width:max-content;animation:marquee 26s linear infinite;padding:12px 0}
 .ticker span{font-family:var(--mono);font-size:.72rem;text-transform:uppercase;letter-spacing:.16em;color:var(--wine);padding:0 22px}
 .ticker b{font-size:.9rem;color:var(--gold)}
 @keyframes marquee{to{transform:translateX(-50%)}}
-.section{margin-top:var(--studio-section-space,80px)}
+.section{margin-top:var(--studio-section-space,80px);margin-top:min(var(--studio-section-space,80px),68px)}
 .section-head{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;border-bottom:1px solid var(--line);padding-bottom:12px;margin-bottom:22px}
 .section-kicker{max-width:310px;color:var(--muted);font-size:.9rem}
 .filters{display:flex;gap:8px;flex-wrap:wrap;margin:5px 0 28px}
 .filter{border:1px solid var(--line);background:transparent;color:var(--muted);padding:8px 12px;cursor:pointer;transition:all .2s}
 .filter:hover,.filter.active{background:var(--ink);color:var(--paper);border-color:var(--ink)}
-.review-stage{min-height:78vh;display:grid;grid-template-columns:minmax(300px,.92fr) minmax(0,1.08fr);gap:clamp(30px,7vw,100px);align-items:center;padding:58px 0;border-top:1px solid var(--line);position:relative}
+.review-stage{min-height:70vh;display:grid;grid-template-columns:minmax(300px,.92fr) minmax(0,1.08fr);gap:clamp(30px,7vw,100px);align-items:center;padding:46px 0;border-top:1px solid var(--line);position:relative}
 .review-stage.reverse{grid-template-columns:minmax(0,1.08fr) minmax(300px,.92fr)}
 .review-stage.reverse .poster-wrap{order:2}
 .review-stage.reverse .review-copy{order:1}
-.poster-wrap{position:relative;min-height:560px}
+.poster-wrap{position:relative;min-height:500px}
 .poster-shadow{position:absolute;inset:28px 18px 0 28px;background:rgba(52,43,43,.12);filter:blur(1px);transform:rotate(2.5deg)}
 .poster{
-  position:relative;width:100%;height:var(--studio-poster-height,70vh);display:flex;align-items:center;justify-content:center;
+  position:relative;width:100%;height:var(--studio-poster-height,64vh);display:flex;align-items:center;justify-content:center;
   background:linear-gradient(145deg,#2f2828,#4b3c3b);overflow:hidden;box-shadow:var(--shadow);transform:rotate(var(--studio-poster-rotation,-1.2deg));
   transition:transform .35s ease
 }
@@ -166,11 +166,11 @@ h3{font-size:clamp(2rem,3.5vw,3.5rem);line-height:.9;margin:7px 0 12px}
   .topline{align-items:flex-start}
   .topnav{justify-content:flex-end}
   h1{font-size:clamp(4rem,19vw,6rem)}
-  .masthead{padding-top:30px}
+  .masthead{padding-top:24px}
   .note{margin-top:8px}
   .ticker-wrap{margin-bottom:34px}
-  .section{margin-top:58px}
-  .review-stage{padding:40px 0;min-height:auto}
+  .section{margin-top:52px}
+  .review-stage{padding:34px 0;min-height:auto}
   .poster{height:64vh;min-height:420px}
   .quote-card blockquote{font-size:1.9rem}
 }
@@ -191,7 +191,6 @@ h3{font-size:clamp(2rem,3.5vw,3.5rem);line-height:.9;margin:7px 0 12px}
         <a href="#reviews">Reviews</a>
         <a href="#quotes">Quotes</a>
         <a href="#obsessions">Now</a>
-        <a href="#comments">Comments</a>
       </div>
     </div>
     <div class="mast-grid">

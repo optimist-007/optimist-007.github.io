@@ -53,7 +53,7 @@ textarea{min-height:120px;resize:vertical}
 </head>
 <body>
 <header>
-  <div class="brand">Website Studio</div>
+  <div class="brand">Website Editor · Current Site</div>
   <div class="actions">
     <button class="secondary" id="previewBtn">Save & Preview</button>
     <button id="publishBtn">🚀 Publish to website</button>
@@ -119,7 +119,7 @@ textarea{min-height:120px;resize:vertical}
 
 <section class="tab" id="creative">
   <h1>Creative side</h1>
-  <p class="muted">Add movies, books, paintings, anime, travel, food, music, journal entries, stories, photography or your own category.</p>
+  <p class="muted">This editor is synced to the website as it exists now. Edit the actual content used by the current pages, including your Creative Side journal at the bottom.</p>
   <div class="row">
     <button id="addPost">+ Add creative piece</button>
     <button class="secondary" id="addObsession">+ Add current obsession</button>
@@ -127,9 +127,11 @@ textarea{min-height:120px;resize:vertical}
   <div id="posts"></div>
   <h2>Currently obsessed with</h2>
   <div id="obsessions"></div>
-  <h2>Other / future content</h2>
-  <div id="future"></div>
-  <h2>Creative media shelves</h2>
+  <h2>Journal / random thoughts</h2>
+  <p class="muted">The website shows only the journal title at the very bottom. Clicking it opens the full text in the existing popup.</p>
+  <div id="journalEntries"></div>
+  <div class="row"><button class="secondary" id="addJournal">+ Add journal entry</button></div>
+  <h2>Other creative media</h2>
   <p class="muted">Voice notes, journal fragments, research-place photos, recipes, travel stories and visual scraps. Each entry can carry an image, video and/or audio file.</p>
   <div class="row"><button id="addMediaEntry">+ Add media entry</button></div>
   <div id="mediaEntries"></div>
@@ -213,8 +215,10 @@ textarea{min-height:120px;resize:vertical}
     <option>blogs.html</option>
     <option>publications.html</option>
     <option>media.html</option>
-    <option>collaborate.html</option>
     <option>assets/home.css</option>
+    <option>assets/research.css</option>
+    <option>assets/research-readable.css</option>
+    <option>content/runtime.js</option>
     <option>content/home.json</option>
     <option>content/projects-site.json</option>
     <option>content/projects.json</option>
@@ -238,6 +242,9 @@ textarea{min-height:120px;resize:vertical}
     <button id="previewHome">Main website</button>
     <button id="previewProjects">Projects</button>
     <button id="previewCreative">Creative side</button>
+    <button id="previewBlogs">Blogs</button>
+    <button id="previewPublications">Publications</button>
+    <button id="previewMedia">Media</button>
     <button class="secondary" id="clearPreview">Clear unsaved preview</button>
   </div>
   <iframe id="previewFrame" class="preview" src="index.html"></iframe>
@@ -979,6 +986,8 @@ function renderCreative(){
   wirePostControls();
   renderCreativeMediaEntries();
 
+  renderJournalEditor();
+
   $('obsessions').innerHTML=c.currentlyObsessed.map(function(p,i){
     return '<div class="card"><div class="cardhead"><b>Current obsession '+(i+1)+'</b><button class="danger remove-obsession" data-index="'+i+'">Remove</button></div>'+
       field('Title','currentlyObsessed.'+i+'.title',p.title)+field('Note','currentlyObsessed.'+i+'.text',p.text,true)+'</div>';
@@ -986,17 +995,29 @@ function renderCreative(){
   bind($('obsessions'),c);
   wireButtons($('obsessions'),'.remove-obsession',function(i){state.creative.currentlyObsessed.splice(i,1);renderCreative();});
 
-  $('future').innerHTML=c.future.map(function(p,i){
-    return '<div class="card"><div class="cardhead"><b>Future content '+(i+1)+'</b><button class="danger remove-future" data-index="'+i+'">Remove</button></div>'+
-      field('Title','future.'+i+'.title',p.title)+field('Text','future.'+i+'.text',p.text,true)+'</div>';
-  }).join('');
-  bind($('future'),c);
-  wireButtons($('future'),'.remove-future',function(i){state.creative.future.splice(i,1);renderCreative();});
+}
+
+function renderJournalEditor(){
+  var arr=(state.creative.mediaEntries||[]).map(function(m,i){return {m:m,i:i};}).filter(function(x){return String(x.m.collection||'').toLowerCase()==='journal';});
+  $('journalEntries').innerHTML=arr.length ? arr.map(function(x){
+    var m=x.m,i=x.i;
+    return '<div class="card" style="border-left:4px solid #6a3044">'+
+      '<div class="cardhead"><b>Journal entry '+(arr.indexOf(x)+1)+'</b><button class="danger remove-journal" data-index="'+i+'">Remove</button></div>'+
+      field('Title','mediaEntries.'+i+'.title',m.title)+
+      field('Date','mediaEntries.'+i+'.date',m.date)+
+      field('Full journal text','mediaEntries.'+i+'.text',m.text,true)+
+      '<label class="check"><input type="checkbox" data-journal-enabled="'+i+'" '+(m.enabled!==false?'checked':'')+'> Visible on website</label>'+
+      '<div class="small" style="margin-top:8px">On the website, only the title is shown. The full text opens in the journal popup.</div>'+
+      '</div>';
+  }).join('') : '<div class="hint">No journal entries yet. Add one below.</div>';
+  bind($('journalEntries'),state.creative);
+  wireButtons($('journalEntries'),'.remove-journal',function(i){state.creative.mediaEntries.splice(i,1);renderCreative();});
+  $('journalEntries').querySelectorAll('[data-journal-enabled]').forEach(function(el){el.addEventListener('change',function(){state.creative.mediaEntries[Number(el.getAttribute('data-journal-enabled'))].enabled=el.checked;});});
 }
 
 function renderCreativeMediaEntries(){
-  var arr=state.creative.mediaEntries||[];
-  $('mediaEntries').innerHTML=arr.map(function(m,i){
+  var arr=(state.creative.mediaEntries||[]).map(function(m,i){return {m:m,i:i};}).filter(function(x){return String(x.m.collection||'').toLowerCase()!=='journal';});
+  $('mediaEntries').innerHTML=arr.map(function(x){var m=x.m,i=x.i; return 
     return '<div class="card"><div class="cardhead"><b>Media entry '+(i+1)+'</b><button class="danger remove-media-entry" data-index="'+i+'">Remove</button></div>'+
       '<div class="grid"><div class="field"><label>Section</label><select data-media-collection="'+i+'">'+
       ['voice|Voice notes','journal|Journal / random thoughts','research|Research archive','recipes|Recipes','travel|Travel stories','visual|Visual scraps'].map(function(x){var a=x.split('|');return '<option value="'+a[0]+'" '+(m.collection===a[0]?'selected':'')+'>'+a[1]+'</option>';}).join('')+
@@ -1011,8 +1032,7 @@ function renderCreativeMediaEntries(){
       '<div class="field"><label>Upload audio / voice note</label><input type="file" accept="audio/*" data-media-file="'+i+'" data-media-kind="audio"></div>'+
       field('Alt text','mediaEntries.'+i+'.alt',m.alt)+
       '<label class="check"><input type="checkbox" data-media-enabled="'+i+'" '+(m.enabled!==false?'checked':'')+'> Visible</label>'+
-      '</div>';
-  }).join('');
+      '</div>';}).join('');
   bind($('mediaEntries'),c);
   wireButtons($('mediaEntries'),'.remove-media-entry',function(i){state.creative.mediaEntries.splice(i,1);renderCreative();});
   $('mediaEntries').querySelectorAll('[data-media-collection]').forEach(function(el){el.addEventListener('change',function(){state.creative.mediaEntries[Number(el.getAttribute('data-media-collection'))].collection=el.value;});});
@@ -1141,14 +1161,11 @@ function renderOrganization(){
   }
 
   var names={reviews:'Reviews',quotes:'Favourite quotes',obsessions:'Currently obsessed',future:'Other / future',comments:'Comments'};
-  $('creativeOrder').innerHTML=state.creativeSite.order.map(function(id){
-    var sec=state.creativeSite.sections[id]||{enabled:true};
-    return '<div class="card"><div class="cardhead"><b>'+escapeHtml(names[id]||id)+'</b><label class="check"><input type="checkbox" data-creative-visible-section="'+escapeHtml(id)+'" '+(sec.enabled!==false?'checked':'')+'> Visible</label></div></div>';
+  var currentCreativeSections=['reviews','creativeMedia','obsessions','journal'];
+  var currentNames={reviews:'Reviews',creativeMedia:'Creative media',obsessions:'Currently obsessed',journal:'Journal / random thoughts'};
+  $('creativeOrder').innerHTML=currentCreativeSections.map(function(id){
+    return '<div class="card"><div class="cardhead"><b>'+escapeHtml(currentNames[id]||id)+'</b><span class="small">Current page position</span></div></div>';
   }).join('');
-  var cc=$('creativeOrder').querySelectorAll('[data-creative-visible-section]');
-  for(var j=0;j<cc.length;j++){
-    (function(el){el.addEventListener('change',function(){var id=el.getAttribute('data-creative-visible-section');if(!state.creativeSite.sections[id])state.creativeSite.sections[id]={};state.creativeSite.sections[id].enabled=el.checked;});})(cc[j]);
-  }
 }
 
 function renderNavEditor(){

@@ -209,6 +209,12 @@ h3{font-size:clamp(2rem,3.5vw,3.5rem);line-height:.9;margin:7px 0 12px}
 .journal-modal-cover{min-height:260px;padding:30px;background:linear-gradient(145deg,#d9cdbb,#f5f0e7);display:flex;flex-direction:column;justify-content:space-between;color:var(--ink)}
 .journal-modal-cover strong{font:500 clamp(2rem,4vw,4rem)/1 var(--serif)}
 @media(max-width:760px){.journal-shelf .media-shelf{grid-template-columns:1fr}.journal-card{grid-template-columns:105px 1fr}.journal-thumb{min-height:125px;padding:12px}.journal-thumb-title{font-size:1.05rem}}
+
+.review-media{margin-top:28px;display:grid;gap:18px}
+.review-media figure{margin:0}
+.review-media img,.review-media video{display:block;width:100%;max-height:520px;object-fit:cover}
+.review-media audio{display:block;width:100%}
+.review-media figcaption{margin-top:7px;color:var(--muted);font-size:.9rem;white-space:pre-wrap}
 </style>
 </head>
 <body>
@@ -547,6 +553,12 @@ function openReview(r){
     (r.date?'<div class="meta">'+esc(r.date)+'</div>':'')+
     (r.review?'<div class="review-body">'+nl(r.review)+'</div>':'<p class="meta">No full review text yet.</p>')+
     (r.quote?'<div class="dialog-quote">'+nl(r.quote)+'</div>':'')+
+    (Array.isArray(r.media)&&r.media.length?'<div class="review-media">'+r.media.map(function(m){
+      const type=m.type||'image';
+      if(type==='video') return '<figure><video controls preload="metadata" src="'+esc(m.src||'')+'"></video>'+(m.caption?'<figcaption>'+nl(m.caption)+'</figcaption>':'')+'</figure>';
+      if(type==='audio') return '<figure><audio controls preload="metadata" src="'+esc(m.src||'')+'"></audio>'+(m.caption?'<figcaption>'+nl(m.caption)+'</figcaption>':'')+'</figure>';
+      return '<figure><img src="'+esc(m.src||'')+'" alt="'+esc(m.alt||m.caption||r.title||'Review image')+'" loading="lazy">'+(m.caption?'<figcaption>'+nl(m.caption)+'</figcaption>':'')+'</figure>';
+    }).join('')+'</div>':'')+
     (r.link?'<p style="margin-top:25px"><a class="read-link" href="'+esc(r.link)+'" target="_blank" rel="noopener">Open external link ↗</a></p>':'');
   $('modal').classList.add('open');
   $('modal').setAttribute('aria-hidden','false');

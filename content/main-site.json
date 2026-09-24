@@ -43,11 +43,6 @@
     "contact"
   ],
   "pages": {
-    "research": [
-      "hero",
-      "threads",
-      "computational"
-    ],
     "projects": [
       "hero",
       "projects"
@@ -60,10 +55,5 @@
       "hero",
       "publications"
     ],
-    "collaborate": [
-      "hero",
-      "services",
-      "closing"
-    ]
   }
 }

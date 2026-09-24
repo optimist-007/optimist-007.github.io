@@ -191,9 +191,23 @@ h3{font-size:clamp(2rem,3.5vw,3.5rem);line-height:.9;margin:7px 0 12px}
 .media-entry audio{width:100%;margin-top:15px}
 @media(max-width:760px){.media-shelf{grid-template-columns:1fr}}
 
-.journal-bottom{margin-top:48px;padding:22px 0 0;border-top:1px solid var(--line);max-width:900px}
+.journal-bottom{display:block;clear:both;width:min(900px,90%);margin:48px auto 70px;padding:22px 0 0;border-top:1px solid var(--line)}
 .journal-bottom-head{margin-bottom:10px}
 .journal-bottom .journal-shelf{margin:0;padding:0}
+.journal-bottom .journal-shelf>.eyebrow,
+.journal-bottom .journal-shelf>h2,
+.journal-bottom .journal-shelf>p{display:none}
+.journal-bottom .media-shelf{display:block}
+.journal-bottom .journal-card{display:block;max-width:760px;padding:0;background:transparent;border:0;box-shadow:none}
+.journal-bottom .journal-card:hover{transform:none;box-shadow:none}
+.journal-bottom .journal-card:focus{outline:2px solid var(--wine);outline-offset:5px}
+.journal-bottom .journal-thumb{display:none}
+.journal-bottom .journal-card-copy{padding:0}
+.journal-bottom .journal-card-copy .media-kind,
+.journal-bottom .journal-card-copy p,
+.journal-bottom .journal-card-copy .read-link{display:none}
+.journal-bottom .journal-card-copy h3{margin:0;font:500 clamp(1.8rem,3vw,2.7rem)/1.05 var(--serif);color:var(--ink);cursor:pointer}
+.journal-shelf{margin:0;padding:0}
 .journal-bottom .journal-shelf>.eyebrow,
 .journal-bottom .journal-shelf>h2,
 .journal-bottom .journal-shelf>p{display:none}
@@ -336,13 +350,15 @@ h3{font-size:clamp(2rem,3.5vw,3.5rem);line-height:.9;margin:7px 0 12px}
 
 
 
+
+</main>
+
   <div id="journalRandomThoughts" class="journal-bottom">
     <div class="journal-bottom-head">
       <div class="eyebrow">Journal / random thoughts</div>
     </div>
     <div id="journalShelf"></div>
   </div>
-</main>
 
 <div class="modal" id="modal" aria-hidden="true">
   <div class="dialog" role="dialog" aria-modal="true" aria-label="Full review">

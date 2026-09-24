@@ -6,4 +6,23 @@
 const esc=v=>String(v??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const slug=new URLSearchParams(location.search).get('slug');
 fetch('content/projects.json',{cache:'no-store'}).then(r=>r.json()).then(ps=>{const p=ps.find(x=>x.slug===slug)||ps[0];document.title=p.title+' | Research';document.getElementById('app').innerHTML='<div class="wrap page-hero"><div><a class="backlink" href="projects.html">← Back to projects</a><div class="eyebrow">'+esc(p.kicker)+'</div><h1>'+esc(p.title)+'</h1><p class="hero-lead">'+esc(p.summary)+'</p></div><div class="index-box">'+esc(p.status)+'</div></div><section class="section"><div class="wrap"><div class="split-callout"><div class="dark-panel"><div class="eyebrow">The question</div><h3>'+esc(p.problem)+'</h3></div><div class="light-panel"><div class="eyebrow">The approach</div><p>'+esc(p.approach)+'</p><div class="meta">What it involved</div><p>'+p.details.map(x=>'<span style="display:inline-block;margin:6px 6px 0 0;padding:6px 9px;border:1px solid var(--line);font:700 .65rem var(--mono);text-transform:uppercase;letter-spacing:.06em">'+esc(x)+'</span>').join('')+'</p></div></div></div></section><section class="section"><div class="wrap"><div class="section-head"><div><div class="eyebrow">Why it matters to my trajectory</div><h2>What the work changed for me.</h2></div><p>'+esc(p.what_it_shows)+'</p></div></div></section><section class="band section"><div class="wrap"><div class="eyebrow">Next</div><h2>Where this thread can go.</h2><p style="max-width:760px">'+esc(p.next)+'</p></div></section></main>'}).catch(()=>{document.getElementById('app').innerHTML='<div class="wrap page-hero"><div><a class="backlink" href="projects.html">← Back to projects</a><div class="eyebrow">Project unavailable</div><h1>This research page could not load.</h1></div></div>'});
-</script></body></html>
+</script><script>
+(async function renderEditableSiteNav(){
+  try{
+    const r=await fetch('content/main-site.json?v='+Date.now(),{cache:'no-store'});
+    if(!r.ok)return;
+    const d=await r.json(), nav=Array.isArray(d.nav)?d.nav:[];
+    const host=document.querySelector('.nav-links')||document.querySelector('.home-navlinks');
+    if(!host||!nav.length)return;
+    const current=location.pathname.split('/').pop()||'index.html';
+    host.innerHTML=nav.map(function(n){
+      const href=String(n.href||'');
+      const target=href.split('?')[0].split('#')[0];
+      const isActive=target===current || (current==='index.html' && (target===''||target==='/'));
+      const cls=(n.className||'')+(isActive?' active':'');
+      return '<a class="'+cls.trim()+'" href="'+String(href).replace(/&/g,'&amp;').replace(/"/g,'&quot;')+'">'+String(n.label||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')+'</a>';
+    }).join('');
+  }catch(e){}
+})();
+</script>
+</body></html>

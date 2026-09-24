@@ -190,6 +190,25 @@ h3{font-size:clamp(2rem,3.5vw,3.5rem);line-height:.9;margin:7px 0 12px}
 .media-entry img,.media-entry video{width:100%;max-height:430px;object-fit:cover;display:block;margin-top:15px}
 .media-entry audio{width:100%;margin-top:15px}
 @media(max-width:760px){.media-shelf{grid-template-columns:1fr}}
+
+.journal-shelf{margin-top:34px;padding-top:0}
+.journal-shelf.studio-creative-section{margin-top:0;padding:34px 0 0;border-top:0}
+.journal-shelf h2{font-size:clamp(2rem,3.4vw,3.4rem);margin:.15em 0}
+.journal-shelf>p{font-size:.95rem;margin:0 0 18px}
+.journal-shelf .media-shelf{grid-template-columns:minmax(280px,520px)}
+.journal-card{display:grid;grid-template-columns:150px 1fr;gap:18px;align-items:stretch;padding:12px;cursor:pointer;transition:transform .2s ease,box-shadow .2s ease}
+.journal-card:hover{transform:translateY(-3px);box-shadow:0 16px 35px rgba(52,43,43,.12)}
+.journal-card:focus{outline:2px solid var(--wine);outline-offset:3px}
+.journal-thumb{min-height:150px;padding:16px;background:linear-gradient(145deg,#d9cdbb,#f5f0e7);display:flex;flex-direction:column;justify-content:space-between;border:1px solid var(--line)}
+.journal-thumb-title{font:500 1.35rem/1.05 var(--serif);color:var(--ink)}
+.journal-thumb-mark{font:1.2rem var(--sans);text-align:right;color:var(--wine)}
+.journal-card-copy{padding:8px 4px}
+.journal-card-copy h3{margin:6px 0 8px;font-size:1.45rem}
+.journal-card-copy p{margin:0 0 12px;color:var(--muted);font-size:.88rem;line-height:1.55}
+.journal-full{display:none}
+.journal-modal-cover{min-height:260px;padding:30px;background:linear-gradient(145deg,#d9cdbb,#f5f0e7);display:flex;flex-direction:column;justify-content:space-between;color:var(--ink)}
+.journal-modal-cover strong{font:500 clamp(2rem,4vw,4rem)/1 var(--serif)}
+@media(max-width:760px){.journal-shelf .media-shelf{grid-template-columns:1fr}.journal-card{grid-template-columns:105px 1fr}.journal-thumb{min-height:125px;padding:12px}.journal-thumb-title{font-size:1.05rem}}
 </style>
 </head>
 <body>
@@ -236,6 +255,17 @@ h3{font-size:clamp(2rem,3.5vw,3.5rem);line-height:.9;margin:7px 0 12px}
     <div id="reviewList"></div>
   </section>
 
+  <section class="section" id="creativeMedia">
+    <div class="section-head reveal">
+      <div>
+        <div class="eyebrow">Loose pages</div>
+        <h2>Things I make, keep and collect.</h2>
+      </div>
+      <p class="section-kicker">Some things are better as a voice note, photograph, recipe, travel fragment or a small record of the places I have worked.</p>
+    </div>
+    <div id="mediaShelves"></div>
+  </section>
+
   <section class="section" id="quotes">
     <div class="section-head reveal">
       <div>
@@ -273,17 +303,6 @@ h3{font-size:clamp(2rem,3.5vw,3.5rem);line-height:.9;margin:7px 0 12px}
       <p class="section-kicker">Books, stories, visual work and future rabbit holes can enter without changing the character of the page.</p>
     </div>
     <div class="archive-strip" id="futureList"></div>
-  </section>
-
-  <section class="section" id="creativeMedia">
-    <div class="section-head reveal">
-      <div>
-        <div class="eyebrow">Loose pages</div>
-        <h2>Things I make, keep and collect.</h2>
-      </div>
-      <p class="section-kicker">Some things are better as a voice note, photograph, recipe, travel fragment or a small record of the places I have worked.</p>
-    </div>
-    <div id="mediaShelves"></div>
   </section>
 
   <section class="section" id="comments">
@@ -487,21 +506,37 @@ function renderMediaShelves(d){
   const chunks=groups.map(function(g){
     const items=entries.filter(function(x){return String(x.collection||'').toLowerCase()===g[0];});
     if(!items.length)return '';
-    return '<section class="studio-creative-section">'+
+    return '<section class="journal-shelf studio-creative-section">'+
       '<div class="eyebrow">'+esc(g[1])+'</div><h2>'+esc(g[1])+'.</h2><p>'+esc(g[2])+'</p>'+
       '<div class="media-shelf">'+items.map(function(x){
-        return '<article class="media-entry reveal">'+
-          '<div class="media-kind">'+esc(x.mediaType||'Entry')+(x.date?' · '+esc(x.date):'')+'</div>'+
+        const hasText=String(x.text||'').trim();
+        const preview=hasText ? String(x.text).split(/\s+/).slice(0,28).join(' ')+'…' : '';
+        return '<article class="media-entry journal-card reveal" tabindex="0" role="button" aria-label="Open '+esc(x.title||'Journal entry')+'" data-journal-title="'+esc(x.title||'Journal entry')+'">'+
+          '<div class="journal-thumb"><div class="media-kind">Journal entry</div><div class="journal-thumb-title">'+esc(x.title||'Untitled')+'</div><div class="journal-thumb-mark">↗</div></div>'+
+          '<div class="journal-card-copy"><div class="media-kind">'+esc(x.mediaType||'Entry')+(x.date?' · '+esc(x.date):'')+'</div>'+
           '<h3>'+esc(x.title||'Untitled')+'</h3>'+
-          (x.text?'<div class="media-caption">'+nl(x.text)+'</div>':'')+
-          (x.image?'<img src="'+esc(x.image)+'" alt="'+esc(x.alt||x.title||'Creative image')+'" loading="lazy">':'')+
-          (x.video?'<video controls preload="metadata" src="'+esc(x.video)+'"></video>':'')+
-          (x.audio?'<audio controls preload="metadata" src="'+esc(x.audio)+'"></audio>':'')+
-          '</article>';
+          (preview?'<p>'+esc(preview)+'</p>':'')+
+          '<span class="read-link">Open entry <span>↗</span></span></div>'+
+          '<div class="journal-full" hidden>'+nl(x.text||'')+'</div>'+
+        '</article>';
       }).join('')+
       '</div></section>';
   }).join('');
   $('mediaShelves').innerHTML=chunks||'<div class="empty-review">Your shelves are ready. Add the first piece from the editor.</div>';
+
+  $('mediaShelves').querySelectorAll('.journal-card').forEach(function(card){
+    const open=function(){
+      const title=card.getAttribute('data-journal-title')||'Journal entry';
+      const body=card.querySelector('.journal-full')?.innerHTML||'';
+      $('dialogImage').innerHTML='<div class="journal-modal-cover"><div class="media-kind">Journal / random thoughts</div><strong>'+esc(title)+'</strong></div>';
+      $('dialogContent').innerHTML='<div class="eyebrow">Journal entry</div><h2>'+esc(title)+'</h2><div class="review-body">'+body+'</div>';
+      $('modal').classList.add('open');
+      $('modal').setAttribute('aria-hidden','false');
+      document.body.style.overflow='hidden';
+    };
+    card.addEventListener('click',open);
+    card.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();open();}});
+  });
 }
 
 function openReview(r){
@@ -608,8 +643,7 @@ async function load(){
     sectionOrder.forEach(id=>{const el=sectionMap[id];if(el&&d.__site?.sections?.[id]?.enabled!==false)creativeMain.appendChild(el);});
     Object.entries(sectionMap).forEach(([id,el])=>{if(el)el.style.display=d.__site?.sections?.[id]?.enabled===false?'none':'';});
   }
-  const cs=document.getElementById('studioCreativeSections');
-  if(cs)cs.innerHTML=(d.__site?.customSections||[]).filter(s=>s.enabled!==false).map(s=>'<section class="studio-creative-section"><div class="eyebrow">'+esc(s.eyebrow||'')+'</div><h2>'+esc(s.title||'')+'</h2><p>'+nl(s.text||'')+'</p>'+(s.link?'<a href="'+esc(s.link)+'">'+esc(s.linkLabel||'Explore ↗')+'</a>':'')+'</section>').join('');
+
   allPosts = Array.isArray(d.posts) ? d.posts : [];
   setupHeader(d);
   createFilters();

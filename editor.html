@@ -1357,6 +1357,16 @@ async function publish(){
     var msg=$('commitMessage').value.trim()||'Update website from Website Studio';
     if(cvUpload){
       await putDataUrl('media/docs/CV.pdf',cvUpload,msg);
+      var cvHref='media/docs/CV.pdf?v='+Date.now();
+      if(Array.isArray(state.mainSite.nav)){
+        for(var ni=0;ni<state.mainSite.nav.length;ni++){
+          if(String(state.mainSite.nav[ni].href||'').split('?')[0]==='media/docs/CV.pdf'){
+            state.mainSite.nav[ni].href=cvHref;
+          }
+        }
+      }
+      $('cvStatus').textContent='CV published to media/docs/CV.pdf and the website link was refreshed.';
+      status('CV published successfully. The website now points to the refreshed CV.');
       cvUpload=null;
     }
 

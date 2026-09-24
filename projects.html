@@ -17,14 +17,26 @@
   padding-bottom:30px;
   border-bottom:1px solid var(--line);
 }
-.projects-page .thinking-title{
-  margin:0;
-  max-width:420px;
-  color:var(--forest);
-  font:500 clamp(3.6rem,6vw,6rem)/.9 var(--serif);
-  letter-spacing:-.045em;
+.projects-page .thinking-image-wrap{
+  position:relative;
+  max-width:620px;
+  padding-top:28px;
 }
-.projects-page .thinking-title span{display:block}
+.projects-page .thinking-image{
+  display:block;
+  width:100%;
+  height:auto;
+  background:#f5f4ee;
+  border:1px solid var(--line);
+  box-shadow:var(--shadow);
+}
+.projects-page .thinking-image-wrap:after{
+  content:"";
+  position:absolute;
+  inset:28px 0 0 0;
+  pointer-events:none;
+  border:1px solid rgba(40,72,58,.08);
+}
 .projects-page .thinking-kicker{
   margin:0 0 10px;
   color:var(--clay);
@@ -139,12 +151,11 @@
 }
 @media(max-width:860px){
   .projects-page .thinking-intro{grid-template-columns:1fr;align-items:start}
-  .projects-page .thinking-title{max-width:650px}
+  .projects-page .thinking-image-wrap{max-width:760px}
   .projects-page .thought-detail{grid-template-columns:1fr;padding-left:94px}
 }
 @media(max-width:720px){
   .projects-page .project-thinking{padding:44px 0 58px}
-  .projects-page .thinking-title{font-size:3.55rem}
   .projects-page .thought summary{grid-template-columns:48px minmax(0,1fr) 22px;gap:12px;padding:22px 0}
   .projects-page .thought-title{font-size:2rem}
   .projects-page .thought-number{font-size:2rem}
@@ -171,7 +182,10 @@
 <section class="project-thinking">
   <div class="wrap">
     <div class="thinking-intro">
-      <h1 class="thinking-title"><span>Click a</span><span>number.</span><span>Read the</span><span>thinking.</span></h1>
+      <div class="thinking-image-wrap">
+        <a class="backlink" href="index.html">← Home</a>
+        <img class="thinking-image" src="content/images/projects-thinking.webp" alt="Scientific materials and device research collage">
+      </div>
       <div class="thinking-intro-copy">
         <div class="thinking-kicker">The thinking behind the projects</div>
         <p>This is the part of my work that does not fit neatly into a CV. It shows what I have explored, what I know how to use, and what I am trying to grow into next.</p>

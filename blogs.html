@@ -1,15 +1,95 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Blogs | Simran Sainand Revankar</title><link rel="stylesheet" href="assets/research-readable.css?v=1"></head><body>
-<header class="site-header"><div class="wrap nav"><a class="brand" href="index.html">Simran Sainand Revankar</a><nav class="nav-links"><a href="research.html">Research</a><a href="projects.html">Projects</a><a class="active" href="blogs.html">Blogs</a>
-<a href="media/docs/CV.pdf">CV ↗</a><a class="creative-link" href="creative.html">Creative side ↗</a></nav><a class="menu-note" href="creative.html">Creative side ↗</a></div></header>
-<main><div class="wrap page-hero"><div><a class="backlink" href="index.html">← Home</a><div class="eyebrow">Research writing</div><h1>Blogs.</h1><p class="hero-lead">The full writing archive stays here. The homepage only gives visitors a taste, so the research site remains easy to enter.</p></div><div class="index-box">Long-form notes, explainers and reflections can accumulate without turning the homepage into a wall of text.</div></div>
-<section class="section"><div class="wrap"><div class="article-grid" id="blogGrid"></div></div></section></main>
-<div class="reader" id="reader"><article class="reader-box"><div class="reader-top"><div><div class="eyebrow" id="rmeta"></div><h2 id="rtitle"></h2></div><button class="close" id="close" aria-label="Close article">×</button></div><div class="reader-body" id="rbody"></div><section class="comments"><h3>Comments and discussion</h3><p class="muted">Sign in with GitHub to leave a comment on this blog.</p><div class="comments-host" id="commentsHost"></div></section></article></div>
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Blogs | Simran Sainand Revankar</title>
+<link rel="stylesheet" href="assets/research-readable.css?v=1">
+<style>
+.blog-index{padding-bottom:90px}
+.blog-intro{max-width:760px}
+.blog-filters{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 28px}
+.blog-filter{border:1px solid var(--line);background:transparent;color:var(--muted);padding:8px 12px;font:600 .66rem var(--mono);text-transform:uppercase;letter-spacing:.08em;cursor:pointer}
+.blog-filter.active,.blog-filter:hover{background:var(--forest);color:var(--cream);border-color:var(--forest)}
+.blog-grid{display:grid;grid-template-columns:1.25fr .75fr;gap:16px}
+.blog-card{display:flex;flex-direction:column;justify-content:space-between;min-height:290px;padding:30px;background:var(--paper);border:1px solid var(--line);text-decoration:none;transition:.22s}
+.blog-card:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+.blog-card.featured{background:var(--forest);color:var(--cream)}
+.blog-card.featured h2,.blog-card.featured h3{color:var(--cream)}
+.blog-card.featured p{color:#d9dfda}
+.blog-card h2,.blog-card h3{margin:12px 0;font-size:clamp(2rem,4vw,3.3rem)}
+.blog-card p{color:var(--muted);margin:0}
+.blog-meta{font:700 .66rem var(--mono);text-transform:uppercase;letter-spacing:.11em;color:var(--clay)}
+.blog-card.featured .blog-meta{color:#e4c986}
+.blog-media-count{margin-top:15px;font:600 .64rem var(--mono);text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+.blog-card.featured .blog-media-count{color:#cfd8d1}
+.reader-box.blog-reader{padding:0;display:grid;grid-template-columns:minmax(250px,.72fr) minmax(0,1.28fr);overflow:hidden}
+.blog-reader-media{background:#263e34;min-height:620px;padding:22px;display:flex;flex-direction:column;gap:12px;overflow:auto}
+.blog-reader-media img{width:100%;display:block;object-fit:contain;background:#1d2d27;max-height:420px}
+.blog-reader-media .caption{color:#e3e8e2;font-size:.82rem}
+.blog-reader-copy{padding:45px;overflow:auto;max-height:90vh}
+.blog-reader-copy .reader-body{white-space:pre-line}
+.blog-reader-copy .event-note{border-left:3px solid var(--sand);padding:13px 16px;background:var(--paper);color:var(--muted);margin:20px 0}
+.blog-reader-copy .blog-external{display:inline-block;margin:8px 0 25px;color:var(--forest);font:700 .68rem var(--mono);text-transform:uppercase;letter-spacing:.09em}
+@media(max-width:850px){.blog-grid{grid-template-columns:1fr}.reader-box.blog-reader{grid-template-columns:1fr}.blog-reader-media{min-height:220px;max-height:340px}.blog-reader-copy{padding:28px}.blog-reader-media img{max-height:260px}}
+</style>
+</head>
+<body>
+<header class="site-header"><div class="wrap nav">
+<a class="brand" href="index.html">Simran Sainand Revankar</a>
+<nav class="nav-links">
+<a href="research.html">Research</a><a href="projects.html">Projects</a><a class="active" href="blogs.html">Blogs</a><a href="publications.html">Publications</a>
+<a href="media/docs/CV.pdf">CV ↗</a><a class="creative-link" href="creative.html">Creative side ↗</a>
+</nav><a class="menu-note" href="creative.html">Creative side ↗</a>
+</div></header>
+<main class="blog-index">
+<div class="wrap page-hero">
+<div class="blog-intro"><a class="backlink" href="index.html">← Home</a><div class="eyebrow">Research journal</div>
+<h1>Blogs.</h1><p class="hero-lead">Research is also made of places you go, people you listen to, workshops you try, questions that stay with you and things you learn outside the experiment.</p></div>
+<div class="index-box">Conference experiences · talks · workshops · research reflections · science notes.</div>
+</div>
+<section class="section" style="padding-top:25px"><div class="wrap">
+<div class="blog-filters" id="filters"></div>
+<div class="blog-grid" id="blogGrid"></div>
+</div></section>
+</main>
+<div class="reader" id="reader"><article class="reader-box blog-reader">
+<div class="blog-reader-media" id="rmedia"></div>
+<div class="blog-reader-copy"><div class="reader-top"><div><div class="eyebrow" id="rmeta"></div><h2 id="rtitle"></h2></div><button class="close" id="close" aria-label="Close article">×</button></div>
+<div class="event-note" id="revent" style="display:none"></div><a class="blog-external" id="rlink" style="display:none" target="_blank" rel="noopener">Related link ↗</a>
+<div class="reader-body" id="rbody"></div>
+<section class="comments"><h3>Comments and discussion</h3><p class="muted">Sign in with GitHub to leave a comment on this blog.</p><div class="comments-host" id="commentsHost"></div></section>
+</div></article></div>
 <footer class="wrap site-footer"><span>Research · writing · curiosity</span></footer>
 <script>
-let blogs=[];
+let blogs=[],active='All';
 const esc=v=>String(v??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-function openPost(p){document.getElementById('rmeta').textContent=p.category||'Blog';document.getElementById('rtitle').textContent=p.title||'Untitled';document.getElementById('rbody').textContent=p.body||'';const host=document.getElementById('commentsHost');host.replaceChildren();const script=document.createElement('script');script.src='https://utteranc.es/client.js';script.setAttribute('repo','optimist-007/optimist-007.github.io');script.setAttribute('issue-term',p.title||'blog');script.setAttribute('theme','github-light');script.setAttribute('crossorigin','anonymous');script.async=true;host.appendChild(script);document.getElementById('reader').classList.add('open');document.body.style.overflow='hidden'}
+function renderFilters(){
+ const types=['All',...new Set(blogs.map(p=>p.type||p.category||'Other'))];
+ document.getElementById('filters').innerHTML=types.map(t=>'<button class="blog-filter '+(t===active?'active':'')+'" data-type="'+esc(t)+'">'+esc(t)+'</button>').join('');
+ document.querySelectorAll('.blog-filter').forEach(b=>b.onclick=()=>{active=b.dataset.type;renderFilters();renderCards()});
+}
+function renderCards(){
+ const list=active==='All'?blogs:blogs.filter(p=>(p.type||p.category||'Other')===active);
+ document.getElementById('blogGrid').innerHTML=list.length?list.map((p,i)=>{
+   const original=blogs.indexOf(p), media=Array.isArray(p.media)?p.media.filter(x=>x.src):[];
+   return '<a class="blog-card '+(i===0?'featured':'')+'" href="#" data-i="'+original+'"><div><div class="blog-meta">'+esc(p.category||p.type||'Research note')+(p.date?' · '+esc(p.date):'')+'</div><h3>'+esc(p.title||'Untitled')+'</h3><p>'+esc(p.excerpt||String(p.body||'').slice(0,280))+'…</p></div><div><div class="blog-media-count">'+(media.length?media.length+' media item'+(media.length>1?'s':''):'Written note')+' · Open full post ↗</div></div></a>';
+ }).join(''):'<div class="empty">No posts in this category yet.</div>';
+ document.querySelectorAll('[data-i]').forEach(x=>x.onclick=e=>{e.preventDefault();openPost(blogs[Number(x.dataset.i)])});
+}
+function openPost(p){
+ document.getElementById('rmeta').textContent=p.category||p.type||'Research note';
+ document.getElementById('rtitle').textContent=p.title||'Untitled';
+ document.getElementById('rbody').textContent=p.body||'';
+ const ev=document.getElementById('revent');ev.textContent=p.event||'';ev.style.display=p.event?'block':'none';
+ const link=document.getElementById('rlink');if(p.link){link.href=p.link;link.style.display='inline-block'}else link.style.display='none';
+ const media=document.getElementById('rmedia');media.innerHTML='';
+ if(p.image){const im=document.createElement('img');im.src=p.image;im.alt=p.title||'Blog image';media.appendChild(im)}
+ (p.media||[]).forEach(m=>{if(!m.src)return;const im=document.createElement('img');im.src=m.src;im.alt=m.caption||p.title||'Blog media';media.appendChild(im);if(m.caption){const cap=document.createElement('div');cap.className='caption';cap.textContent=m.caption;media.appendChild(cap)}});
+ if(!media.children.length){media.innerHTML='<div style="margin:auto;color:#dfe6df;font:600 .68rem var(--mono);text-transform:uppercase;letter-spacing:.1em">Written note</div>'}
+ const host=document.getElementById('commentsHost');host.replaceChildren();const script=document.createElement('script');script.src='https://utteranc.es/client.js';script.setAttribute('repo','optimist-007/optimist-007.github.io');script.setAttribute('issue-term',p.title||'blog');script.setAttribute('theme','github-light');script.setAttribute('crossorigin','anonymous');script.async=true;host.appendChild(script);
+ document.getElementById('reader').classList.add('open');document.body.style.overflow='hidden';
+}
 function close(){document.getElementById('reader').classList.remove('open');document.body.style.overflow=''}
 document.getElementById('close').onclick=close;document.getElementById('reader').onclick=e=>{if(e.target.id==='reader')close()};document.addEventListener('keydown',e=>{if(e.key==='Escape')close()});
-fetch('content/blogs.json',{cache:'no-store'}).then(r=>r.json()).then(data=>{blogs=data||[];document.getElementById('blogGrid').innerHTML=blogs.map((p,i)=>'<a class="article-card '+(i===0?'featured':'')+'" href="#" data-i="'+i+'"><div><div class="article-meta">'+esc(p.category||'Blog')+'</div><h3>'+esc(p.title||'Untitled')+'</h3><p>'+esc(String(p.body||'').slice(0,i===0?420:220))+'…</p></div><div class="meta">Open full post ↗</div></a>').join('');document.querySelectorAll('[data-i]').forEach(x=>x.onclick=e=>{e.preventDefault();openPost(blogs[Number(x.dataset.i)])});}).catch(()=>{document.getElementById('blogGrid').innerHTML='<div class="empty">The blog archive could not be loaded.</div>'});
-</script></body></html>
+fetch('content/blogs.json',{cache:'no-store'}).then(r=>r.json()).then(data=>{blogs=Array.isArray(data)?data:[];renderFilters();renderCards()}).catch(()=>{document.getElementById('blogGrid').innerHTML='<div class="empty">The research journal could not be loaded.</div>'});
+</script>
+</body></html>

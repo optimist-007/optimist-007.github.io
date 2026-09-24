@@ -132,7 +132,7 @@ textarea{min-height:120px;resize:vertical}
   <div id="journalEntries"></div>
   <div class="row"><button class="secondary" id="addJournal">+ Add journal entry</button></div>
   <h2>Other creative media</h2>
-  <p class="muted">Voice notes, journal fragments, research-place photos, recipes, travel stories and visual scraps. Each entry can carry an image, video and/or audio file.</p>
+  <p class="muted">Voice notes, journal fragments, research-place photos, recipes and visual scraps. Each entry can carry an image, video and/or audio file.</p>
   <div class="row"><button id="addMediaEntry">+ Add media entry</button></div>
   <div id="mediaEntries"></div>
 </section>
@@ -1019,7 +1019,7 @@ function renderCreativeMediaEntries(){
   var arr=(state.creative.mediaEntries||[]).map(function(m,i){return {m:m,i:i};}).filter(function(x){return String(x.m.collection||'').toLowerCase()!=='journal';});
   $('mediaEntries').innerHTML=arr.map(function(x){var m=x.m,i=x.i; return '<div class="card"><div class="cardhead"><b>Media entry '+(i+1)+'</b><button class="danger remove-media-entry" data-index="'+i+'">Remove</button></div>'+
       '<div class="grid"><div class="field"><label>Section</label><select data-media-collection="'+i+'">'+
-      ['voice|Voice notes','journal|Journal / random thoughts','research|Research archive','recipes|Recipes','travel|Travel stories','visual|Visual scraps'].map(function(x){var a=x.split('|');return '<option value="'+a[0]+'" '+(m.collection===a[0]?'selected':'')+'>'+a[1]+'</option>';}).join('')+
+      ['voice|Voice notes','journal|Journal / random thoughts','research|Research archive','recipes|Recipes','visual|Visual scraps'].map(function(x){var a=x.split('|');return '<option value="'+a[0]+'" '+(m.collection===a[0]?'selected':'')+'>'+a[1]+'</option>';}).join('')+
       '</select></div>'+field('Title','mediaEntries.'+i+'.title',m.title)+'</div>'+
       '<div class="grid">'+field('Date','mediaEntries.'+i+'.date',m.date)+field('Display label','mediaEntries.'+i+'.mediaType',m.mediaType)+'</div>'+
       field('Text / caption','mediaEntries.'+i+'.text',m.text,true)+

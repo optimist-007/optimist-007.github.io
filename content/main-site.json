@@ -29,10 +29,6 @@
       "label": "Creative side ↗",
       "href": "creative.html",
       "className": "creative"
-    },
-    {
-      "label": "New link",
-      "href": "index.html"
     }
   ],
   "theme": {

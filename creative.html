@@ -457,6 +457,8 @@ function renderObsessions(d){
 }
 
 function renderFuture(d){
+  const target = $('futureList');
+  if(!target) return;
   const future = Array.isArray(d.future) ? d.future : [];
   $('futureList').innerHTML = future.map((r,i)=>
     '<article class="archive-card reveal"><div class="tiny-label">0'+(i+1)+' · coming later</div><h3>'+esc(r.title||'Untitled')+'</h3><p>'+nl(r.text||'')+'</p></article>'

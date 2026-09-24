@@ -74,6 +74,7 @@ h3{font-size:clamp(2rem,3.5vw,3.5rem);line-height:.9;margin:7px 0 12px}
   background:linear-gradient(145deg,#2f2828,#4b3c3b);overflow:hidden;box-shadow:var(--shadow);transform:rotate(var(--studio-poster-rotation,-1.2deg));
   transition:transform .35s ease
 }
+.image-open{display:block;color:inherit;text-decoration:none}.image-open img{cursor:zoom-in}.image-open:focus{outline:2px solid var(--wine);outline-offset:3px}
 .poster img{width:100%;height:100%;object-fit:contain;display:block;position:relative;z-index:1}
 .poster-fallback{position:absolute;inset:0;display:grid;place-items:center;padding:35px;text-align:center;color:var(--paper);z-index:0}
 .poster-fallback strong{font-family:var(--serif);font-size:4rem;font-weight:500;line-height:.8}
@@ -234,6 +235,17 @@ h3{font-size:clamp(2rem,3.5vw,3.5rem);line-height:.9;margin:7px 0 12px}
     <div id="reviewList"></div>
   </section>
 
+  <section class="section" id="journal">
+    <div class="section-head reveal">
+      <div>
+        <div class="eyebrow">Journal / random thoughts</div>
+        <h2>On kindness, boundaries &amp; moving on.</h2>
+      </div>
+      <p class="section-kicker">A reflection I wanted to keep somewhere I could return to.</p>
+    </div>
+    <div class="journal-card reveal" id="journalContent"></div>
+  </section>
+
   <section class="section" id="quotes">
     <div class="section-head reveal">
       <div>
@@ -260,17 +272,6 @@ h3{font-size:clamp(2rem,3.5vw,3.5rem);line-height:.9;margin:7px 0 12px}
       </div>
       <div class="obsession-items" id="obsessionItems"></div>
     </div>
-  </section>
-
-  <section class="section">
-    <div class="section-head reveal">
-      <div>
-        <div class="eyebrow">Other rooms</div>
-        <h2>More things can live here.</h2>
-      </div>
-      <p class="section-kicker">Books, stories, visual work and future rabbit holes can enter without changing the character of the page.</p>
-    </div>
-    <div class="archive-strip" id="futureList"></div>
   </section>
 
   <div id="studioCreativeSections"></div>
@@ -377,7 +378,7 @@ function setupHeader(d){
 
 function imageBlock(src,title){
   if(!src) return '<div class="poster-fallback"><strong>'+esc(initial(title))+'</strong></div>';
-  return '<img src="'+esc(src)+'" alt="'+esc(title || 'Poster')+'" loading="lazy" onerror="this.style.display=\'none\'">';
+  return '<a href="'+esc(src)+'" target="_blank" rel="noopener" class="image-open" title="Open image"><img src="'+esc(src)+'" alt="'+esc(title || 'Poster')+'" loading="lazy" onerror="this.style.display=\'none\'"></a>';
 }
 
 function createFilters(){
@@ -436,6 +437,15 @@ function renderReviews(){
     const found = posts.find(p=>(p.title||'Untitled review')===title);
     if(found) btn.addEventListener('click',()=>openReview(found));
   });
+}
+
+function renderJournal(d){
+  const entries=Array.isArray(d.mediaEntries)?d.mediaEntries.filter(x=>String(x.collection||'').toLowerCase()==='journal'&&x.enabled!==false):[];
+  const entry=entries.find(x=>String(x.title||'').toLowerCase().includes('kindness')) || entries[0];
+  const host=$('journalContent');
+  if(!host)return;
+  if(!entry||!entry.text){host.innerHTML='<p class="meta">Nothing here yet.</p>';return;}
+  host.innerHTML='<div class="review-body">'+nl(entry.text)+'</div>';
 }
 
 function renderQuotes(){
@@ -512,6 +522,9 @@ function openReview(r){
     (r.date?'<div class="meta">'+esc(r.date)+'</div>':'')+
     (r.review?'<div class="review-body">'+nl(r.review)+'</div>':'<p class="meta">No full review text yet.</p>')+
     (r.quote?'<div class="dialog-quote">'+nl(r.quote)+'</div>':'')+
+    (r.image?'<p><a class="read-link" href="'+esc(r.image)+'" target="_blank" rel="noopener">Open image ↗</a></p>':'')+
+    (r.video?'<video controls preload="metadata" src="'+esc(r.video)+'" style="width:100%;margin-top:20px"></video>':'')+
+    (r.audio?'<audio controls preload="metadata" src="'+esc(r.audio)+'" style="width:100%;margin-top:20px"></audio>':'')+
     (r.link?'<p style="margin-top:25px"><a class="read-link" href="'+esc(r.link)+'" target="_blank" rel="noopener">Open external link ↗</a></p>':'');
   $('modal').classList.add('open');
   $('modal').setAttribute('aria-hidden','false');
@@ -557,12 +570,13 @@ function setupComments(d){
 async function load(){
   try{
     let content=null,site=null;
+    const res=await fetch('./content/creative-content.json?v='+Date.now(),{cache:'no-store'});
+    if(!res.ok)throw new Error('Content file not found');
+    content=await res.json();
     try{
-      const p=localStorage.getItem('websiteStudioPreview');
-      if(p){const x=JSON.parse(p);content=x?.files?.['content/creative-content.json']||null;site=x?.files?.['content/creative-site.json']||null;}
+      const sr=await fetch('./content/creative-site.json?v='+Date.now(),{cache:'no-store'});
+      if(sr.ok)site=await sr.json();
     }catch(e){}
-    if(!content){const res=await fetch('./content/creative-content.json?v='+Date.now(),{cache:'no-store'});if(!res.ok)throw new Error('Content file not found');content=await res.json();}
-    if(!site){try{const sr=await fetch('./content/creative-site.json?v='+Date.now(),{cache:'no-store'});if(sr.ok)site=await sr.json();}catch(e){}}
     content.__site=site||{};
     return content;
   }catch(err){
@@ -595,18 +609,18 @@ async function load(){
   if(design.sectionSpacing)root.style.setProperty('--studio-section-space',design.sectionSpacing+'px');
   if(design.posterHeight)root.style.setProperty('--studio-poster-height',design.posterHeight+'vh');
   if(design.posterRotation!==undefined)root.style.setProperty('--studio-poster-rotation',design.posterRotation+'deg');
-  const sectionOrder=d.__site?.order||['reviews','quotes','obsessions','future','comments'];
+  const sectionOrder=['reviews','journal','obsessions','comments'];
   const sectionMap={
     reviews:document.getElementById('reviews'),
+    journal:document.getElementById('journal'),
     quotes:document.getElementById('quotes'),
     obsessions:document.getElementById('obsessions'),
-    future:document.querySelector('section.section:not(#reviews):not(#quotes):not(#obsessions):not(#comments)'),
     comments:document.getElementById('comments')
   };
   const creativeMain=document.querySelector('main');
   if(creativeMain){
     sectionOrder.forEach(id=>{const el=sectionMap[id];if(el&&d.__site?.sections?.[id]?.enabled!==false)creativeMain.appendChild(el);});
-    Object.entries(sectionMap).forEach(([id,el])=>{if(el)el.style.display=d.__site?.sections?.[id]?.enabled===false?'none':'';});
+    Object.entries(sectionMap).forEach(([id,el])=>{if(el)el.style.display=(id==='quotes'||d.__site?.sections?.[id]?.enabled===false)?'none':'';});
     const custom=document.getElementById('studioCreativeSections');if(custom)creativeMain.appendChild(custom);
   }
   const cs=document.getElementById('studioCreativeSections');
@@ -616,6 +630,7 @@ async function load(){
   createFilters();
   renderReviews();
   renderQuotes();
+  renderJournal(d);
   renderObsessions(d);
   renderFuture(d);
   renderMediaShelves(d);

@@ -298,19 +298,7 @@ h3{font-size:clamp(2rem,3.5vw,3.5rem);line-height:.9;margin:7px 0 12px}
     </div>
     <div id="journalShelf"></div>
   </section>
-  <section class="section" id="comments">
-    <div class="section-head reveal">
-      <div>
-        <div class="eyebrow">Margin notes</div>
-        <h2>Leave a thought.</h2>
-      </div>
-      <p class="section-kicker">Comments live through GitHub Discussions-style conversation attached to this site.</p>
-    </div>
-    <div class="comment-box reveal" id="commentBox">
-      <div class="tiny-label">Open the margins</div>
-      <div id="commentsEmbed"></div>
-    </div>
-  </section>
+
 
 </main>
 
@@ -674,7 +662,6 @@ async function load(){
   renderFuture(d);
   renderMediaShelves(d);
   renderJournalShelf(d);
-  setupComments(d);
   observeReveals();
 })();
 </script>

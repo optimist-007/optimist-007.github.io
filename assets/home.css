@@ -84,3 +84,72 @@ body{background:var(--cream);color:var(--ink)}
 .academic-tags{display:flex;flex-wrap:wrap;gap:9px}
 .academic-tags span{padding:9px 12px;background:#eef1ec;border:1px solid rgba(36,72,56,.12);font:700 .67rem var(--mono);letter-spacing:.04em;text-transform:uppercase;color:var(--forest)}
 @media(max-width:880px){.academic-grid{grid-template-columns:1fr;gap:22px}.academic-profile{padding:45px 0}}
+
+/* Homepage email section */
+.home-email{
+  position:relative;
+  overflow:hidden;
+  margin-top:18px;
+  padding:78px 0 84px;
+  background:
+    radial-gradient(circle at 88% 22%,rgba(200,170,115,.18),transparent 21%),
+    linear-gradient(135deg,#183b2e 0%,#244838 58%,#315845 100%);
+  color:#f8f7f3;
+}
+.home-email:before{
+  content:"";
+  position:absolute;
+  width:420px;height:420px;
+  right:-140px;top:-170px;
+  border:1px solid rgba(200,170,115,.25);
+  border-radius:50%;
+  box-shadow:0 0 0 34px rgba(200,170,115,.05),0 0 0 72px rgba(200,170,115,.035);
+}
+.home-email .home-shell{
+  position:relative;
+  z-index:1;
+  display:flex;
+  align-items:end;
+  justify-content:space-between;
+  gap:48px;
+}
+.home-email .eyebrow{
+  color:#e5c983;
+  margin-bottom:12px;
+}
+.home-email h2{
+  color:#f8f7f3;
+  font:500 clamp(3rem,5.5vw,5.6rem)/.9 var(--serif);
+  letter-spacing:-.055em;
+  margin:0 0 18px;
+  max-width:760px;
+}
+.home-email p{
+  color:#d9e0da;
+  max-width:610px;
+  margin:0;
+  font-size:1.05rem;
+}
+.home-email-link{
+  flex:0 0 auto;
+  display:inline-flex;
+  align-items:center;
+  padding:14px 17px;
+  border:1px solid rgba(200,170,115,.55);
+  color:#f8f7f3;
+  background:rgba(248,247,243,.06);
+  text-decoration:none;
+  font:700 .76rem var(--mono);
+  letter-spacing:.08em;
+  text-transform:none;
+  transition:background .2s,transform .2s,border-color .2s;
+}
+.home-email-link:hover{
+  background:rgba(200,170,115,.16);
+  border-color:#e5c983;
+  transform:translateY(-2px);
+}
+@media(max-width:880px){
+  .home-email .home-shell{display:block}
+  .home-email-link{margin-top:24px}
+}

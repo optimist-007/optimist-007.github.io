@@ -225,7 +225,6 @@ h3{font-size:clamp(2rem,3.5vw,3.5rem);line-height:.9;margin:7px 0 12px}
       <div class="topnav">
         <a href="https://optimist-007.github.io/">Research ↗</a>
         <a href="#reviews">Reviews</a>
-        <a href="#quotes">Quotes</a>
         <a href="#obsessions">Now</a>
       </div>
     </div>
@@ -272,17 +271,6 @@ h3{font-size:clamp(2rem,3.5vw,3.5rem);line-height:.9;margin:7px 0 12px}
     <div id="mediaShelves"></div>
   </section>
 
-  <section class="section" id="quotes">
-    <div class="section-head reveal">
-      <div>
-        <div class="eyebrow">Lines that stayed</div>
-        <h2>Favourite quotes.</h2>
-      </div>
-      <p class="section-kicker">A shelf for sentences that kept echoing after the story was over.</p>
-    </div>
-    <div class="quote-grid" id="quoteGrid"></div>
-  </section>
-
   <section class="section" id="obsessions">
     <div class="section-head reveal">
       <div>
@@ -298,17 +286,6 @@ h3{font-size:clamp(2rem,3.5vw,3.5rem);line-height:.9;margin:7px 0 12px}
       </div>
       <div class="obsession-items" id="obsessionItems"></div>
     </div>
-  </section>
-
-  <section class="section">
-    <div class="section-head reveal">
-      <div>
-        <div class="eyebrow">Other rooms</div>
-        <h2>More things can live here.</h2>
-      </div>
-      <p class="section-kicker">Books, stories, visual work and future rabbit holes can enter without changing the character of the page.</p>
-    </div>
-    <div class="archive-strip" id="futureList"></div>
   </section>
 
   <section class="section" id="comments">
@@ -463,19 +440,6 @@ function renderReviews(){
   });
 }
 
-function renderQuotes(){
-  const quotes = allPosts.filter(p=>String(p.quote||'').trim());
-  if(!quotes.length){
-    $('quoteGrid').innerHTML = '<div class="quote-card"><div class="tiny-label">Waiting for a line</div><blockquote>Some sentences will eventually earn their own wall here.</blockquote></div>';
-    return;
-  }
-  $('quoteGrid').innerHTML = quotes.map(p=>{
-    return '<article class="quote-card reveal">'+
-      '<blockquote>'+nl(String(p.quote).replace(/^["“]|["”]$/g,''))+'</blockquote>'+
-      '<div class="meta">'+esc(cleanType(p.type))+' · '+esc(p.title || 'Untitled')+'</div>'+
-    '</article>';
-  }).join('');
-}
 
 function renderObsessions(d){
   const items = Array.isArray(d.currentlyObsessed) ? d.currentlyObsessed : [];
@@ -642,10 +606,9 @@ async function load(){
   if(design.sectionSpacing)root.style.setProperty('--studio-section-space',design.sectionSpacing+'px');
   if(design.posterHeight)root.style.setProperty('--studio-poster-height',design.posterHeight+'vh');
   if(design.posterRotation!==undefined)root.style.setProperty('--studio-poster-rotation',design.posterRotation+'deg');
-  const sectionOrder=d.__site?.order||['reviews','quotes','obsessions','future','comments'];
+  const sectionOrder=d.__site?.order||['reviews','obsessions','comments'];
   const sectionMap={
     reviews:document.getElementById('reviews'),
-    quotes:document.getElementById('quotes'),
     obsessions:document.getElementById('obsessions'),
     future:document.querySelector('section.section:not(#reviews):not(#quotes):not(#obsessions):not(#comments)'),
     comments:document.getElementById('comments')
@@ -660,7 +623,6 @@ async function load(){
   setupHeader(d);
   createFilters();
   renderReviews();
-  renderQuotes();
   renderObsessions(d);
   renderFuture(d);
   renderMediaShelves(d);

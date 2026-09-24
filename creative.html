@@ -196,42 +196,60 @@ h3{font-size:clamp(2rem,3.5vw,3.5rem);line-height:.9;margin:7px 0 12px}
   display:block;
   clear:both;
   width:100%;
-  margin:92px 0 0;
-  padding:34px max(5vw,24px) 78px;
-  border-top:1px solid var(--line);
-  background:linear-gradient(180deg,rgba(245,240,231,.72),rgba(238,232,220,.22));
+  margin:96px 0 0;
+  padding:0 max(5vw,24px) 88px;
   overflow:hidden
 }
 .journal-bottom:before{
   content:"";
   position:absolute;
   left:0;
+  right:0;
   top:0;
-  width:18%;
   height:1px;
-  background:var(--wine)
+  background:var(--ink);
+  opacity:.16
+}
+.journal-bottom:after{
+  content:"";
+  position:absolute;
+  width:240px;
+  height:240px;
+  right:-80px;
+  bottom:-130px;
+  border:1px solid rgba(106,48,68,.18);
+  border-radius:50%;
+  pointer-events:none
 }
 .journal-bottom-head{
-  width:min(1100px,100%);
-  margin:0 auto 18px
+  width:min(1160px,100%);
+  margin:0 auto 24px;
+  padding-top:28px
 }
 .journal-bottom-head .eyebrow{
   display:flex;
   align-items:center;
-  gap:12px;
-  font-size:.68rem;
-  letter-spacing:.16em
+  gap:14px;
+  font-size:.66rem;
+  letter-spacing:.18em
+}
+.journal-bottom-head .eyebrow:before{
+  content:"";
+  width:28px;
+  height:5px;
+  background:var(--wine);
+  display:block
 }
 .journal-bottom-head .eyebrow:after{
   content:"";
-  display:block;
-  width:42px;
+  width:70px;
   height:1px;
   background:var(--gold);
-  opacity:.7
+  display:block;
+  opacity:.65
 }
 .journal-bottom .journal-shelf{
-  width:min(1100px,100%);
+  width:min(1160px,100%);
   margin:0 auto;
   padding:0
 }
@@ -245,48 +263,57 @@ h3{font-size:clamp(2rem,3.5vw,3.5rem);line-height:.9;margin:7px 0 12px}
 .journal-bottom .journal-card{
   position:relative;
   display:block;
-  width:fit-content;
-  max-width:100%;
-  padding:0 52px 0 0;
-  background:transparent;
-  border:0;
-  box-shadow:none;
-  cursor:pointer
+  width:min(980px,100%);
+  min-height:190px;
+  padding:34px 88px 34px 76px;
+  background:
+    linear-gradient(135deg,rgba(245,240,231,.96),rgba(229,222,210,.72));
+  border:1px solid rgba(52,43,43,.14);
+  border-left:7px solid var(--wine);
+  box-shadow:18px 18px 0 rgba(106,48,68,.075);
+  cursor:pointer;
+  overflow:hidden;
+  transition:transform .3s ease,box-shadow .3s ease
 }
 .journal-bottom .journal-card:before{
   content:"01";
   position:absolute;
-  left:0;
-  top:-3px;
-  transform:translateX(-115%);
+  left:18px;
+  bottom:13px;
   font:500 .65rem var(--mono);
-  letter-spacing:.12em;
+  letter-spacing:.14em;
   color:var(--gold)
-}
-.journal-bottom .journal-card:hover,
-.journal-bottom .journal-card:focus{
-  transform:none;
-  box-shadow:none
 }
 .journal-bottom .journal-card:after{
   content:"↗";
   position:absolute;
-  right:8px;
+  right:30px;
   top:50%;
   transform:translateY(-50%);
-  font:1.25rem var(--sans);
+  width:42px;
+  height:42px;
+  display:grid;
+  place-items:center;
+  border:1px solid rgba(106,48,68,.25);
+  border-radius:50%;
+  font:1rem var(--sans);
   color:var(--wine);
-  opacity:.35;
-  transition:transform .25s ease,opacity .25s ease
+  opacity:.65;
+  transition:transform .3s ease,opacity .3s ease,background .3s ease
+}
+.journal-bottom .journal-card:hover{
+  transform:translate(6px,-5px);
+  box-shadow:24px 24px 0 rgba(106,48,68,.10)
 }
 .journal-bottom .journal-card:hover:after,
 .journal-bottom .journal-card:focus:after{
+  transform:translate(4px,-50%) rotate(8deg);
   opacity:1;
-  transform:translate(4px,-50%)
+  background:rgba(106,48,68,.06)
 }
 .journal-bottom .journal-card:focus{
   outline:2px solid var(--wine);
-  outline-offset:8px
+  outline-offset:7px
 }
 .journal-bottom .journal-thumb{display:none}
 .journal-bottom .journal-card-copy{padding:0}
@@ -295,15 +322,23 @@ h3{font-size:clamp(2rem,3.5vw,3.5rem);line-height:.9;margin:7px 0 12px}
 .journal-bottom .journal-card-copy .read-link{display:none}
 .journal-bottom .journal-card-copy h3{
   position:relative;
+  z-index:1;
   margin:0;
-  font:500 clamp(2.25rem,4.8vw,4.8rem)/.94 var(--serif);
-  letter-spacing:-.055em;
+  max-width:780px;
+  font:500 clamp(2.45rem,5.6vw,5.6rem)/.88 var(--serif);
+  letter-spacing:-.06em;
   color:var(--ink);
-  transition:color .25s ease
+  transition:color .3s ease
 }
 .journal-bottom .journal-card:hover .journal-card-copy h3,
 .journal-bottom .journal-card:focus .journal-card-copy h3{color:var(--wine)}
 .journal-bottom .journal-full{display:none}
+@media(max-width:760px){
+  .journal-bottom{margin-top:70px;padding-bottom:60px}
+  .journal-bottom .journal-card{min-height:155px;padding:28px 62px 30px 40px}
+  .journal-bottom .journal-card-copy h3{font-size:clamp(2rem,10vw,3.2rem)}
+  .journal-bottom .journal-card:after{right:18px;width:36px;height:36px}
+}
 .journal-shelf{margin-top:34px;padding-top:0}
 .journal-shelf.studio-creative-section{margin-top:0;padding:34px 0 0;border-top:0}
 .journal-shelf h2{font-size:clamp(2rem,3.4vw,3.4rem);margin:.15em 0}

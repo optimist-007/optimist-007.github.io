@@ -18,10 +18,6 @@
       "href": "media.html"
     },
     {
-      "label": "Collaborate",
-      "href": "collaborate.html"
-    },
-    {
       "label": "CV ↗",
       "href": "media/docs/CV.pdf"
     },
@@ -72,11 +68,6 @@
       "hero",
       "gallery",
       "videos"
-    ],
-    "collaborate": [
-      "hero",
-      "services",
-      "closing"
     ]
   }
 }

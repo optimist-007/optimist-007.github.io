@@ -6,9 +6,117 @@
 <title>Projects | Simran Sainand Revankar</title>
 <link rel="stylesheet" href="assets/research-readable.css?v=1">
 <style>
+.projects-page .project-thinking{
+  padding:64px 0 78px;
+}
+.projects-page .thinking-intro{
+  display:grid;
+  grid-template-columns:minmax(260px,.72fr) minmax(0,1.28fr);
+  gap:clamp(36px,7vw,96px);
+  align-items:end;
+  padding-bottom:30px;
+  border-bottom:1px solid var(--line);
+}
+.projects-page .thinking-title{
+  margin:0;
+  max-width:420px;
+  color:var(--forest);
+  font:500 clamp(3.6rem,6vw,6rem)/.9 var(--serif);
+  letter-spacing:-.045em;
+}
+.projects-page .thinking-title span{display:block}
+.projects-page .thinking-kicker{
+  margin:0 0 10px;
+  color:var(--clay);
+  font:600 .67rem var(--mono);
+  text-transform:uppercase;
+  letter-spacing:.14em;
+}
+.projects-page .thinking-intro-copy p{
+  max-width:670px;
+  margin:0;
+  color:var(--muted);
+  font-size:1rem;
+  line-height:1.65;
+}
+.projects-page .thinking-list{
+  margin-top:0;
+}
+.projects-page .thought{
+  border-bottom:1px solid var(--line);
+}
+.projects-page .thought:first-child{
+  border-top:0;
+}
+.projects-page .thought summary{
+  list-style:none;
+  cursor:pointer;
+  display:grid;
+  grid-template-columns:72px minmax(0,1fr) 26px;
+  gap:22px;
+  align-items:start;
+  padding:26px 0 25px;
+}
+.projects-page .thought summary::-webkit-details-marker{display:none}
+.projects-page .thought-number{
+  color:#d5dbd8;
+  font:500 clamp(2rem,3.2vw,3.15rem)/1 var(--serif);
+  letter-spacing:-.045em;
+}
+.projects-page .thought-title{
+  display:block;
+  margin:0;
+  color:var(--forest);
+  font:500 clamp(2rem,3.3vw,3.15rem)/.96 var(--serif);
+  letter-spacing:-.035em;
+}
+.projects-page .thought-summary{
+  display:block;
+  margin-top:7px;
+  max-width:760px;
+  color:#59615b;
+  font-size:.9rem;
+  line-height:1.48;
+}
+.projects-page .thought-arrow{
+  color:var(--clay);
+  font:500 1.5rem/1 var(--serif);
+  text-align:right;
+  transition:transform .2s ease;
+}
+.projects-page .thought[open] .thought-arrow{transform:rotate(45deg)}
+.projects-page .thought-detail{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(260px,.7fr);
+  gap:28px;
+  padding:0 48px 28px 94px;
+}
+.projects-page .thought-detail p{
+  margin:0;
+  color:#4f574f;
+  font-size:.92rem;
+  line-height:1.72;
+}
+.projects-page .mini-label{
+  margin:0 0 8px;
+  color:var(--clay);
+  font:600 .58rem var(--mono);
+  text-transform:uppercase;
+  letter-spacing:.13em;
+}
+.projects-page .thought-note{
+  align-self:start;
+  padding:17px 18px;
+  background:#eef0eb;
+  border-left:2px solid var(--sand);
+}
+.projects-page .thought-note p{
+  color:var(--forest);
+  font:500 1.15rem/1.18 var(--serif);
+}
 .projects-page .projects-start{
   padding:72px 0 90px;
-  border-top:1px solid var(--line)
+  border-top:1px solid var(--line);
 }
 .projects-page .projects-start .section-head{
   display:flex;
@@ -29,7 +137,18 @@
   color:var(--muted);
   font-size:1rem
 }
+@media(max-width:860px){
+  .projects-page .thinking-intro{grid-template-columns:1fr;align-items:start}
+  .projects-page .thinking-title{max-width:650px}
+  .projects-page .thought-detail{grid-template-columns:1fr;padding-left:94px}
+}
 @media(max-width:720px){
+  .projects-page .project-thinking{padding:44px 0 58px}
+  .projects-page .thinking-title{font-size:3.55rem}
+  .projects-page .thought summary{grid-template-columns:48px minmax(0,1fr) 22px;gap:12px;padding:22px 0}
+  .projects-page .thought-title{font-size:2rem}
+  .projects-page .thought-number{font-size:2rem}
+  .projects-page .thought-detail{padding:0 0 24px 60px}
   .projects-page .projects-start{padding:56px 0 68px}
   .projects-page .projects-start .section-head{display:grid;gap:12px}
 }
@@ -49,6 +168,83 @@
 </div></header>
 
 <main>
+<section class="project-thinking">
+  <div class="wrap">
+    <div class="thinking-intro">
+      <h1 class="thinking-title"><span>Click a</span><span>number.</span><span>Read the</span><span>thinking.</span></h1>
+      <div class="thinking-intro-copy">
+        <div class="thinking-kicker">The thinking behind the projects</div>
+        <p>This is the part of my work that does not fit neatly into a CV. It shows what I have explored, what I know how to use, and what I am trying to grow into next.</p>
+      </div>
+    </div>
+
+    <div class="thinking-list">
+      <details class="thought" open>
+        <summary>
+          <span class="thought-number">01</span>
+          <span>
+            <span class="thought-title">What I have already explored.</span>
+            <span class="thought-summary">From self-powered UV sensing with perovskite/polymer nanocomposites to ferroelectric switching and interfacial charge retention.</span>
+          </span>
+          <span class="thought-arrow">+</span>
+        </summary>
+        <div class="thought-detail">
+          <div>
+            <div class="mini-label">Completed + current</div>
+            <p>My completed work focused on fluorescent CsPbBr3@Cs4PbBr6/PU perovskite/polymer nanocomposites and their use in a self-powered UV-sensing device. I am now working on ferroelectric switching and interfacial charge retention in thin-film systems, where electrical behaviour and interfaces become the central questions.</p>
+          </div>
+          <div class="thought-note">
+            <div class="mini-label">What stayed with me</div>
+            <p>I like research where a material property becomes a measurable device behaviour, and where the interesting part is understanding why that behaviour appears.</p>
+          </div>
+        </div>
+      </details>
+
+      <details class="thought">
+        <summary>
+          <span class="thought-number">02</span>
+          <span>
+            <span class="thought-title">How I am learning to understand it.</span>
+            <span class="thought-summary">Experimental characterisation, device measurements and computational tools are becoming one working toolkit rather than separate skills.</span>
+          </span>
+          <span class="thought-arrow">+</span>
+        </summary>
+        <div class="thought-detail">
+          <div>
+            <div class="mini-label">Tools I already use</div>
+            <p>My experimental toolkit includes thin-film and nanomaterial fabrication, XRD with Rietveld refinement, SEM, AFM, UV-Vis-NIR absorption and Tauc analysis, FTIR, Raman spectroscopy, P-E hysteresis, PUND and DC probe-station measurements. I use Python and OriginPro for analysis, and I have experience with DFT through Quantum ESPRESSO.</p>
+          </div>
+          <div class="thought-note">
+            <div class="mini-label">What I am building</div>
+            <p>I want computation to become part of how I ask the next experimental question, not just a separate skill that sits beside the lab work.</p>
+          </div>
+        </div>
+      </details>
+
+      <details class="thought">
+        <summary>
+          <span class="thought-number">03</span>
+          <span>
+            <span class="thought-title">Where I am headed.</span>
+            <span class="thought-summary">Toward semiconductor systems, interfaces, sustainable sensing and energy problems, with stronger computational and machine-learning capability.</span>
+          </span>
+          <span class="thought-arrow">+</span>
+        </summary>
+        <div class="thought-detail">
+          <div>
+            <div class="mini-label">Future direction</div>
+            <p>I want to move deeper into semiconductor materials and interfaces while keeping the experimental grounding that taught me how real materials behave. Sustainable technology, low-carbon energy and sensing remain important anchors, especially where a materials problem connects to a practical environmental or technological constraint.</p>
+          </div>
+          <div class="thought-note">
+            <div class="mini-label">The direction I am trying to build</div>
+            <p>Experimental enough to know what is real. Computational enough to ask better questions. Curious enough to keep moving toward harder materials problems.</p>
+          </div>
+        </div>
+      </details>
+    </div>
+  </div>
+</section>
+
 <section class="projects-start">
   <div class="wrap">
     <div class="section-head">
@@ -71,5 +267,6 @@ fetch('content/projects.json',{cache:'no-store'}).then(r=>r.json()).then(ps=>{
  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target)}}),{threshold:.1});
  document.querySelectorAll('.reveal').forEach(x=>io.observe(x));
 });
+document.querySelectorAll('.thought').forEach(item=>item.addEventListener('toggle',()=>{if(item.open)document.querySelectorAll('.thought').forEach(other=>{if(other!==item)other.open=false})}));
 </script>
 </body></html>

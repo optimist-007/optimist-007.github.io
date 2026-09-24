@@ -1,6 +1,49 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Publications | Simran Sainand Revankar</title><link rel="stylesheet" href="assets/research-readable.css?v=1"></head><body>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Publications | Simran Sainand Revankar</title><link rel="stylesheet" href="assets/research-readable.css?v=1"><style>
+.publications-page .pub-context{padding:8px 0 35px;background:#edf0eb}
+.publications-page .pub-context-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:stretch}
+.publications-page .context-copy{padding:24px 4px 24px 0}
+.publications-page .context-copy .eyebrow{margin-bottom:12px}
+.publications-page .context-copy h2{font-size:clamp(3rem,5.4vw,5.1rem);line-height:.9;margin:0 0 18px}
+.publications-page .context-copy p{max-width:650px;color:var(--muted);font-size:1rem}
+.publications-page .direction-list{display:grid;grid-template-columns:1fr 1fr;gap:11px}
+.publications-page .direction-item{border:1px solid var(--line);background:rgba(255,255,255,.7);padding:21px 19px;min-height:148px}
+.publications-page .direction-item strong{display:block;color:var(--forest);font:500 1.55rem/.96 var(--serif);margin:8px 0}
+.publications-page .direction-item span{color:var(--muted);font-size:.84rem}
+.publications-page .pubs-section{padding-top:70px}
+@media(max-width:900px){.publications-page .pub-context-grid{grid-template-columns:1fr}}
+@media(max-width:620px){.publications-page .direction-list{grid-template-columns:1fr}.publications-page .pub-context{padding-bottom:20px}.publications-page .pubs-section{padding-top:55px}}
+</style>
+</head><body class="publications-page">
 <header class="site-header"><div class="wrap nav"><a class="brand" href="index.html">Simran Sainand Revankar</a><nav class="nav-links"><a href="projects.html">Projects</a><a href="blogs.html">Blogs</a>
 <a class="active" href="publications.html">Publications</a><a href="media/docs/CV.pdf">CV ↗</a><a class="creative-link" href="creative.html">Creative side ↗</a></nav><a class="menu-note" href="creative.html">Creative side ↗</a></div></header>
-<main><div class="wrap page-hero"><div><a class="backlink" href="index.html">← Home</a><div class="eyebrow">Publications</div><h1>A few things made public.</h1><p class="hero-lead">A compact publication record. The CV remains the place for the complete academic history.</p></div></div>
-<section class="section"><div class="wrap" id="pubs"></div></section></main><footer class="wrap site-footer"><span>Research · publications</span></footer>
+<main>
+<div class="wrap page-hero">
+  <div>
+    <a class="backlink" href="index.html">← Home</a>
+    <div class="eyebrow">Publications</div>
+    <h1>A few things made public.</h1>
+    <p class="hero-lead">Three publications sit in this record, with two additional papers to be added alongside the work already listed below.</p>
+  </div>
+</div>
+
+<section class="pub-context">
+  <div class="wrap pub-context-grid">
+    <div class="context-copy">
+      <div class="eyebrow">The direction</div>
+      <h2>A sense of the trajectory.</h2>
+      <p>The details will change as the questions change. The consistent thread is a move from understanding materials and interfaces toward designing systems where that understanding matters.</p>
+    </div>
+    <div class="direction-list">
+      <div class="direction-item"><div class="eyebrow">01</div><strong>Semiconductor materials</strong><span>Materials, interfaces and electronic behaviour.</span></div>
+      <div class="direction-item"><div class="eyebrow">02</div><strong>Computational materials</strong><span>DFT, Python and machine learning as research tools.</span></div>
+      <div class="direction-item"><div class="eyebrow">03</div><strong>Energy & sensing</strong><span>Self-powered and efficient device concepts.</span></div>
+      <div class="direction-item"><div class="eyebrow">04</div><strong>Sustainable technology</strong><span>Low-resource, practical approaches to real constraints.</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="section pubs-section">
+  <div class="wrap" id="pubs"></div>
+</section>
+</main><footer class="wrap site-footer"><span>Research · publications</span></footer>
 <script>const esc=v=>String(v??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));fetch('content/publications.json',{cache:'no-store'}).then(r=>r.json()).then(ps=>{document.getElementById('pubs').innerHTML=ps.map(p=>'<article class="pub"><div class="pub-year">'+esc(p.year||'Published')+'</div><div><h3>'+esc(p.title)+'</h3><div class="journal">'+esc(p.journal||'')+' · '+esc(p.role||'')+'</div>'+(p.link?'<a href="'+esc(p.link)+'" target="_blank" rel="noopener">View publication ↗</a>':'')+'</div></article>').join('')})</script></body></html>

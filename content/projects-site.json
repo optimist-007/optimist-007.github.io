@@ -1,0 +1,38 @@
+{
+  "homeLinkLabel": "← Home",
+  "homeLink": "index.html",
+  "eyebrow": "The thinking behind the projects",
+  "intro": "This is the part of my work that does not fit neatly into a CV. It shows what I have explored, what I know how to use, and what I am trying to grow into next.",
+  "thoughts": [
+    {
+      "number": "01",
+      "title": "What I have already explored.",
+      "summary": "From self-powered UV sensing with perovskite/polymer nanocomposites to ferroelectric switching and interfacial charge retention.",
+      "label": "Completed + current",
+      "text": "My completed work focused on fluorescent CsPbBr3@Cs4PbBr6/PU perovskite/polymer nanocomposites and their use in a self-powered UV-sensing device. I am now working on ferroelectric switching and interfacial charge retention in thin-film systems, where electrical behaviour and interfaces become the central questions.",
+      "noteLabel": "What stayed with me",
+      "note": "I like research where a material property becomes a measurable device behaviour, and where the interesting part is understanding why that behaviour appears.",
+      "open": true
+    },
+    {
+      "number": "02",
+      "title": "How I am learning to understand it.",
+      "summary": "Experimental characterisation, device measurements and computational tools are becoming one working toolkit rather than separate skills.",
+      "label": "Tools I already use",
+      "text": "My experimental toolkit includes thin-film and nanomaterial fabrication, XRD with Rietveld refinement, SEM, AFM, UV-Vis-NIR absorption and Tauc analysis, FTIR, Raman spectroscopy, P-E hysteresis, PUND and DC probe-station measurements. I use Python and OriginPro for analysis, and I have experience with DFT through Quantum ESPRESSO.",
+      "noteLabel": "What I am building",
+      "note": "I want computation to become part of how I ask the next experimental question, not just a separate skill that sits beside the lab work.",
+      "open": false
+    },
+    {
+      "number": "03",
+      "title": "Where I am headed.",
+      "summary": "Toward semiconductor systems, interfaces, sustainable sensing and energy problems, with stronger computational and machine-learning capability.",
+      "label": "Future direction",
+      "text": "I want to move deeper into semiconductor materials and interfaces while keeping the experimental grounding that taught me how real materials behave. Sustainable technology, low-carbon energy and sensing remain important anchors, especially where a materials problem connects to a practical environmental or technological constraint.",
+      "noteLabel": "The direction I am trying to build",
+      "note": "Experimental enough to know what is real. Computational enough to ask better questions. Curious enough to keep moving toward harder materials problems.",
+      "open": false
+    }
+  ]
+}

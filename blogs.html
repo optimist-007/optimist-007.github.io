@@ -81,9 +81,10 @@ let blogs=[],active='All',talkActive='All talks';
 const esc=v=>String(v??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const sectionDefs=[
  {key:'All',label:'Everything',desc:'The whole journal'},
- {key:'Conference experience',label:'Conferences',desc:'Places I went · things I heard'},
+ {key:'Conference + workshop',label:'Conferences + workshops',desc:'Places I went · things I tried'},
  {key:'Talk / lecture',label:'Talks attended at IIT Palakkad',desc:'Ideas that stayed with me'},
- {key:'Workshop',label:'Workshops',desc:'Things I took up to explore'}
+ {key:'Personal notes',label:'Personal notes',desc:'Thoughts, observations · quieter entries'},
+ {key:'Science explained',label:'Science explained',desc:'Concepts, ideas · things I want to unpack'}
 ];
 const talkDefs=[
  {key:'All talks',label:'All talks',desc:'All four entries'},
@@ -101,7 +102,7 @@ function normalizeType(p){
 function renderSectionLinks(){
  const counts={};blogs.forEach(p=>{const t=normalizeType(p);counts[t]=(counts[t]||0)+1});
  document.getElementById('blogSections').innerHTML=sectionDefs.map(s=>{
-   const n=s.key==='All'?blogs.length:(counts[s.key]||0);
+   const n=s.key==='All'?blogs.length:(s.key==='Conference + workshop'?((counts['Conference experience']||0)+(counts['Workshop']||0)):(counts[s.key]||0));
    return '<a href="#" class="blog-section-link '+(active===s.key?'active':'')+'" data-section="'+esc(s.key)+'"><span class="label">'+esc(s.label)+'</span><strong>'+n+' '+(n===1?'entry':'entries')+'</strong><small>'+esc(s.desc)+'</small></a>';
  }).join('');
  document.querySelectorAll('[data-section]').forEach(x=>x.onclick=e=>{
@@ -124,7 +125,7 @@ function renderTalkSubsections(){
  });
 }
 function renderCards(){
- let list=active==='All'?blogs:blogs.filter(p=>normalizeType(p)===active);
+ let list=active==='All'?blogs:blogs.filter(p=>active==='Conference + workshop'?(normalizeType(p)==='Conference experience'||normalizeType(p)==='Workshop'):normalizeType(p)===active);
  if(active==='Talk / lecture' && talkActive!=='All talks') list=list.filter(p=>(p.subjectRelation||'Connected to my work')===talkActive);
  document.getElementById('blogGrid').innerHTML=list.length?list.map((p,i)=>{
    const original=blogs.indexOf(p), media=Array.isArray(p.media)?p.media.filter(x=>x.src):[];

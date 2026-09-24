@@ -479,7 +479,9 @@ function renderObsessions(d){
 
 function renderFuture(d){
   const future = Array.isArray(d.future) ? d.future : [];
-  $('futureList').innerHTML = future.map((r,i)=>
+  const host = $('futureList');
+  if(!host)return;
+  host.innerHTML = future.map((r,i)=>
     '<article class="archive-card reveal"><div class="tiny-label">0'+(i+1)+' · coming later</div><h3>'+esc(r.title||'Untitled')+'</h3><p>'+nl(r.text||'')+'</p></article>'
   ).join('');
 }
@@ -609,7 +611,7 @@ async function load(){
   if(design.sectionSpacing)root.style.setProperty('--studio-section-space',design.sectionSpacing+'px');
   if(design.posterHeight)root.style.setProperty('--studio-poster-height',design.posterHeight+'vh');
   if(design.posterRotation!==undefined)root.style.setProperty('--studio-poster-rotation',design.posterRotation+'deg');
-  const sectionOrder=['reviews','journal','obsessions','comments'];
+  const sectionOrder=['reviews','journal','quotes','obsessions','comments'];
   const sectionMap={
     reviews:document.getElementById('reviews'),
     journal:document.getElementById('journal'),
@@ -620,7 +622,7 @@ async function load(){
   const creativeMain=document.querySelector('main');
   if(creativeMain){
     sectionOrder.forEach(id=>{const el=sectionMap[id];if(el&&d.__site?.sections?.[id]?.enabled!==false)creativeMain.appendChild(el);});
-    Object.entries(sectionMap).forEach(([id,el])=>{if(el)el.style.display=(id==='quotes'||d.__site?.sections?.[id]?.enabled===false)?'none':'';});
+    Object.entries(sectionMap).forEach(([id,el])=>{if(el)el.style.display=(d.__site?.sections?.[id]?.enabled===false)?'none':'';});
     const custom=document.getElementById('studioCreativeSections');if(custom)creativeMain.appendChild(custom);
   }
   const cs=document.getElementById('studioCreativeSections');

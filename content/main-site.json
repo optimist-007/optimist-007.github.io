@@ -2,6 +2,10 @@
   "siteTitle": "Simran Sainand Revankar | Materials Research",
   "nav": [
     {
+      "label": "Research",
+      "href": "research.html"
+    },
+    {
       "label": "Projects",
       "href": "projects.html"
     },
@@ -12,6 +16,14 @@
     {
       "label": "Publications",
       "href": "publications.html"
+    },
+    {
+      "label": "Media",
+      "href": "media.html"
+    },
+    {
+      "label": "Collaborate",
+      "href": "collaborate.html"
     },
     {
       "label": "CV ↗",
@@ -43,6 +55,11 @@
     "contact"
   ],
   "pages": {
+    "research": [
+      "hero",
+      "threads",
+      "computational"
+    ],
     "projects": [
       "hero",
       "projects"
@@ -55,5 +72,15 @@
       "hero",
       "publications"
     ],
+    "media": [
+      "hero",
+      "gallery",
+      "videos"
+    ],
+    "collaborate": [
+      "hero",
+      "services",
+      "closing"
+    ]
   }
 }

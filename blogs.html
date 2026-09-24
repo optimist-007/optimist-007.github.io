@@ -80,7 +80,13 @@ const sectionDefs=[
  {key:'Talk / lecture',label:'Talks & lectures',desc:'Ideas that stayed with me'},
  {key:'Workshop',label:'Workshops',desc:'Things I took up to explore'}
 ];
-const normalizeType=p=>(p.type||p.category||'Research reflection').trim();
+function normalizeType(p){
+ const raw=String(p.type||p.category||'Research reflection').trim().toLowerCase();
+ if(raw.includes('conference'))return 'Conference experience';
+ if(raw.includes('talk')||raw.includes('lecture'))return 'Talk / lecture';
+ if(raw.includes('workshop'))return 'Workshop';
+ return p.type?'Research reflection':(p.category||'Research reflection');
+}
 function renderSectionLinks(){
  const counts={};blogs.forEach(p=>{const t=normalizeType(p);counts[t]=(counts[t]||0)+1});
  document.getElementById('blogSections').innerHTML=sectionDefs.map(s=>{

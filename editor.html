@@ -1017,8 +1017,7 @@ function renderJournalEditor(){
 
 function renderCreativeMediaEntries(){
   var arr=(state.creative.mediaEntries||[]).map(function(m,i){return {m:m,i:i};}).filter(function(x){return String(x.m.collection||'').toLowerCase()!=='journal';});
-  $('mediaEntries').innerHTML=arr.map(function(x){var m=x.m,i=x.i; return 
-    return '<div class="card"><div class="cardhead"><b>Media entry '+(i+1)+'</b><button class="danger remove-media-entry" data-index="'+i+'">Remove</button></div>'+
+  $('mediaEntries').innerHTML=arr.map(function(x){var m=x.m,i=x.i; return '<div class="card"><div class="cardhead"><b>Media entry '+(i+1)+'</b><button class="danger remove-media-entry" data-index="'+i+'">Remove</button></div>'+
       '<div class="grid"><div class="field"><label>Section</label><select data-media-collection="'+i+'">'+
       ['voice|Voice notes','journal|Journal / random thoughts','research|Research archive','recipes|Recipes','travel|Travel stories','visual|Visual scraps'].map(function(x){var a=x.split('|');return '<option value="'+a[0]+'" '+(m.collection===a[0]?'selected':'')+'>'+a[1]+'</option>';}).join('')+
       '</select></div>'+field('Title','mediaEntries.'+i+'.title',m.title)+'</div>'+

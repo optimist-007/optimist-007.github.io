@@ -6,67 +6,174 @@
 <title>Projects | Simran Sainand Revankar</title>
 <link rel="stylesheet" href="assets/research-readable.css?v=1">
 <style>
-.projects-page .project-story{
-  padding:58px 0 72px;
+.projects-page .project-intro{padding:56px 0 70px}
+.projects-page .project-intro-grid{
+  display:grid;
+  grid-template-columns:minmax(0,1.05fr) minmax(390px,.95fr);
+  gap:clamp(36px,6vw,76px);
+  align-items:center
 }
-.projects-page .project-story-frame{
-  max-width:1120px;
-  margin:0 auto;
+.projects-page .thinking-copy .eyebrow{margin-bottom:14px}
+.projects-page .thinking-copy h1{
+  margin:0 0 24px;
+  max-width:700px;
+  font-size:clamp(3.5rem,6.3vw,6.2rem);
+  line-height:.86;
+  color:var(--forest);
+}
+.projects-page .thinking-copy .lead{
+  max-width:700px;
+  margin:0 0 24px;
+  color:#515850;
+  font-size:1.04rem;
+  line-height:1.7
+}
+.projects-page .thinking-rail{
+  border-top:1px solid var(--line);
+  padding-top:14px;
+  display:flex;
+  gap:8px 15px;
+  flex-wrap:wrap
+}
+.projects-page .thinking-rail span{
+  font:600 .63rem var(--mono);
+  text-transform:uppercase;
+  letter-spacing:.1em;
+  color:var(--muted)
+}
+.projects-page .thinking-rail span:not(:last-child):after{
+  content:"·"; color:var(--clay); margin-left:15px
+}
+.projects-page .thinking-list{
+  margin-top:30px;
+  display:grid;
+  gap:8px
+}
+.projects-page .thought{
+  border:1px solid var(--line);
+  background:rgba(255,255,255,.7);
+}
+.projects-page .thought summary{
+  list-style:none;
+  cursor:pointer;
+  display:grid;
+  grid-template-columns:52px minmax(0,1fr) 26px;
+  gap:14px;
+  align-items:start;
+  padding:18px 18px 17px;
+}
+.projects-page .thought summary::-webkit-details-marker{display:none}
+.projects-page .thought-number{
+  font:600 .74rem var(--mono);
+  color:var(--clay);
+  letter-spacing:.08em;
+  padding-top:4px
+}
+.projects-page .thought-title{
+  display:block;
+  color:var(--forest);
+  font:500 clamp(1.65rem,2.5vw,2.25rem)/.98 var(--serif);
+  letter-spacing:-.025em
+}
+.projects-page .thought-summary{
+  display:block;
+  margin-top:7px;
+  max-width:600px;
+  color:var(--muted);
+  font-size:.87rem;
+  line-height:1.5
+}
+.projects-page .thought-arrow{
+  font:500 1.5rem/1 var(--serif);
+  color:var(--clay);
+  transition:transform .2s;
+  text-align:right
+}
+.projects-page .thought[open] .thought-arrow{transform:rotate(45deg)}
+.projects-page .thought-detail{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(0,.78fr);
+  gap:20px;
+  padding:0 18px 20px 84px
+}
+.projects-page .thought-detail .mini-label{
+  margin-bottom:7px;
+  font:600 .58rem var(--mono);
+  text-transform:uppercase;
+  letter-spacing:.13em;
+  color:var(--clay)
+}
+.projects-page .thought-detail p{
+  margin:0;
+  color:#4f574f;
+  font-size:.91rem;
+  line-height:1.68
+}
+.projects-page .thought-note{
+  background:#eef0eb;
+  border-left:3px solid var(--sand);
+  padding:15px 16px
+}
+.projects-page .thought-note p{
+  font-family:var(--serif);
+  font-size:1.2rem;
+  line-height:1.12;
+  color:var(--forest)
+}
+.projects-page .thinking-visual{
+  position:relative;
   background:#f5f4ee;
   border:1px solid var(--line);
-  padding:clamp(10px,1.5vw,18px);
-  box-shadow:0 20px 55px rgba(36,52,43,.08);
+  padding:12px;
+  box-shadow:0 18px 48px rgba(36,52,43,.08)
 }
-.projects-page .project-story-frame img{
+.projects-page .thinking-visual img{
   display:block;
   width:100%;
   height:auto;
-  aspect-ratio:1126/805;
-  object-fit:cover;
+  aspect-ratio:784/795;
+  object-fit:cover
 }
-.projects-page .project-story-caption{
+.projects-page .thinking-visual:after{
+  content:"";
+  position:absolute;
+  inset:12px;
+  pointer-events:none;
+  border:1px solid rgba(40,72,58,.07)
+}
+.projects-page .projects-start{
+  padding:72px 0 90px;
+  border-top:1px solid var(--line)
+}
+.projects-page .projects-start .section-head{
   display:flex;
   justify-content:space-between;
-  gap:20px;
-  padding:13px 4px 2px;
-  color:var(--muted);
-  font:600 .62rem var(--mono);
-  letter-spacing:.1em;
-  text-transform:uppercase;
-}
-.projects-page .project-story-caption span:last-child{color:var(--clay)}
-.projects-page .direction{padding:70px 0 82px;border-top:1px solid var(--line);background:#edf0eb}
-.projects-page .direction-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:stretch}
-.projects-page .direction-copy{padding:35px 4px 35px 0}
-.projects-page .direction-copy h2{font-size:clamp(3rem,6vw,5.8rem);margin:14px 0 18px}
-.projects-page .direction-copy p{max-width:670px;color:var(--muted);font-size:1.05rem}
-.projects-page .future-list{display:grid;grid-template-columns:1fr 1fr;gap:11px}
-.projects-page .future-item{border:1px solid var(--line);background:rgba(255,255,255,.7);padding:22px 20px;min-height:150px}
-.projects-page .future-item strong{display:block;color:var(--forest);font:500 1.65rem/.95 var(--serif);margin:8px 0}
-.projects-page .future-item span{color:var(--muted);font-size:.86rem}
-.projects-page .projects-start{padding:80px 0 95px}
-.projects-page .projects-start .section-head{
-  grid-template-columns:minmax(0,1.05fr) minmax(280px,.95fr);
-  gap:42px;
-  margin-bottom:34px;
-  align-items:end
+  align-items:end;
+  gap:35px;
+  margin-bottom:30px
 }
 .projects-page .projects-start .section-head h2{
-  font-size:clamp(3rem,4.6vw,4.45rem);
-  line-height:.93;
-  max-width:650px
+  margin:0;
+  max-width:650px;
+  font-size:clamp(2.9rem,4.6vw,4.4rem);
+  line-height:.93
 }
 .projects-page .projects-start .section-head p{
-  max-width:610px;
+  margin:0;
+  max-width:560px;
+  color:var(--muted);
   font-size:1rem
 }
-@media(max-width:900px){
+@media(max-width:980px){
+  .projects-page .project-intro-grid{grid-template-columns:1fr}
+  .projects-page .thinking-visual{max-width:760px}
 }
-@media(max-width:620px){
- .projects-page .project-story{padding:40px 0 55px}
- .projects-page .project-story-caption{display:block;line-height:1.7}
- .projects-page .direction,.projects-page .projects-start{padding:58px 0 70px}
- .projects-page .future-list{grid-template-columns:1fr}
+@media(max-width:720px){
+  .projects-page .project-intro{padding:42px 0 54px}
+  .projects-page .thinking-copy h1{font-size:3.65rem}
+  .projects-page .thought-detail{grid-template-columns:1fr;padding:0 18px 18px 84px}
+  .projects-page .projects-start{padding:56px 0 68px}
+  .projects-page .projects-start .section-head{display:grid;gap:12px}
 }
 </style>
 </head>
@@ -84,38 +191,106 @@
 </div></header>
 
 <main>
-<section class="project-story">
-  <div class="wrap">
-    <div class="project-story-frame">
-      <img src="content/images/projects-thinking.webp" alt="Research thinking and direction" loading="eager">
-      <div class="project-story-caption">
-        <span>Research · thinking · direction</span>
-        <span>My work, in my own words</span>
+<section class="project-intro">
+  <div class="wrap project-intro-grid">
+    <div class="thinking-copy">
+      <a class="backlink" href="index.html">← Home</a>
+      <div class="eyebrow">The thinking behind the projects</div>
+      <h1>What I have done.<br>What I am learning.<br>Where I am going.</h1>
+      <p class="lead">The project work below is only one part of the story. These three threads show how the work has shaped what I know, what I am learning and what I want to explore next.</p>
+      <div class="thinking-rail">
+        <span>completed work</span>
+        <span>working toolkit</span>
+        <span>future direction</span>
       </div>
+
+      <div class="thinking-list">
+        <details class="thought" open>
+          <summary>
+            <span class="thought-number">01</span>
+            <span>
+              <span class="thought-title">What I have already explored.</span>
+              <span class="thought-summary">From self-powered UV sensing with perovskite/polymer nanocomposites to ferroelectric switching and interfacial charge retention.</span>
+            </span>
+            <span class="thought-arrow">+</span>
+          </summary>
+          <div class="thought-detail">
+            <div>
+              <div class="mini-label">Completed + current</div>
+              <p>My completed work focused on fluorescent CsPbBr3@Cs4PbBr6/PU perovskite/polymer nanocomposites and their use in a self-powered UV-sensing device. I am now working on ferroelectric switching and interfacial charge retention in thin-film systems, where electrical behaviour and interfaces become the central questions.</p>
+            </div>
+            <div class="thought-note">
+              <div class="mini-label">What stayed with me</div>
+              <p>I like research where a material property becomes a measurable device behaviour, and where the interesting part is understanding why that behaviour appears.</p>
+            </div>
+          </div>
+        </details>
+
+        <details class="thought">
+          <summary>
+            <span class="thought-number">02</span>
+            <span>
+              <span class="thought-title">How I am learning to understand it.</span>
+              <span class="thought-summary">Experimental characterisation, device measurements and computational tools are becoming one working toolkit rather than separate skills.</span>
+            </span>
+            <span class="thought-arrow">+</span>
+          </summary>
+          <div class="thought-detail">
+            <div>
+              <div class="mini-label">Tools I already use</div>
+              <p>My experimental toolkit includes thin-film and nanomaterial fabrication, XRD with Rietveld refinement, SEM, AFM, UV-Vis-NIR absorption and Tauc analysis, FTIR, Raman spectroscopy, P-E hysteresis, PUND and DC probe-station measurements. I use Python and OriginPro for analysis, and I have experience with DFT through Quantum ESPRESSO.</p>
+            </div>
+            <div class="thought-note">
+              <div class="mini-label">What I am building</div>
+              <p>I want computation to become part of how I ask the next experimental question, not just a separate skill that sits beside the lab work.</p>
+            </div>
+          </div>
+        </details>
+
+        <details class="thought">
+          <summary>
+            <span class="thought-number">03</span>
+            <span>
+              <span class="thought-title">Where I am headed.</span>
+              <span class="thought-summary">Toward semiconductor systems, interfaces, sustainable sensing and energy problems, with stronger computational and machine-learning capability.</span>
+            </span>
+            <span class="thought-arrow">+</span>
+          </summary>
+          <div class="thought-detail">
+            <div>
+              <div class="mini-label">Future direction</div>
+              <p>I want to move deeper into semiconductor materials and interfaces while keeping the experimental grounding that taught me how real materials behave. Sustainable technology, low-carbon energy and sensing remain important anchors, especially where a materials problem connects to a practical environmental or technological constraint.</p>
+            </div>
+            <div class="thought-note">
+              <div class="mini-label">The direction I am trying to build</div>
+              <p>Experimental enough to know what is real. Computational enough to ask better questions. Curious enough to keep moving toward harder materials problems.</p>
+            </div>
+          </div>
+        </details>
+      </div>
+    </div>
+
+    <div class="thinking-visual">
+      <img src="content/images/projects-thinking-graphic.webp" alt="Scientific collage showing materials, measurement and device-oriented research" loading="eager">
     </div>
   </div>
 </section>
 
-<section class="direction">
-<div class="wrap direction-grid">
-<div class="direction-copy"><div class="eyebrow">The direction</div><h2>A sense of the trajectory.</h2><p>The details will change as the questions change. The consistent thread is a move from understanding materials and interfaces toward designing systems where that understanding matters.</p></div>
-<div class="future-list">
-<div class="future-item"><div class="eyebrow">01</div><strong>Semiconductor materials</strong><span>Materials, interfaces and electronic behaviour.</span></div>
-<div class="future-item"><div class="eyebrow">02</div><strong>Computational materials</strong><span>DFT, Python and machine learning as research tools.</span></div>
-<div class="future-item"><div class="eyebrow">03</div><strong>Energy & sensing</strong><span>Self-powered and efficient device concepts.</span></div>
-<div class="future-item"><div class="eyebrow">04</div><strong>Sustainable technology</strong><span>Low-resource, practical approaches to real constraints.</span></div>
-</div></div>
-</section>
-
 <section class="projects-start">
-<div class="wrap">
-<div class="section-head"><div><div class="eyebrow">Projects</div><h2>Projects that carry the story forward.</h2></div><p>Below are the two projects currently in this archive. Open either one for the question, approach and what it taught me.</p></div>
-<div class="project-grid" id="projectGrid"></div>
-</div>
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <div class="eyebrow">Projects</div>
+        <h2>Projects that carry the story forward.</h2>
+      </div>
+      <p>These are the two projects currently in the archive. Open either one for the question, approach and what the work taught me.</p>
+    </div>
+    <div class="project-grid" id="projectGrid"></div>
+  </div>
 </section>
 </main>
 
-<footer class="wrap site-footer"><span>Projects · thinking · direction</span></footer>
+<footer class="wrap site-footer"><span>Projects · work · learning</span></footer>
 <script>
 const esc=v=>String(v??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 fetch('content/projects.json',{cache:'no-store'}).then(r=>r.json()).then(ps=>{

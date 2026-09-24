@@ -97,7 +97,10 @@ function normalizeType(p){
  if(raw.includes('conference'))return 'Conference experience';
  if(raw.includes('talk')||raw.includes('lecture'))return 'Talk / lecture';
  if(raw.includes('workshop'))return 'Workshop';
- return p.type?'Research reflection':(p.category||'Research reflection');
+ if(raw.includes('personal note'))return 'Personal notes';
+ if(raw.includes('science explain'))return 'Science explained';
+ if(raw.includes('research reflection'))return 'Research reflection';
+ return 'Other';
 }
 function renderSectionLinks(){
  const counts={};blogs.forEach(p=>{const t=normalizeType(p);counts[t]=(counts[t]||0)+1});

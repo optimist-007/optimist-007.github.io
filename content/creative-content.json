@@ -133,6 +133,15 @@
       "audio": "",
       "alt": "",
       "enabled": true
+    },
+    {
+      "collection": "travel",
+      "mediaType": "Beach diary",
+      "title": "Beaches I visited in 2026",
+      "date": "2026",
+      "text": "A year of shorelines across Mumbai, Calicut, Thiruvananthapuram and Goa. A small collection of sand, shells, sunsets, birds and sea air.",
+      "image": "assets/creative/beaches-2026.jpg",
+      "enabled": true
     }
   ]
 }

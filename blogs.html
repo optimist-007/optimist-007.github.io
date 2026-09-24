@@ -5,6 +5,18 @@
 <link rel="stylesheet" href="assets/research-readable.css?v=1">
 <style>
 .blog-index{padding-bottom:90px}
+.blog-sections{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:8px 0 34px}
+.blog-section-link{display:block;padding:18px 17px;border:1px solid var(--line);background:var(--paper);text-decoration:none;transition:.2s}
+.blog-section-link:hover,.blog-section-link.active{background:var(--forest);color:var(--cream);transform:translateY(-2px)}
+.blog-section-link .label{display:block;font:700 .64rem var(--mono);text-transform:uppercase;letter-spacing:.11em;color:var(--clay);margin-bottom:7px}
+.blog-section-link.active .label,.blog-section-link:hover .label{color:#e7cb91}
+.blog-section-link strong{display:block;font:500 1.45rem/.98 var(--serif);color:var(--forest)}
+.blog-section-link.active strong,.blog-section-link:hover strong{color:var(--cream)}
+.blog-section-link small{display:block;margin-top:8px;color:var(--muted);font-size:.78rem}
+.blog-section-link.active small,.blog-section-link:hover small{color:#d9dfda}
+@media(max-width:850px){.blog-sections{grid-template-columns:1fr 1fr}}
+@media(max-width:520px){.blog-sections{grid-template-columns:1fr}}
+
 .blog-intro{max-width:760px}
 .blog-filters{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 28px}
 .blog-filter{border:1px solid var(--line);background:transparent;color:var(--muted);padding:8px 12px;font:600 .66rem var(--mono);text-transform:uppercase;letter-spacing:.08em;cursor:pointer}
@@ -46,7 +58,8 @@
 <div class="index-box">Conference experiences · talks · workshops · research reflections · science notes.</div>
 </div>
 <section class="section" style="padding-top:25px"><div class="wrap">
-<div class="blog-filters" id="filters"></div>
+<div class="blog-sections" id="blogSections"></div>
+<div class="blog-filters" id="filters" style="display:none"></div>
 <div class="blog-grid" id="blogGrid"></div>
 </div></section>
 </main>
@@ -61,17 +74,32 @@
 <script>
 let blogs=[],active='All';
 const esc=v=>String(v??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-function renderFilters(){
- const types=['All',...new Set(blogs.map(p=>p.type||p.category||'Other'))];
- document.getElementById('filters').innerHTML=types.map(t=>'<button class="blog-filter '+(t===active?'active':'')+'" data-type="'+esc(t)+'">'+esc(t)+'</button>').join('');
- document.querySelectorAll('.blog-filter').forEach(b=>b.onclick=()=>{active=b.dataset.type;renderFilters();renderCards()});
+const sectionDefs=[
+ {key:'All',label:'Everything',desc:'The whole journal'},
+ {key:'Conference experience',label:'Conferences',desc:'Places I went · things I heard'},
+ {key:'Talk / lecture',label:'Talks & lectures',desc:'Ideas that stayed with me'},
+ {key:'Workshop',label:'Workshops',desc:'Things I took up to explore'}
+];
+const normalizeType=p=>(p.type||p.category||'Research reflection').trim();
+function renderSectionLinks(){
+ const counts={};blogs.forEach(p=>{const t=normalizeType(p);counts[t]=(counts[t]||0)+1});
+ document.getElementById('blogSections').innerHTML=sectionDefs.map(s=>{
+   const n=s.key==='All'?blogs.length:(counts[s.key]||0);
+   return '<a href="#" class="blog-section-link '+(active===s.key?'active':'')+'" data-section="'+esc(s.key)+'"><span class="label">'+esc(s.label)+'</span><strong>'+n+' '+(n===1?'entry':'entries')+'</strong><small>'+esc(s.desc)+'</small></a>';
+ }).join('');
+ document.querySelectorAll('[data-section]').forEach(x=>x.onclick=e=>{
+   e.preventDefault();
+   active=x.dataset.section;
+   history.replaceState({},'',active==='All'?'blogs.html':'blogs.html?section='+encodeURIComponent(active));
+   renderSectionLinks();renderCards();
+ });
 }
 function renderCards(){
- const list=active==='All'?blogs:blogs.filter(p=>(p.type||p.category||'Other')===active);
+ const list=active==='All'?blogs:blogs.filter(p=>normalizeType(p)===active);
  document.getElementById('blogGrid').innerHTML=list.length?list.map((p,i)=>{
    const original=blogs.indexOf(p), media=Array.isArray(p.media)?p.media.filter(x=>x.src):[];
    return '<a class="blog-card '+(i===0?'featured':'')+'" href="#" data-i="'+original+'"><div><div class="blog-meta">'+esc(p.category||p.type||'Research note')+(p.date?' · '+esc(p.date):'')+'</div><h3>'+esc(p.title||'Untitled')+'</h3><p>'+esc(p.excerpt||String(p.body||'').slice(0,280))+'…</p></div><div><div class="blog-media-count">'+(media.length?media.length+' media item'+(media.length>1?'s':''):'Written note')+' · Open full post ↗</div></div></a>';
- }).join(''):'<div class="empty">No posts in this category yet.</div>';
+ }).join(''):'<div class="empty">No entries in this section yet. New conferences, talks and workshops can be added from the editor.</div>';
  document.querySelectorAll('[data-i]').forEach(x=>x.onclick=e=>{e.preventDefault();openPost(blogs[Number(x.dataset.i)])});
 }
 function openPost(p){
@@ -89,6 +117,11 @@ function openPost(p){
 }
 function close(){document.getElementById('reader').classList.remove('open');document.body.style.overflow=''}
 document.getElementById('close').onclick=close;document.getElementById('reader').onclick=e=>{if(e.target.id==='reader')close()};document.addEventListener('keydown',e=>{if(e.key==='Escape')close()});
-fetch('content/blogs.json',{cache:'no-store'}).then(r=>r.json()).then(data=>{blogs=Array.isArray(data)?data:[];renderFilters();renderCards()}).catch(()=>{document.getElementById('blogGrid').innerHTML='<div class="empty">The research journal could not be loaded.</div>'});
+fetch('content/blogs.json',{cache:'no-store'}).then(r=>r.json()).then(data=>{
+ blogs=Array.isArray(data)?data:[];
+ const requested=new URLSearchParams(location.search).get('section');
+ if(requested && sectionDefs.some(s=>s.key===requested))active=requested;
+ renderSectionLinks();renderCards();
+}).catch(()=>{document.getElementById('blogGrid').innerHTML='<div class="empty">The research journal could not be loaded.</div>'});
 </script>
 </body></html>

@@ -64,6 +64,7 @@ textarea{min-height:120px;resize:vertical}
 <div class="layout">
 <aside>
   <button class="active" data-tab="home">Main · Home</button>
+  <button data-tab="blogsTab">Blogs · Writing</button>
   <button data-tab="creative">Creative · Content</button>
   <button data-tab="design">🎨 Design</button>
   <button data-tab="organize">↕ Organize</button>
@@ -83,6 +84,15 @@ textarea{min-height:120px;resize:vertical}
   <div class="row"><button id="addQuestion">+ Add question</button></div>
   <h2>Publications</h2><div id="publications"></div><div class="row"><button id="addPublication">+ Add publication</button></div><h2>Collaboration</h2>
   <div id="contactFields"></div>
+</section>
+
+
+<section class="tab" id="blogsTab">
+  <h1>Blogs · Research journal</h1>
+  <p class="muted">Write about research thinking, conferences, talks, workshops, experiments, lessons learned or anything you explored scientifically. Each post can carry a feature image and multiple media items.</p>
+  <div class="hint"><b>Good uses:</b> conference experiences · talks you attended · workshops you took to explore a field · research reflections · science explainers.</div>
+  <div class="row"><button id="addBlog">+ Add blog post</button></div>
+  <div id="blogsEditor"></div>
 </section>
 
 <section class="tab" id="creative">
@@ -182,6 +192,7 @@ textarea{min-height:120px;resize:vertical}
     <option>content/creative-site.json</option>
     <option>content/media-library.json</option>
     <option>content/publications.json</option>
+    <option>content/blogs.json</option>
   </select></div>
   <textarea id="sourceText" class="source" spellcheck="false"></textarea>
   <div class="row"><button class="secondary" id="loadSource">Load file</button><button id="stageSource">Stage file</button></div>
@@ -226,6 +237,7 @@ var state={
   mainSite:{},
   media:[],
   publications:[],
+  blogs:[],
   source:{}
 };
 
@@ -236,7 +248,8 @@ var paths={
   creativeSite:'content/creative-site.json',
   mainSite:'content/main-site.json',
   media:'content/media-library.json',
-  publications:'content/publications.json'
+  publications:'content/publications.json',
+  blogs:'content/blogs.json'
 };
 var FALLBACK={
  home:{
@@ -672,6 +685,12 @@ function normalize(){
   if(!state.home.academicProfile)state.home.academicProfile={eyebrow:'Academic profile',degree:'M.Sc. Chemistry',summary:'',tags:[]};
   if(!Array.isArray(state.home.academicProfile.tags))state.home.academicProfile.tags=[];
   if(!Array.isArray(state.publications))state.publications=[];
+  if(!Array.isArray(state.blogs))state.blogs=[];
+  state.blogs.forEach(function(b){
+    if(!Array.isArray(b.media))b.media=[];
+    if(!b.category)b.category='Research reflection';
+    if(!b.type)b.type=b.category;
+  });
 }
 
 async function getFile(path){
@@ -698,6 +717,7 @@ async function loadAll(){
   state.mainSite=await safeJson(paths.mainSite,FALLBACK.mainSite);
   state.media=await safeJson(paths.media,FALLBACK.media);
   state.publications=await safeJson(paths.publications,[]);
+  state.blogs=await safeJson(paths.blogs,[]);
   normalize();
   renderAll();
   var saved=sessionStorage.getItem('websiteStudioToken')||localStorage.getItem('websiteStudioToken');
@@ -765,6 +785,48 @@ function renderHome(){
 function creativeTypes(current){
   var types=['Movie','Book','Painting','Anime','Travel','Food','Music','Journal','Story','Photography','Other'];
   return types.map(function(t){return '<option value="'+escapeHtml(t)+'" '+(t===current?'selected':'')+'>'+escapeHtml(t)+'</option>';}).join('');
+}
+
+function blogTypes(current){
+  var types=['Research reflection','Conference experience','Talk / lecture','Workshop','Science explained','Personal notes','Other'];
+  return types.map(function(t){return '<option value="'+escapeHtml(t)+'" '+(t===current?'selected':'')+'>'+escapeHtml(t)+'</option>';}).join('');
+}
+function renderBlogs(){
+  var arr=state.blogs;
+  $('blogsEditor').innerHTML=arr.map(function(b,i){
+    return '<div class="card"><div class="cardhead"><b>Blog post '+(i+1)+'</b><button class="danger remove-blog" data-index="'+i+'">Remove</button></div>'+
+      '<div class="grid"><div class="field"><label>Format</label><select data-blog-type="'+i+'">'+blogTypes(b.type||b.category||'Research reflection')+'</select></div>'+
+      field('Category label','blogs.'+i+'.category',b.category||'')+'</div>'+
+      field('Title','blogs.'+i+'.title',b.title||'')+
+      '<div class="grid">'+field('Date','blogs.'+i+'.date',b.date||'')+field('Event / place','blogs.'+i+'.event',b.event||'')+'</div>'+
+      field('Introduction / excerpt','blogs.'+i+'.excerpt',b.excerpt||'',true)+
+      field('Full article','blogs.'+i+'.body',b.body||'',true)+
+      field('Feature image path or URL','blogs.'+i+'.image',b.image||'')+
+      '<div class="field"><label>Upload feature image</label><input type="file" accept="image/*" data-blog-image="'+i+'"><div class="small">Attached when you publish.</div></div>'+
+      field('External link','blogs.'+i+'.link',b.link||'')+
+      '<h3 style="margin-top:24px">Media inside this post</h3>'+
+      '<p class="small">Add photos from the conference, slides you are allowed to share, workshop snapshots, diagrams, certificates or other visual material.</p>'+
+      '<div class="blog-media-list">'+(Array.isArray(b.media)?b.media.map(function(m,j){
+        return '<div class="card" style="background:#fbf8ef"><div class="cardhead"><b>Media '+(j+1)+'</b><button class="danger remove-blog-media" data-blog="'+i+'" data-media="'+j+'">Remove</button></div>'+
+          field('Image path or URL','blogs.'+i+'.media.'+j+'.src',m.src||'')+
+          field('Caption','blogs.'+i+'.media.'+j+'.caption',m.caption||'')+
+          '<div class="field"><label>Upload image</label><input type="file" accept="image/*" data-blog-media-file="'+i+'" data-media-index="'+j+'"><div class="small">Attached when you publish.</div></div></div>';
+      }).join(''):'')+'</div>'+
+      '<div class="row"><button class="secondary add-blog-media" data-index="'+i+'">+ Add media</button></div>'+
+      '</div>';
+  }).join('');
+  bind($('blogsEditor'),state);
+  wireButtons($('blogsEditor'),'.remove-blog',function(i){state.blogs.splice(i,1);renderBlogs();});
+  var types=$('blogsEditor').querySelectorAll('[data-blog-type]');
+  for(var i=0;i<types.length;i++)(function(el){el.addEventListener('change',function(){var idx=Number(el.getAttribute('data-blog-type'));state.blogs[idx].type=el.value;if(!state.blogs[idx].category)state.blogs[idx].category=el.value;});})(types[i]);
+  var adds=$('blogsEditor').querySelectorAll('.add-blog-media');
+  for(var j=0;j<adds.length;j++)(function(el){el.addEventListener('click',function(){var idx=Number(el.getAttribute('data-index'));state.blogs[idx].media.push({src:'',caption:''});renderBlogs();});})(adds[j]);
+  var rmb=$('blogsEditor').querySelectorAll('.remove-blog-media');
+  for(var k=0;k<rmb.length;k++)(function(el){el.addEventListener('click',function(){var bi=Number(el.getAttribute('data-blog')),mi=Number(el.getAttribute('data-media'));state.blogs[bi].media.splice(mi,1);renderBlogs();});})(rmb[k]);
+  var fi=$('blogsEditor').querySelectorAll('[data-blog-image]');
+  for(var q=0;q<fi.length;q++)(function(el){el.addEventListener('change',function(){var file=el.files&&el.files[0];if(!file)return;var rd=new FileReader();rd.onload=function(){var idx=Number(el.getAttribute('data-blog-image'));state.blogs[idx].image=rd.result;state.blogs[idx]._uploadImageName=file.name;status('Feature image attached. Publish to upload it.');};rd.readAsDataURL(file);});})(fi[q]);
+  var fm=$('blogsEditor').querySelectorAll('[data-blog-media-file]');
+  for(var z=0;z<fm.length;z++)(function(el){el.addEventListener('change',function(){var file=el.files&&el.files[0];if(!file)return;var rd=new FileReader();rd.onload=function(){var bi=Number(el.getAttribute('data-blog-media-file')),mi=Number(el.getAttribute('data-media-index'));state.blogs[bi].media[mi].src=rd.result;state.blogs[bi].media[mi]._uploadImageName=file.name;status('Blog media attached. Publish to upload it.');};rd.readAsDataURL(file);});})(fm[z]);
 }
 
 function renderPublications(){
@@ -950,6 +1012,7 @@ function renderGraphics(){
 
 function renderAll(){
   renderHome();
+  renderBlogs();
   renderPublications();
   renderCreative();
   renderDesign();
@@ -958,7 +1021,7 @@ function renderAll(){
 }
 
 function switchTab(name){
-  var ids={home:'home',creative:'creative',design:'design',organize:'organize',graphics:'graphics',source:'source',preview:'previewTab',github:'github'};
+  var ids={home:'home',blogsTab:'blogsTab',creative:'creative',design:'design',organize:'organize',graphics:'graphics',source:'source',preview:'previewTab',github:'github'};
   var target=$(ids[name]||name);
   if(!target)return;
   var tabs=document.querySelectorAll('.tab');
@@ -976,7 +1039,8 @@ function snapshot(){
     creativeSite:state.creativeSite,
     mainSite:state.mainSite,
     media:state.media,
-    publications:state.publications
+    publications:state.publications,
+    blogs:state.blogs
   };
 }
 
@@ -1097,6 +1161,27 @@ async function publish(){
       var y={};for(var k in x)if(k!=='data')y[k]=x[k];return y;
     });
     await putText(paths.media,JSON.stringify(mediaOut,null,2),msg);
+    for(var bi=0;bi<state.blogs.length;bi++){
+      var bp=state.blogs[bi];
+      if(String(bp.image||'').indexOf('data:image/')===0){
+        var bs=(bp.title||'blog').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'').slice(0,50)||'blog';
+        var be=(bp.image.match(/^data:image\/([^;]+)/)||[])[1]||'png'; if(be==='jpeg')be='jpg';
+        var bpath='content/images/blog-'+bs+'.'+be;
+        await putDataUrl(bpath,bp.image,msg); bp.image=bpath; delete bp._uploadImageName;
+      }
+      if(Array.isArray(bp.media)){
+        for(var bmi=0;bmi<bp.media.length;bmi++){
+          var bm=bp.media[bmi];
+          if(String(bm.src||'').indexOf('data:image/')===0){
+            var ms=(bp.title||'blog').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'').slice(0,42)||'blog';
+            var me=(bm.src.match(/^data:image\/([^;]+)/)||[])[1]||'png'; if(me==='jpeg')me='jpg';
+            var mpath='content/images/blog-'+ms+'-'+(bmi+1)+'.'+me;
+            await putDataUrl(mpath,bm.src,msg); bm.src=mpath; delete bm._uploadImageName;
+          }
+        }
+      }
+    }
+    await putText(paths.blogs,JSON.stringify(state.blogs,null,2),msg);
     await putText(paths.publications,JSON.stringify(state.publications,null,2),msg);
 
     localStorage.removeItem('websiteStudioPreview');
@@ -1147,6 +1232,8 @@ var tabButtons=document.querySelectorAll('aside button');
 for(var i=0;i<tabButtons.length;i++){
   tabButtons[i].addEventListener('click',function(){switchTab(this.getAttribute('data-tab'));});
 }
+
+$('addBlog').addEventListener('click',function(){state.blogs.push({title:'New research note',type:'Research reflection',category:'Research reflection',date:'',event:'',excerpt:'',body:'',image:'',media:[],link:''});renderBlogs();});
 
 $('addPublication').addEventListener('click',function(){state.publications.push({title:'',journal:'',role:'',year:'',volume:'',article:'',doi:'',link:''});renderPublications();});
 

@@ -189,6 +189,10 @@ textarea{min-height:120px;resize:vertical}
   <div id="homeOrder"></div>
   <h2>Creative side</h2>
   <div id="creativeOrder"></div>
+  <h2>Navigation</h2>
+  <p class="muted">These links appear in the main research-site navigation.</p>
+  <div id="navEditor"></div>
+  <div class="row"><button id="addNavItem">+ Add navigation link</button></div>
 </section>
 
 <section class="tab" id="graphics">
@@ -1131,6 +1135,17 @@ function renderOrganization(){
   }
 }
 
+function renderNavEditor(){
+  var nav=Array.isArray(state.mainSite.nav)?state.mainSite.nav:[];
+  $('navEditor').innerHTML=nav.map(function(n,i){
+    return '<div class="card"><div class="cardhead"><b>Navigation item '+(i+1)+'</b><button class="danger remove-nav" data-index="'+i+'">Remove</button></div>'+
+      field('Label','nav.'+i+'.label',n.label)+field('Link','nav.'+i+'.href',n.href)+
+      '</div>';
+  }).join('');
+  bind($('navEditor'),state.mainSite);
+  wireButtons($('navEditor'),'.remove-nav',function(i){state.mainSite.nav.splice(i,1);renderNavEditor();});
+}
+
 function renderGraphics(){
   $('graphicsList').innerHTML=state.media.map(function(g,i){
     return '<div class="card"><div class="cardhead"><b>'+escapeHtml(g.name||('Graphic '+(i+1)))+'</b><button class="danger remove-graphic" data-index="'+i+'">Remove</button></div>'+
@@ -1169,6 +1184,7 @@ function renderAll(){
   renderCreative();
   renderDesign();
   renderOrganization();
+  renderNavEditor();
   renderGraphics();
 }
 
@@ -1498,6 +1514,11 @@ $('addCreativeSection').addEventListener('click',function(){
   renderCreativeCustomSections();
 });
 
+$('addNavItem').addEventListener('click',function(){
+  state.mainSite.nav=state.mainSite.nav||[];
+  state.mainSite.nav.push({label:'New link',href:'index.html'});
+  renderNavEditor();
+});
 $('addGraphic').addEventListener('click',function(){
   state.media.push({name:'New graphic',alt:'',path:'',data:''});
   renderGraphics();

@@ -5,6 +5,10 @@
 <link rel="stylesheet" href="assets/research-readable.css?v=1">
 <style>
 .blog-index{padding-bottom:90px}
+.talk-subsections{display:none;gap:8px;flex-wrap:wrap;margin:-10px 0 24px;padding:12px 0;border-bottom:1px solid var(--line)}
+.talk-subsections.visible{display:flex}
+.talk-subsection{border:1px solid var(--line);background:transparent;color:var(--muted);padding:8px 11px;font:600 .62rem var(--mono);text-transform:uppercase;letter-spacing:.08em;cursor:pointer}
+.talk-subsection.active,.talk-subsection:hover{background:var(--clay);color:var(--cream);border-color:var(--clay)}
 .blog-sections{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:8px 0 34px}
 .blog-section-link{display:block;padding:18px 17px;border:1px solid var(--line);background:var(--paper);text-decoration:none;transition:.2s}
 .blog-section-link:hover,.blog-section-link.active{background:var(--forest);color:var(--cream);transform:translateY(-2px)}
@@ -59,6 +63,7 @@
 </div>
 <section class="section" style="padding-top:25px"><div class="wrap">
 <div class="blog-sections" id="blogSections"></div>
+<div class="talk-subsections" id="talkSubsections"></div>
 <div class="blog-filters" id="filters" style="display:none"></div>
 <div class="blog-grid" id="blogGrid"></div>
 </div></section>
@@ -72,13 +77,19 @@
 </div></article></div>
 <footer class="wrap site-footer"><span>Research · writing · curiosity</span></footer>
 <script>
-let blogs=[],active='All';
+let blogs=[],active='All',talkActive='All talks';
 const esc=v=>String(v??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const sectionDefs=[
  {key:'All',label:'Everything',desc:'The whole journal'},
  {key:'Conference experience',label:'Conferences',desc:'Places I went · things I heard'},
- {key:'Talk / lecture',label:'Talks & lectures',desc:'Ideas that stayed with me'},
+ {key:'Talk / lecture',label:'Talks at IIT Palakkad',desc:'Ideas that stayed with me'},
  {key:'Workshop',label:'Workshops',desc:'Things I took up to explore'}
+];
+const talkDefs=[
+ {key:'All talks',label:'All talks',desc:'All four entries'},
+ {key:'Subject-related',label:'Subject-related',desc:'Closest to my materials work'},
+ {key:'Connected to my work',label:'Connected',desc:'Research, industry & skills'},
+ {key:'Outside my immediate area',label:'Outside my area',desc:'Exploring something different'}
 ];
 function normalizeType(p){
  const raw=String(p.type||p.category||'Research reflection').trim().toLowerCase();
@@ -94,18 +105,32 @@ function renderSectionLinks(){
    return '<a href="#" class="blog-section-link '+(active===s.key?'active':'')+'" data-section="'+esc(s.key)+'"><span class="label">'+esc(s.label)+'</span><strong>'+n+' '+(n===1?'entry':'entries')+'</strong><small>'+esc(s.desc)+'</small></a>';
  }).join('');
  document.querySelectorAll('[data-section]').forEach(x=>x.onclick=e=>{
-   e.preventDefault();
-   active=x.dataset.section;
-   history.replaceState({},'',active==='All'?'blogs.html':'blogs.html?section='+encodeURIComponent(active));
-   renderSectionLinks();renderCards();
+   e.preventDefault(); active=x.dataset.section; 
+   if(active!=='Talk / lecture')talkActive='All talks';
+   renderSectionLinks();renderTalkSubsections();renderCards();
+ });
+}
+function renderTalkSubsections(){
+ const host=document.getElementById('talkSubsections');
+ if(active!=='Talk / lecture'){host.classList.remove('visible');host.innerHTML='';return}
+ host.classList.add('visible');
+ const counts={};blogs.filter(p=>normalizeType(p)==='Talk / lecture').forEach(p=>{const k=p.subjectRelation||'Connected to my work';counts[k]=(counts[k]||0)+1});
+ host.innerHTML=talkDefs.map(s=>{
+   const n=s.key==='All talks'?blogs.filter(p=>normalizeType(p)==='Talk / lecture').length:(counts[s.key]||0);
+   return '<a href="#" class="talk-subsection '+(talkActive===s.key?'active':'')+'" data-talk-section="'+esc(s.key)+'">'+esc(s.label)+' · '+n+'</a>';
+ }).join('');
+ host.querySelectorAll('[data-talk-section]').forEach(x=>x.onclick=e=>{
+   e.preventDefault();talkActive=x.dataset.talkSection;renderTalkSubsections();renderCards();
  });
 }
 function renderCards(){
- const list=active==='All'?blogs:blogs.filter(p=>normalizeType(p)===active);
+ let list=active==='All'?blogs:blogs.filter(p=>normalizeType(p)===active);
+ if(active==='Talk / lecture' && talkActive!=='All talks') list=list.filter(p=>(p.subjectRelation||'Connected to my work')===talkActive);
  document.getElementById('blogGrid').innerHTML=list.length?list.map((p,i)=>{
    const original=blogs.indexOf(p), media=Array.isArray(p.media)?p.media.filter(x=>x.src):[];
-   return '<a class="blog-card '+(i===0?'featured':'')+'" href="#" data-i="'+original+'"><div><div class="blog-meta">'+esc(p.category||p.type||'Research note')+(p.date?' · '+esc(p.date):'')+'</div><h3>'+esc(p.title||'Untitled')+'</h3><p>'+esc(p.excerpt||String(p.body||'').slice(0,280))+'…</p></div><div><div class="blog-media-count">'+(media.length?media.length+' media item'+(media.length>1?'s':''):'Written note')+' · Open full post ↗</div></div></a>';
- }).join(''):'<div class="empty">No entries in this section yet. New conferences, talks and workshops can be added from the editor.</div>';
+   const relation=active==='Talk / lecture' && p.subjectRelation ? '<span class="blog-meta relation">'+esc(p.subjectRelation)+'</span>' : '';
+   return '<a class="blog-card '+(i===0?'featured':'')+'" href="#" data-i="'+original+'"><div><div class="blog-meta">'+esc(p.category||p.type||'Research note')+(p.date?' · '+esc(p.date):'')+'</div>'+relation+'<h3>'+esc(p.title||'Untitled')+'</h3><p>'+esc(p.excerpt||String(p.body||'').slice(0,280))+'…</p></div><div><div class="blog-media-count">'+(media.length?media.length+' media item'+(media.length>1?'s':''):'Written note')+' · Open full post ↗</div></div></a>';
+ }).join(''):'<div class="empty">No entries in this section yet.</div>';
  document.querySelectorAll('[data-i]').forEach(x=>x.onclick=e=>{e.preventDefault();openPost(blogs[Number(x.dataset.i)])});
 }
 function openPost(p){
@@ -125,9 +150,7 @@ function close(){document.getElementById('reader').classList.remove('open');docu
 document.getElementById('close').onclick=close;document.getElementById('reader').onclick=e=>{if(e.target.id==='reader')close()};document.addEventListener('keydown',e=>{if(e.key==='Escape')close()});
 fetch('content/blogs.json',{cache:'no-store'}).then(r=>r.json()).then(data=>{
  blogs=Array.isArray(data)?data:[];
- const requested=new URLSearchParams(location.search).get('section');
- if(requested && sectionDefs.some(s=>s.key===requested))active=requested;
- renderSectionLinks();renderCards();
+ renderSectionLinks();renderTalkSubsections();renderCards();
 }).catch(()=>{document.getElementById('blogGrid').innerHTML='<div class="empty">The research journal could not be loaded.</div>'});
 </script>
 </body></html>

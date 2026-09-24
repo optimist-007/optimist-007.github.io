@@ -1,26 +1,37 @@
 [
   {
-    "slug":"self-powered-uv-sensing",
-    "kicker":"Selected work · functional nanomaterials",
-    "status":"Completed study",
-    "title":"Self-powered UV sensing with perovskite/polymer nanocomposites",
-    "summary":"Explored fluorescent CsPbBr3@Cs4PbBr6 perovskite/polymer nanocomposites and translated their response into a self-powered UV-sensing device.",
-    "problem":"How can a functional material convert an environmental stimulus into a useful signal without depending on a separate power source?",
-    "approach":"The work connected materials synthesis with structural, optical and device-level characterisation, followed by fabrication and performance analysis.",
-    "details":["Perovskite/polymer nanocomposites","Structural and spectroscopic characterisation","Device fabrication","Self-powered UV sensing"],
-    "what_it_shows":"This project represents the experimental side of my research identity: working across chemistry, materials and device behaviour rather than treating them as separate stages.",
-    "next":"A future direction is to make this kind of workflow more predictive by combining experimental understanding with computational screening."
+    "slug": "self-powered-uv-sensing",
+    "kicker": "Selected work · functional nanomaterials",
+    "status": "Completed study",
+    "title": "Self-powered UV sensing with perovskite/polymer nanocomposites",
+    "summary": "Explored fluorescent CsPbBr3@Cs4PbBr6 perovskite/polymer nanocomposites and translated their response into a self-powered UV-sensing device.",
+    "problem": "How can a functional material convert an environmental stimulus into a useful signal without depending on a separate power source?",
+    "approach": "The work connected materials synthesis with structural, optical and device-level characterisation, followed by fabrication and performance analysis.",
+    "details": [
+      "Perovskite/polymer nanocomposites",
+      "Structural and spectroscopic characterisation",
+      "Device fabrication",
+      "Self-powered UV sensing"
+    ],
+    "what_it_shows": "This project represents the experimental side of my research identity: working across chemistry, materials and device behaviour rather than treating them as separate stages.",
+    "next": "A future direction is to make this kind of workflow more predictive by combining experimental understanding with computational screening."
   },
   {
-    "slug":"ferroelectric-switching",
-    "kicker":"Current research · interfaces & devices",
-    "status":"Ongoing",
-    "title":"Ferroelectric switching and interfacial charge retention",
-    "summary":"Studying how switching behaviour and interfacial charge retention shape the electrical response of ferroelectric thin-film devices.",
-    "problem":"What controls the retention and switching behaviour that determine whether a ferroelectric device is simply interesting or genuinely useful?",
-    "approach":"The work combines thin-film preparation with electrical measurements and analysis of polarisation switching and charge-retention behaviour.",
-    "details":["Ferroelectric thin films","Polarisation and P-E hysteresis","PUND analysis","DC probe-station characterisation","Interface-focused interpretation"],
-    "what_it_shows":"It adds a device-physics and interface perspective to my materials background, with emphasis on understanding the mechanisms behind measured behaviour.",
-    "next":"The longer-term aim is to connect experimental measurements with theoretical and computational approaches so that promising device conditions can be identified earlier."
+    "slug": "ferroelectric-switching",
+    "kicker": "Current research · interfaces & devices",
+    "status": "Ongoing",
+    "title": "Ferroelectric switching and interfacial charge retention",
+    "summary": "Studying how switching behaviour and interfacial charge retention shape the electrical response of ferroelectric thin-film devices.",
+    "problem": "What controls the retention and switching behaviour that determine whether a ferroelectric device is simply interesting or genuinely useful?",
+    "approach": "The work combines thin-film preparation with electrical measurements and analysis of polarisation switching and charge-retention behaviour.",
+    "details": [
+      "Ferroelectric thin films",
+      "Polarisation and P-E hysteresis",
+      "PUND analysis",
+      "DC probe-station characterisation",
+      "Interface-focused interpretation"
+    ],
+    "what_it_shows": "It adds a device-physics and interface perspective to my materials background, with emphasis on understanding the mechanisms behind measured behaviour.",
+    "next": "The longer-term aim is to connect experimental measurements with theoretical and computational approaches so that promising device conditions can be identified earlier."
   }
 ]

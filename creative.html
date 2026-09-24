@@ -324,14 +324,16 @@ const fallback = {
     aside:'This space begins with reviews. Other creative work can arrive when it is ready.'
   },
   featured:{type:'Film or book',title:'',date:'',image:'',excerpt:'',review:'',quote:'',link:''},
-  posts:[], future:[
+  posts:[{"type":"Movie","title":"Jab We Met","date":"","image":"content/images/jab-we-met.webp","excerpt":"","review":"Geet offers Aditya the open space he needed. She opens up about herself, and somehow that makes him feel comfortable enough to share what he is going through when they meet. Later, they bond because both of them reciprocate so naturally.\n\nHe was broken, cheated upon, and at one of the lowest points of his life, yet he still chose his morals. He was with her in fucking Ratlam, in his darkest phase, with so many setbacks, and still decided to go all in and get her home. Somewhere along the way, he realised the beauty, aura, innocence, sweetness and purity that Geet holds.\n\nI feel like he might have fallen in love with her even before she told him about Anshuman. I know this because, at one point in my life, I used to think that people who came into my life during my lowest phases were some kind of sign from the universe that they were meant to love me. I know now that it was completely wrong. They were probably just sent to teach me some lessons. It’s crazy how God knows everything.\n\nAnd I do believe Aditya fell in love with her, but because he knew she loved someone else, he stopped himself. Instead, he worked on himself. It wasn't Geet who gave him the power to rebuild himself. She just listened to him and 'pakkaaved' him with her talks. She gave him the space to open up and find himself again.\n\nAnd he trusted, loved and believed in her so much that he left her, hoping she would be fine with the guy she was in love with. Then, when he gets her back, he could have easily proclaimed his love and said, \"I have grown, be mine.\" But even then, he chose to hear what *she* felt before entering her territory.\n\nHe chose to be humane instead of overpowering her.\n\nHe helped her recover and get back to her family yet again. And finally, she wisely chose Aditya over the guy who just thought she was crazy and didn't even care enough to check whether the girl who had left everything for him was okay or not.\n\nI have watched this movie more than 30 times, and honestly, I think I was searching for Aditya for a very long time.\n\nIt was only after watching 'BKU' that I realised that.\n","quote":"Mein apni faviourte hun","link":""},{"type":"Movie","title":"Obsession","date":"","image":"content/images/obsession.webp","excerpt":"","review":"It shows how anything in excess isn’t good. The guy has feelings for her, and she gets to know it. That’s how girls are, we just somehow get to know these things. She even asks him directly if he has feelings for her, but he gets flustered and says no. Then he wishes for her to become obsessed with him and fall deeply in love with him.\n\nAnd that’s where he gets the karma for asking for too much.\n\nI could see all those little things girls do when they are in love, but because he wished for obsession instead of just normal love, she starts doing everything to an extreme. And I actually liked the ending. I feel like the guy could have gotten a second chance for the mistake he made, but then again, life isn’t always fair. He dies in the end, and the girl, completely consumed by her obsession and rage, ends up killing her two friends. In all that trauma, the guy kills himself, and the wish that had turned into wrath and ruined the lives of four people is finally released. The girl who was possessed by that wish comes back to normal.\n\nThat was my insight when I watched the movie for the first time. But when I watched it again, I had a completely different perspective. It almost felt like I was watching a different movie altogether.\n\nI do feel, though, that the way the storyline is presented makes it feel more like watching a vlog than an actual movie.\n","quote":"\"No! No! No! Don't do that! I thought we were having a nice day!\"","link":""}],
+  future:[
     {title:'Stories',text:'A future doorway to fiction and Wattpad work.'},
     {title:'Visual practice',text:'Painting and visual experiments can arrive later.'},
     {title:'Other forms',text:'Space reserved without pressure to fill it.'}
   ],
   currentlyObsessed:[],
   theme:{paper:'#eee8dc',ink:'#342b2b',wine:'#6a3044',gold:'#9b783d'},
-  comments:'true'
+  comments:'true',
+  mediaEntries:[{"collection":"journal","mediaType":"Journal entry","title":"On kindness, boundaries & moving on","date":"","text":"I’ve had this same opinion for a long time. But they got access to our lives because we allowed them to, so I don’t think they are completely at fault either.\n\nI’ve been told several times that I tend to view the world the way I view myself, and I think that is exactly why I’ve been betrayed on several occasions. I truly understood what that meant eventually. Being too kind, warm and soft with the wrong people can lead to unnecessary pain and scars that stay with us for a lifetime.\n\nBut I also believe we have to forgive them and focus on ourselves. If God, who is superior to all of us, forgives our sins and gives us another day to unlearn, learn and relearn, then who are we to hold on to these trivial matters forever?\n\nAnd honestly, holding on to feelings from the past can hurt our present more than the people who caused them ever did. To me, that is a bigger blunder than letting these people into our lives in the first place.\n\nI actually appreciate that such people exist in our lives because they teach us that being too kind can also be injurious. There has to be a balance. Sometimes we keep committing to things forever simply because we are constantly thinking about everyone else. But these people teach us that it is okay to take a stand for yourself before anybody else.\n\nThere’s one catch, though. These ruthless people should have the ability to understand and imbibe the kindness they receive, but most of them never will. And honestly, that’s their loss. Because without learning that, they can never really build stable, long-term relationships with people.\n\nWe learn, we understand, and we move ahead. That’s all.\n\nThere’s so much more I could add to this. I’ll probably add it someday soon.","image":"","video":"","audio":"","alt":"","enabled":true},{"collection":"journal","mediaType":"Journal entry","title":"New entry","date":"","text":"","image":"","video":"","audio":"","alt":"","enabled":true}]
 };
 
 const $ = id => document.getElementById(id);
@@ -461,6 +463,15 @@ function renderFuture(d){
   $('futureList').innerHTML = future.map((r,i)=>
     '<article class="archive-card reveal"><div class="tiny-label">0'+(i+1)+' · coming later</div><h3>'+esc(r.title||'Untitled')+'</h3><p>'+nl(r.text||'')+'</p></article>'
   ).join('');
+}
+
+function renderCustomSections(d){
+  const host=$('studioCreativeSections');
+  const sections=Array.isArray(d.__site?.customSections)?d.__site.customSections.filter(x=>x&&x.enabled!==false):[];
+  if(!sections.length){host.innerHTML='';return;}
+  host.innerHTML=sections.map(function(s){
+    return '<section class="studio-creative-section reveal"><div class="eyebrow">'+esc(s.eyebrow||'Journal')+'</div><h2>'+esc(s.title||'Untitled')+'</h2>'+(s.text?'<p>'+nl(s.text)+'</p>':'')+(s.linkUrl?'<p><a href="'+esc(s.linkUrl)+'" target="_blank" rel="noopener">'+esc(s.linkLabel||'Open ↗')+'</a></p>':'')+'</section>';
+  }).join('');
 }
 
 function renderMediaShelves(d){
@@ -620,6 +631,13 @@ async function load(){
   setupHeader(d);
   createFilters();
   renderReviews();
+  renderCustomSections(d);
+  const customHost=$('studioCreativeSections');
+  const reviewSection=$('reviews');
+  const mediaSection=$('creativeMedia');
+  if(customHost && reviewSection && mediaSection){
+    reviewSection.after(customHost);
+  }
   renderObsessions(d);
   renderMediaShelves(d);
   setupComments(d);

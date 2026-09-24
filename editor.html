@@ -716,6 +716,7 @@ function normalize(){
   if(!Array.isArray(state.publicationsSite.directions))state.publicationsSite.directions=[];
   if(!state.creative)state.creative={};
   if(!Array.isArray(state.creative.posts))state.creative.posts=[];
+  state.creative.posts.forEach(function(p){if(!Array.isArray(p.media))p.media=[];});
   if(!Array.isArray(state.creative.currentlyObsessed))state.creative.currentlyObsessed=[];
   if(!Array.isArray(state.creative.future))state.creative.future=[];
   if(!Array.isArray(state.creative.mediaEntries))state.creative.mediaEntries=[];
@@ -961,6 +962,17 @@ function renderCreative(){
       field('Full piece / review','posts.'+i+'.review',p.review,true)+
       field('Favourite quote','posts.'+i+'.quote',p.quote,true)+
       field('External link','posts.'+i+'.link',p.link)+
+      '<h3 style="margin-top:24px">Media inside this review</h3>'+
+      '<p class="small">Add images, video clips or audio / voice notes. Each item can have a caption and alt text.</p>'+
+      '<div class="post-media-list">'+(Array.isArray(p.media)?p.media.map(function(m,j){
+        return '<div class="card" style="background:#fbf8ef"><div class="cardhead"><b>Media '+(j+1)+'</b><button class="danger remove-post-media" data-post="'+i+'" data-media="'+j+'">Remove</button></div>'+
+          '<div class="field"><label>Type</label><select data-post-media-type="'+i+'" data-media-index="'+j+'"><option value="image" '+(m.type==='image'?'selected':'')+'>Image</option><option value="video" '+(m.type==='video'?'selected':'')+'>Video</option><option value="audio" '+(m.type==='audio'?'selected':'')+'>Audio / voice note</option></select></div>'+
+          field('Path or URL','posts.'+i+'.media.'+j+'.src',m.src||'')+
+          field('Caption','posts.'+i+'.media.'+j+'.caption',m.caption||'')+
+          field('Alt text','posts.'+i+'.media.'+j+'.alt',m.alt||'')+
+          '<div class="field"><label>Upload media</label><input type="file" accept="'+(m.type==='video'?'video/*':m.type==='audio'?'audio/*':'image/*')+'" data-post-media-file="'+i+'" data-media-index="'+j+'"><div class="small">Attached when you publish.</div></div></div>';
+      }).join(''):'')+'</div>'+
+      '<div class="row"><button class="secondary add-post-media" data-index="'+i+'">+ Add media</button></div>'+
       '</div>';
   }).join('');
   bind($('posts'),c);
@@ -1026,6 +1038,10 @@ function wirePostControls(){
   for(var i=0;i<selects.length;i++){
     (function(el){el.addEventListener('change',function(){state.creative.posts[Number(el.getAttribute('data-post-type'))].type=el.value;});})(selects[i]);
   }
+  $('posts').querySelectorAll('.add-post-media').forEach(function(el){el.addEventListener('click',function(){var idx=Number(el.getAttribute('data-index'));state.creative.posts[idx].media.push({type:'image',src:'',caption:'',alt:''});renderCreative();});});
+  $('posts').querySelectorAll('.remove-post-media').forEach(function(el){el.addEventListener('click',function(){var pi=Number(el.getAttribute('data-post')),mi=Number(el.getAttribute('data-media'));state.creative.posts[pi].media.splice(mi,1);renderCreative();});});
+  $('posts').querySelectorAll('[data-post-media-type]').forEach(function(el){el.addEventListener('change',function(){var pi=Number(el.getAttribute('data-post-media-type')),mi=Number(el.getAttribute('data-media-index'));state.creative.posts[pi].media[mi].type=el.value;renderCreative();});});
+  $('posts').querySelectorAll('[data-post-media-file]').forEach(function(el){el.addEventListener('change',function(){var file=el.files&&el.files[0];if(!file)return;var rd=new FileReader();rd.onload=function(){var pi=Number(el.getAttribute('data-post-media-file')),mi=Number(el.getAttribute('data-media-index'));state.creative.posts[pi].media[mi].src=rd.result;state.creative.posts[pi].media[mi]._uploadName=file.name;status('Review media attached. Publish to upload it.');};rd.readAsDataURL(file);});});
   var files=$('posts').querySelectorAll('[data-post-file]');
   for(var j=0;j<files.length;j++){
     (function(el){
@@ -1350,6 +1366,21 @@ async function publish(){
 
     for(var i=0;i<state.creative.posts.length;i++){
       var post=state.creative.posts[i];
+      if(!Array.isArray(post.media))post.media=[];
+      for(var pmi=0;pmi<post.media.length;pmi++){
+        var pm=post.media[pmi];
+        if(String(pm.src||'').indexOf('data:')===0){
+          var ps=(post.title||'review').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'').slice(0,48)||'review';
+          var mt=pm.type||'image';
+          var mime=((String(pm.src).match(/^data:([^;]+);/)||[])[1]||'application/octet-stream');
+          var pe=(mime.split('/')[1]||'bin').toLowerCase();
+          if(pe==='jpeg')pe='jpg'; if(pe==='mpeg')pe='mp3'; if(pe==='quicktime')pe='mov';
+          var pp='content/media/review-'+ps+'-'+(pmi+1)+'-'+mt+'.'+pe;
+          await putBinaryDataUrl(pp,pm.src,msg);
+          pm.src=pp;
+          delete pm._uploadName;
+        }
+      }
       if(String(post.image||'').indexOf('data:image/')===0){
         var safe=(post.title||'image').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'').slice(0,55)||'image';
         var ext=(post.image.match(/^data:image\/([^;]+)/)||[])[1]||'png';

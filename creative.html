@@ -652,7 +652,7 @@ function renderJournalShelf(d){
     const hasText=String(x.text||'').trim();
     const preview=hasText ? String(x.text).split(/\\s+/).slice(0,28).join(' ')+'…' : '';
     return '<article class="media-entry journal-card reveal" tabindex="0" role="button" aria-label="Open '+esc(x.title||'Journal entry')+'" data-journal-title="'+esc(x.title||'Journal entry')+'">'+
-      '<div class="journal-thumb"><div class="media-kind">Journal entry</div><div class="journal-thumb-title">'+esc(x.title||'Untitled')+'</div><div class="journal-thumb-mark">↗</div></div>'+
+      '<div class="journal-thumb">'+(x.image?'<img src="'+esc(x.image)+'" alt="'+esc(x.alt||x.title||'Creative media')+'" loading="lazy">':'')+'<div class="media-kind">'+esc(x.mediaType||'Creative entry')+'</div><div class="journal-thumb-title">'+esc(x.title||'Untitled')+'</div><div class="journal-thumb-mark">↗</div></div>'+
       '<div class="journal-card-copy"><div class="media-kind">'+esc(x.mediaType||'Entry')+(x.date?' · '+esc(x.date):'')+'</div>'+
       '<h3>'+esc(x.title||'Untitled')+'</h3>'+
       (preview?'<p>'+esc(preview)+'</p>':'')+
@@ -665,7 +665,7 @@ function renderJournalShelf(d){
     const open=function(){
       const title=card.getAttribute('data-journal-title')||'Journal entry';
       const body=card.querySelector('.journal-full')?.innerHTML||'';
-      $('dialogImage').innerHTML='<div class="journal-modal-cover"><div class="media-kind">Journal / random thoughts</div><strong>'+esc(title)+'</strong></div>';
+      $('dialogImage').innerHTML=(card.querySelector('.journal-thumb img')?'<img class="creative-modal-image" src="'+esc(card.querySelector('.journal-thumb img').getAttribute('src')||'')+'" alt="'+esc(title)+'">':'')+'<div class="journal-modal-cover"><div class="media-kind">'+esc(card.querySelector('.media-kind')?.textContent||'Creative entry')+'</div><strong>'+esc(title)+'</strong></div>';
       $('dialogContent').innerHTML='<div class="eyebrow">Journal entry</div><h2>'+esc(title)+'</h2><div class="review-body">'+body+'</div>';
       $('modal').classList.add('open');
       $('modal').setAttribute('aria-hidden','false');

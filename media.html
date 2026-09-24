@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Media | Simran Sainand Revankar</title>
+<link rel="stylesheet" href="assets/research-readable.css?v=1">
+<style>
+.media-showcase{padding:0 0 70px}
+.media-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px}
+.media-card{background:#f8f7f3;border:1px solid rgba(36,41,35,.12);padding:16px;box-shadow:0 12px 30px rgba(36,41,35,.08)}
+.media-card img,.media-card video{width:100%;display:block;max-height:520px;object-fit:contain;background:#ece9e2}
+.media-card video{max-height:520px}
+.media-card h3{margin:13px 0 5px}
+.media-card p{margin:0;color:#667069}
+.media-kind{font:600 .68rem/1.2 "DM Mono",monospace;text-transform:uppercase;letter-spacing:.12em;color:#37624f}
+.media-empty{padding:35px 0;color:#667069}
+@media(max-width:800px){.media-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header class="site-header"><div class="wrap nav">
+<a class="brand" href="index.html">Simran Sainand Revankar</a>
+<nav class="nav-links">
+<a href="index.html">Research</a><a href="projects.html">Projects</a><a href="blogs.html">Blogs</a>
+<a class="active" href="media.html">Media</a><a href="publications.html">Publications</a>
+<a href="media/docs/CV.pdf">CV ↗</a><a class="creative-link" href="creative.html">Creative side ↗</a>
+</nav>
+<a class="menu-note" href="creative.html">Creative side ↗</a>
+</div></header>
+
+<main>
+<div class="wrap page-hero">
+<div><a class="backlink" href="index.html">← Home</a><div class="eyebrow">Visual archive</div>
+<h1>Things worth showing.</h1>
+<p class="hero-lead">Images, experiments, devices, research moments and video notes. A visual record for the work that is easier to understand when you can actually see it.</p></div>
+<div class="index-box">This is the visual shelf. No long explanations required.</div>
+</div>
+
+<section class="section media-showcase"><div class="wrap">
+<div class="eyebrow">Images</div><h2>Research gallery</h2>
+<div class="media-grid" id="gallery"></div>
+<div style="margin-top:60px"><div class="eyebrow">Video</div><h2>Video notes</h2>
+<div class="media-grid" id="videos"></div></div>
+</div></section>
+</main>
+<footer class="wrap site-footer"><span>Visual research archive</span><a href="creative.html">Creative side ↗</a></footer>
+
+<script>
+const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+function imageCard(x){
+ const src=x.path||x.image||x.src||x.url||'';
+ if(!src)return '';
+ return '<article class="media-card"><div class="media-kind">Image</div><img src="'+esc(src)+'" alt="'+esc(x.alt||x.caption||x.title||'Research image')+'" loading="lazy"><h3>'+esc(x.name||x.title||'Research image')+'</h3>'+(x.caption?'<p>'+esc(x.caption)+'</p>':'')+'</article>';
+}
+function videoCard(x){
+ const src=x.video||x.src||x.url||x.link||'';
+ if(!src)return '';
+ const isEmbed=/youtube\.com|youtu\.be|vimeo\.com/.test(src);
+ return '<article class="media-card"><div class="media-kind">Video</div>'+
+ (isEmbed?'<p style="padding:35px 0"><a href="'+esc(src)+'" target="_blank" rel="noopener">Watch video ↗</a></p>':'<video controls preload="metadata" src="'+esc(src)+'"></video>')+
+ '<h3>'+esc(x.title||'Video note')+'</h3>'+(x.description||x.caption?'<p>'+esc(x.description||x.caption)+'</p>':'')+'</article>';
+}
+async function load(){
+ try{
+  const [m,c]=await Promise.all([
+   fetch('content/media-library.json?v='+Date.now(),{cache:'no-store'}).then(r=>r.ok?r.json():[]),
+   fetch('content/creative-content.json?v='+Date.now(),{cache:'no-store'}).then(r=>r.ok?r.json():{})
+  ]);
+  const images=Array.isArray(m)?m:(Array.isArray(m.images)?m.images:[]);
+  const creative=Array.isArray(c.mediaEntries)?c.mediaEntries:[];
+  const posts=Array.isArray(c.posts)?c.posts:[];
+  const allImages=images.concat(creative.filter(x=>x.enabled!==false&&x.image).map(x=>({image:x.image,title:x.title,alt:x.alt,caption:x.text})));
+  const allVideos=creative.filter(x=>x.enabled!==false&&x.video).map(x=>({video:x.video,title:x.title,caption:x.text}));
+  posts.forEach(p=>(p.media||[]).forEach(x=>{if(x.type==='image'&&x.src)allImages.push({image:x.src,title:p.title,alt:x.alt,caption:x.caption});if(x.type==='video'&&x.src)allVideos.push({video:x.src,title:p.title,caption:x.caption});}));
+  document.getElementById('gallery').innerHTML=allImages.map(imageCard).join('')||'<div class="media-empty">Add images from the editor and they will appear here.</div>';
+  document.getElementById('videos').innerHTML=allVideos.map(videoCard).join('')||'<div class="media-empty">Add video clips from the editor and they will appear here.</div>';
+ }catch(e){
+  document.getElementById('gallery').innerHTML='<div class="media-empty">The visual archive is ready for its first upload.</div>';
+  document.getElementById('videos').innerHTML='<div class="media-empty">The video shelf is ready for its first upload.</div>';
+ }
+}
+load();
+</script>
+</body></html>

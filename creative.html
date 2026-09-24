@@ -222,6 +222,8 @@ h3{font-size:clamp(2rem,3.5vw,3.5rem);line-height:.9;margin:7px 0 12px}
     <div class="ticker" id="ticker"></div>
   </div>
 
+  <div id="studioCreativeSections"></div>
+
   <section class="section" id="reviews">
     <div class="section-head reveal">
       <div>
@@ -272,8 +274,6 @@ h3{font-size:clamp(2rem,3.5vw,3.5rem);line-height:.9;margin:7px 0 12px}
     </div>
     <div class="archive-strip" id="futureList"></div>
   </section>
-
-  <div id="studioCreativeSections"></div>
 
   <section class="section" id="creativeMedia">
     <div class="section-head reveal">
@@ -607,7 +607,6 @@ async function load(){
   if(creativeMain){
     sectionOrder.forEach(id=>{const el=sectionMap[id];if(el&&d.__site?.sections?.[id]?.enabled!==false)creativeMain.appendChild(el);});
     Object.entries(sectionMap).forEach(([id,el])=>{if(el)el.style.display=d.__site?.sections?.[id]?.enabled===false?'none':'';});
-    const custom=document.getElementById('studioCreativeSections');if(custom)creativeMain.appendChild(custom);
   }
   const cs=document.getElementById('studioCreativeSections');
   if(cs)cs.innerHTML=(d.__site?.customSections||[]).filter(s=>s.enabled!==false).map(s=>'<section class="studio-creative-section"><div class="eyebrow">'+esc(s.eyebrow||'')+'</div><h2>'+esc(s.title||'')+'</h2><p>'+nl(s.text||'')+'</p>'+(s.link?'<a href="'+esc(s.link)+'">'+esc(s.linkLabel||'Explore ↗')+'</a>':'')+'</section>').join('');

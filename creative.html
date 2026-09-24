@@ -74,7 +74,6 @@ h3{font-size:clamp(2rem,3.5vw,3.5rem);line-height:.9;margin:7px 0 12px}
   background:linear-gradient(145deg,#2f2828,#4b3c3b);overflow:hidden;box-shadow:var(--shadow);transform:rotate(var(--studio-poster-rotation,-1.2deg));
   transition:transform .35s ease
 }
-.image-open{display:block;color:inherit;text-decoration:none}.image-open img{cursor:zoom-in}.image-open:focus{outline:2px solid var(--wine);outline-offset:3px}
 .poster img{width:100%;height:100%;object-fit:contain;display:block;position:relative;z-index:1}
 .poster-fallback{position:absolute;inset:0;display:grid;place-items:center;padding:35px;text-align:center;color:var(--paper);z-index:0}
 .poster-fallback strong{font-family:var(--serif);font-size:4rem;font-weight:500;line-height:.8}
@@ -179,7 +178,7 @@ h3{font-size:clamp(2rem,3.5vw,3.5rem);line-height:.9;margin:7px 0 12px}
   *,*:before,*:after{scroll-behavior:auto!important;animation:none!important;transition:none!important}
 }
 
-.loose-pages{margin-top:32px}.loose-pages .section-head{margin-bottom:14px}.loose-pages .section-head h2{font-size:clamp(2rem,3.5vw,3.4rem)}.loose-pages .section-kicker{font-size:.82rem}.loose-pages .studio-creative-section{margin-top:28px;padding:28px 0;}.studio-creative-section{margin-top:80px;padding:55px 0;border-top:1px solid var(--line)}
+.studio-creative-section{margin-top:80px;padding:55px 0;border-top:1px solid var(--line)}
 .studio-creative-section h2{font-size:clamp(2.8rem,5vw,5.2rem)}
 .studio-creative-section p{max-width:760px;color:var(--muted);white-space:pre-wrap}
 .studio-creative-section a{font-family:var(--mono);font-size:.72rem;text-transform:uppercase;letter-spacing:.12em}
@@ -192,13 +191,30 @@ h3{font-size:clamp(2rem,3.5vw,3.5rem);line-height:.9;margin:7px 0 12px}
 .media-entry audio{width:100%;margin-top:15px}
 @media(max-width:760px){.media-shelf{grid-template-columns:1fr}}
 
-.loose-pages{margin-top:28px!important}.loose-pages-link{
-  display:flex;align-items:center;justify-content:space-between;gap:24px;
-  padding:22px 26px;background:var(--paper-2);border:1px solid var(--line);
-  color:inherit;text-decoration:none;box-shadow:7px 7px 0 rgba(106,48,68,.07);
-  transition:transform .2s ease,box-shadow .2s ease
-}.loose-pages-link:hover{transform:translateY(-3px);box-shadow:10px 10px 0 rgba(106,48,68,.09)}
-.loose-pages-link h2{font-size:clamp(2rem,3.5vw,3.5rem);margin:5px 0}.loose-pages-link p{margin:0;color:var(--muted);font-size:.9rem}.loose-arrow{font:3rem var(--serif);color:var(--wine)}
+.journal-shelf{margin-top:34px;padding-top:0}
+.journal-shelf.studio-creative-section{margin-top:0;padding:34px 0 0;border-top:0}
+.journal-shelf h2{font-size:clamp(2rem,3.4vw,3.4rem);margin:.15em 0}
+.journal-shelf>p{font-size:.95rem;margin:0 0 18px}
+.journal-shelf .media-shelf{grid-template-columns:minmax(280px,520px)}
+.journal-card{display:grid;grid-template-columns:150px 1fr;gap:18px;align-items:stretch;padding:12px;cursor:pointer;transition:transform .2s ease,box-shadow .2s ease}
+.journal-card:hover{transform:translateY(-3px);box-shadow:0 16px 35px rgba(52,43,43,.12)}
+.journal-card:focus{outline:2px solid var(--wine);outline-offset:3px}
+.journal-thumb{min-height:150px;padding:16px;background:linear-gradient(145deg,#d9cdbb,#f5f0e7);display:flex;flex-direction:column;justify-content:space-between;border:1px solid var(--line)}
+.journal-thumb-title{font:500 1.35rem/1.05 var(--serif);color:var(--ink)}
+.journal-thumb-mark{font:1.2rem var(--sans);text-align:right;color:var(--wine)}
+.journal-card-copy{padding:8px 4px}
+.journal-card-copy h3{margin:6px 0 8px;font-size:1.45rem}
+.journal-card-copy p{margin:0 0 12px;color:var(--muted);font-size:.88rem;line-height:1.55}
+.journal-full{display:none}
+.journal-modal-cover{min-height:260px;padding:30px;background:linear-gradient(145deg,#d9cdbb,#f5f0e7);display:flex;flex-direction:column;justify-content:space-between;color:var(--ink)}
+.journal-modal-cover strong{font:500 clamp(2rem,4vw,4rem)/1 var(--serif)}
+@media(max-width:760px){.journal-shelf .media-shelf{grid-template-columns:1fr}.journal-card{grid-template-columns:105px 1fr}.journal-thumb{min-height:125px;padding:12px}.journal-thumb-title{font-size:1.05rem}}
+
+.review-media{margin-top:28px;display:grid;gap:18px}
+.review-media figure{margin:0}
+.review-media img,.review-media video{display:block;width:100%;max-height:520px;object-fit:cover}
+.review-media audio{display:block;width:100%}
+.review-media figcaption{margin-top:7px;color:var(--muted);font-size:.9rem;white-space:pre-wrap}
 </style>
 </head>
 <body>
@@ -209,7 +225,6 @@ h3{font-size:clamp(2rem,3.5vw,3.5rem);line-height:.9;margin:7px 0 12px}
       <div class="topnav">
         <a href="https://optimist-007.github.io/">Research ↗</a>
         <a href="#reviews">Reviews</a>
-        <a href="#quotes">Quotes</a>
         <a href="#obsessions">Now</a>
       </div>
     </div>
@@ -231,6 +246,8 @@ h3{font-size:clamp(2rem,3.5vw,3.5rem);line-height:.9;margin:7px 0 12px}
     <div class="ticker" id="ticker"></div>
   </div>
 
+  <div id="studioCreativeSections"></div>
+
   <section class="section" id="reviews">
     <div class="section-head reveal">
       <div>
@@ -243,17 +260,32 @@ h3{font-size:clamp(2rem,3.5vw,3.5rem);line-height:.9;margin:7px 0 12px}
     <div id="reviewList"></div>
   </section>
 
-  <div id="studioCreativeSections"></div>
-
-  <section class="section loose-pages" id="creativeMedia">
-    <a class="loose-pages-link" href="#creativeMedia" aria-label="Open Loose Pages">
+  <section class="section" id="creativeMedia">
+    <div class="section-head reveal">
       <div>
         <div class="eyebrow">Loose pages</div>
         <h2>Things I make, keep and collect.</h2>
-        <p>Click to open the creative archive.</p>
       </div>
-      <span class="loose-arrow">↗</span>
-    </a>
+      <p class="section-kicker">Some things are better as a voice note, photograph, recipe, travel fragment or a small record of the places I have worked.</p>
+    </div>
+    <div id="mediaShelves"></div>
+  </section>
+
+  <section class="section" id="obsessions">
+    <div class="section-head reveal">
+      <div>
+        <div class="eyebrow">Current page</div>
+        <h2>Currently obsessed with.</h2>
+      </div>
+      <p class="section-kicker">This can hold a film, a book, a writer, a song, a sentence, or whatever has taken up too much room in your head lately.</p>
+    </div>
+    <div class="obsession-board">
+      <div class="obsession-label reveal">
+        <div class="tiny-label">right now</div>
+        <h2>What is<br>occupying<br>the brain.</h2>
+      </div>
+      <div class="obsession-items" id="obsessionItems"></div>
+    </div>
   </section>
 
   <section class="section" id="comments">
@@ -338,7 +370,7 @@ function setupHeader(d){
   const count = allPosts.length;
   const movies = allPosts.filter(p=>cleanType(p.type)==='Movie').length;
   const books = allPosts.filter(p=>cleanType(p.type)==='Book').length;
-  $('archiveCount').textContent = count + ' ' + (count===1?'entry':'entries') + ' · ' + movies + ' movies · ' + books + ' books · more rooms still open';
+  $('archiveCount').textContent = count + ' ' + (count===1?'entry':'entries') + ' · ' + movies + ' movies · ' + books + ' books';
   const tickerBits = [
     'films','books','favourite lines','current obsessions','stories','visual scraps','things worth returning to'
   ];
@@ -347,7 +379,7 @@ function setupHeader(d){
 
 function imageBlock(src,title){
   if(!src) return '<div class="poster-fallback"><strong>'+esc(initial(title))+'</strong></div>';
-  return '<a href="'+esc(src)+'" target="_blank" rel="noopener" class="image-open" title="Open image"><img src="'+esc(src)+'" alt="'+esc(title || 'Poster')+'" loading="lazy" onerror="this.style.display=\'none\'"></a>';
+  return '<img src="'+esc(src)+'" alt="'+esc(title || 'Poster')+'" loading="lazy" onerror="this.style.display=\'none\'">';
 }
 
 function createFilters(){
@@ -408,28 +440,6 @@ function renderReviews(){
   });
 }
 
-function renderJournal(d){
-  const entries=Array.isArray(d.mediaEntries)?d.mediaEntries.filter(x=>String(x.collection||'').toLowerCase()==='journal'&&x.enabled!==false):[];
-  const entry=entries.find(x=>String(x.title||'').toLowerCase().includes('kindness')) || entries[0];
-  const host=$('journalContent');
-  if(!host)return;
-  if(!entry||!entry.text){host.innerHTML='<p class="meta">Nothing here yet.</p>';return;}
-  host.innerHTML='<div class="review-body">'+nl(entry.text)+'</div>';
-}
-
-function renderQuotes(){
-  const quotes = allPosts.filter(p=>String(p.quote||'').trim());
-  if(!quotes.length){
-    $('quoteGrid').innerHTML = '<div class="quote-card"><div class="tiny-label">Waiting for a line</div><blockquote>Some sentences will eventually earn their own wall here.</blockquote></div>';
-    return;
-  }
-  $('quoteGrid').innerHTML = quotes.map(p=>{
-    return '<article class="quote-card reveal">'+
-      '<blockquote>'+nl(String(p.quote).replace(/^["“]|["”]$/g,''))+'</blockquote>'+
-      '<div class="meta">'+esc(cleanType(p.type))+' · '+esc(p.title || 'Untitled')+'</div>'+
-    '</article>';
-  }).join('');
-}
 
 function renderObsessions(d){
   const items = Array.isArray(d.currentlyObsessed) ? d.currentlyObsessed : [];
@@ -448,9 +458,7 @@ function renderObsessions(d){
 
 function renderFuture(d){
   const future = Array.isArray(d.future) ? d.future : [];
-  const host = $('futureList');
-  if(!host)return;
-  host.innerHTML = future.map((r,i)=>
+  $('futureList').innerHTML = future.map((r,i)=>
     '<article class="archive-card reveal"><div class="tiny-label">0'+(i+1)+' · coming later</div><h3>'+esc(r.title||'Untitled')+'</h3><p>'+nl(r.text||'')+'</p></article>'
   ).join('');
 }
@@ -468,21 +476,37 @@ function renderMediaShelves(d){
   const chunks=groups.map(function(g){
     const items=entries.filter(function(x){return String(x.collection||'').toLowerCase()===g[0];});
     if(!items.length)return '';
-    return '<section class="studio-creative-section">'+
+    return '<section class="journal-shelf studio-creative-section">'+
       '<div class="eyebrow">'+esc(g[1])+'</div><h2>'+esc(g[1])+'.</h2><p>'+esc(g[2])+'</p>'+
       '<div class="media-shelf">'+items.map(function(x){
-        return '<article class="media-entry reveal">'+
-          '<div class="media-kind">'+esc(x.mediaType||'Entry')+(x.date?' · '+esc(x.date):'')+'</div>'+
+        const hasText=String(x.text||'').trim();
+        const preview=hasText ? String(x.text).split(/\s+/).slice(0,28).join(' ')+'…' : '';
+        return '<article class="media-entry journal-card reveal" tabindex="0" role="button" aria-label="Open '+esc(x.title||'Journal entry')+'" data-journal-title="'+esc(x.title||'Journal entry')+'">'+
+          '<div class="journal-thumb"><div class="media-kind">Journal entry</div><div class="journal-thumb-title">'+esc(x.title||'Untitled')+'</div><div class="journal-thumb-mark">↗</div></div>'+
+          '<div class="journal-card-copy"><div class="media-kind">'+esc(x.mediaType||'Entry')+(x.date?' · '+esc(x.date):'')+'</div>'+
           '<h3>'+esc(x.title||'Untitled')+'</h3>'+
-          (x.text?'<div class="media-caption">'+nl(x.text)+'</div>':'')+
-          (x.image?'<img src="'+esc(x.image)+'" alt="'+esc(x.alt||x.title||'Creative image')+'" loading="lazy">':'')+
-          (x.video?'<video controls preload="metadata" src="'+esc(x.video)+'"></video>':'')+
-          (x.audio?'<audio controls preload="metadata" src="'+esc(x.audio)+'"></audio>':'')+
-          '</article>';
+          (preview?'<p>'+esc(preview)+'</p>':'')+
+          '<span class="read-link">Open entry <span>↗</span></span></div>'+
+          '<div class="journal-full" hidden>'+nl(x.text||'')+'</div>'+
+        '</article>';
       }).join('')+
       '</div></section>';
   }).join('');
   $('mediaShelves').innerHTML=chunks||'<div class="empty-review">Your shelves are ready. Add the first piece from the editor.</div>';
+
+  $('mediaShelves').querySelectorAll('.journal-card').forEach(function(card){
+    const open=function(){
+      const title=card.getAttribute('data-journal-title')||'Journal entry';
+      const body=card.querySelector('.journal-full')?.innerHTML||'';
+      $('dialogImage').innerHTML='<div class="journal-modal-cover"><div class="media-kind">Journal / random thoughts</div><strong>'+esc(title)+'</strong></div>';
+      $('dialogContent').innerHTML='<div class="eyebrow">Journal entry</div><h2>'+esc(title)+'</h2><div class="review-body">'+body+'</div>';
+      $('modal').classList.add('open');
+      $('modal').setAttribute('aria-hidden','false');
+      document.body.style.overflow='hidden';
+    };
+    card.addEventListener('click',open);
+    card.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();open();}});
+  });
 }
 
 function openReview(r){
@@ -493,9 +517,12 @@ function openReview(r){
     (r.date?'<div class="meta">'+esc(r.date)+'</div>':'')+
     (r.review?'<div class="review-body">'+nl(r.review)+'</div>':'<p class="meta">No full review text yet.</p>')+
     (r.quote?'<div class="dialog-quote">'+nl(r.quote)+'</div>':'')+
-    (r.image?'<p><a class="read-link" href="'+esc(r.image)+'" target="_blank" rel="noopener">Open image ↗</a></p>':'')+
-    (r.video?'<video controls preload="metadata" src="'+esc(r.video)+'" style="width:100%;margin-top:20px"></video>':'')+
-    (r.audio?'<audio controls preload="metadata" src="'+esc(r.audio)+'" style="width:100%;margin-top:20px"></audio>':'')+
+    (Array.isArray(r.media)&&r.media.length?'<div class="review-media">'+r.media.map(function(m){
+      const type=m.type||'image';
+      if(type==='video') return '<figure><video controls preload="metadata" src="'+esc(m.src||'')+'"></video>'+(m.caption?'<figcaption>'+nl(m.caption)+'</figcaption>':'')+'</figure>';
+      if(type==='audio') return '<figure><audio controls preload="metadata" src="'+esc(m.src||'')+'"></audio>'+(m.caption?'<figcaption>'+nl(m.caption)+'</figcaption>':'')+'</figure>';
+      return '<figure><img src="'+esc(m.src||'')+'" alt="'+esc(m.alt||m.caption||r.title||'Review image')+'" loading="lazy">'+(m.caption?'<figcaption>'+nl(m.caption)+'</figcaption>':'')+'</figure>';
+    }).join('')+'</div>':'')+
     (r.link?'<p style="margin-top:25px"><a class="read-link" href="'+esc(r.link)+'" target="_blank" rel="noopener">Open external link ↗</a></p>':'');
   $('modal').classList.add('open');
   $('modal').setAttribute('aria-hidden','false');
@@ -541,13 +568,12 @@ function setupComments(d){
 async function load(){
   try{
     let content=null,site=null;
-    const res=await fetch('./content/creative-content.json?v='+Date.now(),{cache:'no-store'});
-    if(!res.ok)throw new Error('Content file not found');
-    content=await res.json();
     try{
-      const sr=await fetch('./content/creative-site.json?v='+Date.now(),{cache:'no-store'});
-      if(sr.ok)site=await sr.json();
+      const p=localStorage.getItem('websiteStudioPreview');
+      if(p){const x=JSON.parse(p);content=x?.files?.['content/creative-content.json']||null;site=x?.files?.['content/creative-site.json']||null;}
     }catch(e){}
+    if(!content){const res=await fetch('./content/creative-content.json?v='+Date.now(),{cache:'no-store'});if(!res.ok)throw new Error('Content file not found');content=await res.json();}
+    if(!site){try{const sr=await fetch('./content/creative-site.json?v='+Date.now(),{cache:'no-store'});if(sr.ok)site=await sr.json();}catch(e){}}
     content.__site=site||{};
     return content;
   }catch(err){
@@ -580,26 +606,25 @@ async function load(){
   if(design.sectionSpacing)root.style.setProperty('--studio-section-space',design.sectionSpacing+'px');
   if(design.posterHeight)root.style.setProperty('--studio-poster-height',design.posterHeight+'vh');
   if(design.posterRotation!==undefined)root.style.setProperty('--studio-poster-rotation',design.posterRotation+'deg');
-  const sectionOrder=['reviews','comments'];
+  const sectionOrder=d.__site?.order||['reviews','obsessions','comments'];
   const sectionMap={
     reviews:document.getElementById('reviews'),
+    obsessions:document.getElementById('obsessions'),
     comments:document.getElementById('comments')
   };
   const creativeMain=document.querySelector('main');
   if(creativeMain){
     sectionOrder.forEach(id=>{const el=sectionMap[id];if(el&&d.__site?.sections?.[id]?.enabled!==false)creativeMain.appendChild(el);});
-    Object.entries(sectionMap).forEach(([id,el])=>{if(el)el.style.display=(d.__site?.sections?.[id]?.enabled===false)?'none':'';});
-    const custom=document.getElementById('studioCreativeSections');if(custom)creativeMain.appendChild(custom);
+    Object.entries(sectionMap).forEach(([id,el])=>{if(el)el.style.display=d.__site?.sections?.[id]?.enabled===false?'none':'';});
   }
-  const cs=document.getElementById('studioCreativeSections');
-  if(cs)cs.innerHTML=(d.__site?.customSections||[]).filter(s=>s.enabled!==false).map(s=>'<section class="studio-creative-section"><div class="eyebrow">'+esc(s.eyebrow||'')+'</div><h2>'+esc(s.title||'')+'</h2><p>'+nl(s.text||'')+'</p>'+(s.link?'<a href="'+esc(s.link)+'">'+esc(s.linkLabel||'Explore ↗')+'</a>':'')+'</section>').join('');
+
   allPosts = Array.isArray(d.posts) ? d.posts : [];
   setupHeader(d);
   createFilters();
   renderReviews();
-  renderQuotes();
   renderObsessions(d);
   renderFuture(d);
+  renderMediaShelves(d);
   setupComments(d);
   observeReveals();
 })();

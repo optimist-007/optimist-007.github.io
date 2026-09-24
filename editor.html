@@ -64,8 +64,10 @@ textarea{min-height:120px;resize:vertical}
 <div class="layout">
 <aside>
   <button class="active" data-tab="home">Main · Home</button>
+  <button data-tab="projectsTab">Projects</button>
   <button data-tab="blogsTab">Blogs · Writing</button>
   <button data-tab="creative">Creative · Content</button>
+  <button data-tab="pubSiteTab">Publications page</button>
   <button data-tab="design">🎨 Design</button>
   <button data-tab="organize">↕ Organize</button>
   <button data-tab="graphics">🖼 Graphics</button>
@@ -87,12 +89,32 @@ textarea{min-height:120px;resize:vertical}
 </section>
 
 
+<section class="tab" id="projectsTab">
+  <h1>Projects</h1>
+  <p class="muted">Edit the thinking section and the project cards shown on your Projects page.</p>
+  <h2>Thinking section</h2>
+  <div id="projectsSiteFields"></div>
+  <div id="projectThoughts"></div>
+  <div class="row"><button id="addProjectThought">+ Add thinking section</button></div>
+  <h2>Project cards</h2>
+  <div id="projectsEditor"></div>
+  <div class="row"><button id="addProject">+ Add project</button></div>
+</section>
+
 <section class="tab" id="blogsTab">
   <h1>Blogs · Research journal</h1>
   <p class="muted">Write about research thinking, conferences, talks, workshops, experiments, lessons learned or anything you explored scientifically. Each post can carry a feature image and multiple media items.</p>
   <div class="hint"><b>Good uses:</b> conference experiences · talks you attended · workshops you took to explore a field · research reflections · science explainers.</div>
   <div class="row"><button id="addBlog">+ Add blog post</button></div>
   <div id="blogsEditor"></div>
+</section>
+
+<section class="tab" id="pubSiteTab">
+  <h1>Publications page</h1>
+  <p class="muted">Edit the introductory text and research-direction cards above your publications.</p>
+  <div id="pubSiteFields"></div>
+  <div id="pubDirections"></div>
+  <div class="row"><button id="addPubDirection">+ Add direction</button></div>
 </section>
 
 <section class="tab" id="creative">
@@ -190,6 +212,9 @@ textarea{min-height:120px;resize:vertical}
     <option>collaborate.html</option>
     <option>assets/home.css</option>
     <option>content/home.json</option>
+    <option>content/projects-site.json</option>
+    <option>content/projects.json</option>
+    <option>content/publications-site.json</option>
     <option>content/creative-content.json</option>
     <option>content/site-theme.json</option>
     <option>content/main-site.json</option>
@@ -207,6 +232,7 @@ textarea{min-height:120px;resize:vertical}
   <p class="muted">Preview your unsaved edits before publishing.</p>
   <div class="row">
     <button id="previewHome">Main website</button>
+    <button id="previewProjects">Projects</button>
     <button id="previewCreative">Creative side</button>
     <button class="secondary" id="clearPreview">Clear unsaved preview</button>
   </div>
@@ -235,6 +261,9 @@ var BRANCH='main';
 
 var state={
   home:{},
+  projectsSite:{},
+  projects:[],
+  publicationsSite:{},
   creative:{},
   theme:{},
   creativeSite:{},
@@ -247,6 +276,9 @@ var state={
 
 var paths={
   home:'content/home.json',
+  projectsSite:'content/projects-site.json',
+  projects:'content/projects.json',
+  publicationsSite:'content/publications-site.json',
   creative:'content/creative-content.json',
   theme:'content/site-theme.json',
   creativeSite:'content/creative-site.json',
@@ -716,6 +748,9 @@ async function safeJson(path,fallback){
 async function loadAll(){
   status('Loading your website...');
   state.home=await safeJson(paths.home,FALLBACK.home);
+  state.projectsSite=await safeJson(paths.projectsSite,{});
+  state.projects=await safeJson(paths.projects,[]);
+  state.publicationsSite=await safeJson(paths.publicationsSite,{});
   state.creative=await safeJson(paths.creative,FALLBACK.creative);
   state.theme=await safeJson(paths.theme,FALLBACK.theme);
   state.creativeSite=await safeJson(paths.creativeSite,FALLBACK.creativeSite);
@@ -796,6 +831,66 @@ function blogTypes(current){
   var types=['Research reflection','Conference experience','Talk / lecture','Workshop','Science explained','Personal notes','Other'];
   return types.map(function(t){return '<option value="'+escapeHtml(t)+'" '+(t===current?'selected':'')+'>'+escapeHtml(t)+'</option>';}).join('');
 }
+function renderProjects(){
+  var s=state.projectsSite||{};
+  $('projectsSiteFields').innerHTML=
+    field('Home link label','homeLinkLabel',s.homeLinkLabel||'← Home')+
+    field('Eyebrow','eyebrow',s.eyebrow||'')+
+    field('Introduction','intro',s.intro||'',true);
+  bind($('projectsSiteFields'),s);
+
+  $('projectThoughts').innerHTML=(s.thoughts||[]).map(function(t,i){
+    return '<div class="card"><div class="cardhead"><b>Thinking section '+(i+1)+'</b><button class="danger remove-project-thought" data-index="'+i+'">Remove</button></div>'+
+      '<div class="grid">'+field('Number','thoughts.'+i+'.number',t.number)+field('Title','thoughts.'+i+'.title',t.title)+'</div>'+
+      field('Summary','thoughts.'+i+'.summary',t.summary,true)+
+      field('Section label','thoughts.'+i+'.label',t.label)+
+      field('Main text','thoughts.'+i+'.text',t.text,true)+
+      '<div class="grid">'+field('Note label','thoughts.'+i+'.noteLabel',t.noteLabel)+field('Open by default','thoughts.'+i+'.open',String(!!t.open))+'</div>'+
+      field('Note','thoughts.'+i+'.note',t.note,true)+
+      '</div>';
+  }).join('');
+  bind($('projectThoughts'),s);
+  wireButtons($('projectThoughts'),'.remove-project-thought',function(i){s.thoughts.splice(i,1);renderProjects();});
+
+  $('projectsEditor').innerHTML=state.projects.map(function(p,i){
+    return '<div class="card"><div class="cardhead"><b>Project '+(i+1)+'</b><button class="danger remove-project" data-index="'+i+'">Remove</button></div>'+
+      '<div class="grid">'+field('Slug','projects.'+i+'.slug',p.slug)+field('Status','projects.'+i+'.status',p.status)+'</div>'+
+      field('Kicker','projects.'+i+'.kicker',p.kicker)+field('Title','projects.'+i+'.title',p.title,true)+
+      field('Summary','projects.'+i+'.summary',p.summary,true)+field('Question / problem','projects.'+i+'.problem',p.problem,true)+
+      field('Approach','projects.'+i+'.approach',p.approach,true)+
+      field('What it involved (one item per line)','projects.'+i+'.details',Array.isArray(p.details)?p.details.join('\n'):p.details,true)+
+      field('What it shows','projects.'+i+'.what_it_shows',p.what_it_shows,true)+field('Next','projects.'+i+'.next',p.next,true)+
+      '</div>';
+  }).join('');
+  bind($('projectsEditor'),state);
+  $('projectsEditor').querySelectorAll('[data-bind$=".details"]').forEach(function(el){
+    el.addEventListener('input',function(){
+      var idx=Number(el.getAttribute('data-bind').split('.')[1]);
+      state.projects[idx].details=el.value.split('\n').map(function(x){return x.trim();}).filter(Boolean);
+    });
+  });
+  wireButtons($('projectsEditor'),'.remove-project',function(i){state.projects.splice(i,1);renderProjects();});
+}
+
+function renderPublicationsSite(){
+  var s=state.publicationsSite||{};
+  $('pubSiteFields').innerHTML=
+    field('Hero eyebrow','heroEyebrow',s.heroEyebrow||'')+
+    field('Hero title','heroTitle',s.heroTitle||'',true)+
+    field('Hero introduction','heroLead',s.heroLead||'',true)+
+    field('Direction eyebrow','directionEyebrow',s.directionEyebrow||'')+
+    field('Direction title','directionTitle',s.directionTitle||'',true)+
+    field('Direction text','directionText',s.directionText||'',true);
+  bind($('pubSiteFields'),s);
+  $('pubDirections').innerHTML=(s.directions||[]).map(function(d,i){
+    return '<div class="card"><div class="cardhead"><b>Direction '+(i+1)+'</b><button class="danger remove-pub-direction" data-index="'+i+'">Remove</button></div>'+
+      '<div class="grid">'+field('Number','directions.'+i+'.number',d.number)+field('Title','directions.'+i+'.title',d.title)+'</div>'+
+      field('Description','directions.'+i+'.text',d.text,true)+'</div>';
+  }).join('');
+  bind($('pubDirections'),s);
+  wireButtons($('pubDirections'),'.remove-pub-direction',function(i){s.directions.splice(i,1);renderPublicationsSite();});
+}
+
 function renderBlogs(){
   var arr=state.blogs;
   $('blogsEditor').innerHTML=arr.map(function(b,i){
@@ -1057,8 +1152,10 @@ function renderGraphics(){
 
 function renderAll(){
   renderHome();
+  renderProjects();
   renderBlogs();
   renderPublications();
+  renderPublicationsSite();
   renderCreative();
   renderDesign();
   renderOrganization();
@@ -1066,7 +1163,7 @@ function renderAll(){
 }
 
 function switchTab(name){
-  var ids={home:'home',blogsTab:'blogsTab',creative:'creative',design:'design',organize:'organize',graphics:'graphics',source:'source',preview:'previewTab',github:'github'};
+  var ids={home:'home',projectsTab:'projectsTab',blogsTab:'blogsTab',creative:'creative',pubSiteTab:'pubSiteTab',design:'design',organize:'organize',graphics:'graphics',source:'source',preview:'previewTab',github:'github'};
   var target=$(ids[name]||name);
   if(!target)return;
   var tabs=document.querySelectorAll('.tab');
@@ -1094,6 +1191,9 @@ function savePreview(){
     enabled:true,
     files:{
       'content/home.json':state.home,
+      'content/projects-site.json':state.projectsSite,
+      'content/projects.json':state.projects,
+      'content/publications-site.json':state.publicationsSite,
       'content/creative-content.json':state.creative,
       'content/site-theme.json':state.theme,
       'content/creative-site.json':state.creativeSite,
@@ -1245,6 +1345,9 @@ async function publish(){
     }
 
     await putText(paths.home,JSON.stringify(state.home,null,2),msg);
+    await putText(paths.projectsSite,JSON.stringify(state.projectsSite,null,2),msg);
+    await putText(paths.projects,JSON.stringify(state.projects,null,2),msg);
+    await putText(paths.publicationsSite,JSON.stringify(state.publicationsSite,null,2),msg);
     await putText(paths.creative,JSON.stringify(state.creative,null,2),msg);
     await putText(paths.theme,JSON.stringify(state.theme,null,2),msg);
     await putText(paths.creativeSite,JSON.stringify(state.creativeSite,null,2),msg);
@@ -1326,6 +1429,21 @@ for(var i=0;i<tabButtons.length;i++){
   tabButtons[i].addEventListener('click',function(){switchTab(this.getAttribute('data-tab'));});
 }
 
+$('addProjectThought').addEventListener('click',function(){
+  state.projectsSite.thoughts=state.projectsSite.thoughts||[];
+  state.projectsSite.thoughts.push({number:String(state.projectsSite.thoughts.length+1).padStart(2,'0'),title:'New section',summary:'',label:'',text:'',noteLabel:'',note:'',open:false});
+  renderProjects();
+});
+$('addProject').addEventListener('click',function(){
+  state.projects.push({slug:'new-project',kicker:'',status:'Ongoing',title:'New project',summary:'',problem:'',approach:'',details:[],what_it_shows:'',next:''});
+  renderProjects();
+});
+$('addPubDirection').addEventListener('click',function(){
+  state.publicationsSite.directions=state.publicationsSite.directions||[];
+  state.publicationsSite.directions.push({number:String(state.publicationsSite.directions.length+1).padStart(2,'0'),title:'New direction',text:''});
+  renderPublicationsSite();
+});
+
 $('addBlog').addEventListener('click',function(){state.blogs.push({title:'New research note',type:'Research reflection',category:'Research reflection',date:'',event:'',excerpt:'',body:'',image:'',media:[],link:''});renderBlogs();});
 
 $('addPublication').addEventListener('click',function(){state.publications.push({title:'',journal:'',role:'',year:'',volume:'',article:'',doi:'',link:''});renderPublications();});
@@ -1370,6 +1488,9 @@ $('stageSource').addEventListener('click',stageSource);
 
 $('previewHome').addEventListener('click',function(){
   $('previewFrame').src='index.html?studio='+Date.now();
+});
+$('previewProjects').addEventListener('click',function(){
+  $('previewFrame').src='projects.html?studio='+Date.now();
 });
 $('previewCreative').addEventListener('click',function(){
   $('previewFrame').src='creative.html?studio='+Date.now();

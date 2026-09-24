@@ -153,3 +153,9 @@ body{background:var(--cream);color:var(--ink)}
   .home-email .home-shell{display:block}
   .home-email-link{margin-top:24px}
 }
+
+/* Compact homepage spacing */
+.hero{padding-top:66px!important;padding-bottom:58px!important}
+.academic-profile{padding-top:28px!important;padding-bottom:28px!important}
+.focus{padding-top:64px!important;padding-bottom:64px!important}
+.home-email{padding:58px 0!important}

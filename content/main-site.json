@@ -2,6 +2,10 @@
   "siteTitle": "Simran Sainand Revankar | Materials Research",
   "nav": [
     {
+      "label": "Research",
+      "href": "index.html"
+    },
+    {
       "label": "Projects",
       "href": "projects.html"
     },

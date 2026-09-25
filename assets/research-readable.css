@@ -691,3 +691,78 @@ body:before{
   .case-step{grid-template-columns:48px 1fr}
   .proof-skills span{width:100%}
 }
+
+
+/* ===== V6 READABILITY + ACCESSIBILITY ===== */
+html{font-size:18px!important}
+body{
+  font-size:18px!important;
+  line-height:1.76!important;
+  color:#242923!important;
+}
+p,li,
+.hero-lead,
+.section-head p,
+.card p,
+.project-card .body p,
+.article-card p,
+.current-card p,
+.step p,
+.pub .journal,
+.case-step p,
+.project-proof p{
+  font-size:1rem!important;
+  line-height:1.72!important;
+  color:#4f5a52!important;
+}
+.nav-links a{
+  font-size:.76rem!important;
+  letter-spacing:.075em!important;
+  min-height:44px;
+  display:inline-flex!important;
+  align-items:center;
+}
+.eyebrow,.meta,.mono,.kicker,.tag,.pub-year,
+.project-facts span,.proof-skills span,.media-kind{
+  font-size:.7rem!important;
+  letter-spacing:.09em!important;
+}
+a:focus-visible,button:focus-visible,[tabindex]:focus-visible{
+  outline:3px solid #a75f49!important;
+  outline-offset:4px!important;
+}
+.pub a,.evidence-row a,.blog-external,.backlink{
+  font-size:.76rem!important;
+  font-weight:700!important;
+  text-decoration:underline!important;
+  text-decoration-thickness:1.5px!important;
+  text-underline-offset:4px!important;
+}
+.project-card .meta,.blog-media-count{
+  font-size:.72rem!important;
+}
+.blog-card p,.media-card p,.projects-page .thought-summary{
+  font-size:.94rem!important;
+  line-height:1.65!important;
+}
+.projects-page .thought-title{line-height:1.05!important}
+.projects-page .thought summary{
+  min-height:64px;
+  align-items:center!important;
+}
+.filter,.blog-filter,.talk-subsection{
+  min-height:44px!important;
+  font-size:.72rem!important;
+  display:inline-flex!important;
+  align-items:center!important;
+}
+.reader-body,.blog-reader-copy .reader-body{
+  font-size:1.04rem!important;
+  line-height:1.82!important;
+  max-width:72ch;
+}
+@media(max-width:720px){
+  body{font-size:18px!important}
+  .nav-links a{font-size:.78rem!important}
+  .page-hero h1{font-size:clamp(3rem,14vw,4.4rem)!important;line-height:.9!important}
+}

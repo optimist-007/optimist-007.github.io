@@ -1,4 +1,4 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Project | Simran Sainand Revankar</title><link rel="stylesheet" href="assets/research-readable.css?v=8"><style>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Project | Simran Sainand Revankar</title><link rel="stylesheet" href="assets/research-readable.css?v=9"><style>
 #app .page-hero{padding-top:42px;padding-bottom:48px}
 #app .section{padding-top:42px;padding-bottom:48px}
 #app .section + .section{padding-top:34px}
@@ -21,20 +21,30 @@ fetch('content/projects.json',{cache:'no-store'}).then(r=>r.json()).then(ps=>{
   const p=ps.find(x=>x.slug===slug)||ps[0];
   if(!p) throw new Error('No project');
   document.title=p.title+' | Research';
-  const workflow=(p.workflow||[]).map(w=>'<article class="case-step"><span>'+esc(w.number||'')+'</span><div><h3>'+esc(w.title||'')+'</h3><p>'+esc(w.text||'')+'</p></div></article>').join('');
+  const workflow=(p.workflow||[]).map((w,i)=>'<button type="button" class="case-step '+(i===0?'active':'')+'" data-workflow-step="'+i+'" aria-pressed="'+(i===0?'true':'false')+'"><span>'+esc(w.number||'')+'</span><div><h3>'+esc(w.title||'')+'</h3><p>'+esc(w.text||'')+'</p></div><b>↗</b></button>').join('');
   const skills=(p.skills||[]).map(s=>'<span>'+esc(s)+'</span>').join('');
   const pub=p.publication||{};
   const publication=pub.title?'<section class="project-evidence"><div class="wrap"><div class="eyebrow">Publication</div><div class="evidence-row"><div><h2>'+esc(pub.title)+'</h2><p>'+esc(pub.journal||'')+(pub.year?' · '+esc(pub.year):'')+(pub.role?' · '+esc(pub.role):'')+'</p></div>'+(pub.link?'<a href="'+esc(pub.link)+'" target="_blank" rel="noopener">View publication ↗</a>':'')+'</div></div></section>':'';
   document.getElementById('app').innerHTML=
     '<div class="wrap page-hero project-hero"><div><div class="eyebrow">'+esc(p.kicker||'Selected research')+'</div><h1>'+esc(p.title)+'</h1><p class="hero-lead">'+esc(p.summary||'')+'</p></div><div class="project-facts"><div><span>Status</span><strong>'+esc(p.status||'')+'</strong></div>'+(p.system?'<div><span>System</span><strong>'+esc(p.system)+'</strong></div>':'')+(p.role?'<div><span>Role</span><strong>'+esc(p.role)+'</strong></div>':'')+'</div></div>'+
     '<section class="project-question"><div class="wrap"><div class="eyebrow">Research question</div><h2>'+esc(p.question||'')+'</h2></div></section>'+
-    '<section class="project-workflow"><div class="wrap"><div class="project-section-head"><div class="eyebrow">Research workflow</div><p>From material development to device-level evidence.</p></div><div class="case-steps">'+workflow+'</div></div></section>'+
+    '<section class="project-workflow"><div class="wrap"><div class="project-section-head"><div class="eyebrow">Research workflow</div><p>Select a stage to bring it forward.</p></div><div class="workflow-interactive"><div class="case-steps">'+workflow+'</div><aside class="workflow-focus" aria-live="polite"><span>01</span><h3>'+esc((p.workflow||[])[0]?.title||'')+'</h3><p>'+esc((p.workflow||[])[0]?.text||'')+'</p></aside></div></div></section>'+
     '<section class="project-proof"><div class="wrap proof-grid"><div><div class="eyebrow">Skills demonstrated</div><div class="proof-skills">'+skills+'</div></div><div><div class="eyebrow">Outcome</div><p>'+esc(p.outcome||'')+'</p><div class="eyebrow reflection-label">What I took from it</div><p>'+esc(p.reflection||'')+'</p></div></div></section>'+
     publication;
+  document.getElementById('app').addEventListener('click',e=>{
+    const step=e.target.closest('[data-workflow-step]'); if(!step)return;
+    const i=Number(step.dataset.workflowStep||0), item=(p.workflow||[])[i]; if(!item)return;
+    document.querySelectorAll('[data-workflow-step]').forEach(x=>{x.classList.toggle('active',x===step);x.setAttribute('aria-pressed',x===step?'true':'false')});
+    const panel=document.querySelector('.workflow-focus');
+    panel.querySelector('span').textContent=item.number||String(i+1).padStart(2,'0');
+    panel.querySelector('h3').textContent=item.title||'';
+    panel.querySelector('p').textContent=item.text||'';
+    panel.classList.remove('pulse'); void panel.offsetWidth; panel.classList.add('pulse');
+  });
 }).catch(()=>{
   document.getElementById('app').innerHTML='<div class="wrap page-hero"><div><div class="eyebrow">Project unavailable</div><h1>This project page could not load.</h1></div></div>';
 });
-</script></script><script>
+</script><script>
 (async function renderEditableSiteNav(){
   try{
     const r=await fetch('content/main-site.json?v='+Date.now(),{cache:'no-store'});

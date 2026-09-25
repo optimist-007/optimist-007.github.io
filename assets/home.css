@@ -410,3 +410,36 @@ body{background:var(--cream);color:var(--ink)}
 @media(max-width:980px){
   .hero{padding:44px 0 42px!important;gap:30px!important}
 }
+
+
+/* ===== V7 READABILITY + ACCESSIBILITY ===== */
+body{font-size:18px!important;line-height:1.76!important}
+.home-navlinks a{
+  font-size:.76rem!important;
+  letter-spacing:.075em!important;
+  min-height:44px;
+  display:inline-flex;
+  align-items:center;
+}
+.hero-lead{font-size:1.06rem!important;line-height:1.7!important;color:#4f5a52!important}
+.hero-kicker,.eyebrow,.identity span,.rail span,.academic-kicker,.academic-tags span{
+  font-size:.7rem!important;
+  letter-spacing:.09em!important;
+}
+.question-grid p,.home-email p{font-size:1rem!important;line-height:1.7!important;color:#4f5a52}
+.home-email{color:#f8f7f3}
+.home-email p{color:#e7ece8!important}
+.home-email-link{
+  font-size:.78rem!important;
+  text-decoration:underline!important;
+  text-decoration-thickness:1.5px!important;
+  text-underline-offset:4px!important;
+}
+a:focus-visible,button:focus-visible,[tabindex]:focus-visible{
+  outline:3px solid #a75f49!important;
+  outline-offset:4px!important;
+}
+@media(max-width:720px){
+  body{font-size:18px!important}
+  .hero h1{font-size:clamp(3.2rem,15vw,4.4rem)!important;line-height:.9!important}
+}

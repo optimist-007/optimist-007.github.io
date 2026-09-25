@@ -6,7 +6,7 @@
 <title>Simran Sainand Revankar | Materials Research</title>
 <meta name="description" content="Materials research across functional nanomaterials, thin films, sensing, energy and semiconductor-related devices.">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23244838'/%3E%3Ccircle cx='32' cy='32' r='18' fill='none' stroke='%23c8aa73' stroke-width='3'/%3E%3Ccircle cx='32' cy='32' r='5' fill='%23f8f7f3'/%3E%3C/svg%3E">
-<link rel="stylesheet" href="assets/home.css?v=15">
+<link rel="stylesheet" href="assets/home.css?v=16">
 </head>
 <body>
 <header class="home-header">
@@ -49,10 +49,12 @@
     <div class="trace trace-one"></div>
     <div class="trace trace-two"></div>
     <div class="trace trace-three"></div>
-    <div class="art-label label-a">MATERIAL</div>
-    <div class="art-label label-b">INTERFACE</div>
-    <div class="art-label label-c">DEVICE</div>
-    <div class="art-caption">structure / response / useful function</div>
+    <div class="hero-modes" aria-label="Explore the research visual">
+      <button type="button" class="art-label label-a" data-hero-mode="material" aria-pressed="true">MATERIAL</button>
+      <button type="button" class="art-label label-b" data-hero-mode="interface" aria-pressed="false">INTERFACE</button>
+      <button type="button" class="art-label label-c" data-hero-mode="device" aria-pressed="false">DEVICE</button>
+    </div>
+    <div class="art-caption">composition / synthesis / structure</div>
   </div>
 </section>
 
@@ -92,13 +94,14 @@
 
     <div class="research-flow" aria-label="Material research pathway">
       <div class="flow-track" aria-hidden="true"></div>
-      <div class="flow-node"><span>01</span><strong>Material</strong></div>
-      <div class="flow-node"><span>02</span><strong>Structure</strong></div>
-      <div class="flow-node"><span>03</span><strong>Interface</strong></div>
-      <div class="flow-node"><span>04</span><strong>Response</strong></div>
-      <div class="flow-node"><span>05</span><strong>Device</strong></div>
-      <div class="flow-node"><span>06</span><strong>Use</strong></div>
+      <button type="button" class="flow-node" data-stage="material" data-title="Material" data-detail="Choose, prepare and understand the material system." aria-pressed="true"><span>01</span><strong>Material</strong></button>
+      <button type="button" class="flow-node" data-stage="structure" data-title="Structure" data-detail="Confirm what formed and how its structure relates to behaviour." aria-pressed="false"><span>02</span><strong>Structure</strong></button>
+      <button type="button" class="flow-node" data-stage="interface" data-title="Interface" data-detail="Look closely at boundaries, contact and transfer between materials." aria-pressed="false"><span>03</span><strong>Interface</strong></button>
+      <button type="button" class="flow-node" data-stage="response" data-title="Response" data-detail="Measure how the system reacts to electrical, optical or mechanical input." aria-pressed="false"><span>04</span><strong>Response</strong></button>
+      <button type="button" class="flow-node" data-stage="device" data-title="Device" data-detail="Translate material behaviour into a measurable device-level function." aria-pressed="false"><span>05</span><strong>Device</strong></button>
+      <button type="button" class="flow-node" data-stage="use" data-title="Use" data-detail="Ask whether the measured behaviour can solve a practical constraint." aria-pressed="false"><span>06</span><strong>Use</strong></button>
     </div>
+    <div class="flow-detail" aria-live="polite"><span>Selected stage</span><strong>Material</strong><p>Choose, prepare and understand the material system.</p></div>
 
     <div class="question-grid">
     <article>
@@ -221,5 +224,6 @@
   }catch(e){}
 })();
 </script>
+<script src="assets/site-interactions.js?v=1" defer></script>
 </body>
 </html>

@@ -1,37 +1,37 @@
 {
   "homeLinkLabel": "← Home",
   "homeLink": "index.html",
-  "eyebrow": "Research approach",
-  "intro": "Selected research, methods and directions.",
+  "eyebrow": "Research portfolio",
+  "intro": "Completed work, methods and research direction.",
   "thoughts": [
     {
       "number": "01",
-      "title": "Research explored",
-      "summary": "Perovskite/polymer UV sensing and thin-film interface questions.",
-      "label": "Completed + current",
-      "text": "My completed work focused on fluorescent CsPbBr3@Cs4PbBr6/PU perovskite/polymer nanocomposites and their use in a self-powered UV-sensing device. I am now working on ferroelectric switching and interfacial charge retention in thin-film systems, where electrical behaviour and interfaces become the central questions.",
-      "noteLabel": "What stayed with me",
-      "note": "I like research where a material property becomes a measurable device behaviour, and where the interesting part is understanding why that behaviour appears.",
+      "title": "Research completed",
+      "summary": "Perovskite/polymer nanocomposites translated into a self-powered UV-sensing device.",
+      "label": "Completed study",
+      "text": "My published project followed a functional material from synthesis and characterisation through device fabrication and UV-sensing evaluation.",
+      "noteLabel": "What it demonstrates",
+      "note": "I am most interested when material behaviour can be connected to a measurable device response.",
       "open": false
     },
     {
       "number": "02",
-      "title": "Tools & methods",
-      "summary": "Fabrication, characterisation, electrical measurements and analysis.",
-      "label": "Tools I already use",
-      "text": "My experimental toolkit includes thin-film and nanomaterial fabrication, XRD with Rietveld refinement, SEM, AFM, UV-Vis-NIR absorption and Tauc analysis, FTIR, Raman spectroscopy, P-E hysteresis, PUND and DC probe-station measurements. I use Python and OriginPro for analysis, and I have experience with DFT through Quantum ESPRESSO.",
-      "noteLabel": "What I am building",
-      "note": "I want computation to become part of how I ask the next experimental question, not just a separate skill that sits beside the lab work.",
+      "title": "Methods I can evidence",
+      "summary": "Materials preparation, characterisation, device fabrication, analysis and scientific communication.",
+      "label": "Evidence-based skills",
+      "text": "The project gives me a concrete basis for discussing nanocomposite preparation, structural and spectroscopic characterisation, device fabrication, data interpretation and research communication.",
+      "noteLabel": "Current learning",
+      "note": "I am strengthening Python and computational skills so they can support future materials work rather than sit separately from it.",
       "open": false
     },
     {
       "number": "03",
-      "title": "Current direction",
-      "summary": "Semiconductor materials, interfaces, sensing and computation.",
-      "label": "Future direction",
-      "text": "I want to move deeper into semiconductor materials and interfaces while keeping the experimental grounding that taught me how real materials behave. Sustainable technology, low-carbon energy and sensing remain important anchors, especially where a materials problem connects to a practical environmental or technological constraint.",
-      "noteLabel": "The direction I am trying to build",
-      "note": "Experimental enough to know what is real. Computational enough to ask better questions. Curious enough to keep moving toward harder materials problems.",
+      "title": "Research direction",
+      "summary": "Materials, interfaces, sensing, semiconductors and data-informed experimentation.",
+      "label": "Direction",
+      "text": "I am exploring research directions where experimental materials work can connect with computation, sensing, semiconductor systems and practical technological constraints.",
+      "noteLabel": "Working principle",
+      "note": "Build depth from evidence first; add new directions only as the skills and projects become real.",
       "open": false
     }
   ]

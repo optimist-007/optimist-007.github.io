@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Media | Simran Sainand Revankar</title>
-<link rel="stylesheet" href="assets/research-readable.css?v=1">
+<link rel="stylesheet" href="assets/research-readable.css?v=2">
 <style>
 .media-showcase{padding:0 0 70px}
 .media-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px}
@@ -34,7 +34,7 @@
 <div><a class="backlink" href="index.html">← Home</a><div class="eyebrow">Visual archive</div>
 <h1>Things worth showing.</h1>
 <p class="hero-lead">Images, experiments, devices, research moments and video notes. A visual record for the work that is easier to understand when you can actually see it.</p></div>
-<div class="index-box">This is the visual shelf. No long explanations required.</div>
+
 </div>
 
 <section class="section media-showcase"><div class="wrap">
@@ -73,11 +73,11 @@ async function load(){
   const allImages=images.concat(creative.filter(x=>x.enabled!==false&&x.image).map(x=>({image:x.image,title:x.title,alt:x.alt,caption:x.text})));
   const allVideos=creative.filter(x=>x.enabled!==false&&x.video).map(x=>({video:x.video,title:x.title,caption:x.text}));
   posts.forEach(p=>(p.media||[]).forEach(x=>{if(x.type==='image'&&x.src)allImages.push({image:x.src,title:p.title,alt:x.alt,caption:x.caption});if(x.type==='video'&&x.src)allVideos.push({video:x.src,title:p.title,caption:x.caption});}));
-  document.getElementById('gallery').innerHTML=allImages.map(imageCard).join('')||'<div class="media-empty">Add images from the editor and they will appear here.</div>';
-  document.getElementById('videos').innerHTML=allVideos.map(videoCard).join('')||'<div class="media-empty">Add video clips from the editor and they will appear here.</div>';
+  document.getElementById('gallery').innerHTML=allImages.map(imageCard).join('')||'';
+  document.getElementById('videos').innerHTML=allVideos.map(videoCard).join('')||'';
  }catch(e){
-  document.getElementById('gallery').innerHTML='<div class="media-empty">The visual archive is ready for its first upload.</div>';
-  document.getElementById('videos').innerHTML='<div class="media-empty">The video shelf is ready for its first upload.</div>';
+  document.getElementById('gallery').innerHTML='';
+  document.getElementById('videos').innerHTML='';
  }
 }
 load();

@@ -7,7 +7,11 @@
     "volume": "44",
     "article": "102601",
     "doi": "10.1016/j.mtchem.2025.102601",
-    "link": "https://doi.org/10.1016/j.mtchem.2025.102601"
+    "link": "https://doi.org/10.1016/j.mtchem.2025.102601",
+    "threads": [
+      "Semiconductor materials",
+      "Energy & sensing"
+    ]
   },
   {
     "title": "Characterization and DFT investigation of CuWO4@CMC/PVA composite with down conversion ability",
@@ -17,7 +21,11 @@
     "volume": "1325",
     "article": "140780",
     "doi": "10.1016/j.molstruc.2024.140780",
-    "link": "https://doi.org/10.1016/j.molstruc.2024.140780"
+    "link": "https://doi.org/10.1016/j.molstruc.2024.140780",
+    "threads": [
+      "Computational materials",
+      "Semiconductor materials"
+    ]
   },
   {
     "title": "Flexible, lead-free Cs3Bi2Br9@EVA nanocomposite triboelectric nanogenerator for energy harvesting and tactile sensing",
@@ -27,6 +35,11 @@
     "volume": "8",
     "article": "5827–5842",
     "doi": "10.1007/s42247-025-01170-0",
-    "link": "https://doi.org/10.1007/s42247-025-01170-0"
+    "link": "https://doi.org/10.1007/s42247-025-01170-0",
+    "threads": [
+      "Semiconductor materials",
+      "Energy & sensing",
+      "Sustainable technology"
+    ]
   }
 ]

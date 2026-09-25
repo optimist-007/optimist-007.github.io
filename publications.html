@@ -1,77 +1,60 @@
 <!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Publications | Simran Sainand Revankar</title><link rel="stylesheet" href="assets/research-readable.css?v=9"><style>
-.publications-page .pub-context{padding:8px 0 35px;background:#edf0eb}
-.publications-page .pub-context-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:stretch}
-.publications-page .context-copy{padding:18px 4px 18px 0}
-.publications-page .context-copy .eyebrow{margin-bottom:12px}
-.publications-page .context-copy h2{font-size:clamp(3rem,5.4vw,5.1rem);line-height:.9;margin:0 0 18px}
-.publications-page .context-copy p{max-width:650px;color:var(--muted);font-size:1rem}
-.publications-page .direction-list{display:grid;grid-template-columns:1fr 1fr;gap:11px}
-.publications-page .direction-item{border:1px solid var(--line);background:rgba(255,255,255,.7);padding:21px 19px;min-height:148px}
-.publications-page .direction-item strong{display:block;color:var(--forest);font:500 1.55rem/.96 var(--serif);margin:8px 0}
-.publications-page .direction-item span{color:var(--muted);font-size:.84rem}
-.publications-page .pubs-section{padding-top:50px}
-@media(max-width:900px){.publications-page .pub-context-grid{grid-template-columns:1fr}}
-@media(max-width:620px){.publications-page .direction-list{grid-template-columns:1fr}.publications-page .pub-context{padding-bottom:20px}.publications-page .pubs-section{padding-top:55px}}
-</style>
-</head><body class="publications-page">
-<header class="site-header"><div class="wrap nav"><a class="brand" href="index.html">Simran Sainand Revankar</a><nav class="nav-links"><a href="projects.html">Projects</a><a href="blogs.html">Blogs</a>
-<a class="active" href="publications.html">Publications</a><a href="media/docs/CV.pdf">CV ↗</a><a class="creative-link" href="creative.html">Creative side ↗</a></nav><a class="menu-note" href="creative.html">Creative side ↗</a></div></header>
+.publications-page .pubs-section{padding-top:42px}
+.publications-page .page-hero{padding-bottom:34px}
+</style></head><body class="publications-page">
+<header class="site-header"><div class="wrap nav"><a class="brand" href="index.html">Simran Sainand Revankar</a><nav class="nav-links"><a href="projects.html">Projects</a><a href="blogs.html">Blogs</a><a class="active" href="publications.html">Publications</a><a href="media/docs/CV.pdf">CV ↗</a><a class="creative-link" href="creative.html">Creative side ↗</a></nav><a class="menu-note" href="creative.html">Creative side ↗</a></div></header>
 <main>
 <div class="wrap page-hero">
   <div>
     <a class="backlink" href="index.html">← Home</a>
-    <div class="eyebrow" id="pubHeroEyebrow">Publications</div>
-    <h1 id="pubHeroTitle">Publications.</h1>
-    <p class="hero-lead" id="pubHeroLead"></p>
+    <div class="eyebrow">Publications</div>
+    <h1>Publications.</h1>
   </div>
 </div>
-
-<section class="pub-context">
-  <div class="wrap pub-context-grid">
-    <div class="context-copy">
-      <div class="eyebrow" id="pubDirectionEyebrow">The direction</div>
-      <h2 id="pubDirectionTitle">Across the work.</h2>
-      <p id="pubDirectionText"></p>
-    </div>
-    <div class="direction-list" id="directionList"></div>
-  </div>
-</section>
 
 <section class="section pubs-section">
   <div class="wrap" id="pubs"></div>
 </section>
-</main><footer class="wrap site-footer"><span>Research · publications</span></footer>
-<script>const esc=v=>String(v??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));Promise.all([
- fetch('content/publications-site.json',{cache:'no-store'}).then(r=>r.ok?r.json():null).catch(()=>null),
- fetch('content/publications.json',{cache:'no-store'}).then(r=>r.json())
-]).then(([site,ps])=>{
- const s=site||{};
- document.getElementById('pubHeroEyebrow').textContent=s.heroEyebrow||'Publications';
- document.getElementById('pubHeroTitle').textContent=s.heroTitle||'A few things made public.';
- document.getElementById('pubHeroLead').textContent=s.heroLead||'';
- document.getElementById('pubDirectionEyebrow').textContent=s.directionEyebrow||'The direction';
- document.getElementById('pubDirectionTitle').textContent=s.directionTitle||'';
- document.getElementById('pubDirectionText').textContent=s.directionText||'';
- document.getElementById('directionList').innerHTML='<button type="button" class="direction-item active" data-thread="All"><div class="eyebrow">All</div><strong>All publications</strong><span>Show the complete record</span></button>'+(s.directions||[]).map(d=>'<button type="button" class="direction-item" data-thread="'+esc(d.title||'')+'"><div class="eyebrow">'+esc(d.number||'')+'</div><strong>'+esc(d.title||'')+'</strong><span>Filter publications</span></button>').join('');
- const renderPubs=thread=>{
-   const list=thread==='All'?ps:ps.filter(p=>(p.threads||[]).includes(thread));
-   document.getElementById('pubs').innerHTML=list.map(p=>'<article class="pub" data-threads="'+esc((p.threads||[]).join('|'))+'"><div class="pub-year">'+esc(p.year||'Published')+'</div><div><h3>'+esc(p.title)+'</h3><div class="journal">'+esc(p.journal||'')+' · '+esc(p.role||'')+'</div><div class="pub-actions">'+(p.link?'<a href="'+esc(p.link)+'" target="_blank" rel="noopener">View publication ↗</a>':'')+'<button type="button" class="pub-detail-toggle" aria-expanded="false">Details +</button></div><div class="pub-detail" hidden><span>DOI</span><strong>'+esc(p.doi||'—')+'</strong>'+(p.volume?'<span>Volume</span><strong>'+esc(p.volume)+'</strong>':'')+(p.article?'<span>Article / pages</span><strong>'+esc(p.article)+'</strong>':'')+'</div></div></article>').join('');
- };
- renderPubs('All');
- document.getElementById('directionList').addEventListener('click',e=>{
-   const b=e.target.closest('[data-thread]'); if(!b)return;
-   document.querySelectorAll('.direction-item').forEach(x=>x.classList.toggle('active',x===b));
-   renderPubs(b.dataset.thread);
- });
- document.getElementById('pubs').addEventListener('click',e=>{
-   const b=e.target.closest('.pub-detail-toggle'); if(!b)return;
-   const detail=b.closest('.pub').querySelector('.pub-detail');
-   const open=detail.hasAttribute('hidden');
-   if(open)detail.removeAttribute('hidden');else detail.setAttribute('hidden','');
-   b.setAttribute('aria-expanded',open?'true':'false');
-   b.textContent=open?'Details −':'Details +';
- });
-})</script><script>
+</main>
+
+<footer class="wrap site-footer"><span>Research · publications</span></footer>
+
+<script>
+const esc=v=>String(v??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+fetch('content/publications.json',{cache:'no-store'})
+  .then(r=>r.json())
+  .then(ps=>{
+    document.getElementById('pubs').innerHTML=ps.slice(0,3).map(p=>
+      '<article class="pub">'+
+        '<div class="pub-year">'+esc(p.year||'Published')+'</div>'+
+        '<div>'+
+          '<h3>'+esc(p.title)+'</h3>'+
+          '<div class="journal">'+esc(p.journal||'')+' · '+esc(p.role||'')+'</div>'+
+          '<div class="pub-actions">'+
+            (p.link?'<a href="'+esc(p.link)+'" target="_blank" rel="noopener">View publication ↗</a>':'')+
+            '<button type="button" class="pub-detail-toggle" aria-expanded="false">Details +</button>'+
+          '</div>'+
+          '<div class="pub-detail" hidden>'+
+            '<span>DOI</span><strong>'+esc(p.doi||'—')+'</strong>'+
+            (p.volume?'<span>Volume</span><strong>'+esc(p.volume)+'</strong>':'')+
+            (p.article?'<span>Article / pages</span><strong>'+esc(p.article)+'</strong>':'')+
+          '</div>'+
+        '</div>'+
+      '</article>'
+    ).join('');
+
+    document.getElementById('pubs').addEventListener('click',e=>{
+      const b=e.target.closest('.pub-detail-toggle'); if(!b)return;
+      const detail=b.closest('.pub').querySelector('.pub-detail');
+      const open=detail.hasAttribute('hidden');
+      if(open)detail.removeAttribute('hidden');else detail.setAttribute('hidden','');
+      b.setAttribute('aria-expanded',open?'true':'false');
+      b.textContent=open?'Details −':'Details +';
+    });
+  });
+</script>
+
+<script>
 (async function renderEditableSiteNav(){
   try{
     const r=await fetch('content/main-site.json?v='+Date.now(),{cache:'no-store'});

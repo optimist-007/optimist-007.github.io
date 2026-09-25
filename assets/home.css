@@ -396,3 +396,17 @@ body{background:var(--cream);color:var(--ink)}
   .question-grid article{border-right:0!important;border-bottom:1px solid var(--line)!important;min-height:0!important}
   .question-grid article:last-child{border-bottom:0!important}
 }
+
+
+/* ===== V6 COMPACT HOMEPAGE RHYTHM ===== */
+.hero{min-height:590px!important;padding:54px 0 50px!important;gap:56px!important}
+.hero-art{min-height:470px!important}
+.academic-profile{padding:22px 0!important}
+.focus{padding:58px 0 64px!important}
+.focus-heading{margin-bottom:24px!important}
+.question-grid article{min-height:210px!important;padding:24px 26px 26px!important}
+.home-email{padding:52px 0!important}
+.footer{padding-top:20px!important;padding-bottom:20px!important}
+@media(max-width:980px){
+  .hero{padding:44px 0 42px!important;gap:30px!important}
+}

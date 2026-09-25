@@ -2,58 +2,184 @@
 <html lang="en">
 <head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Blogs | Simran Sainand Revankar</title>
-<link rel="stylesheet" href="assets/research-readable.css?v=6">
+<link rel="stylesheet" href="assets/research-readable.css?v=7">
 <style>
-.blog-index{padding-bottom:55px}
-.talk-subsections{display:none;gap:8px;flex-wrap:wrap;margin:-10px 0 24px;padding:12px 0;border-bottom:1px solid var(--line)}
-.talk-subsections.visible{display:flex}
-.talk-subsection{border:1px solid var(--line);background:transparent;color:var(--muted);padding:8px 11px;font:600 .62rem var(--mono);text-transform:uppercase;letter-spacing:.08em;cursor:pointer}
-.talk-subsection.active,.talk-subsection:hover{background:var(--clay);color:var(--cream);border-color:var(--clay)}
-.blog-sections{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin:8px 0 34px}
-.blog-section-link{display:block;padding:18px 17px;border:1px solid var(--line);background:var(--paper);text-decoration:none;transition:.2s}
-.blog-section-link:hover,.blog-section-link.active{background:var(--forest);color:var(--cream);transform:translateY(-2px)}
-.blog-section-link .label{display:block;font:700 .64rem var(--mono);text-transform:uppercase;letter-spacing:.11em;color:var(--clay);margin-bottom:7px}
-.blog-section-link.active .label,.blog-section-link:hover .label{color:#e7cb91}
-.blog-section-link strong{display:block;font:500 1.45rem/.98 var(--serif);color:var(--forest)}
-.blog-section-link.active strong,.blog-section-link:hover strong{color:var(--cream)}
-.blog-section-link small{display:block;margin-top:8px;color:var(--muted);font-size:.78rem}
-.blog-section-link.active small,.blog-section-link:hover small{color:#d9dfda}
-@media(max-width:850px){.blog-sections{grid-template-columns:1fr 1fr}}
-@media(max-width:520px){.blog-sections{grid-template-columns:1fr}}
-
+.blog-index{padding-bottom:38px}
 .blog-intro{max-width:760px}
-.blog-filters{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 28px}
-.blog-filter{border:1px solid var(--line);background:transparent;color:var(--muted);padding:8px 12px;font:600 .66rem var(--mono);text-transform:uppercase;letter-spacing:.08em;cursor:pointer}
-.blog-filter.active,.blog-filter:hover{background:var(--forest);color:var(--cream);border-color:var(--forest)}
-.blog-grid{display:grid;grid-template-columns:1.25fr .75fr;gap:16px}
-.blog-card{display:flex;flex-direction:column;justify-content:space-between;min-height:245px;padding:24px;background:var(--paper);border:1px solid var(--line);text-decoration:none;transition:.22s}
-.blog-card:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
-.blog-card.featured{background:var(--forest);color:var(--cream)}
-.blog-card.featured h2,.blog-card.featured h3{color:var(--cream)}
-.blog-card.featured p{color:#d9dfda}
-.blog-card h2,.blog-card h3{margin:12px 0;font-size:clamp(2rem,4vw,3.3rem)}
-.blog-card p{color:var(--muted);margin:0}
-.blog-meta{font:700 .66rem var(--mono);text-transform:uppercase;letter-spacing:.11em;color:var(--clay)}
-.blog-card.featured .blog-meta{color:#e4c986}
-.blog-media-count{margin-top:15px;font:600 .64rem var(--mono);text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
-.blog-card.featured .blog-media-count{color:#cfd8d1}
-.reader-box.blog-reader{padding:0;display:grid;grid-template-columns:minmax(250px,.72fr) minmax(0,1.28fr);overflow:hidden}
-.blog-reader-media{background:#263e34;min-height:620px;padding:22px;display:flex;flex-direction:column;gap:12px;overflow:auto}
-.blog-reader-media img{width:100%;display:block;object-fit:contain;background:#1d2d27;max-height:420px}
-.blog-reader-media .caption{color:#e3e8e2;font-size:.82rem}
+.blog-index .page-hero{padding-bottom:26px!important}
+.blog-index .section{padding-top:18px!important}
+
+.blog-sections{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  margin:0 0 24px;
+  padding:0;
+  border:0
+}
+.blog-section-link{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  min-height:44px;
+  padding:10px 13px;
+  border:1px solid var(--line);
+  background:transparent;
+  text-decoration:none;
+  color:var(--muted);
+  transition:background .2s,color .2s,border-color .2s
+}
+.blog-section-link .label{
+  display:block;
+  margin:0;
+  font:700 .72rem var(--mono);
+  text-transform:uppercase;
+  letter-spacing:.08em;
+  color:inherit
+}
+.blog-section-link strong{
+  font:600 .72rem var(--mono);
+  color:inherit
+}
+.blog-section-link small{display:none}
+.blog-section-link:hover,.blog-section-link.active{
+  background:var(--forest);
+  color:var(--cream);
+  border-color:var(--forest)
+}
+
+.talk-subsections{
+  display:none;
+  gap:8px;
+  flex-wrap:wrap;
+  margin:0 0 20px;
+  padding:0
+}
+.talk-subsections.visible{display:flex}
+.talk-subsection{
+  min-height:40px;
+  border:1px solid var(--line);
+  background:transparent;
+  color:var(--muted);
+  padding:8px 11px;
+  font:600 .7rem var(--mono);
+  text-transform:uppercase;
+  letter-spacing:.07em;
+  cursor:pointer
+}
+.talk-subsection.active,.talk-subsection:hover{
+  background:var(--clay);
+  color:var(--cream);
+  border-color:var(--clay)
+}
+
+.blog-filters{display:none}
+
+.blog-grid{
+  display:grid;
+  grid-template-columns:repeat(12,1fr);
+  gap:16px
+}
+.blog-card{
+  grid-column:span 6;
+  display:grid;
+  grid-template-columns:minmax(0,1fr);
+  align-content:space-between;
+  min-height:260px;
+  padding:24px;
+  background:rgba(255,255,255,.42);
+  border:1px solid var(--line);
+  text-decoration:none;
+  transition:transform .2s ease,box-shadow .2s ease,background .2s ease
+}
+.blog-card:nth-child(3n+1){grid-column:span 7}
+.blog-card:nth-child(3n+2){grid-column:span 5}
+.blog-card.featured{
+  background:var(--forest);
+  color:var(--cream)
+}
+.blog-card.featured h3{color:var(--cream)!important}
+.blog-card.featured p{color:#e4e9e5!important}
+.blog-card:hover{
+  transform:translateY(-3px);
+  box-shadow:0 14px 34px rgba(35,56,45,.08)
+}
+.blog-card h3{
+  margin:10px 0 12px;
+  max-width:650px
+}
+.blog-card p{
+  margin:0;
+  max-width:620px
+}
+.blog-meta{
+  font:700 .72rem var(--mono);
+  text-transform:uppercase;
+  letter-spacing:.08em;
+  color:var(--clay)
+}
+.blog-card.featured .blog-meta{color:#e7cb91}
+.blog-media-count{
+  margin-top:18px;
+  font:600 .72rem var(--mono);
+  text-transform:uppercase;
+  letter-spacing:.07em;
+  color:var(--muted)
+}
+.blog-card.featured .blog-media-count{color:#d9dfda}
+
+.reader-box.blog-reader{
+  padding:0;
+  display:grid;
+  grid-template-columns:minmax(260px,.72fr) minmax(0,1.28fr);
+  overflow:hidden
+}
+.blog-reader-media{
+  background:#263e34;
+  min-height:560px;
+  padding:20px;
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+  overflow:auto
+}
+.blog-reader-media img{
+  width:100%;
+  display:block;
+  object-fit:contain;
+  background:#1d2d27;
+  max-height:400px
+}
+.blog-reader-media .caption{color:#e3e8e2;font-size:.9rem}
 .blog-reader-copy{padding:34px;overflow:auto;max-height:90vh}
 .blog-reader-copy .reader-body{white-space:pre-line}
-.blog-reader-copy .event-note{border-left:3px solid var(--sand);padding:13px 16px;background:var(--paper);color:var(--muted);margin:20px 0}
-.blog-reader-copy .blog-external{display:inline-block;margin:8px 0 25px;color:var(--forest);font:700 .68rem var(--mono);text-transform:uppercase;letter-spacing:.09em}
-@media(max-width:850px){.blog-grid{grid-template-columns:1fr}.reader-box.blog-reader{grid-template-columns:1fr}.blog-reader-media{min-height:220px;max-height:340px}.blog-reader-copy{padding:28px}.blog-reader-media img{max-height:260px}}
+.blog-reader-copy .event-note{
+  border-left:3px solid var(--sand);
+  padding:12px 14px;
+  background:var(--paper);
+  color:var(--muted);
+  margin:18px 0
+}
+.blog-reader-copy .blog-external{
+  display:inline-block;
+  margin:6px 0 22px;
+  color:var(--forest)
+}
+.comments{margin-top:28px;padding-top:22px}
+
+@media(max-width:900px){
+  .blog-card,.blog-card:nth-child(n){grid-column:span 12}
+  .reader-box.blog-reader{grid-template-columns:1fr}
+  .blog-reader-media{min-height:220px;max-height:340px}
+  .blog-reader-copy{padding:28px}
+  .blog-reader-media img{max-height:260px}
+}
 </style>
 </head>
 <body>
 <header class="site-header"><div class="wrap nav">
 <a class="brand" href="index.html">Simran Sainand Revankar</a>
-<nav class="nav-links"><a href="projects.html">Projects</a><a class="active" href="blogs.html">Blogs</a><a href="publications.html">Publications</a>
-<a href="media/docs/CV.pdf">CV ↗</a><a class="creative-link" href="creative.html">Creative side ↗</a>
-</nav><a class="menu-note" href="creative.html">Creative side ↗</a>
+<nav class="nav-links"><a href="index.html">Research</a><a href="projects.html">Projects</a><a class="active" href="blogs.html">Blogs</a><a href="publications.html">Publications</a><a href="media.html">Media</a><a href="media/docs/CV.pdf">CV ↗</a><a class="creative-link" href="creative.html">Creative side ↗</a></nav><a class="menu-note" href="creative.html">Creative side ↗</a>
 </div></header>
 <main class="blog-index">
 <div class="wrap page-hero">
@@ -81,10 +207,10 @@ let blogs=[],active='All',talkActive='All talks';
 const esc=v=>String(v??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const sectionDefs=[
  {key:'All',label:'Everything',desc:'The whole journal'},
- {key:'Conference + workshop',label:'Conferences + workshops',desc:'Places I went · things I tried'},
- {key:'Talk / lecture',label:'Talks attended at IIT Palakkad',desc:'Ideas that stayed with me'},
- {key:'Personal notes',label:'Personal notes',desc:'Thoughts, observations · quieter entries'},
- {key:'Science explained',label:'Science explained',desc:'Concepts, ideas · things I want to unpack'}
+ {key:'Conference + workshop',label:'Conferences',desc:''},
+ {key:'Talk / lecture',label:'Talks',desc:''},
+ {key:'Personal notes',label:'Personal notes',desc:''},
+ {key:'Science explained',label:'Science explained',desc:''}
 ];
 const talkDefs=[
  {key:'All talks',label:'All talks',desc:'All four entries'},
@@ -133,7 +259,7 @@ function renderCards(){
  document.getElementById('blogGrid').innerHTML=list.length?list.map((p,i)=>{
    const original=blogs.indexOf(p), media=Array.isArray(p.media)?p.media.filter(x=>x.src):[];
    const relation=active==='Talk / lecture' && p.subjectRelation ? '<span class="blog-meta relation">'+esc(p.subjectRelation)+'</span>' : '';
-   return '<a class="blog-card '+(i===0?'featured':'')+'" href="#" data-i="'+original+'"><div><div class="blog-meta">'+esc(p.category||p.type||'Research note')+(p.date?' · '+esc(p.date):'')+'</div>'+relation+'<h3>'+esc(p.title||'Untitled')+'</h3><p>'+esc(p.excerpt||String(p.body||'').slice(0,150))+'…</p></div><div><div class="blog-media-count">'+(media.length?media.length+' media item'+(media.length>1?'s':''):'Written note')+' · Open full post ↗</div></div></a>';
+   return '<a class="blog-card '+(i===0?'featured':'')+'" href="#" data-i="'+original+'"><div><div class="blog-meta">'+esc(p.category||p.type||'Research note')+(p.date?' · '+esc(p.date):'')+'</div>'+relation+'<h3>'+esc(p.title||'Untitled')+'</h3><p>'+esc(p.excerpt||String(p.body||'').slice(0,120))+'…</p></div><div><div class="blog-media-count">'+(media.length?media.length+' media item'+(media.length>1?'s':''):'Written note')+' · Open full post ↗</div></div></a>';
  }).join('') :'';
  document.querySelectorAll('[data-i]').forEach(x=>x.onclick=e=>{e.preventDefault();openPost(blogs[Number(x.dataset.i)])});
 }

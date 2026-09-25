@@ -766,3 +766,58 @@ a:focus-visible,button:focus-visible,[tabindex]:focus-visible{
   .nav-links a{font-size:.78rem!important}
   .page-hero h1{font-size:clamp(3rem,14vw,4.4rem)!important;line-height:.9!important}
 }
+
+
+/* ===== V7 CANONICAL TYPOGRAPHY SCALE ===== */
+:root{
+  --type-display:clamp(3.8rem,6vw,6.2rem);
+  --type-section:clamp(2.7rem,4.2vw,4.4rem);
+  --type-card:clamp(1.75rem,2.5vw,2.7rem);
+  --type-body:1rem;
+  --type-small:.78rem;
+}
+html,body{font-size:18px!important}
+body{font-size:18px!important;line-height:1.72!important}
+.page-hero h1,
+.research-hero .hero-copy h1{
+  font-size:var(--type-display)!important;
+  line-height:.88!important;
+  letter-spacing:-.05em!important;
+}
+.section-head h2,
+.publications-page .context-copy h2,
+.project-question h2,
+.evidence-row h2{
+  font-size:var(--type-section)!important;
+  line-height:.94!important;
+  letter-spacing:-.045em!important;
+}
+.project-card .body h3,
+.blog-card h3,
+.article-card h3,
+.pub h3,
+.case-step h3,
+.media-card h3,
+.projects-page .thought-title{
+  font-size:var(--type-card)!important;
+  line-height:1!important;
+  letter-spacing:-.035em!important;
+}
+p,li,.hero-lead,.section-head p,.project-card .body p,.article-card p,
+.pub .journal,.case-step p,.project-proof p,.media-card p,.blog-card p{
+  font-size:var(--type-body)!important;
+  line-height:1.68!important;
+}
+.nav-links a,.eyebrow,.meta,.mono,.kicker,.tag,.pub-year,.media-kind,
+.project-facts span,.proof-skills span,.blog-meta,.blog-media-count{
+  font-size:var(--type-small)!important;
+}
+.reader-box h2{font-size:clamp(2.8rem,4.8vw,4.8rem)!important;line-height:.94!important}
+.reader-body,.blog-reader-copy .reader-body{font-size:1rem!important;line-height:1.78!important}
+@media(max-width:720px){
+  :root{
+    --type-display:clamp(3.1rem,14vw,4.2rem);
+    --type-section:clamp(2.45rem,10vw,3.5rem);
+    --type-card:clamp(1.65rem,7vw,2.25rem);
+  }
+}

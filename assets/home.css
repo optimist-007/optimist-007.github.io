@@ -484,3 +484,180 @@ body{font-size:18px!important;line-height:1.72!important}
     --type-card:clamp(1.65rem,7vw,2.25rem);
   }
 }
+
+
+/* ===== V9 RESEARCH MAP REDESIGN ===== */
+.focus{
+  width:100%!important;
+  padding:56px 0 62px!important;
+  background:
+    radial-gradient(circle at 88% 16%,rgba(200,170,115,.13),transparent 22%),
+    linear-gradient(180deg,#eef1ec 0%,#f5f5f1 100%)!important;
+  border-block:1px solid var(--line);
+  overflow:hidden;
+}
+.focus>.home-shell{position:relative}
+.focus-heading{
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr)!important;
+  gap:0!important;
+  margin-bottom:34px!important;
+  max-width:900px;
+}
+.focus-heading .eyebrow{margin-bottom:8px}
+.focus-heading h2{
+  margin:0!important;
+  max-width:900px!important;
+  font-size:clamp(3rem,4.8vw,5rem)!important;
+  line-height:.92!important;
+}
+.focus-heading p{display:none!important}
+
+/* connected material → use pathway */
+.research-flow{
+  position:relative;
+  display:grid;
+  grid-template-columns:repeat(6,1fr);
+  gap:0;
+  align-items:start;
+  margin:0 0 30px;
+  padding:18px 0 26px;
+}
+.flow-track{
+  position:absolute;
+  left:4%;
+  right:4%;
+  top:42px;
+  height:1px;
+  background:rgba(36,72,56,.18);
+  overflow:hidden;
+}
+.flow-track:after{
+  content:"";
+  position:absolute;
+  top:0;
+  left:-25%;
+  width:25%;
+  height:1px;
+  background:linear-gradient(90deg,transparent,var(--clay),var(--sand),transparent);
+  animation:flowScan 5.8s ease-in-out infinite;
+}
+@keyframes flowScan{
+  0%,18%{left:-25%;opacity:0}
+  30%{opacity:1}
+  72%{opacity:1}
+  100%{left:100%;opacity:0}
+}
+.flow-node{
+  position:relative;
+  z-index:2;
+  text-align:center;
+  min-width:0;
+}
+.flow-node:before{
+  content:"";
+  display:block;
+  width:14px;
+  height:14px;
+  margin:17px auto 12px;
+  border:2px solid var(--forest);
+  background:#f3f4ef;
+  border-radius:50%;
+  box-shadow:0 0 0 6px rgba(36,72,56,.045);
+  transition:transform .25s ease,background .25s ease,box-shadow .25s ease;
+}
+.flow-node:hover:before{
+  transform:scale(1.2);
+  background:var(--sand);
+  box-shadow:0 0 0 10px rgba(200,170,115,.10);
+}
+.flow-node span{
+  display:block;
+  font:600 .58rem var(--mono);
+  letter-spacing:.11em;
+  color:var(--clay);
+}
+.flow-node strong{
+  display:block;
+  margin-top:4px;
+  font:500 1.25rem/1 var(--serif);
+  color:var(--forest);
+}
+
+/* research questions become compact evidence notes */
+.question-grid{
+  display:grid!important;
+  grid-template-columns:repeat(3,1fr)!important;
+  gap:14px!important;
+  border:0!important;
+}
+.question-grid article{
+  position:relative;
+  min-height:170px!important;
+  padding:22px 22px 20px!important;
+  border:1px solid rgba(36,72,56,.13)!important;
+  background:rgba(248,247,243,.68)!important;
+  overflow:hidden;
+}
+.question-grid article:before{
+  content:"";
+  display:block!important;
+  position:absolute;
+  left:0;
+  top:0;
+  width:100%;
+  height:3px;
+  background:var(--forest);
+}
+.question-grid article:nth-child(2):before{background:var(--clay)}
+.question-grid article:nth-child(3):before{background:var(--sand)}
+.question-grid article:after{
+  content:""!important;
+  display:block!important;
+  position:absolute;
+  width:90px;
+  height:90px;
+  right:-48px;
+  bottom:-50px;
+  border:1px solid rgba(36,72,56,.08);
+  border-radius:50%;
+}
+.question-grid article:hover{
+  transform:translateY(-3px)!important;
+  background:#f8f7f3!important;
+  box-shadow:0 12px 28px rgba(35,56,45,.06)!important;
+}
+.question-grid span{
+  display:block!important;
+  width:max-content;
+  padding:0 0 7px!important;
+  border:0!important;
+  font-size:.66rem!important;
+  color:var(--clay)!important;
+}
+.question-grid h3{
+  margin:7px 0 9px!important;
+  font-size:clamp(1.7rem,2vw,2.25rem)!important;
+  max-width:none!important;
+}
+.question-grid p{
+  margin:0!important;
+  max-width:360px!important;
+  font-size:.94rem!important;
+  line-height:1.58!important;
+}
+
+@media(max-width:900px){
+  .research-flow{grid-template-columns:repeat(3,1fr);row-gap:24px}
+  .flow-track{display:none}
+  .flow-node:before{margin-top:8px}
+}
+@media(max-width:720px){
+  .focus{padding:44px 0 48px!important}
+  .research-flow{grid-template-columns:repeat(2,1fr);margin-bottom:22px}
+  .question-grid{grid-template-columns:1fr!important}
+  .question-grid article{min-height:0!important}
+}
+@media(prefers-reduced-motion:reduce){
+  .flow-track:after{animation:none!important}
+}

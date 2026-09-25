@@ -443,3 +443,44 @@ a:focus-visible,button:focus-visible,[tabindex]:focus-visible{
   body{font-size:18px!important}
   .hero h1{font-size:clamp(3.2rem,15vw,4.4rem)!important;line-height:.9!important}
 }
+
+
+/* ===== V8 CANONICAL TYPOGRAPHY SCALE ===== */
+:root{
+  --type-display:clamp(3.8rem,6vw,6.2rem);
+  --type-section:clamp(2.7rem,4.2vw,4.4rem);
+  --type-card:clamp(1.75rem,2.5vw,2.7rem);
+  --type-body:1rem;
+  --type-small:.78rem;
+}
+html,body{font-size:18px!important}
+body{font-size:18px!important;line-height:1.72!important}
+.hero h1{
+  font-size:var(--type-display)!important;
+  line-height:.88!important;
+  letter-spacing:-.05em!important;
+}
+.focus-heading h2,.home-email h2{
+  font-size:var(--type-section)!important;
+  line-height:.94!important;
+  letter-spacing:-.045em!important;
+}
+.question-grid h3,.academic-degree{
+  font-size:var(--type-card)!important;
+  line-height:1!important;
+}
+.hero-lead,.question-grid p,.home-email p{
+  font-size:var(--type-body)!important;
+  line-height:1.68!important;
+}
+.home-navlinks a,.hero-kicker,.eyebrow,.identity span,.rail span,
+.academic-kicker,.academic-tags span{
+  font-size:var(--type-small)!important;
+}
+@media(max-width:720px){
+  :root{
+    --type-display:clamp(3.1rem,14vw,4.2rem);
+    --type-section:clamp(2.45rem,10vw,3.5rem);
+    --type-card:clamp(1.65rem,7vw,2.25rem);
+  }
+}

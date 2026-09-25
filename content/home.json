@@ -1,11 +1,11 @@
 {
-  "kicker": "Materials · devices · sustainability",
-  "headline": "Materials research, from how a material behaves to what it can become.",
-  "intro": "My work is grounded in experimental research across functional nanomaterials, thin films, interfaces and devices. I am interested in energy, sensing and semiconductor-related problems, and I am building computational skills to make future experiments more deliberate.",
+  "kicker": "Materials · thin films · devices",
+  "headline": "Materials researcher with interdisciplinary interests.",
+  "intro": "M.Sc. Chemistry · functional materials · thin films · sensing and device behaviour.",
   "identity": [
-    "Question-driven",
     "Experimental",
-    "Always learning"
+    "Materials",
+    "Devices"
   ],
   "rail": [
     "functional materials",
@@ -13,30 +13,30 @@
     "semiconductor systems",
     "sustainable technology"
   ],
-  "focusEyebrow": "What I am interested in",
-  "focusTitle": "A few questions guide the work.",
-  "focusIntro": "The rest belongs on the research and project pages. This is only the glimpse.",
+  "focusEyebrow": "Research questions",
+  "focusTitle": "Questions I keep returning to.",
+  "focusIntro": "",
   "questions": [
     {
       "number": "01",
-      "title": "How can materials do useful work?",
-      "text": "Functional materials, interfaces and device behaviour that connect material properties to something measurable and useful."
+      "title": "Materials → function",
+      "text": "How structure and interfaces become measurable device behaviour."
     },
     {
       "number": "02",
-      "title": "Can experiments become more informed?",
-      "text": "Using theory, computation and eventually machine learning alongside the experimental judgement built through hands-on research."
+      "title": "Experiment → insight",
+      "text": "Using characterisation and analysis to understand what changed and why."
     },
     {
       "number": "03",
-      "title": "Can better materials solve real constraints?",
-      "text": "Energy, sensing and semiconductor-related problems considered with resource use, practicality and eventual application in mind."
+      "title": "Research → use",
+      "text": "Sensing, energy and semiconductor problems with practical constraints in view."
     }
   ],
   "contact": {
-    "eyebrow": "Collaborate",
-    "title": "Have a defined research question or project?",
-    "text": "I am open to well-scoped research, scientific writing, literature synthesis, and data or visualisation work where my materials background can be useful.",
+    "eyebrow": "Contact",
+    "title": "Research, writing or collaboration.",
+    "text": "Research · scientific writing · literature synthesis · data visualisation.",
     "email": "simirevankar01@gmail.com"
   },
   "footerLeft": "Materials · devices · questions",
@@ -55,7 +55,7 @@
   "academicProfile": {
     "eyebrow": "Academic profile",
     "degree": "M.Sc. Chemistry",
-    "summary": "Materials research at the intersection of functional nanomaterials, thin films, interfaces and device behaviour.",
+    "summary": "",
     "tags": [
       "Functional nanomaterials",
       "Thin films",

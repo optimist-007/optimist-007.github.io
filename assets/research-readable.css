@@ -545,3 +545,149 @@ body:before{
   .publications-page .direction-list{grid-template-columns:1fr!important}
   .publications-page .direction-item{border-right:0!important}
 }
+
+
+/* ===== V5 COMPACT RHYTHM + PROJECT CASE STUDY ===== */
+.section{padding:52px 0!important}
+.page-hero{min-height:250px!important;padding:42px 0 34px!important}
+.site-footer{margin-top:18px!important;padding:20px 0 26px!important}
+.projects-page .project-thinking{padding:40px 0 26px!important}
+.projects-page .thinking-intro{padding-bottom:20px!important}
+.projects-page .thought summary{padding:18px 0!important}
+.projects-page .thought-detail{padding-bottom:20px!important}
+.projects-page .projects-start{padding:38px 0 46px!important}
+.blog-index .page-hero{padding-bottom:28px!important}
+.blog-sections{margin-bottom:26px!important}
+.publications-page .pub-context{padding:38px 0!important}
+.publications-page .pubs-section{padding-top:24px!important}
+.media-showcase{padding-top:26px!important;padding-bottom:46px!important}
+
+/* Project detail */
+#app .page-hero.project-hero{
+  grid-template-columns:minmax(0,1.15fr) minmax(280px,.85fr)!important;
+  gap:48px!important;
+  min-height:0!important;
+  padding:44px 0 36px!important;
+}
+.project-facts{
+  border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+}
+.project-facts>div{
+  display:grid;
+  grid-template-columns:82px 1fr;
+  gap:16px;
+  padding:14px 0;
+  border-bottom:1px solid var(--line);
+}
+.project-facts>div:last-child{border-bottom:0}
+.project-facts span{
+  font:600 .58rem var(--mono);
+  text-transform:uppercase;
+  letter-spacing:.13em;
+  color:var(--clay);
+}
+.project-facts strong{
+  font:500 1rem var(--sans);
+  color:var(--forest);
+}
+.project-question{
+  padding:46px 0;
+  background:var(--forest);
+  color:var(--cream);
+}
+.project-question .eyebrow{color:#e5c983!important}
+.project-question h2{
+  color:var(--cream)!important;
+  max-width:980px;
+  font-size:clamp(2.7rem,4.8vw,4.8rem)!important;
+  margin:10px 0 0!important;
+}
+.project-workflow{padding:46px 0 38px}
+.project-section-head{
+  display:grid;
+  grid-template-columns:220px 1fr;
+  gap:32px;
+  align-items:start;
+  margin-bottom:18px;
+}
+.project-section-head p{margin:0!important;max-width:560px}
+.case-steps{border-top:1px solid var(--line)}
+.case-step{
+  display:grid;
+  grid-template-columns:76px minmax(0,1fr);
+  gap:24px;
+  padding:22px 0;
+  border-bottom:1px solid var(--line);
+}
+.case-step>span{
+  font:500 2.2rem/1 var(--serif);
+  color:rgba(36,72,56,.28);
+}
+.case-step h3{
+  font-size:1.9rem!important;
+  margin:0 0 6px!important;
+}
+.case-step p{
+  max-width:760px;
+  margin:0!important;
+  font-size:.92rem!important;
+}
+.project-proof{
+  padding:40px 0;
+  background:var(--paper);
+  border-block:1px solid var(--line);
+}
+.proof-grid{
+  display:grid;
+  grid-template-columns:.85fr 1.15fr;
+  gap:54px;
+}
+.proof-skills{
+  display:flex;
+  flex-wrap:wrap;
+  gap:0;
+  margin-top:12px;
+  border-top:1px solid var(--line);
+}
+.proof-skills span{
+  width:50%;
+  padding:11px 10px 11px 0;
+  border-bottom:1px solid var(--line);
+  font:600 .62rem var(--mono);
+  text-transform:uppercase;
+  letter-spacing:.08em;
+  color:var(--forest);
+}
+.project-proof p{max-width:700px!important}
+.reflection-label{margin-top:24px}
+.project-evidence{padding:42px 0}
+.evidence-row{
+  display:grid;
+  grid-template-columns:1fr auto;
+  gap:32px;
+  align-items:end;
+  border-top:1px solid var(--line);
+  padding-top:18px;
+}
+.evidence-row h2{
+  font-size:clamp(2rem,3.4vw,3.6rem)!important;
+  max-width:980px;
+  margin:0 0 8px!important;
+}
+.evidence-row p{margin:0!important}
+.evidence-row a{
+  white-space:nowrap;
+  text-decoration:none;
+  font:600 .66rem var(--mono);
+  text-transform:uppercase;
+  letter-spacing:.09em;
+  color:var(--clay);
+  border-bottom:1px solid var(--clay);
+  padding-bottom:4px;
+}
+@media(max-width:800px){
+  #app .page-hero.project-hero,.proof-grid,.project-section-head,.evidence-row{grid-template-columns:1fr!important}
+  .case-step{grid-template-columns:48px 1fr}
+  .proof-skills span{width:100%}
+}

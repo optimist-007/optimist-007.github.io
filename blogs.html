@@ -2,7 +2,7 @@
 <html lang="en">
 <head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Blogs | Simran Sainand Revankar</title>
-<link rel="stylesheet" href="assets/research-readable.css?v=2">
+<link rel="stylesheet" href="assets/research-readable.css?v=3">
 <style>
 .blog-index{padding-bottom:55px}
 .talk-subsections{display:none;gap:8px;flex-wrap:wrap;margin:-10px 0 24px;padding:12px 0;border-bottom:1px solid var(--line)}
@@ -58,8 +58,8 @@
 <main class="blog-index">
 <div class="wrap page-hero">
 <div class="blog-intro"><a class="backlink" href="index.html">← Home</a><div class="eyebrow">Research journal</div>
-<h1>Blogs.</h1><p class="hero-lead">Research is also made of places you go, people you listen to, workshops you try, questions that stay with you and things you learn outside the experiment.</p></div>
-<div class="index-box">Conference experiences · talks · workshops · research reflections · science notes.</div>
+<h1>Notes.</h1><p class="hero-lead">Research notes, talks, conferences and reflections.</p></div>
+
 </div>
 <section class="section" style="padding-top:25px"><div class="wrap">
 <div class="blog-sections" id="blogSections"></div>
@@ -133,8 +133,8 @@ function renderCards(){
  document.getElementById('blogGrid').innerHTML=list.length?list.map((p,i)=>{
    const original=blogs.indexOf(p), media=Array.isArray(p.media)?p.media.filter(x=>x.src):[];
    const relation=active==='Talk / lecture' && p.subjectRelation ? '<span class="blog-meta relation">'+esc(p.subjectRelation)+'</span>' : '';
-   return '<a class="blog-card '+(i===0?'featured':'')+'" href="#" data-i="'+original+'"><div><div class="blog-meta">'+esc(p.category||p.type||'Research note')+(p.date?' · '+esc(p.date):'')+'</div>'+relation+'<h3>'+esc(p.title||'Untitled')+'</h3><p>'+esc(p.excerpt||String(p.body||'').slice(0,280))+'…</p></div><div><div class="blog-media-count">'+(media.length?media.length+' media item'+(media.length>1?'s':''):'Written note')+' · Open full post ↗</div></div></a>';
- }).join(''):'<div class="empty">No entries in this section yet.</div>';
+   return '<a class="blog-card '+(i===0?'featured':'')+'" href="#" data-i="'+original+'"><div><div class="blog-meta">'+esc(p.category||p.type||'Research note')+(p.date?' · '+esc(p.date):'')+'</div>'+relation+'<h3>'+esc(p.title||'Untitled')+'</h3><p>'+esc(p.excerpt||String(p.body||'').slice(0,150))+'…</p></div><div><div class="blog-media-count">'+(media.length?media.length+' media item'+(media.length>1?'s':''):'Written note')+' · Open full post ↗</div></div></a>';
+ }).join('') :'';
  document.querySelectorAll('[data-i]').forEach(x=>x.onclick=e=>{e.preventDefault();openPost(blogs[Number(x.dataset.i)])});
 }
 function openPost(p){
@@ -155,7 +155,7 @@ document.getElementById('close').onclick=close;document.getElementById('reader')
 fetch('content/blogs.json',{cache:'no-store'}).then(r=>r.json()).then(data=>{
  blogs=Array.isArray(data)?data:[];
  renderSectionLinks();renderTalkSubsections();renderCards();
-}).catch(()=>{document.getElementById('blogGrid').innerHTML='<div class="empty">The research journal could not be loaded.</div>'});
+}).catch(()=>{document.getElementById('blogGrid').innerHTML=''});
 </script>
 <script>
 (async function renderEditableSiteNav(){

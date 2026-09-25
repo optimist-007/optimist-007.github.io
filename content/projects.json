@@ -1,37 +1,52 @@
 [
   {
     "slug": "self-powered-uv-sensing",
-    "kicker": "Selected work · functional nanomaterials",
-    "status": "Completed study",
+    "kicker": "Selected research · functional nanomaterials",
+    "status": "Completed · Published 2025",
     "title": "Self-powered UV sensing with perovskite/polymer nanocomposites",
-    "summary": "Explored fluorescent CsPbBr3@Cs4PbBr6 perovskite/polymer nanocomposites and translated their response into a self-powered UV-sensing device.",
-    "problem": "How can a functional material convert an environmental stimulus into a useful signal without depending on a separate power source?",
-    "approach": "The work connected materials synthesis with structural, optical and device-level characterisation, followed by fabrication and performance analysis.",
-    "details": [
-      "Perovskite/polymer nanocomposites",
-      "Structural and spectroscopic characterisation",
+    "summary": "A materials-to-device study using fluorescent CsPbBr3@Cs4PbBr6/PU nanocomposites in a triboelectric nanogenerator for self-powered UV sensing.",
+    "question": "How can a functional nanocomposite translate a light stimulus into a useful sensing response without an external power source?",
+    "system": "CsPbBr3@Cs4PbBr6 / polyurethane nanocomposite",
+    "role": "First author",
+    "workflow": [
+      {
+        "number": "01",
+        "title": "Material development",
+        "text": "Prepared the perovskite/polymer nanocomposite and worked through the material-processing challenges needed to obtain a stable system."
+      },
+      {
+        "number": "02",
+        "title": "Characterisation",
+        "text": "Used structural and spectroscopic characterisation to verify the material and study the response relevant to the device."
+      },
+      {
+        "number": "03",
+        "title": "Device translation",
+        "text": "Integrated the material into a triboelectric nanogenerator and evaluated its use for self-powered UV sensing."
+      },
+      {
+        "number": "04",
+        "title": "Research communication",
+        "text": "The work was developed into a first-author publication and presented through scientific conferences and symposiums."
+      }
+    ],
+    "skills": [
+      "Nanocomposite synthesis",
+      "Materials characterisation",
       "Device fabrication",
-      "Self-powered UV sensing"
+      "UV sensing",
+      "Data interpretation",
+      "Scientific communication"
     ],
-    "what_it_shows": "This project represents the experimental side of my research identity: working across chemistry, materials and device behaviour rather than treating them as separate stages.",
-    "next": "A future direction is to make this kind of workflow more predictive by combining experimental understanding with computational screening."
-  },
-  {
-    "slug": "ferroelectric-switching",
-    "kicker": "Current research · interfaces & devices",
-    "status": "Ongoing",
-    "title": "Ferroelectric switching and interfacial charge retention",
-    "summary": "Studying how switching behaviour and interfacial charge retention shape the electrical response of ferroelectric thin-film devices.",
-    "problem": "What controls the retention and switching behaviour that determine whether a ferroelectric device is simply interesting or genuinely useful?",
-    "approach": "The work combines thin-film preparation with electrical measurements and analysis of polarisation switching and charge-retention behaviour.",
-    "details": [
-      "Ferroelectric thin films",
-      "Polarisation and P-E hysteresis",
-      "PUND analysis",
-      "DC probe-station characterisation",
-      "Interface-focused interpretation"
-    ],
-    "what_it_shows": "It adds a device-physics and interface perspective to my materials background, with emphasis on understanding the mechanisms behind measured behaviour.",
-    "next": "The longer-term aim is to connect experimental measurements with theoretical and computational approaches so that promising device conditions can be identified earlier."
+    "outcome": "The project connected chemistry, materials characterisation and device behaviour in one research workflow rather than treating them as separate tasks.",
+    "reflection": "The most useful part of this work was learning to follow a material from synthesis and verification through to a functioning device, then explain why the measured behaviour mattered.",
+    "publication": {
+      "title": "Fluorescent CsPbBr3@Cs4PbBr6/PU polymer nanocomposite-based triboelectric nanogenerator for self-powered UV sensing",
+      "journal": "Materials Today Chemistry",
+      "year": "2025",
+      "role": "First author",
+      "doi": "10.1016/j.mtchem.2025.102601",
+      "link": "https://doi.org/10.1016/j.mtchem.2025.102601"
+    }
   }
 ]

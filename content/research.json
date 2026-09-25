@@ -1,9 +1,0 @@
-{
-  "hero":{"eyebrow":"Research map","title":"Questions first. Materials second.","intro":"I am interested in functional materials and devices where understanding the mechanism can make the next experiment more intentional.","sideNote":"My strongest base is experimental. I am expanding it with computational materials, DFT and machine learning so that prediction can join the workflow."},
-  "threads":[
-    {"tag":"01 · Functional materials","title":"How do structure and interfaces create useful behaviour?","text":"Interest in materials whose electrical, optical or interfacial properties can be translated into real device functions."},
-    {"tag":"02 · Energy & sensing","title":"Can devices become smaller, simpler and more self-sufficient?","text":"Curiosity around energy harvesting, sensing and systems that can operate closer to where the problem exists."},
-    {"tag":"03 · Semiconductors","title":"What happens when materials thinking meets electronic systems?","text":"A growing interest in semiconductor materials, interfaces and the design constraints that shape practical devices."}
-  ],
-  "computational":{"eyebrow":"Where I am building next","title":"Computationally stronger, experimentally grounded.","text":"I am deliberately developing a second edge in DFT, Python and AI/ML. The goal is not to collect tools. It is to make future research more predictive and efficient.","now":"Building workflows that can eventually sit before the lab: screening, understanding trends, and deciding which experiments are worth doing.","later":"Projects will appear here when the method, question and result are strong enough to deserve their own research story."}
-}

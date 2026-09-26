@@ -1,4 +1,5 @@
 (()=>{
+  document.querySelectorAll('.compact-evidence,.evidence-mini-row').forEach(el=>el.closest('.compact-evidence')?.remove()||el.remove());
   const reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   document.documentElement.classList.add('has-site-interactions');
 

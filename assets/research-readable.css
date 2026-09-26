@@ -964,20 +964,6 @@ p,li,.hero-lead,.section-head p,.project-card .body p,.blog-card p,
 .project-card{
   overflow:hidden;
 }
-.project-card:after{
-  content:"View case study ↗";
-  position:absolute;
-  right:26px;
-  top:50%;
-  transform:translateY(-50%) translateX(10px);
-  opacity:0;
-  font:700 .7rem var(--mono);
-  text-transform:uppercase;
-  letter-spacing:.07em;
-  color:var(--clay);
-  transition:opacity .2s ease,transform .2s ease;
-}
-.project-card:hover:after{opacity:1;transform:translateY(-50%) translateX(0)}
 .project-card:hover .body{transform:translateX(4px)}
 .project-card .body{transition:transform .2s ease}
 

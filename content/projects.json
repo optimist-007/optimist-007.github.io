@@ -48,5 +48,62 @@
       "doi": "10.1016/j.mtchem.2025.102601",
       "link": "https://doi.org/10.1016/j.mtchem.2025.102601"
     }
+  },
+  {
+    "displayNumber": "P1",
+    "slug": "halide-perovskites-reproducible-data-analysis",
+    "kicker": "Independent research · Project 001",
+    "status": "In progress · started 26 Sep 2026",
+    "title": "Halide Perovskites: From Chemistry to Reproducible Data Analysis",
+    "summary": "A 28-day guided foundation project using a real JARVIS halide-perovskite dataset to connect chemistry, materials concepts and reproducible Python analysis.",
+    "question": "How do PBE and HSE band gaps compare across halide perovskites, and how are electronic properties related to tolerance-factor and stability descriptors?",
+    "system": "ABX₃ halide perovskites",
+    "dataset": "JARVIS halide-perovskite dataset · 229 materials",
+    "started": "26 September 2026",
+    "role": "Independent guided project",
+    "workflow": [
+      {
+        "number": "01",
+        "title": "Chemistry foundation",
+        "text": "Revisit atomic structure, ions, electron configuration and the A, B and X sites in ABX₃ halide perovskites so every variable is interpreted chemically rather than treated as a column name."
+      },
+      {
+        "number": "02",
+        "title": "Reproducible data inspection",
+        "text": "Use Python with JARVIS tools, pandas and NumPy to load the dataset, inspect its shape and columns, document selected descriptors and mark uncertain interpretations for verification."
+      },
+      {
+        "number": "03",
+        "title": "Structure–property analysis",
+        "text": "Build publication-quality plots and examine relationships among computed electronic properties, tolerance-factor or stability descriptors and band-gap behaviour without treating correlation as causation."
+      },
+      {
+        "number": "04",
+        "title": "Baseline modelling",
+        "text": "Introduce a simple linear-regression baseline only after the exploratory analysis, including a transparent comparison of PBE and HSE band gaps and basic model evaluation."
+      },
+      {
+        "number": "05",
+        "title": "Scientific communication",
+        "text": "Turn the analysis into a reproducible notebook, figures, a short research note and a GitHub-ready README that state assumptions, limitations and what the results do not prove."
+      }
+    ],
+    "skillsHeading": "Skills being built",
+    "skills": [
+      "Python for scientific analysis",
+      "pandas and NumPy",
+      "Materials-data interpretation",
+      "Scientific visualisation",
+      "Reproducible notebooks",
+      "Baseline regression and evaluation"
+    ],
+    "outcome": "The intended outcome is a reproducible materials-analysis workflow, not a claim of new material discovery.",
+    "reflection": "This project is designed to close the gap between learning Python and applying it to a chemically meaningful materials problem. Computational values, correlations and a simple regression will be reported with their limitations.",
+    "plannedEvidence": [
+      "Reproducible notebook",
+      "5 publication-quality figures",
+      "2–3 page research note",
+      "GitHub-ready README"
+    ]
   }
 ]

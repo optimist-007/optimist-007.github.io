@@ -2,7 +2,7 @@
   "homeLinkLabel": "← Home",
   "homeLink": "index.html",
   "eyebrow": "Research portfolio",
-  "intro": "Completed work, methods and research direction.",
+  "intro": "Completed research, independent projects, methods I can evidence, and the directions I am building next.",
   "thoughts": [
     {
       "number": "01",
@@ -32,6 +32,16 @@
       "text": "I am exploring research directions where experimental materials work can connect with computation, sensing, semiconductor systems and practical technological constraints.",
       "noteLabel": "Working principle",
       "note": "Build depth from evidence first; add new directions only as the skills and projects become real.",
+      "open": false
+    },
+    {
+      "number": "04",
+      "title": "Independent research",
+      "summary": "A growing series of reproducible materials-chemistry projects combining chemistry, Python and, later, machine learning.",
+      "label": "Current project",
+      "text": "Project 001 begins with halide perovskites and a real materials dataset. The aim is to connect chemistry and structure-property reasoning with reproducible Python analysis before moving into more advanced modelling.",
+      "noteLabel": "Evidence standard",
+      "note": "Each project will be documented with code or notebooks, figures, interpretation, limitations and a research note before it is treated as portfolio evidence.",
       "open": false
     }
   ]

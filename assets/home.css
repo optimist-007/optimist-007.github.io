@@ -745,3 +745,45 @@ body{font-size:18px!important;line-height:1.72!important}
   .hero-art{transform:none!important;transition:none!important}
   .flow-detail-pulse{animation:none!important}
 }
+
+
+/* ===== V7 TIGHTER SITE RHYTHM ===== */
+/* Keep the existing design, but remove oversized empty vertical bands. */
+.home-header,.home-nav{height:76px!important;min-height:76px!important}
+.home-navlinks a{padding-top:24px!important;padding-bottom:21px!important}
+.home-navlinks a:after{bottom:16px!important}
+
+.hero{min-height:0!important;padding:42px 0 38px!important;gap:42px!important}
+.hero-art{min-height:410px!important}
+.hero h1{margin-top:14px!important;margin-bottom:20px!important}
+.identity{margin-top:18px!important;padding-top:14px!important}
+
+.academic-profile{padding:18px 0!important}
+.academic-kicker{margin-bottom:12px!important}
+.academic-grid{gap:34px!important}
+.academic-tags{gap:7px!important}
+.academic-tags span{padding:7px 10px!important}
+
+.rail{padding:10px 0!important}
+
+.focus{padding:42px 0 46px!important}
+.focus-heading{margin-bottom:22px!important}
+.flow-detail{margin-top:18px!important}
+
+.home-email{padding:42px 0!important}
+.home-email h2{margin-bottom:12px!important}
+.home-email .home-shell{gap:32px!important}
+.footer{padding-top:17px!important;padding-bottom:17px!important}
+
+@media(max-width:880px){
+  .hero{padding-top:36px!important;gap:30px!important}
+  .hero-art{min-height:360px!important}
+  .focus{padding:36px 0 40px!important}
+}
+@media(max-width:560px){
+  .home-header,.home-nav{height:68px!important;min-height:68px!important}
+  .hero{padding-top:30px!important;padding-bottom:30px!important}
+  .hero-art{min-height:320px!important}
+  .academic-profile{padding:16px 0!important}
+  .home-email{padding:34px 0!important}
+}

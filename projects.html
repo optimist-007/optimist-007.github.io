@@ -128,8 +128,24 @@
   color:var(--muted);
   font-size:1rem
 }
+ .projects-page .portfolio-extension{padding:46px 0 62px;border-top:1px solid var(--line)}
+.projects-page .portfolio-extension + .portfolio-extension{padding-top:0;border-top:0}
+.projects-page .portfolio-compact-head{display:grid;grid-template-columns:220px 1fr;gap:38px;align-items:start;margin-bottom:24px}
+.projects-page .portfolio-compact-head h2{margin:0;font-size:clamp(2.5rem,4.2vw,4rem)}
+.projects-page .portfolio-compact-head p{margin:0;max-width:680px;color:var(--muted)}
+.projects-page .explore-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.projects-page .explore-item{border:1px solid var(--line);background:rgba(255,255,255,.52);padding:20px;min-height:145px}
+.projects-page .explore-item span{display:block;color:var(--clay);font:600 .62rem var(--mono);text-transform:uppercase;letter-spacing:.12em;margin-bottom:10px}
+.projects-page .explore-item strong{display:block;color:var(--forest);font:500 1.55rem/1.05 var(--serif)}
+.projects-page .evidence-links{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.projects-page .evidence-link{display:block;text-decoration:none;border-top:1px solid var(--line);padding:18px 0 8px}
+.projects-page .evidence-link span{display:block;color:var(--clay);font:600 .62rem var(--mono);text-transform:uppercase;letter-spacing:.12em}
+.projects-page .evidence-link strong{display:block;color:var(--forest);font:500 1.7rem/1.08 var(--serif);margin:8px 0}
+.projects-page .evidence-link small{color:var(--muted)}
 @media(max-width:860px){
   .projects-page .thought-detail{grid-template-columns:1fr;padding-left:94px}
+  .projects-page .explore-strip,.projects-page .evidence-links{grid-template-columns:1fr}
+  .projects-page .portfolio-compact-head{grid-template-columns:1fr;gap:10px}
 }
 @media(max-width:720px){
   .projects-page .project-thinking{padding:44px 0 58px}
@@ -180,6 +196,40 @@
       
     </div>
     <div class="project-grid" id="projectGrid"></div>
+  </div>
+</section>
+
+<section class="portfolio-extension">
+  <div class="wrap">
+    <div class="portfolio-compact-head">
+      <div class="eyebrow">Currently exploring</div>
+      <div>
+        <h2>Building the next layer.</h2>
+        <p>These are active learning directions. They are shown separately from completed evidence so the portfolio stays accurate.</p>
+      </div>
+    </div>
+    <div class="explore-strip">
+      <div class="explore-item"><span>01</span><strong>Data-driven materials research</strong></div>
+      <div class="explore-item"><span>02</span><strong>Python for materials science</strong></div>
+      <div class="explore-item"><span>03</span><strong>Machine learning for structure–property relationships</strong></div>
+    </div>
+  </div>
+</section>
+
+<section class="portfolio-extension">
+  <div class="wrap">
+    <div class="portfolio-compact-head">
+      <div class="eyebrow">Evidence & outputs</div>
+      <div>
+        <h2>Follow the work, not the labels.</h2>
+        <p>Skills, services and research claims are linked to the work that supports them wherever evidence is available.</p>
+      </div>
+    </div>
+    <div class="evidence-links">
+      <a class="evidence-link" href="evidence.html#skills"><span>Skills</span><strong>Evidence behind the skills ↗</strong><small>What is demonstrated, in progress, or still being built.</small></a>
+      <a class="evidence-link" href="publications.html"><span>Research outputs</span><strong>Publications & research record ↗</strong><small>Published work, projects, research notes and media.</small></a>
+      <a class="evidence-link" href="evidence.html#services"><span>Services</span><strong>Services evidence ↗</strong><small>Writing, literature synthesis, data analysis and visualisation.</small></a>
+    </div>
   </div>
 </section>
 </main>

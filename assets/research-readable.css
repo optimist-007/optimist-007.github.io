@@ -1180,3 +1180,57 @@ p,li,.hero-lead,.section-head p,.project-card .body p,.blog-card p,
   .project-card{min-height:0!important}
   .site-footer{padding:16px 0!important}
 }
+
+
+/* ===== V10 COMPACT SITE RHYTHM =====
+   Tightens vertical spacing without changing the page structure or visual language. */
+.site-header{height:72px!important;min-height:72px!important}
+.nav{height:72px!important;min-height:72px!important}
+.nav-links a{padding:26px 0 22px!important}
+.nav-links a:after{bottom:17px!important}
+
+.page-hero{
+  min-height:0!important;
+  padding:30px 0 24px!important;
+  gap:36px!important;
+}
+.page-hero:before{top:20px!important;bottom:20px!important}
+.page-hero h1{margin:5px 0 7px!important}
+.page-hero .hero-lead{margin-top:10px!important}
+.section{padding:40px 0!important}
+.section-head{margin-bottom:28px!important}
+.site-footer{margin-top:10px!important;padding:16px 0 20px!important}
+
+.project-index{padding-top:23px!important;padding-bottom:23px!important}
+.project-card .body{padding:22px 28px!important}
+.pub{padding:24px 0!important}
+.publications-page .pub-context{padding:30px 0!important}
+.media-showcase{padding-top:20px!important;padding-bottom:34px!important}
+.projects-page .project-thinking{padding:30px 0 20px!important}
+.projects-page .projects-start{padding:28px 0 36px!important}
+
+/* Blog page: keep the magazine layout, remove oversized empty/card space. */
+.blog-index .page-hero{
+  min-height:0!important;
+  padding:26px 0 18px!important;
+}
+.blog-index .section{padding:0 0 34px!important}
+.blog-sections{margin-bottom:14px!important}
+.blog-section-link{padding:11px 14px!important}
+.blog-grid{gap:14px!important}
+.blog-card{
+  min-height:205px!important;
+  padding:21px 22px!important;
+}
+.blog-card h3{margin:6px 0 7px!important}
+.blog-card p{line-height:1.55!important}
+.blog-media-count{margin-top:11px!important}
+.talk-subsections{margin-bottom:9px!important}
+
+@media(max-width:720px){
+  .site-header,.nav{height:66px!important;min-height:66px!important}
+  .page-hero{padding:24px 0 20px!important}
+  .section{padding:32px 0!important}
+  .blog-index .page-hero{padding:22px 0 15px!important}
+  .blog-card{min-height:0!important;padding:19px!important}
+}

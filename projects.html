@@ -37,13 +37,13 @@
 .projects-page .explore-item{border:1px solid var(--line);background:rgba(255,255,255,.52);padding:20px;min-height:145px}
 .projects-page .explore-item span{display:block;color:var(--clay);font:600 .62rem var(--mono);text-transform:uppercase;letter-spacing:.12em;margin-bottom:10px}
 .projects-page .explore-item strong{display:block;color:var(--forest);font:500 1.55rem/1.05 var(--serif)}
-.projects-page .evidence-links{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
-.projects-page .evidence-link{display:block;text-decoration:none;border-top:1px solid var(--line);padding:18px 0 8px}
-.projects-page .evidence-link span{display:block;color:var(--clay);font:600 .62rem var(--mono);text-transform:uppercase;letter-spacing:.12em}
-.projects-page .evidence-link strong{display:block;color:var(--forest);font:500 1.7rem/1.08 var(--serif);margin:8px 0}
-.projects-page .evidence-link small{color:var(--muted)}
+.projects-page .compact-evidence{padding:24px 0 34px;border-top:1px solid var(--line)}
+.projects-page .evidence-mini-row{display:flex;align-items:center;gap:22px;flex-wrap:wrap}
+.projects-page .evidence-mini-row .eyebrow{margin-right:6px}
+.projects-page .evidence-mini-row a{text-decoration:none;color:var(--forest);font:600 .76rem var(--mono);text-transform:uppercase;letter-spacing:.08em}
+.projects-page .evidence-mini-row a:hover{color:var(--clay)}
 @media(max-width:860px){
-  .projects-page .explore-strip,.projects-page .evidence-links{grid-template-columns:1fr}
+  .projects-page .explore-strip{grid-template-columns:1fr}
   .projects-page .portfolio-compact-head{grid-template-columns:1fr;gap:10px}
 }
 @media(max-width:720px){
@@ -96,19 +96,13 @@
   </div>
 </section>
 
-<section class="portfolio-extension">
+<section class="portfolio-extension compact-evidence">
   <div class="wrap">
-    <div class="portfolio-compact-head">
-      <div class="eyebrow">Evidence & outputs</div>
-      <div>
-        <h2>Follow the work, not the labels.</h2>
-        <p>Skills, services and research claims are linked to the work that supports them wherever evidence is available.</p>
-      </div>
-    </div>
-    <div class="evidence-links">
-      <a class="evidence-link" href="evidence.html#skills"><span>Skills</span><strong>Evidence behind the skills ↗</strong><small>What is demonstrated, in progress, or still being built.</small></a>
-      <a class="evidence-link" href="publications.html"><span>Research outputs</span><strong>Publications & research record ↗</strong><small>Published work, projects, research notes and media.</small></a>
-      <a class="evidence-link" href="evidence.html#services"><span>Services</span><strong>Services evidence ↗</strong><small>Writing, literature synthesis, data analysis and visualisation.</small></a>
+    <div class="evidence-mini-row">
+      <span class="eyebrow">Evidence</span>
+      <a href="evidence.html#skills">Skills ↗</a>
+      <a href="publications.html">Publications ↗</a>
+      <a href="evidence.html#services">Services ↗</a>
     </div>
   </div>
 </section>

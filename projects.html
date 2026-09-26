@@ -6,108 +6,8 @@
 <title>Projects | Simran Sainand Revankar</title>
 <link rel="stylesheet" href="assets/research-readable.css?v=9">
 <style>
-.projects-page .project-thinking{
-  padding:46px 0 54px;
-}
-.projects-page .thinking-intro{
-  padding-bottom:30px;
-  border-bottom:1px solid var(--line);
-}
-.projects-page .thinking-intro-copy{
-  max-width:860px;
-}
-.projects-page .thinking-kicker{
-  margin:0 0 10px;
-  color:var(--clay);
-  font:600 .67rem var(--mono);
-  text-transform:uppercase;
-  letter-spacing:.14em;
-}
-.projects-page .thinking-intro-copy p{
-  max-width:670px;
-  margin:0;
-  color:var(--muted);
-  font-size:1rem;
-  line-height:1.65;
-}
-.projects-page .thinking-list{
-  margin-top:0;
-}
-.projects-page .thought{
-  border-bottom:1px solid var(--line);
-}
-.projects-page .thought:first-child{
-  border-top:0;
-}
-.projects-page .thought summary{
-  list-style:none;
-  cursor:pointer;
-  display:grid;
-  grid-template-columns:72px minmax(0,1fr) 26px;
-  gap:22px;
-  align-items:start;
-  padding:26px 0 25px;
-}
-.projects-page .thought summary::-webkit-details-marker{display:none}
-.projects-page .thought-number{
-  color:#d5dbd8;
-  font:500 clamp(2rem,3.2vw,3.15rem)/1 var(--serif);
-  letter-spacing:-.045em;
-}
-.projects-page .thought-title{
-  display:block;
-  margin:0;
-  color:var(--forest);
-  font:500 clamp(2rem,3.3vw,3.15rem)/.96 var(--serif);
-  letter-spacing:-.035em;
-}
-.projects-page .thought-summary{
-  display:block;
-  margin-top:7px;
-  max-width:760px;
-  color:#59615b;
-  font-size:.9rem;
-  line-height:1.48;
-}
-.projects-page .thought-arrow{
-  color:var(--clay);
-  font:500 1.5rem/1 var(--serif);
-  text-align:right;
-  transition:transform .2s ease;
-}
-.projects-page .thought[open] .thought-arrow{transform:rotate(45deg)}
-.projects-page .thought-detail{
-  display:grid;
-  grid-template-columns:minmax(0,1fr) minmax(260px,.7fr);
-  gap:28px;
-  padding:0 48px 28px 94px;
-}
-.projects-page .thought-detail p{
-  margin:0;
-  color:#4f574f;
-  font-size:.92rem;
-  line-height:1.72;
-}
-.projects-page .mini-label{
-  margin:0 0 8px;
-  color:var(--clay);
-  font:600 .58rem var(--mono);
-  text-transform:uppercase;
-  letter-spacing:.13em;
-}
-.projects-page .thought-note{
-  align-self:start;
-  padding:17px 18px;
-  background:#eef0eb;
-  border-left:2px solid var(--sand);
-}
-.projects-page .thought-note p{
-  color:var(--forest);
-  font:500 1.15rem/1.18 var(--serif);
-}
 .projects-page .projects-start{
   padding:52px 0 62px;
-  border-top:1px solid var(--line);
 }
 .projects-page .projects-start .section-head{
   display:flex;
@@ -143,16 +43,10 @@
 .projects-page .evidence-link strong{display:block;color:var(--forest);font:500 1.7rem/1.08 var(--serif);margin:8px 0}
 .projects-page .evidence-link small{color:var(--muted)}
 @media(max-width:860px){
-  .projects-page .thought-detail{grid-template-columns:1fr;padding-left:94px}
   .projects-page .explore-strip,.projects-page .evidence-links{grid-template-columns:1fr}
   .projects-page .portfolio-compact-head{grid-template-columns:1fr;gap:10px}
 }
 @media(max-width:720px){
-  .projects-page .project-thinking{padding:44px 0 58px}
-  .projects-page .thought summary{grid-template-columns:48px minmax(0,1fr) 22px;gap:12px;padding:22px 0}
-  .projects-page .thought-title{font-size:2rem}
-  .projects-page .thought-number{font-size:2rem}
-  .projects-page .thought-detail{padding:0 0 24px 60px}
   .projects-page .projects-start{padding:56px 0 68px}
   .projects-page .projects-start .section-head{display:grid;gap:12px}
 }
@@ -172,20 +66,6 @@
 </div></header>
 
 <main>
-<section class="project-thinking">
-  <div class="wrap">
-    <div class="thinking-intro">
-      <a class="backlink" id="projectsHomeLink" href="index.html">← Home</a>
-      <div class="thinking-intro-copy">
-        <div class="thinking-kicker" id="projectsThinkingEyebrow">The thinking behind the projects</div>
-        <p id="projectsThinkingIntro">This is the part of my work that does not fit neatly into a CV. It shows what I have explored, what I know how to use, and what I am trying to grow into next.</p>
-      </div>
-    </div>
-
-    <div class="thinking-list" id="thinkingList"></div>
-  </div>
-</section>
-
 <section class="projects-start">
   <div class="wrap">
     <div class="section-head">
@@ -237,17 +117,11 @@
 <footer class="wrap site-footer"><span>Projects · work · learning</span></footer>
 <script>
 const esc=v=>String(v??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-Promise.all([fetch('content/projects-site.json',{cache:'no-store'}).then(r=>r.ok?r.json():null).catch(()=>null),fetch('content/projects.json',{cache:'no-store'}).then(r=>r.json())]).then(([site,ps])=>{
- const s=site||{};
- document.getElementById('projectsHomeLink').textContent=s.homeLinkLabel||'← Home';
- document.getElementById('projectsThinkingEyebrow').textContent=s.eyebrow||'The thinking behind the projects';
- document.getElementById('projectsThinkingIntro').textContent=s.intro||'';
- document.getElementById('thinkingList').innerHTML=(s.thoughts||[]).map(function(t){return '<details class="thought" '+(t.open?'open':'')+'><summary><span class="thought-number">'+esc(t.number)+'</span><span><span class="thought-title">'+esc(t.title)+'</span><span class="thought-summary">'+esc(t.summary)+'</span></span><span class="thought-arrow">+</span></summary><div class="thought-detail"><div><div class="mini-label">'+esc(t.label)+'</div><p>'+esc(t.text)+'</p></div><div class="thought-note"><div class="mini-label">'+esc(t.noteLabel)+'</div><p>'+esc(t.note)+'</p></div></div></details>';}).join('');
+fetch('content/projects.json',{cache:'no-store'}).then(r=>r.json()).then(ps=>{
   document.getElementById('projectGrid').innerHTML=ps.map((p,i)=>'<a class="project-card reveal" href="project.html?slug='+encodeURIComponent(p.slug)+'"><div class="project-index">'+String(i+1).padStart(2,'0')+'</div><div class="body"><div class="status">'+esc(p.status)+'</div><h3>'+esc(p.title)+'</h3><p>'+esc(p.summary)+'</p><div class="meta">Open project ↗</div></div></a>').join('');
- const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target)}}),{threshold:.1});
- document.querySelectorAll('.reveal').forEach(x=>io.observe(x));
+  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target)}}),{threshold:.1});
+  document.querySelectorAll('.reveal').forEach(x=>io.observe(x));
 });
-document.querySelectorAll('.thought').forEach(item=>item.addEventListener('toggle',()=>{if(item.open)document.querySelectorAll('.thought').forEach(other=>{if(other!==item)other.open=false})}));
 </script>
 <script>
 (async function renderEditableSiteNav(){

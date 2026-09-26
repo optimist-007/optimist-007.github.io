@@ -98,7 +98,19 @@
       "Scientific literature review"
     ],
     "outcome": "The internship compared multiple extraction and purification routes rather than claiming a new process. In the report, the farmer and market oleoresins initially contained 16.48% and 14.62% curcumin by UV-Vis, and the CRTO study increased the reported UV-Vis curcumin content from 10.41% to 13.15%.",
-    "reflection": "This project gave me practical exposure to natural-product extraction, purification, instrumental analysis and the trade-off between yield, purity, solvent choice and sustainability in a short research internship."
+    "reflection": "This project gave me practical exposure to natural-product extraction, purification, instrumental analysis and the trade-off between yield, purity, solvent choice and sustainability in a short research internship.",
+    "reportMedia": [
+      {
+        "src": "assets/report/cftri-oleoresin.svg",
+        "alt": "Oleoresin samples from market and farmer turmeric shown in the internship report",
+        "caption": "Oleoresin obtained after rotary evaporation — market and farmer turmeric samples."
+      },
+      {
+        "src": "assets/report/cftri-soxhlet.svg",
+        "alt": "Soxhlet apparatus containing turmeric powder from the internship report",
+        "caption": "Soxhlet extraction setup with turmeric powder in the thimble."
+      }
+    ]
   },
   {
     "slug": "pcos-survey-mysore-bsc-project",
@@ -150,7 +162,14 @@
       "Academic report writing"
     ],
     "outcome": "The project produced a 104-response dataset and a descriptive analysis of self-reported PCOS status, symptoms and lifestyle variables. It was a B.Sc. academic survey, not a clinical or diagnostic study.",
-    "reflection": "This was an early research project that introduced me to study design, participant data, descriptive analysis and the importance of interpreting survey results within the limits of the sampling method."
+    "reflection": "This was an early research project that introduced me to study design, participant data, descriptive analysis and the importance of interpreting survey results within the limits of the sampling method.",
+    "reportMedia": [
+      {
+        "src": "assets/report/bsc-pcos-chart.svg",
+        "alt": "Pie chart from the BSc project report showing participant views on causes of PCOS",
+        "caption": "Chart from the B.Sc. report summarising participants' views on possible causes of PCOS."
+      }
+    ]
   },
   {
     "displayNumber": "P1",

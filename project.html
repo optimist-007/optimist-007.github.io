@@ -1,4 +1,4 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Project | Simran Sainand Revankar</title><link rel="stylesheet" href="assets/research-readable.css?v=9"><style>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Project | Simran Sainand Revankar</title><link rel="stylesheet" href="assets/research-readable.css?v=11"><style>
 #app .page-hero{padding-top:42px;padding-bottom:48px}
 #app .section{padding-top:42px;padding-bottom:48px}
 #app .section + .section{padding-top:34px}
@@ -9,6 +9,89 @@
 @media(max-width:720px){
   #app .page-hero{padding-top:28px;padding-bottom:34px}
   #app .section,#app .band.section{padding-top:30px;padding-bottom:36px}
+}
+
+#app *{min-width:0}
+#app .project-hero h1,
+#app .project-question h2,
+#app .workflow-focus h3,
+#app .case-step h3,
+#app .evidence-row h2{
+  overflow-wrap:anywhere;
+  word-break:normal;
+  hyphens:auto;
+}
+#app .project-facts strong{
+  display:block;
+  max-width:100%;
+  overflow-wrap:anywhere;
+  line-height:1.45;
+}
+#app .project-facts>div{
+  grid-template-columns:minmax(72px,92px) minmax(0,1fr);
+}
+#app .case-step{
+  overflow:hidden;
+}
+#app .case-step>div,
+#app .workflow-focus{
+  min-width:0;
+}
+#app .workflow-focus{
+  max-width:100%;
+}
+#app .project-question h2{
+  max-width:900px;
+}
+.project-report-media{
+  padding:38px 0 46px;
+  border-top:1px solid var(--line);
+}
+.project-report-media .media-head{
+  display:grid;
+  grid-template-columns:220px minmax(0,1fr);
+  gap:32px;
+  align-items:start;
+  margin-bottom:18px;
+}
+.project-report-media .media-head p{
+  margin:0;
+  color:var(--muted);
+  max-width:620px;
+}
+.report-media-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:16px;
+}
+.report-media-card{
+  margin:0;
+  padding:14px;
+  border:1px solid var(--line);
+  background:rgba(255,255,255,.58);
+  overflow:hidden;
+}
+.report-media-card img{
+  width:100%;
+  height:clamp(240px,34vw,420px);
+  object-fit:contain;
+  display:block;
+  background:#f2f1ec;
+}
+.report-media-card figcaption{
+  margin-top:10px;
+  color:var(--muted);
+  font-size:.86rem;
+  line-height:1.55;
+}
+.report-media-grid.single{
+  grid-template-columns:minmax(0,760px);
+}
+@media(max-width:800px){
+  #app .project-facts>div{grid-template-columns:1fr;gap:4px}
+  .project-report-media .media-head,
+  .report-media-grid{grid-template-columns:1fr}
+  .report-media-card img{height:auto;max-height:520px}
 }
 </style></head><body>
 <header class="site-header"><div class="wrap nav"><a class="brand" href="index.html">Simran Sainand Revankar</a><nav class="nav-links"><a class="active" href="projects.html">Projects</a><a href="blogs.html">Blogs</a>
@@ -23,12 +106,15 @@ fetch('content/projects.json',{cache:'no-store'}).then(r=>r.json()).then(ps=>{
   document.title=p.title+' | Research';
   const workflow=(p.workflow||[]).map((w,i)=>'<button type="button" class="case-step '+(i===0?'active':'')+'" data-workflow-step="'+i+'" aria-pressed="'+(i===0?'true':'false')+'"><span>'+esc(w.number||'')+'</span><div><h3>'+esc(w.title||'')+'</h3><p>'+esc(w.text||'')+'</p></div><b>↗</b></button>').join('');
   const skills=(p.skills||[]).map(s=>'<span>'+esc(s)+'</span>').join('');
+  const reportMedia=(p.reportMedia||[]).map(m=>'<figure class="report-media-card"><img src="'+esc(m.src||'')+'" alt="'+esc(m.alt||p.title||'Project report figure')+'" loading="lazy"><figcaption>'+esc(m.caption||'Figure from project report')+'</figcaption></figure>').join('');
+  const reportGallery=reportMedia?'<section class="project-report-media"><div class="wrap"><div class="media-head"><div class="eyebrow">From the report</div><p>Selected figures from the original academic report.</p></div><div class="report-media-grid '+((p.reportMedia||[]).length===1?'single':'')+'">'+reportMedia+'</div></div></section>':'';
   const pub=p.publication||{};
   const publication=pub.title?'<section class="project-evidence"><div class="wrap"><div class="eyebrow">Publication</div><div class="evidence-row"><div><h2>'+esc(pub.title)+'</h2><p>'+esc(pub.journal||'')+(pub.year?' · '+esc(pub.year):'')+(pub.role?' · '+esc(pub.role):'')+'</p></div>'+(pub.link?'<a href="'+esc(pub.link)+'" target="_blank" rel="noopener">View publication ↗</a>':'')+'</div></div></section>':'';
   document.getElementById('app').innerHTML=
     '<div class="wrap page-hero project-hero"><div><div class="eyebrow">'+esc(p.kicker||'Selected research')+'</div><h1>'+esc(p.title)+'</h1><p class="hero-lead">'+esc(p.summary||'')+'</p></div><div class="project-facts"><div><span>Status</span><strong>'+esc(p.status||'')+'</strong></div>'+(p.type?'<div><span>Type</span><strong>'+esc(p.type)+'</strong></div>':'')+(p.institution?'<div><span>Institution</span><strong>'+esc(p.institution)+'</strong></div>':'')+(p.period?'<div><span>Period</span><strong>'+esc(p.period)+'</strong></div>':'')+(p.system?'<div><span>System</span><strong>'+esc(p.system)+'</strong></div>':'')+(p.dataset?'<div><span>Dataset</span><strong>'+esc(p.dataset)+'</strong></div>':'')+(p.started?'<div><span>Started</span><strong>'+esc(p.started)+'</strong></div>':'')+(p.role?'<div><span>Role</span><strong>'+esc(p.role)+'</strong></div>':'')+'</div></div>'+
     '<section class="project-question"><div class="wrap"><div class="eyebrow">'+esc(p.questionLabel||'Research question')+'</div><h2>'+esc(p.question||'')+'</h2></div></section>'+
     '<section class="project-workflow"><div class="wrap"><div class="project-section-head"><div class="eyebrow">Research workflow</div><p>Select a stage to bring it forward.</p></div><div class="workflow-interactive"><div class="case-steps">'+workflow+'</div><aside class="workflow-focus" aria-live="polite"><span>01</span><h3>'+esc((p.workflow||[])[0]?.title||'')+'</h3><p>'+esc((p.workflow||[])[0]?.text||'')+'</p></aside></div></div></section>'+
+    reportGallery+
     '<section class="project-proof"><div class="wrap proof-grid"><div><div class="eyebrow">'+esc(p.skillsHeading||'Skills demonstrated')+'</div><div class="proof-skills">'+skills+'</div>'+(Array.isArray(p.plannedEvidence)&&p.plannedEvidence.length?'<div class="eyebrow reflection-label">Planned evidence</div><div class="proof-skills">'+p.plannedEvidence.map(x=>'<span>'+esc(x)+'</span>').join('')+'</div>':'')+'</div><div><div class="eyebrow">Outcome</div><p>'+esc(p.outcome||'')+'</p><div class="eyebrow reflection-label">What I took from it</div><p>'+esc(p.reflection||'')+'</p></div></div></section>'+
     publication;
   document.getElementById('app').addEventListener('click',e=>{

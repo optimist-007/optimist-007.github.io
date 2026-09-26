@@ -50,6 +50,109 @@
     }
   },
   {
+    "slug": "curcumin-extraction-cftri-internship",
+    "kicker": "M.Sc. Chemistry internship project · CSIR-CFTRI",
+    "status": "Completed · 4-week internship · 2023",
+    "type": "M.Sc. Chemistry internship project",
+    "institution": "CSIR-Central Food Technological Research Institute (CFTRI), Mysuru",
+    "period": "November-December 2023",
+    "title": "Optimizing Curcumin Yield from Turmeric Oleoresin",
+    "summary": "A four-week chemistry internship investigating curcumin extraction and purification from turmeric powder and curcumin-removed turmeric oleoresin.",
+    "questionLabel": "Project focus",
+    "question": "How could extraction and purification conditions be compared to improve curcumin yield or purity in turmeric-derived materials?",
+    "system": "Turmeric powder, oleoresin and CRTO",
+    "role": "M.Sc. Chemistry intern",
+    "workflow": [
+      {
+        "number": "01",
+        "title": "Extraction",
+        "text": "Worked with turmeric powder from market and farmer sources using cold percolation, and also compared a Soxhlet extraction route described in the internship work."
+      },
+      {
+        "number": "02",
+        "title": "Purification",
+        "text": "Used hexane washing and compared IPA, IPA:hexane (1:1.5) and MTBE during curcumin purification from oleoresin."
+      },
+      {
+        "number": "03",
+        "title": "Characterisation",
+        "text": "Used UV-Vis results to quantify curcumin content and worked with FTIR and HPLC data for comparison of purified samples; TLC and 1H NMR were also used in the CRTO part of the study."
+      },
+      {
+        "number": "04",
+        "title": "CRTO study",
+        "text": "Applied a choline chloride:propylene glycol deep-eutectic-solvent approach to curcumin-removed turmeric oleoresin, followed by centrifugation, filtration and spectroscopic/chromatographic checks."
+      },
+      {
+        "number": "05",
+        "title": "Comparison",
+        "text": "Compared yield and purity across extraction and purification conditions. The report found IPA produced high UV-Vis purity values, while FTIR and HPLC comparisons supported IPA:hexane as the strongest purification condition among the tested solvents."
+      }
+    ],
+    "skills": [
+      "Solvent extraction and purification",
+      "Cold percolation and Soxhlet extraction",
+      "UV-Vis analysis",
+      "Thin-layer chromatography",
+      "FTIR/HPLC/NMR data interpretation",
+      "Scientific literature review"
+    ],
+    "outcome": "The internship compared multiple extraction and purification routes rather than claiming a new process. In the report, the farmer and market oleoresins initially contained 16.48% and 14.62% curcumin by UV-Vis, and the CRTO study increased the reported UV-Vis curcumin content from 10.41% to 13.15%.",
+    "reflection": "This project gave me practical exposure to natural-product extraction, purification, instrumental analysis and the trade-off between yield, purity, solvent choice and sustainability in a short research internship."
+  },
+  {
+    "slug": "pcos-survey-mysore-bsc-project",
+    "kicker": "B.Sc. Zoology academic project",
+    "status": "Completed · B.Sc. academic project · 2021-22",
+    "type": "B.Sc. Zoology survey project",
+    "institution": "Maharani's Science College for Women, Mysuru",
+    "period": "December 2021-January 2022",
+    "title": "A Survey on PCOS in Mysore City",
+    "summary": "A questionnaire-based cross-sectional B.Sc. project exploring self-reported PCOS occurrence and related lifestyle or symptom patterns among 104 respondents in Mysuru.",
+    "questionLabel": "Project objective",
+    "question": "To study PCOS occurrence among women surveyed in Mysuru and examine how reported symptoms and lifestyle factors varied across respondents.",
+    "system": "Cross-sectional questionnaire survey",
+    "dataset": "104 survey responses",
+    "role": "B.Sc. student project",
+    "workflow": [
+      {
+        "number": "01",
+        "title": "Questionnaire design",
+        "text": "Prepared a Google Forms questionnaire covering reported PCOS status, age, BMI, activity, diet, sleep, stress, menstrual issues and other symptoms; the report states that the questionnaire was designed with guidance from a senior gynaecologist."
+      },
+      {
+        "number": "02",
+        "title": "Data collection",
+        "text": "Collected 104 responses between December 2021 and January 2022. Names and email addresses were not collected in the survey described in the report."
+      },
+      {
+        "number": "03",
+        "title": "Descriptive analysis",
+        "text": "Organised the responses by age group and compared reported PCOS status with lifestyle and symptom variables using tables, percentages and charts."
+      },
+      {
+        "number": "04",
+        "title": "Result",
+        "text": "Eleven of the 104 respondents reported PCOS. The report then examined how those responses were distributed across age groups and other self-reported factors."
+      },
+      {
+        "number": "05",
+        "title": "Interpretation and limits",
+        "text": "The project was an exploratory academic survey based on a convenience sample and self-reported information, so its results should not be treated as a representative estimate for the whole city or as evidence of causation."
+      }
+    ],
+    "skills": [
+      "Questionnaire-based data collection",
+      "Cross-sectional survey methods",
+      "Descriptive data analysis",
+      "Tables and chart preparation",
+      "Scientific literature review",
+      "Academic report writing"
+    ],
+    "outcome": "The project produced a 104-response dataset and a descriptive analysis of self-reported PCOS status, symptoms and lifestyle variables. It was a B.Sc. academic survey, not a clinical or diagnostic study.",
+    "reflection": "This was an early research project that introduced me to study design, participant data, descriptive analysis and the importance of interpreting survey results within the limits of the sampling method."
+  },
+  {
     "displayNumber": "P1",
     "slug": "halide-perovskites-reproducible-data-analysis",
     "kicker": "Independent research · Project 001",

@@ -1,14 +1,311 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Blogs | Simran Sainand Revankar</title><link rel="stylesheet" href="assets/research.css?v=20260923-2"></head><body>
-<header class="site-header"><div class="wrap nav"><a class="brand" href="index.html">Simran Sainand Revankar</a><nav class="nav-links"><a href="research.html">Research</a><a href="projects.html">Projects</a><a class="active" href="blogs.html">Blogs</a><a href="media.html">Media</a><a href="collaborate.html">Collaborate</a><a href="media/docs/CV.pdf">CV ↗</a><a class="creative-link" href="creative.html">Creative side ↗</a></nav><a class="menu-note" href="creative.html">Creative side ↗</a></div></header>
-<main><div class="wrap page-hero"><div><a class="backlink" href="index.html">← Home</a><div class="eyebrow">Research writing</div><h1>Blogs.</h1><p class="hero-lead">The full writing archive stays here. The homepage only gives visitors a taste, so the research site remains easy to enter.</p></div><div class="index-box">Long-form notes, explainers and reflections can accumulate without turning the homepage into a wall of text.</div></div>
-<section class="section"><div class="wrap"><div class="article-grid" id="blogGrid"></div></div></section></main>
-<div class="reader" id="reader"><article class="reader-box"><div class="reader-top"><div><div class="eyebrow" id="rmeta"></div><h2 id="rtitle"></h2></div><button class="close" id="close" aria-label="Close article">×</button></div><div class="reader-body" id="rbody"></div><section class="comments"><h3>Comments and discussion</h3><p class="muted">Sign in with GitHub to leave a comment on this blog.</p><div class="comments-host" id="commentsHost"></div></section></article></div>
-<footer class="wrap site-footer"><span>Research · writing · curiosity</span><span><a href="creative.html">Creative side ↗</a></span></footer>
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Blogs | Simran Sainand Revankar</title>
+<link rel="stylesheet" href="assets/research-readable.css?v=12">
+<style>
+.blog-index{padding-bottom:20px}
+.blog-intro{max-width:760px}
+.blog-index .page-hero{padding-bottom:18px!important}
+.blog-index .section{padding-top:10px!important}
+
+.blog-sections{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  margin:0 0 14px;
+  padding:0;
+  border:0
+}
+.blog-section-link{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  min-height:44px;
+  padding:10px 13px;
+  border:1px solid var(--line);
+  background:transparent;
+  text-decoration:none;
+  color:var(--muted);
+  transition:background .2s,color .2s,border-color .2s
+}
+.blog-section-link .label{
+  display:block;
+  margin:0;
+  font:700 .72rem var(--mono);
+  text-transform:uppercase;
+  letter-spacing:.08em;
+  color:inherit
+}
+.blog-section-link strong{
+  font:600 .72rem var(--mono);
+  color:inherit
+}
+.blog-section-link small{display:none}
+.blog-section-link:hover,.blog-section-link.active{
+  background:var(--forest);
+  color:var(--cream);
+  border-color:var(--forest)
+}
+
+.talk-subsections{
+  display:none;
+  gap:8px;
+  flex-wrap:wrap;
+  margin:0 0 12px;
+  padding:0
+}
+.talk-subsections.visible{display:flex}
+.talk-subsection{
+  min-height:34px;
+  border:1px solid var(--line);
+  background:transparent;
+  color:var(--muted);
+  padding:6px 9px;
+  font:600 .7rem var(--mono);
+  text-transform:uppercase;
+  letter-spacing:.07em;
+  cursor:pointer
+}
+.talk-subsection.active,.talk-subsection:hover{
+  background:var(--clay);
+  color:var(--cream);
+  border-color:var(--clay)
+}
+
+.blog-filters{display:none}
+
+.blog-grid{
+  display:grid;
+  grid-template-columns:repeat(12,1fr);
+  gap:16px
+}
+.blog-card{
+  grid-column:span 6;
+  display:grid;
+  grid-template-columns:minmax(0,1fr);
+  align-content:space-between;
+  min-height:260px;
+  padding:24px;
+  background:rgba(255,255,255,.42);
+  border:1px solid var(--line);
+  text-decoration:none;
+  transition:transform .2s ease,box-shadow .2s ease,background .2s ease
+}
+.blog-card:nth-child(3n+1){grid-column:span 7}
+.blog-card:nth-child(3n+2){grid-column:span 5}
+.blog-card.featured{
+  background:var(--forest);
+  color:var(--cream)
+}
+.blog-card.featured h3{color:var(--cream)!important}
+.blog-card.featured p{color:#e4e9e5!important}
+.blog-card:hover{
+  transform:translateY(-3px);
+  box-shadow:0 14px 34px rgba(35,56,45,.08)
+}
+.blog-card h3{
+  margin:7px 0 8px;
+  max-width:650px;
+  font-size:clamp(1.5rem,2.15vw,2.05rem);
+  line-height:1.02
+}
+.blog-card p{
+  margin:0;
+  max-width:620px;
+  font-size:.93rem;
+  line-height:1.5
+}
+.blog-meta{
+  font:700 .72rem var(--mono);
+  text-transform:uppercase;
+  letter-spacing:.08em;
+  color:var(--clay)
+}
+.blog-card.featured .blog-meta{color:#e7cb91}
+.blog-media-count{
+  margin-top:18px;
+  font:600 .72rem var(--mono);
+  text-transform:uppercase;
+  letter-spacing:.07em;
+  color:var(--muted)
+}
+.blog-card.featured .blog-media-count{color:#d9dfda}
+
+.reader-box.blog-reader{
+  padding:0;
+  display:grid;
+  grid-template-columns:minmax(240px,.68fr) minmax(0,1.32fr);
+  overflow:hidden
+}
+.blog-reader-media{
+  background:#263e34;
+  min-height:560px;
+  padding:20px;
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+  overflow:auto
+}
+.blog-reader-media img{
+  width:100%;
+  display:block;
+  object-fit:contain;
+  background:#1d2d27;
+  max-height:400px
+}
+.blog-reader-media .caption{color:#e3e8e2;font-size:.9rem}
+.blog-reader-copy{padding:28px 32px;overflow:auto;max-height:90vh}
+.blog-reader-copy .reader-body{white-space:pre-line;line-height:1.58;font-size:1rem}.blog-reader-copy .reader-body br{line-height:.7}
+.blog-reader-copy .event-note{
+  border-left:3px solid var(--sand);
+  padding:12px 14px;
+  background:var(--paper);
+  color:var(--muted);
+  margin:18px 0
+}
+.blog-reader-copy .blog-external{
+  display:inline-block;
+  margin:6px 0 22px;
+  color:var(--forest)
+}
+.comments{margin-top:28px;padding-top:22px}
+
+@media(max-width:900px){
+  .blog-card,.blog-card:nth-child(n){grid-column:span 12}
+  .reader-box.blog-reader{grid-template-columns:1fr}
+  .blog-reader-media{min-height:220px;max-height:340px}
+  .blog-reader-copy{padding:28px}
+  .blog-reader-media img{max-height:260px}
+}
+</style>
+</head>
+<body>
+<header class="site-header"><div class="wrap nav">
+<a class="brand" href="index.html">Simran Sainand Revankar</a>
+<nav class="nav-links"><a href="index.html">Research</a><a href="projects.html">Projects</a><a class="active" href="blogs.html">Blogs</a><a href="publications.html">Publications</a><a href="media.html">Media</a><a href="media/docs/CV.pdf">CV ↗</a><a class="creative-link" href="creative.html">Creative side ↗</a></nav><a class="menu-note" href="creative.html">Creative side ↗</a>
+</div></header>
+<main class="blog-index">
+<div class="wrap page-hero">
+<div class="blog-intro"><a class="backlink" href="index.html">← Home</a><div class="eyebrow">Research journal</div>
+<h1>Notes.</h1><p class="hero-lead">Research notes, talks, conferences and reflections.</p></div>
+
+</div>
+<section class="section" style="padding-top:10px"><div class="wrap">
+<div class="blog-sections" id="blogSections"></div>
+<div class="talk-subsections" id="talkSubsections"></div>
+<div class="blog-filters" id="filters" style="display:none"></div>
+<div class="blog-grid" id="blogGrid"></div>
+</div></section>
+</main>
+<div class="reader" id="reader"><article class="reader-box blog-reader">
+<div class="blog-reader-media" id="rmedia"></div>
+<div class="blog-reader-copy"><div class="reader-top"><div><div class="eyebrow" id="rmeta"></div><h2 id="rtitle"></h2></div><button class="close" id="close" aria-label="Close article">×</button></div>
+<div class="event-note" id="revent" style="display:none"></div><a class="blog-external" id="rlink" style="display:none" target="_blank" rel="noopener">Related link ↗</a>
+<div class="reader-body" id="rbody"></div>
+<section class="comments"><h3>Comments and discussion</h3><p class="muted">Sign in with GitHub to leave a comment on this blog.</p><div class="comments-host" id="commentsHost"></div></section>
+</div></article></div>
+<footer class="wrap site-footer"><span>Research · writing · curiosity</span></footer>
 <script>
-let blogs=[];
+let blogs=[],active='All',talkActive='All talks';
 const esc=v=>String(v??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-function openPost(p){document.getElementById('rmeta').textContent=p.category||'Blog';document.getElementById('rtitle').textContent=p.title||'Untitled';document.getElementById('rbody').textContent=p.body||'';const host=document.getElementById('commentsHost');host.replaceChildren();const script=document.createElement('script');script.src='https://utteranc.es/client.js';script.setAttribute('repo','optimist-007/optimist-007.github.io');script.setAttribute('issue-term',p.title||'blog');script.setAttribute('theme','github-light');script.setAttribute('crossorigin','anonymous');script.async=true;host.appendChild(script);document.getElementById('reader').classList.add('open');document.body.style.overflow='hidden'}
+const sectionDefs=[
+ {key:'All',label:'Everything',desc:'The whole journal'},
+ {key:'Conference + workshop',label:'Conferences',desc:''},
+ {key:'Talk / lecture',label:'Talks',desc:''},
+ {key:'Personal notes',label:'Personal notes',desc:''},
+ {key:'Science explained',label:'Science explained',desc:''}
+];
+const talkDefs=[
+ {key:'All talks',label:'All talks',desc:'All four entries'},
+ {key:'Subject-related',label:'Subject-related',desc:'Closest to my materials work'},
+ {key:'Connected to my work',label:'Connected',desc:'Research, industry & skills'},
+ {key:'Outside my immediate area',label:'Outside my area',desc:'Exploring something different'}
+];
+function normalizeType(p){
+ const raw=String(p.type||p.category||'Research reflection').trim().toLowerCase();
+ if(raw.includes('conference'))return 'Conference experience';
+ if(raw.includes('talk')||raw.includes('lecture'))return 'Talk / lecture';
+ if(raw.includes('workshop'))return 'Workshop';
+ if(raw.includes('personal note'))return 'Personal notes';
+ if(raw.includes('science explain'))return 'Science explained';
+ if(raw.includes('research reflection'))return 'Research reflection';
+ return 'Other';
+}
+function renderSectionLinks(){
+ const counts={};blogs.forEach(p=>{const t=normalizeType(p);counts[t]=(counts[t]||0)+1});
+ document.getElementById('blogSections').innerHTML=sectionDefs.map(s=>{
+   const n=s.key==='All'?blogs.length:(s.key==='Conference + workshop'?((counts['Conference experience']||0)+(counts['Workshop']||0)):(counts[s.key]||0));
+   return '<a href="#" class="blog-section-link '+(active===s.key?'active':'')+'" data-section="'+esc(s.key)+'"><span class="label">'+esc(s.label)+'</span><strong>'+n+' '+(n===1?'entry':'entries')+'</strong><small>'+esc(s.desc)+'</small></a>';
+ }).join('');
+ document.querySelectorAll('[data-section]').forEach(x=>x.onclick=e=>{
+   e.preventDefault(); active=x.dataset.section; 
+   if(active!=='Talk / lecture')talkActive='All talks';
+   renderSectionLinks();renderTalkSubsections();renderCards();
+ });
+}
+function renderTalkSubsections(){
+ const host=document.getElementById('talkSubsections');
+ if(active!=='Talk / lecture'){host.classList.remove('visible');host.innerHTML='';return}
+ host.classList.add('visible');
+ const counts={};blogs.filter(p=>normalizeType(p)==='Talk / lecture').forEach(p=>{const k=p.subjectRelation||'Connected to my work';counts[k]=(counts[k]||0)+1});
+ host.innerHTML=talkDefs.map(s=>{
+   const n=s.key==='All talks'?blogs.filter(p=>normalizeType(p)==='Talk / lecture').length:(counts[s.key]||0);
+   return '<a href="#" class="talk-subsection '+(talkActive===s.key?'active':'')+'" data-talk-section="'+esc(s.key)+'">'+esc(s.label)+' · '+n+'</a>';
+ }).join('');
+ host.querySelectorAll('[data-talk-section]').forEach(x=>x.onclick=e=>{
+   e.preventDefault();talkActive=x.dataset.talkSection;renderTalkSubsections();renderCards();
+ });
+}
+function renderCards(){
+ let list=active==='All'?blogs:blogs.filter(p=>active==='Conference + workshop'?(normalizeType(p)==='Conference experience'||normalizeType(p)==='Workshop'):normalizeType(p)===active);
+ if(active==='Talk / lecture' && talkActive!=='All talks') list=list.filter(p=>(p.subjectRelation||'Connected to my work')===talkActive);
+ document.getElementById('blogGrid').innerHTML=list.length?list.map((p,i)=>{
+   const original=blogs.indexOf(p), media=Array.isArray(p.media)?p.media.filter(x=>x.src):[];
+   const isTalk=normalizeType(p)==='Talk / lecture';
+   const label=isTalk && p.subjectRelation ? p.subjectRelation : (p.category||p.type||'Research note');
+   return '<a class="blog-card '+(i===0?'featured':'')+'" href="#" data-i="'+original+'"><div><div class="blog-meta">'+esc(label)+(p.date?' · '+esc(p.date):'')+'</div><h3>'+esc(p.title||'Untitled')+'</h3><p>'+esc(p.excerpt||String(p.body||'').slice(0,120))+'…</p></div><div><div class="blog-media-count">'+(media.length?media.length+' media item'+(media.length>1?'s':''):'Written note')+' · Open full post ↗</div></div></a>';
+ }).join('') :'';
+ document.querySelectorAll('[data-i]').forEach(x=>x.onclick=e=>{e.preventDefault();openPost(blogs[Number(x.dataset.i)])});
+}
+function openPost(p){
+ document.getElementById('rmeta').textContent=p.category||p.type||'Research note';
+ document.getElementById('rtitle').textContent=p.title||'Untitled';
+ document.getElementById('rbody').textContent=p.body||'';
+ const ev=document.getElementById('revent');ev.textContent=p.event||'';ev.style.display=p.event?'block':'none';
+ const link=document.getElementById('rlink');if(p.link){link.href=p.link;link.style.display='inline-block'}else link.style.display='none';
+ const media=document.getElementById('rmedia');media.innerHTML='';
+ if(p.image){const im=document.createElement('img');im.src=p.image;im.alt=p.title||'Blog image';media.appendChild(im)}
+ (p.media||[]).forEach(m=>{if(!m.src)return;const im=document.createElement('img');im.src=m.src;im.alt=m.caption||p.title||'Blog media';media.appendChild(im);if(m.caption){const cap=document.createElement('div');cap.className='caption';cap.textContent=m.caption;media.appendChild(cap)}});
+ if(!media.children.length){media.innerHTML='<div style="margin:auto;color:#dfe6df;font:600 .68rem var(--mono);text-transform:uppercase;letter-spacing:.1em">Written note</div>'}
+ const host=document.getElementById('commentsHost');host.replaceChildren();const script=document.createElement('script');script.src='https://utteranc.es/client.js';script.setAttribute('repo','optimist-007/optimist-007.github.io');script.setAttribute('issue-term',p.title||'blog');script.setAttribute('theme','github-light');script.setAttribute('crossorigin','anonymous');script.async=true;host.appendChild(script);
+ document.getElementById('reader').classList.add('open');document.body.style.overflow='hidden';
+}
 function close(){document.getElementById('reader').classList.remove('open');document.body.style.overflow=''}
 document.getElementById('close').onclick=close;document.getElementById('reader').onclick=e=>{if(e.target.id==='reader')close()};document.addEventListener('keydown',e=>{if(e.key==='Escape')close()});
-fetch('content/blogs.json',{cache:'no-store'}).then(r=>r.json()).then(data=>{blogs=data||[];document.getElementById('blogGrid').innerHTML=blogs.map((p,i)=>'<a class="article-card '+(i===0?'featured':'')+'" href="#" data-i="'+i+'"><div><div class="article-meta">'+esc(p.category||'Blog')+'</div><h3>'+esc(p.title||'Untitled')+'</h3><p>'+esc(String(p.body||'').slice(0,i===0?420:220))+'…</p></div><div class="meta">Open full post ↗</div></a>').join('');document.querySelectorAll('[data-i]').forEach(x=>x.onclick=e=>{e.preventDefault();openPost(blogs[Number(x.dataset.i)])});const idx=Number(new URLSearchParams(location.search).get('post'));if(Number.isInteger(idx)&&blogs[idx])openPost(blogs[idx])}).catch(()=>{document.getElementById('blogGrid').innerHTML='<div class="empty">The blog archive could not be loaded.</div>'});
-</script></body></html>
+fetch('content/blogs.json',{cache:'no-store'}).then(r=>r.json()).then(data=>{
+ blogs=Array.isArray(data)?data:[];
+ renderSectionLinks();renderTalkSubsections();renderCards();
+}).catch(()=>{document.getElementById('blogGrid').innerHTML=''});
+</script>
+<script>
+(async function renderEditableSiteNav(){
+  try{
+    const r=await fetch('content/main-site.json?v='+Date.now(),{cache:'no-store'});
+    if(!r.ok)return;
+    const d=await r.json(), nav=Array.isArray(d.nav)?d.nav:[];
+    const host=document.querySelector('.nav-links')||document.querySelector('.home-navlinks');
+    if(!host||!nav.length)return;
+    const current=location.pathname.split('/').pop()||'index.html';
+    host.innerHTML=nav.map(function(n){
+      const href=String(n.href||'');
+      const target=href.split('?')[0].split('#')[0];
+      const isActive=target===current || (current==='index.html' && (target===''||target==='/'));
+      const cls=(n.className||'')+(isActive?' active':'');
+      return '<a class="'+cls.trim()+'" href="'+String(href).replace(/&/g,'&amp;').replace(/"/g,'&quot;')+'">'+String(n.label||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')+'</a>';
+    }).join('');
+  }catch(e){}
+})();
+</script>
+<script src="assets/site-interactions.js?v=1" defer></script>
+</body></html>

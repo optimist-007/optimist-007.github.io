@@ -1,0 +1,58 @@
+{
+  "kicker": "Materials · thin films · devices",
+  "headline": "Materials researcher with interdisciplinary interests.",
+  "intro": "",
+  "identity": [],
+  "rail": [],
+  "focusEyebrow": "Research questions",
+  "focusTitle": "How I follow a materials problem.",
+  "focusIntro": "",
+  "questions": [
+    {
+      "number": "01",
+      "title": "Materials → function",
+      "text": "How structure and interfaces become measurable device behaviour."
+    },
+    {
+      "number": "02",
+      "title": "Experiment → insight",
+      "text": "Using characterisation and analysis to understand what changed and why."
+    },
+    {
+      "number": "03",
+      "title": "Research → use",
+      "text": "Sensing, energy and semiconductor problems with practical constraints in view."
+    }
+  ],
+  "contact": {
+    "eyebrow": "Contact",
+    "title": "Research, writing or collaboration.",
+    "text": "Research · scientific writing · literature synthesis · data visualisation.",
+    "email": "simirevankar01@gmail.com"
+  },
+  "footerLeft": "Materials · devices · questions",
+  "customSections": [],
+  "sectionVisibility": {
+    "hero": true,
+    "focus": true,
+    "contact": true
+  },
+  "homeOrder": [
+    "hero",
+    "focus",
+    "contact"
+  ],
+  "academicProfile": {
+    "eyebrow": "Academic profile",
+    "degree": "M.Sc. Chemistry",
+    "summary": "",
+    "tags": [
+      "Functional nanomaterials",
+      "Thin films",
+      "Interfaces",
+      "Energy & sensing",
+      "Semiconductor systems",
+      "Computational materials"
+    ]
+  }
+}

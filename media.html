@@ -1,8 +1,86 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Media | Simran Sainand Revankar</title><link rel="stylesheet" href="assets/research.css?v=20260923-2"></head><body>
-<header class="site-header"><div class="wrap nav"><a class="brand" href="index.html">Simran Sainand Revankar</a><nav class="nav-links"><a href="research.html">Research</a><a href="projects.html">Projects</a><a href="blogs.html">Blogs</a><a class="active" href="media.html">Media</a><a href="collaborate.html">Collaborate</a><a href="media/docs/CV.pdf">CV ↗</a><a class="creative-link" href="creative.html">Creative side ↗</a></nav><a class="menu-note" href="creative.html">Creative side ↗</a></div></header>
-<main><div class="wrap page-hero"><div><a class="backlink" href="index.html">← Home</a><div class="eyebrow">Field archive</div><h1>Research, in pictures.</h1><p class="hero-lead">A place for figures, microscopy, devices, conference moments and future video notes.</p></div><div class="index-box">This page is intentionally visual. The homepage only points here so the main research story stays uncluttered.</div></div>
-<section class="section"><div class="wrap media-grid"><article class="media-panel"><div class="eyebrow">Images</div><h2>Research gallery</h2><p class="muted">Figures, experiments, instruments and conference documentation.</p><div class="media-items" id="gallery"></div></article><article class="media-panel"><div class="eyebrow">Video</div><h2>Video notes</h2><p class="muted">Short explanations, demonstrations or recorded research material can live here later.</p><div class="media-items" id="videos"></div></article></div></section></main><footer class="wrap site-footer"><span>Visual research archive</span><span><a href="creative.html">Creative side ↗</a></span></footer>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Media | Simran Sainand Revankar</title>
+<link rel="stylesheet" href="assets/research-readable.css?v=12">
+<style>
+.media-showcase{padding:0 0 42px}
+.media-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.media-card{background:#f8f7f3;border:1px solid rgba(36,41,35,.12);padding:13px;box-shadow:0 12px 30px rgba(36,41,35,.08)}
+.media-card img,.media-card video{width:100%;display:block;max-height:520px;object-fit:contain;background:#ece9e2}
+.media-card video{max-height:520px}
+.media-card h3{margin:13px 0 5px}
+.media-card p{margin:0;color:#667069}
+.media-kind{font:600 .68rem/1.2 "DM Mono",monospace;text-transform:uppercase;letter-spacing:.12em;color:#37624f}
+.media-empty{padding:35px 0;color:#667069}
+@media(max-width:800px){.media-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header class="site-header"><div class="wrap nav">
+<a class="brand" href="index.html">Simran Sainand Revankar</a>
+<nav class="nav-links">
+<a href="index.html">Research</a><a href="projects.html">Projects</a><a href="blogs.html">Blogs</a>
+<a class="active" href="media.html">Media</a><a href="publications.html">Publications</a>
+<a href="media/docs/CV.pdf">CV ↗</a><a class="creative-link" href="creative.html">Creative side ↗</a>
+</nav>
+<a class="menu-note" href="creative.html">Creative side ↗</a>
+</div></header>
+
+<main>
+<div class="wrap page-hero">
+<div><a class="backlink" href="index.html">← Home</a><div class="eyebrow">Visual archive</div>
+<h1>Research media.</h1>
+</div>
+
+</div>
+
+<section class="section media-showcase"><div class="wrap">
+<div class="eyebrow">Images</div>
+<div class="media-grid" id="gallery"></div>
+<div style="margin-top:34px"><div class="eyebrow">Video</div>
+<div class="media-grid" id="videos"></div></div>
+</div></section>
+</main>
+<footer class="wrap site-footer"><span>Visual research archive</span><a href="creative.html">Creative side ↗</a></footer>
+
 <script>
-function empty(id,text){document.getElementById(id).innerHTML='<div class="empty">'+text+'</div>'}
-async function load(){try{const [g,v]=await Promise.all([fetch('content/gallery.json',{cache:'no-store'}).then(r=>r.json()),fetch('content/videos.json',{cache:'no-store'}).then(r=>r.json())]);if(!Array.isArray(g)||!g.length)empty('gallery','No research images published yet.');else document.getElementById('gallery').innerHTML=g.map(x=>'<div class="media-item"><img src="'+(x.image||x.src||x.url||'')+'" alt="'+(x.alt||x.caption||x.title||'')+'"><p>'+(x.caption||x.title||'')+'</p></div>').join('');if(!Array.isArray(v)||!v.length)empty('videos','No videos published yet.');else document.getElementById('videos').innerHTML=v.map(x=>'<div class="media-item"><p><a href="'+(x.url||x.link||'#')+'" target="_blank" rel="noopener">'+(x.title||'Watch video')+' ↗</a></p><p>'+ (x.description||x.caption||'')+'</p></div>').join('')}catch(e){empty('gallery','Media will appear here as it grows.');empty('videos','Media will appear here as it grows.')}}load();
-</script></body></html>
+const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+function imageCard(x){
+ const src=x.path||x.image||x.src||x.url||'';
+ if(!src)return '';
+ return '<article class="media-card"><div class="media-kind">Image</div><img src="'+esc(src)+'" alt="'+esc(x.alt||x.caption||x.title||'Research image')+'" loading="lazy"><h3>'+esc(x.name||x.title||'Research image')+'</h3>'+(x.caption?'<p>'+esc(x.caption)+'</p>':'')+'</article>';
+}
+function videoCard(x){
+ const src=x.video||x.src||x.url||x.link||'';
+ if(!src)return '';
+ const isEmbed=/youtube\.com|youtu\.be|vimeo\.com/.test(src);
+ return '<article class="media-card"><div class="media-kind">Video</div>'+
+ (isEmbed?'<p style="padding:35px 0"><a href="'+esc(src)+'" target="_blank" rel="noopener">Watch video ↗</a></p>':'<video controls preload="metadata" src="'+esc(src)+'"></video>')+
+ '<h3>'+esc(x.title||'Video note')+'</h3>'+(x.description||x.caption?'<p>'+esc(x.description||x.caption)+'</p>':'')+'</article>';
+}
+async function load(){
+ try{
+  const [m,c]=await Promise.all([
+   fetch('content/media-library.json?v='+Date.now(),{cache:'no-store'}).then(r=>r.ok?r.json():[]),
+   fetch('content/creative-content.json?v='+Date.now(),{cache:'no-store'}).then(r=>r.ok?r.json():{})
+  ]);
+  const images=Array.isArray(m)?m:(Array.isArray(m.images)?m.images:[]);
+  const creative=Array.isArray(c.mediaEntries)?c.mediaEntries:[];
+  const posts=Array.isArray(c.posts)?c.posts:[];
+  const allImages=images.concat(creative.filter(x=>x.enabled!==false&&x.image).map(x=>({image:x.image,title:x.title,alt:x.alt,caption:x.text})));
+  const allVideos=creative.filter(x=>x.enabled!==false&&x.video).map(x=>({video:x.video,title:x.title,caption:x.text}));
+  posts.forEach(p=>(p.media||[]).forEach(x=>{if(x.type==='image'&&x.src)allImages.push({image:x.src,title:p.title,alt:x.alt,caption:x.caption});if(x.type==='video'&&x.src)allVideos.push({video:x.src,title:p.title,caption:x.caption});}));
+  document.getElementById('gallery').innerHTML=allImages.map(imageCard).join('')||'';
+  document.getElementById('videos').innerHTML=allVideos.map(videoCard).join('')||'';
+ }catch(e){
+  document.getElementById('gallery').innerHTML='';
+  document.getElementById('videos').innerHTML='';
+ }
+}
+load();
+</script>
+<script src="assets/site-interactions.js?v=1" defer></script>
+</body></html>

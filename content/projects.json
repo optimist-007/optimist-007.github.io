@@ -1,26 +1,243 @@
 [
   {
-    "slug":"self-powered-uv-sensing",
-    "kicker":"Selected work · functional nanomaterials",
-    "status":"Completed study",
-    "title":"Self-powered UV sensing with perovskite/polymer nanocomposites",
-    "summary":"Explored fluorescent CsPbBr3@Cs4PbBr6 perovskite/polymer nanocomposites and translated their response into a self-powered UV-sensing device.",
-    "problem":"How can a functional material convert an environmental stimulus into a useful signal without depending on a separate power source?",
-    "approach":"The work connected materials synthesis with structural, optical and device-level characterisation, followed by fabrication and performance analysis.",
-    "details":["Perovskite/polymer nanocomposites","Structural and spectroscopic characterisation","Device fabrication","Self-powered UV sensing"],
-    "what_it_shows":"This project represents the experimental side of my research identity: working across chemistry, materials and device behaviour rather than treating them as separate stages.",
-    "next":"A future direction is to make this kind of workflow more predictive by combining experimental understanding with computational screening."
+    "slug": "self-powered-uv-sensing",
+    "kicker": "Selected research · functional nanomaterials",
+    "status": "Completed · Published 2025",
+    "title": "Self-powered UV sensing with perovskite/polymer nanocomposites",
+    "summary": "A materials-to-device study using fluorescent CsPbBr3@Cs4PbBr6/PU nanocomposites in a triboelectric nanogenerator for self-powered UV sensing.",
+    "question": "How can a functional nanocomposite translate a light stimulus into a useful sensing response without an external power source?",
+    "system": "CsPbBr3@Cs4PbBr6 / polyurethane nanocomposite",
+    "role": "First author",
+    "workflow": [
+      {
+        "number": "01",
+        "title": "Material development",
+        "text": "Prepared the perovskite/polymer nanocomposite and worked through the material-processing challenges needed to obtain a stable system."
+      },
+      {
+        "number": "02",
+        "title": "Characterisation",
+        "text": "Used structural and spectroscopic characterisation to verify the material and study the response relevant to the device."
+      },
+      {
+        "number": "03",
+        "title": "Device translation",
+        "text": "Integrated the material into a triboelectric nanogenerator and evaluated its use for self-powered UV sensing."
+      },
+      {
+        "number": "04",
+        "title": "Research communication",
+        "text": "The work was developed into a first-author publication and presented through scientific conferences and symposiums."
+      }
+    ],
+    "skills": [
+      "Nanocomposite synthesis",
+      "Materials characterisation",
+      "Device fabrication",
+      "UV sensing",
+      "Data interpretation",
+      "Scientific communication"
+    ],
+    "outcome": "The project connected chemistry, materials characterisation and device behaviour in one research workflow rather than treating them as separate tasks.",
+    "reflection": "The most useful part of this work was learning to follow a material from synthesis and verification through to a functioning device, then explain why the measured behaviour mattered.",
+    "publication": {
+      "title": "Fluorescent CsPbBr3@Cs4PbBr6/PU polymer nanocomposite-based triboelectric nanogenerator for self-powered UV sensing",
+      "journal": "Materials Today Chemistry",
+      "year": "2025",
+      "role": "First author",
+      "doi": "10.1016/j.mtchem.2025.102601",
+      "link": "https://doi.org/10.1016/j.mtchem.2025.102601"
+    },
+    "reportMedia": [
+      {
+        "src": "assets/report/perovskite-visible-uv-watermarked.webp",
+        "alt": "Polymer nanocomposite samples under visible light and UV illumination with a repeated portfolio watermark.",
+        "caption": "Images of polymer nanocomposite under visible light and UV (365 nm)."
+      },
+      {
+        "src": "assets/report/perovskite-green-luminescence-watermarked.webp",
+        "alt": "Bright green luminescence from the perovskite nanocomposite under UV illumination with a repeated portfolio watermark.",
+        "caption": "Bright green luminescence observed under UV light of 365 nm."
+      }
+    ]
   },
   {
-    "slug":"ferroelectric-switching",
-    "kicker":"Current research · interfaces & devices",
-    "status":"Ongoing",
-    "title":"Ferroelectric switching and interfacial charge retention",
-    "summary":"Studying how switching behaviour and interfacial charge retention shape the electrical response of ferroelectric thin-film devices.",
-    "problem":"What controls the retention and switching behaviour that determine whether a ferroelectric device is simply interesting or genuinely useful?",
-    "approach":"The work combines thin-film preparation with electrical measurements and analysis of polarisation switching and charge-retention behaviour.",
-    "details":["Ferroelectric thin films","Polarisation and P-E hysteresis","PUND analysis","DC probe-station characterisation","Interface-focused interpretation"],
-    "what_it_shows":"It adds a device-physics and interface perspective to my materials background, with emphasis on understanding the mechanisms behind measured behaviour.",
-    "next":"The longer-term aim is to connect experimental measurements with theoretical and computational approaches so that promising device conditions can be identified earlier."
+    "slug": "curcumin-extraction-cftri-internship",
+    "kicker": "M.Sc. Chemistry internship project · CSIR-CFTRI",
+    "status": "Completed · 4-week internship · 2023",
+    "type": "M.Sc. Chemistry internship project",
+    "institution": "CSIR-Central Food Technological Research Institute (CFTRI), Mysuru",
+    "period": "November-December 2023",
+    "title": "Optimizing Curcumin Yield from Turmeric Oleoresin",
+    "summary": "A four-week chemistry internship investigating curcumin extraction and purification from turmeric powder and curcumin-removed turmeric oleoresin.",
+    "questionLabel": "Project focus",
+    "question": "How could extraction and purification conditions be compared to improve curcumin yield or purity in turmeric-derived materials?",
+    "system": "Turmeric powder, oleoresin and CRTO",
+    "role": "M.Sc. Chemistry intern",
+    "workflow": [
+      {
+        "number": "01",
+        "title": "Extraction",
+        "text": "Worked with turmeric powder from market and farmer sources using cold percolation, and also compared a Soxhlet extraction route described in the internship work."
+      },
+      {
+        "number": "02",
+        "title": "Purification",
+        "text": "Used hexane washing and compared IPA, IPA:hexane (1:1.5) and MTBE during curcumin purification from oleoresin."
+      },
+      {
+        "number": "03",
+        "title": "Characterisation",
+        "text": "Used UV-Vis results to quantify curcumin content and worked with FTIR and HPLC data for comparison of purified samples; TLC and 1H NMR were also used in the CRTO part of the study."
+      },
+      {
+        "number": "04",
+        "title": "CRTO study",
+        "text": "Applied a choline chloride:propylene glycol deep-eutectic-solvent approach to curcumin-removed turmeric oleoresin, followed by centrifugation, filtration and spectroscopic/chromatographic checks."
+      },
+      {
+        "number": "05",
+        "title": "Comparison",
+        "text": "Compared yield and purity across extraction and purification conditions. The report found IPA produced high UV-Vis purity values, while FTIR and HPLC comparisons supported IPA:hexane as the strongest purification condition among the tested solvents."
+      }
+    ],
+    "skills": [
+      "Solvent extraction and purification",
+      "Cold percolation and Soxhlet extraction",
+      "UV-Vis analysis",
+      "Thin-layer chromatography",
+      "FTIR/HPLC/NMR data interpretation",
+      "Scientific literature review"
+    ],
+    "outcome": "The internship compared multiple extraction and purification routes rather than claiming a new process. In the report, the farmer and market oleoresins initially contained 16.48% and 14.62% curcumin by UV-Vis, and the CRTO study increased the reported UV-Vis curcumin content from 10.41% to 13.15%.",
+    "reflection": "This project gave me practical exposure to natural-product extraction, purification, instrumental analysis and the trade-off between yield, purity, solvent choice and sustainability in a short research internship.",
+    "reportMedia": [
+      {
+        "src": "assets/report/cftri-columns-watermarked.webp",
+        "alt": "Laboratory extraction columns filled with turmeric and acetone with a repeated portfolio watermark.",
+        "caption": "Columns filled with turmeric and acetone, left for 4–5 hrs."
+      },
+      {
+        "src": "assets/report/cftri-oleoresin-watermarked.webp",
+        "alt": "Oleoresin samples obtained after rotary evaporation with a repeated portfolio watermark.",
+        "caption": "Oleoresin obtained after rotary evaporation for about an hour: (A) market turmeric and (B) farmers' turmeric."
+      }
+    ]
+  },
+  {
+    "slug": "pcos-survey-mysore-bsc-project",
+    "kicker": "B.Sc. Zoology academic project",
+    "status": "Completed · B.Sc. academic project · 2021-22",
+    "type": "B.Sc. Zoology survey project",
+    "institution": "Maharani's Science College for Women, Mysuru",
+    "period": "December 2021-January 2022",
+    "title": "A Survey on PCOS in 104 Individuals",
+    "summary": "A questionnaire-based cross-sectional B.Sc. project exploring self-reported PCOS occurrence and related lifestyle or symptom patterns among 104 individuals.",
+    "questionLabel": "Project objective",
+    "question": "To study self-reported PCOS occurrence among 104 individuals and examine how reported symptoms and lifestyle factors varied across respondents.",
+    "system": "Cross-sectional questionnaire survey",
+    "dataset": "104 survey responses",
+    "role": "B.Sc. student project",
+    "workflow": [
+      {
+        "number": "01",
+        "title": "Questionnaire design",
+        "text": "Prepared a Google Forms questionnaire covering reported PCOS status, age, BMI, activity, diet, sleep, stress, menstrual issues and other symptoms; the report states that the questionnaire was designed with guidance from a senior gynaecologist."
+      },
+      {
+        "number": "02",
+        "title": "Data collection",
+        "text": "Collected 104 responses between December 2021 and January 2022. Names and email addresses were not collected in the survey described in the report."
+      },
+      {
+        "number": "03",
+        "title": "Descriptive analysis",
+        "text": "Organised the responses by age group and compared reported PCOS status with lifestyle and symptom variables using tables, percentages and charts."
+      },
+      {
+        "number": "04",
+        "title": "Result",
+        "text": "Eleven of the 104 respondents reported PCOS. The report then examined how those responses were distributed across age groups and other self-reported factors."
+      },
+      {
+        "number": "05",
+        "title": "Interpretation and limits",
+        "text": "The project was an exploratory academic survey based on a convenience sample and self-reported information, so its results should not be treated as a representative estimate for the whole city or as evidence of causation."
+      }
+    ],
+    "skills": [
+      "Questionnaire-based data collection",
+      "Cross-sectional survey methods",
+      "Descriptive data analysis",
+      "Tables and chart preparation",
+      "Scientific literature review",
+      "Academic report writing"
+    ],
+    "outcome": "The project produced a 104-response dataset and a descriptive analysis of self-reported PCOS status, symptoms and lifestyle variables. It was a B.Sc. academic survey, not a clinical or diagnostic study.",
+    "reflection": "This was an early research project that introduced me to study design, participant data, descriptive analysis and the importance of interpreting survey results within the limits of the sampling method.",
+    "reportMedia": [
+      {
+        "src": "assets/report/bsc-pcos-chart.svg",
+        "alt": "Pie chart from the BSc project report showing participant views on causes of PCOS",
+        "caption": "Chart from the B.Sc. report summarising participants' views on possible causes of PCOS."
+      }
+    ]
+  },
+  {
+    "displayNumber": "P1",
+    "slug": "halide-perovskites-reproducible-data-analysis",
+    "kicker": "Independent research · Project 001",
+    "status": "In progress · started 26 Sep 2026",
+    "title": "Halide Perovskites: From Chemistry to Reproducible Data Analysis",
+    "summary": "A 28-day guided foundation project using a real JARVIS halide-perovskite dataset to connect chemistry, materials concepts and reproducible Python analysis.",
+    "question": "How do PBE and HSE band gaps compare across halide perovskites, and how are electronic properties related to tolerance-factor and stability descriptors?",
+    "system": "ABX₃ halide perovskites",
+    "dataset": "JARVIS halide-perovskite dataset · 229 materials",
+    "started": "26 September 2026",
+    "role": "Independent guided project",
+    "workflow": [
+      {
+        "number": "01",
+        "title": "Chemistry foundation",
+        "text": "Revisit atomic structure, ions, electron configuration and the A, B and X sites in ABX₃ halide perovskites so every variable is interpreted chemically rather than treated as a column name."
+      },
+      {
+        "number": "02",
+        "title": "Reproducible data inspection",
+        "text": "Use Python with JARVIS tools, pandas and NumPy to load the dataset, inspect its shape and columns, document selected descriptors and mark uncertain interpretations for verification."
+      },
+      {
+        "number": "03",
+        "title": "Structure–property analysis",
+        "text": "Build publication-quality plots and examine relationships among computed electronic properties, tolerance-factor or stability descriptors and band-gap behaviour without treating correlation as causation."
+      },
+      {
+        "number": "04",
+        "title": "Baseline modelling",
+        "text": "Introduce a simple linear-regression baseline only after the exploratory analysis, including a transparent comparison of PBE and HSE band gaps and basic model evaluation."
+      },
+      {
+        "number": "05",
+        "title": "Scientific communication",
+        "text": "Turn the analysis into a reproducible notebook, figures, a short research note and a GitHub-ready README that state assumptions, limitations and what the results do not prove."
+      }
+    ],
+    "skillsHeading": "Skills being built",
+    "skills": [
+      "Python for scientific analysis",
+      "pandas and NumPy",
+      "Materials-data interpretation",
+      "Scientific visualisation",
+      "Reproducible notebooks",
+      "Baseline regression and evaluation"
+    ],
+    "outcome": "The intended outcome is a reproducible materials-analysis workflow, not a claim of new material discovery.",
+    "reflection": "This project is designed to close the gap between learning Python and applying it to a chemically meaningful materials problem. Computational values, correlations and a simple regression will be reported with their limitations.",
+    "plannedEvidence": [
+      "Reproducible notebook",
+      "5 publication-quality figures",
+      "2–3 page research note",
+      "GitHub-ready README"
+    ]
   }
 ]

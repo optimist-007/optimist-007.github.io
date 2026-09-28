@@ -1,5 +1,77 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Publications | Simran Sainand Revankar</title><link rel="stylesheet" href="assets/research.css?v=20260923-2"></head><body>
-<header class="site-header"><div class="wrap nav"><a class="brand" href="index.html">Simran Sainand Revankar</a><nav class="nav-links"><a href="research.html">Research</a><a href="projects.html">Projects</a><a href="blogs.html">Blogs</a><a href="media.html">Media</a><a href="collaborate.html">Collaborate</a><a class="active" href="publications.html">Publications</a><a href="media/docs/CV.pdf">CV ↗</a><a class="creative-link" href="creative.html">Creative side ↗</a></nav><a class="menu-note" href="creative.html">Creative side ↗</a></div></header>
-<main><div class="wrap page-hero"><div><a class="backlink" href="index.html">← Home</a><div class="eyebrow">Publications</div><h1>A few things made public.</h1><p class="hero-lead">A compact publication record. The CV remains the place for the complete academic history.</p></div></div>
-<section class="section"><div class="wrap" id="pubs"></div></section></main><footer class="wrap site-footer"><span>Research · publications</span><span><a href="creative.html">Creative side ↗</a></span></footer>
-<script>const esc=v=>String(v??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));fetch('content/publications.json',{cache:'no-store'}).then(r=>r.json()).then(ps=>{document.getElementById('pubs').innerHTML=ps.map(p=>'<article class="pub"><div class="pub-year">'+esc(p.year||'Published')+'</div><div><h3>'+esc(p.title)+'</h3><div class="journal">'+esc(p.journal||'')+' · '+esc(p.role||'')+'</div>'+(p.link?'<a href="'+esc(p.link)+'" target="_blank" rel="noopener">View publication ↗</a>':'')+'</div></article>').join('')})</script></body></html>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Publications | Simran Sainand Revankar</title><link rel="stylesheet" href="assets/research-readable.css?v=12"><style>
+.publications-page .pubs-section{padding-top:16px}
+.publications-page .page-hero{padding-bottom:18px}
+</style></head><body class="publications-page">
+<header class="site-header"><div class="wrap nav"><a class="brand" href="index.html">Simran Sainand Revankar</a><nav class="nav-links"><a href="projects.html">Projects</a><a href="blogs.html">Blogs</a><a class="active" href="publications.html">Publications</a><a href="media/docs/CV.pdf">CV ↗</a><a class="creative-link" href="creative.html">Creative side ↗</a></nav><a class="menu-note" href="creative.html">Creative side ↗</a></div></header>
+<main>
+<div class="wrap page-hero">
+  <div>
+    <a class="backlink" href="index.html">← Home</a>
+    <div class="eyebrow">Publications</div>
+    <h1>Publications.</h1>
+  </div>
+</div>
+
+<section class="section pubs-section">
+  <div class="wrap" id="pubs"></div>
+</section>
+</main>
+
+<footer class="wrap site-footer"><span>Research · publications</span></footer>
+
+<script>
+const esc=v=>String(v??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+fetch('content/publications.json',{cache:'no-store'})
+  .then(r=>r.json())
+  .then(ps=>{
+    document.getElementById('pubs').innerHTML=ps.slice(0,3).map(p=>
+      '<article class="pub">'+
+        '<div class="pub-year">'+esc(p.year||'Published')+'</div>'+
+        '<div>'+
+          '<h3>'+esc(p.title)+'</h3>'+
+          '<div class="journal">'+esc(p.journal||'')+' · '+esc(p.role||'')+'</div>'+
+          '<div class="pub-actions">'+
+            (p.link?'<a href="'+esc(p.link)+'" target="_blank" rel="noopener">View publication ↗</a>':'')+
+            '<button type="button" class="pub-detail-toggle" aria-expanded="false">Details +</button>'+
+          '</div>'+
+          '<div class="pub-detail" hidden>'+
+            '<span>DOI</span><strong>'+esc(p.doi||'—')+'</strong>'+
+            (p.volume?'<span>Volume</span><strong>'+esc(p.volume)+'</strong>':'')+
+            (p.article?'<span>Article / pages</span><strong>'+esc(p.article)+'</strong>':'')+
+          '</div>'+
+        '</div>'+
+      '</article>'
+    ).join('');
+
+    document.getElementById('pubs').addEventListener('click',e=>{
+      const b=e.target.closest('.pub-detail-toggle'); if(!b)return;
+      const detail=b.closest('.pub').querySelector('.pub-detail');
+      const open=detail.hasAttribute('hidden');
+      if(open)detail.removeAttribute('hidden');else detail.setAttribute('hidden','');
+      b.setAttribute('aria-expanded',open?'true':'false');
+      b.textContent=open?'Details −':'Details +';
+    });
+  });
+</script>
+
+<script>
+(async function renderEditableSiteNav(){
+  try{
+    const r=await fetch('content/main-site.json?v='+Date.now(),{cache:'no-store'});
+    if(!r.ok)return;
+    const d=await r.json(), nav=Array.isArray(d.nav)?d.nav:[];
+    const host=document.querySelector('.nav-links')||document.querySelector('.home-navlinks');
+    if(!host||!nav.length)return;
+    const current=location.pathname.split('/').pop()||'index.html';
+    host.innerHTML=nav.map(function(n){
+      const href=String(n.href||'');
+      const target=href.split('?')[0].split('#')[0];
+      const isActive=target===current || (current==='index.html' && (target===''||target==='/'));
+      const cls=(n.className||'')+(isActive?' active':'');
+      return '<a class="'+cls.trim()+'" href="'+String(href).replace(/&/g,'&amp;').replace(/"/g,'&quot;')+'">'+String(n.label||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')+'</a>';
+    }).join('');
+  }catch(e){}
+})();
+</script>
+<script src="assets/site-interactions.js?v=1" defer></script>
+</body></html>

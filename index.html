@@ -6,36 +6,30 @@
 <title>Simran Sainand Revankar | Materials Research</title>
 <meta name="description" content="Materials research across functional nanomaterials, thin films, sensing, energy and semiconductor-related devices.">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23244838'/%3E%3Ccircle cx='32' cy='32' r='18' fill='none' stroke='%23c8aa73' stroke-width='3'/%3E%3Ccircle cx='32' cy='32' r='5' fill='%23f8f7f3'/%3E%3C/svg%3E">
-<link rel="stylesheet" href="assets/home.css?v=6">
+<link rel="stylesheet" href="assets/home.css?v=17">
 </head>
 <body>
 <header class="home-header">
   <div class="home-shell home-nav">
     <a class="home-brand" href="index.html">Simran Sainand Revankar</a>
-    <nav class="home-navlinks">
-      <a href="research.html">Research</a>
+    <nav class="home-navlinks" id="homePrimaryNav">
+      <a class="active" href="index.html">Research</a>
       <a href="projects.html">Projects</a>
       <a href="blogs.html">Blogs</a>
       <a href="publications.html">Publications</a>
       <a href="media.html">Media</a>
-      <a href="collaborate.html">Collaborate</a>
       <a href="media/docs/CV.pdf">CV ↗</a>
       <a class="creative" href="creative.html">Creative side ↗</a>
     </nav>
+    <button class="home-mobile-menu-toggle" type="button" aria-expanded="false" aria-controls="homePrimaryNav">Menu</button>
   </div>
 </header>
 
 <main>
 <section class="home-shell hero">
   <div class="hero-copy">
-    <div class="hero-kicker">Materials · devices · sustainability</div>
-    <h1>Materials research, from how a material behaves to what it can become.</h1>
-    <p class="hero-lead">My work is grounded in experimental research across functional nanomaterials, thin films, interfaces and devices. I am interested in energy, sensing and semiconductor-related problems, and I am building computational skills to make future experiments more deliberate.</p>
-    <div class="identity">
-      <span>Question-driven</span>
-      <span>Experimental</span>
-      <span>Always learning</span>
-    </div>
+    <div class="hero-kicker">Materials · thin films · devices</div>
+    <h1>Materials researcher with interdisciplinary interests.</h1>
   </div>
 
   <div class="hero-art" aria-label="Abstract scientific illustration">
@@ -50,55 +44,62 @@
     <div class="trace trace-one"></div>
     <div class="trace trace-two"></div>
     <div class="trace trace-three"></div>
-    <div class="art-label label-a">MATERIAL</div>
-    <div class="art-label label-b">INTERFACE</div>
-    <div class="art-label label-c">DEVICE</div>
-    <div class="art-caption">structure / response / useful function</div>
-  </div>
-</section>
-
-<div class="signal-rail">
-  <div class="home-shell rail">
-    <span><b>01</b> functional materials</span>
-    <span><b>02</b> energy & sensing</span>
-    <span><b>03</b> semiconductor systems</span>
-    <span><b>04</b> sustainable technology</span>
-  </div>
-</div>
-
-<section class="home-shell focus">
-  <div class="focus-heading">
-    <div>
-      <div class="eyebrow">What I am interested in</div>
-      <h2>A few questions guide the work.</h2>
+    <div class="hero-modes" aria-label="Explore the research visual">
+      <button type="button" class="art-label label-a" data-hero-mode="material" aria-pressed="true">MATERIAL</button>
+      <button type="button" class="art-label label-b" data-hero-mode="interface" aria-pressed="false">INTERFACE</button>
+      <button type="button" class="art-label label-c" data-hero-mode="device" aria-pressed="false">DEVICE</button>
     </div>
-    <p>The rest belongs on the research and project pages. This is only the glimpse.</p>
-  </div>
-  <div class="question-grid">
-    <article>
-      <span>01</span>
-      <h3>How can materials do useful work?</h3>
-      <p>Functional materials, interfaces and device behaviour that connect material properties to something measurable and useful.</p>
-    </article>
-    <article>
-      <span>02</span>
-      <h3>Can experiments become more informed?</h3>
-      <p>Using theory, computation and eventually machine learning alongside the experimental judgement built through hands-on research.</p>
-    </article>
-    <article>
-      <span>03</span>
-      <h3>Can better materials solve real constraints?</h3>
-      <p>Energy, sensing and semiconductor-related problems considered with resource use, practicality and eventual application in mind.</p>
-    </article>
+    <div class="art-caption">composition / synthesis / structure</div>
   </div>
 </section>
 
-<section class="contact">
+<section class="home-shell academic-profile">
+  <div class="academic-kicker">Academic profile</div>
+  <div class="academic-grid">
+    <div>
+      <div class="academic-degree">M.Sc. Chemistry</div>
+      <p></p>
+    </div>
+    <div class="academic-tags">
+      <span>Functional nanomaterials</span>
+      <span>Thin films</span>
+      <span>Interfaces</span>
+      <span>Energy & sensing</span>
+      <span>Semiconductor systems</span>
+      <span>Computational materials</span>
+    </div>
+  </div>
+</section>
+
+<section class="focus">
   <div class="home-shell">
-    <div class="eyebrow">Collaborate</div>
-    <h2>Have a defined research question or project?</h2>
-    <p>I am open to well-scoped research, scientific writing, literature synthesis, and data or visualisation work where my materials background can be useful.</p>
-    <a href="mailto:simirevankar01@gmail.com?subject=Research%20collaboration%20through%20website">Email me ↗</a>
+    <div class="focus-heading">
+      <div class="eyebrow">Research questions</div>
+      <h2>How I follow a materials problem.</h2>
+    </div>
+
+    <div class="research-flow" aria-label="Material research pathway">
+      <div class="flow-track" aria-hidden="true"></div>
+      <button type="button" class="flow-node" data-stage="material" data-title="Material" data-detail="Choose, prepare and understand the material system." aria-pressed="true"><span>01</span><strong>Material</strong></button>
+      <button type="button" class="flow-node" data-stage="structure" data-title="Structure" data-detail="Confirm what formed and how its structure relates to behaviour." aria-pressed="false"><span>02</span><strong>Structure</strong></button>
+      <button type="button" class="flow-node" data-stage="interface" data-title="Interface" data-detail="Look closely at boundaries, contact and transfer between materials." aria-pressed="false"><span>03</span><strong>Interface</strong></button>
+      <button type="button" class="flow-node" data-stage="response" data-title="Response" data-detail="Measure how the system reacts to electrical, optical or mechanical input." aria-pressed="false"><span>04</span><strong>Response</strong></button>
+      <button type="button" class="flow-node" data-stage="device" data-title="Device" data-detail="Translate material behaviour into a measurable device-level function." aria-pressed="false"><span>05</span><strong>Device</strong></button>
+      <button type="button" class="flow-node" data-stage="use" data-title="Use" data-detail="Ask whether the measured behaviour can solve a practical constraint." aria-pressed="false"><span>06</span><strong>Use</strong></button>
+    </div>
+    <div class="flow-detail" aria-live="polite"><span>Selected stage</span><strong>Material</strong><p>Choose, prepare and understand the material system.</p></div>
+
+  </div>
+</section>
+
+<section class="home-email">
+  <div class="home-shell">
+    <div>
+      <div class="eyebrow">Contact</div>
+      <h2>Research, writing or collaboration.</h2>
+      <p>Scientific writing · literature synthesis · data visualisation.</p>
+    </div>
+    <a class="home-email-link" href="mailto:simirevankar01@gmail.com?subject=Research%20through%20website">Contact ↗</a>
   </div>
 </section>
 </main>
@@ -107,5 +108,91 @@
   <span>Materials · devices · questions</span>
   <span>© 2026 Simran Sainand Revankar</span>
 </footer>
+<script>
+(async()=>{
+ try{
+  let d=null;
+  try{
+   const p=localStorage.getItem('websiteStudioPreview');
+   if(p){const x=JSON.parse(p);d=x?.files?.['content/home.json']||null;}
+  }catch(e){}
+  if(!d){const q=await fetch('./content/home.json?v='+Date.now(),{cache:'no-store'});if(q.ok)d=await q.json();}
+  if(!d)return;
+  const set=(s,v)=>{const e=document.querySelector(s);if(e&&v!=null)e.textContent=v};
+  const escStudio=v=>String(v??'').replace(/[&<>\"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','\"':'&quot;',\"'\":'&#39;'}[c]));
+  const ap=d.academicProfile||{};
+  set('.academic-kicker',ap.eyebrow);
+  set('.academic-degree',ap.degree);
+  const apSummary=document.querySelector('.academic-profile p');if(apSummary&&ap.summary!=null)apSummary.textContent=ap.summary;
+  const apTags=document.querySelector('.academic-tags');if(apTags&&Array.isArray(ap.tags))apTags.innerHTML=ap.tags.map(x=>'<span>'+escStudio(x)+'</span>').join('');
+  set('.hero-kicker',d.kicker);set('.hero h1',d.headline);set('.hero-lead',d.intro);
+  document.querySelectorAll('.identity span').forEach((e,i)=>{if(d.identity?.[i]!=null)e.textContent=d.identity[i]});
+  document.querySelectorAll('.rail span').forEach((e,i)=>{if(d.rail?.[i]!=null)e.innerHTML='<b>0'+(i+1)+'</b> '+d.rail[i]});
+  set('.focus-heading .eyebrow',d.focusEyebrow);set('.focus-heading h2',d.focusTitle);set('.focus-heading p',d.focusIntro);
+  document.querySelectorAll('.question-grid article').forEach((e,i)=>{const q=d.questions?.[i];if(q){set.call(null,'',null);e.querySelector('span').textContent=q.number||String(i+1).padStart(2,'0');e.querySelector('h3').textContent=q.title||'';e.querySelector('p').textContent=q.text||'';}});
+  set('.contact .eyebrow',d.contact?.eyebrow);set('.contact h2',d.contact?.title);set('.contact p',d.contact?.text);
+  const a=document.querySelector('.contact a');if(a&&d.contact?.email){a.href='mailto:'+d.contact.email+'?subject=Research%20collaboration%20through%20website';}
+  set('.footer span:first-child',d.footerLeft);
+  const custom=document.getElementById('studioCustomSections');
+  if(custom){
+    custom.innerHTML=(d.customSections||[]).filter(s=>s.enabled!==false).map((s,i)=>'<section class="home-shell studio-custom-section" style="--studio-accent:'+(s.accent||'var(--forest)')+'"><div class="eyebrow">'+escStudio(s.eyebrow||'')+'</div><h2>'+escStudio(s.title||'')+'</h2><p>'+escStudio(s.text||'').replace(/\n/g,'<br>')+'</p>'+(s.link?'<a href="'+escStudio(s.link)+'">'+escStudio(s.linkLabel||'Explore ↗')+'</a>':'')+'</section>').join('');
+  }
+  const homeOrder=d.homeOrder||['hero','rail','focus','contact'];
+  const sectionVisibility=d.sectionVisibility||{};
+  const main=document.querySelector('main');
+  if(main){
+    const map={
+      hero:main.querySelector('.hero'),
+      rail:main.querySelector('.signal-rail'),
+      focus:main.querySelector('.focus'),
+      contact:main.querySelector('.contact')
+    };
+    homeOrder.forEach(id=>{const el=map[id];if(el&&sectionVisibility[id]!==false)main.appendChild(el);});
+    Object.entries(map).forEach(([id,el])=>{if(el)el.style.display=sectionVisibility[id]===false?'none':'';});
+    const customEl=document.getElementById('studioCustomSections');if(customEl)main.appendChild(customEl);
+  }
+  try{
+    let theme=null;
+    const p=localStorage.getItem('websiteStudioPreview');
+    if(p){const x=JSON.parse(p);theme=x?.files?.['content/site-theme.json']||null;}
+    if(!theme){const q=await fetch('./content/site-theme.json?v='+Date.now(),{cache:'no-store'});if(q.ok)theme=await q.json();}
+    if(theme) Object.entries(theme).forEach(([k,v])=>document.documentElement.style.setProperty('--'+k,v));
+    if(theme){
+      const root=document.documentElement;
+      if(theme.baseFontSize)root.style.setProperty('--studio-base-size',theme.baseFontSize+'px');
+      if(theme.maxWidth)root.style.setProperty('--studio-max-width',theme.maxWidth+'px');
+      if(theme.sectionSpacing)root.style.setProperty('--studio-section-space',theme.sectionSpacing+'px');
+      if(theme.cardRadius!==undefined)root.style.setProperty('--studio-radius',theme.cardRadius+'px');
+      if(theme.serifWeight)root.style.setProperty('--studio-serif-weight',theme.serifWeight);
+      if(theme.serif)root.style.setProperty('--serif','"'+theme.serif+'",Georgia,serif');
+      if(theme.sans)root.style.setProperty('--sans','"'+theme.sans+'",Arial,sans-serif');
+      if(theme.mono)root.style.setProperty('--mono','"'+theme.mono+'",monospace');
+      const fonts=[theme.serif,theme.sans,theme.mono].filter(Boolean).filter(f=>!['Georgia','Arial','Courier New'].includes(f));
+      if(fonts.length){const link=document.createElement('link');link.rel='stylesheet';link.href='https://fonts.googleapis.com/css2?'+fonts.map(f=>'family='+encodeURIComponent(f).replace(/%20/g,'+')+':wght@400;500;600;700').join('&')+'&display=swap';document.head.appendChild(link);};
+    }
+  }catch(e){}
+ }catch(e){console.warn('Website Studio content load failed',e);}
+})();
+</script>
+<script>
+(async function renderEditableSiteNav(){
+  try{
+    const r=await fetch('content/main-site.json?v='+Date.now(),{cache:'no-store'});
+    if(!r.ok)return;
+    const d=await r.json(), nav=Array.isArray(d.nav)?d.nav:[];
+    const host=document.querySelector('.nav-links')||document.querySelector('.home-navlinks');
+    if(!host||!nav.length)return;
+    const current=location.pathname.split('/').pop()||'index.html';
+    host.innerHTML=nav.map(function(n){
+      const href=String(n.href||'');
+      const target=href.split('?')[0].split('#')[0];
+      const isActive=target===current || (current==='index.html' && (target===''||target==='/'));
+      const cls=(n.className||'')+(isActive?' active':'');
+      return '<a class="'+cls.trim()+'" href="'+String(href).replace(/&/g,'&amp;').replace(/"/g,'&quot;')+'">'+String(n.label||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')+'</a>';
+    }).join('');
+  }catch(e){}
+})();
+</script>
+<script src="assets/site-interactions.js?v=1" defer></script>
 </body>
 </html>

@@ -1,0 +1,48 @@
+{
+  "homeLinkLabel": "← Home",
+  "homeLink": "index.html",
+  "eyebrow": "Research portfolio",
+  "intro": "Completed research, independent projects, methods I can evidence, and the directions I am building next.",
+  "thoughts": [
+    {
+      "number": "01",
+      "title": "Research completed",
+      "summary": "Perovskite/polymer nanocomposites translated into a self-powered UV-sensing device.",
+      "label": "Completed study",
+      "text": "My published project followed a functional material from synthesis and characterisation through device fabrication and UV-sensing evaluation.",
+      "noteLabel": "What it demonstrates",
+      "note": "I am most interested when material behaviour can be connected to a measurable device response.",
+      "open": false
+    },
+    {
+      "number": "02",
+      "title": "Methods I can evidence",
+      "summary": "Materials preparation, characterisation, device fabrication, analysis and scientific communication.",
+      "label": "Evidence-based skills",
+      "text": "The project gives me a concrete basis for discussing nanocomposite preparation, structural and spectroscopic characterisation, device fabrication, data interpretation and research communication.",
+      "noteLabel": "Current learning",
+      "note": "I am strengthening Python and computational skills so they can support future materials work rather than sit separately from it.",
+      "open": false
+    },
+    {
+      "number": "03",
+      "title": "Research direction",
+      "summary": "Materials, interfaces, sensing, semiconductors and data-informed experimentation.",
+      "label": "Direction",
+      "text": "I am exploring research directions where experimental materials work can connect with computation, sensing, semiconductor systems and practical technological constraints.",
+      "noteLabel": "Working principle",
+      "note": "Build depth from evidence first; add new directions only as the skills and projects become real.",
+      "open": false
+    },
+    {
+      "number": "04",
+      "title": "Independent research",
+      "summary": "A growing series of reproducible materials-chemistry projects combining chemistry, Python and, later, machine learning.",
+      "label": "Current project",
+      "text": "Project 001 begins with halide perovskites and a real materials dataset. The aim is to connect chemistry and structure-property reasoning with reproducible Python analysis before moving into more advanced modelling.",
+      "noteLabel": "Evidence standard",
+      "note": "Each project will be documented with code or notebooks, figures, interpretation, limitations and a research note before it is treated as portfolio evidence.",
+      "open": false
+    }
+  ]
+}

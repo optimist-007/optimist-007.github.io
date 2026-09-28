@@ -36,8 +36,8 @@ button{font:inherit}
 .meta,.tiny-label{color:var(--muted)}
 h1,h2,h3,p{margin-top:0}
 h1,h2,h3{font-family:var(--serif);font-weight:500;letter-spacing:-.045em}
-h1{font-size:var(--studio-h1-size,clamp(5rem,12vw,10.5rem));line-height:.72;margin:16px 0 28px}
-h2{font-size:var(--studio-h2-size,clamp(2.8rem,5vw,5.2rem));line-height:.9;margin-bottom:18px}
+h1{font-size:var(--creative-h1-size,clamp(5rem,12vw,10.5rem));line-height:.72;margin:16px 0 28px}
+h2{font-size:var(--creative-h2-size,clamp(2.8rem,5vw,5.2rem));line-height:.9;margin-bottom:18px}
 h3{font-size:clamp(2rem,3.5vw,3.5rem);line-height:.9;margin:7px 0 12px}
 .intro{max-width:690px;font-size:1.08rem;color:#5b5050}
 .topline{display:flex;align-items:center;justify-content:space-between;gap:20px;border-bottom:1px solid var(--line);padding-bottom:10px}
@@ -60,7 +60,7 @@ h3{font-size:clamp(2rem,3.5vw,3.5rem);line-height:.9;margin:7px 0 12px}
 .ticker span{font-family:var(--mono);font-size:.72rem;text-transform:uppercase;letter-spacing:.16em;color:var(--wine);padding:0 22px}
 .ticker b{font-size:.9rem;color:var(--gold)}
 @keyframes marquee{to{transform:translateX(-50%)}}
-.section{margin-top:var(--studio-section-space,80px);margin-top:min(var(--studio-section-space,80px),68px)}
+.section{margin-top:var(--creative-section-space,80px);margin-top:min(var(--creative-section-space,80px),68px)}
 .section-head{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;border-bottom:1px solid var(--line);padding-bottom:12px;margin-bottom:22px}
 .section-kicker{max-width:310px;color:var(--muted);font-size:.9rem}
 .filters{display:flex;gap:8px;flex-wrap:wrap;margin:5px 0 28px}
@@ -73,8 +73,8 @@ h3{font-size:clamp(2rem,3.5vw,3.5rem);line-height:.9;margin:7px 0 12px}
 .poster-wrap{position:relative;min-height:500px}
 .poster-shadow{position:absolute;inset:28px 18px 0 28px;background:rgba(52,43,43,.12);filter:blur(1px);transform:rotate(2.5deg)}
 .poster{
-  position:relative;width:100%;height:var(--studio-poster-height,64vh);display:flex;align-items:center;justify-content:center;
-  background:linear-gradient(145deg,#2f2828,#4b3c3b);overflow:hidden;box-shadow:var(--shadow);transform:rotate(var(--studio-poster-rotation,-1.2deg));
+  position:relative;width:100%;height:var(--creative-poster-height,64vh);display:flex;align-items:center;justify-content:center;
+  background:linear-gradient(145deg,#2f2828,#4b3c3b);overflow:hidden;box-shadow:var(--shadow);transform:rotate(var(--creative-poster-rotation,-1.2deg));
   transition:transform .35s ease
 }
 .poster img{width:100%;height:100%;object-fit:contain;display:block;position:relative;z-index:1}
@@ -198,10 +198,10 @@ h3{font-size:clamp(2rem,3.5vw,3.5rem);line-height:.9;margin:7px 0 12px}
   *,*:before,*:after{scroll-behavior:auto!important;animation:none!important;transition:none!important}
 }
 
-.studio-creative-section{margin-top:80px;padding:55px 0;border-top:1px solid var(--line)}
-.studio-creative-section h2{font-size:clamp(2.8rem,5vw,5.2rem)}
-.studio-creative-section p{max-width:760px;color:var(--muted);white-space:pre-wrap}
-.studio-creative-section a{font-family:var(--mono);font-size:.72rem;text-transform:uppercase;letter-spacing:.12em}
+.creative-custom-section{margin-top:80px;padding:55px 0;border-top:1px solid var(--line)}
+.creative-custom-section h2{font-size:clamp(2.8rem,5vw,5.2rem)}
+.creative-custom-section p{max-width:760px;color:var(--muted);white-space:pre-wrap}
+.creative-custom-section a{font-family:var(--mono);font-size:.72rem;text-transform:uppercase;letter-spacing:.12em}
 .media-shelf{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
 .media-entry{background:var(--paper-2);border:1px solid var(--line);padding:24px;box-shadow:var(--shadow)}
 .media-entry h3{margin:7px 0 10px}
@@ -387,7 +387,7 @@ h3{font-size:clamp(2rem,3.5vw,3.5rem);line-height:.9;margin:7px 0 12px}
   .journal-bottom .journal-card:focus:after{transform:translateX(4px) rotate(8deg)}
 }
 .journal-shelf{margin-top:34px;padding-top:0}
-.journal-shelf.studio-creative-section{margin-top:0;padding:34px 0 0;border-top:0}
+.journal-shelf.creative-custom-section{margin-top:0;padding:34px 0 0;border-top:0}
 .journal-shelf h2{font-size:clamp(2rem,3.4vw,3.4rem);margin:.15em 0}
 .journal-shelf>p{font-size:.95rem;margin:0 0 18px}
 .journal-shelf .media-shelf{grid-template-columns:minmax(280px,520px)}
@@ -457,7 +457,7 @@ h3{line-height:1}
 }
 .topnav a:hover,.topnav a:focus{color:#5e273b}
 .read-link,
-.studio-creative-section a,
+.creative-custom-section a,
 .dialog-copy a,
 .review-body a,
 .media-entry a{
@@ -501,7 +501,7 @@ a:focus-visible,button:focus-visible,[tabindex]:focus-visible{
   height:46px;
 }
 .review-stage{min-height:auto;padding:34px 0}
-.section{margin-top:min(var(--studio-section-space,68px),56px)}
+.section{margin-top:min(var(--creative-section-space,68px),56px)}
 .journal-bottom{margin-top:72px}
 @media(max-width:620px){
   body{font-size:18px}
@@ -774,7 +774,7 @@ a:focus-visible,button:focus-visible,[tabindex]:focus-visible{
     <div class="ticker" id="ticker"></div>
   </div>
 
-  <div id="studioCreativeSections"></div>
+  <div id="creativeCustomSections"></div>
 
   <section class="section" id="reviews">
     <div class="section-head reveal">
@@ -1068,7 +1068,7 @@ function renderMediaShelves(d){
   const chunks=groups.map(function(g){
     const items=entries.filter(function(x){return String(x.collection||'').toLowerCase()===g[0] && g[0] !== 'journal';});
     if(!items.length)return '';
-    return '<section class="journal-shelf studio-creative-section">'+
+    return '<section class="journal-shelf creative-custom-section">'+
       '<div class="eyebrow">'+esc(g[1])+'</div><h2>'+esc(g[1])+'.</h2><p>'+esc(g[2])+'</p>'+
       '<div class="media-shelf">'+items.map(function(x){
         const hasText=String(x.text||'').trim();
@@ -1084,7 +1084,7 @@ function renderMediaShelves(d){
       }).join('')+
       '</div></section>';
   }).join('');
-  $('mediaShelves').innerHTML=chunks||'<div class="empty-review">Your shelves are ready. Add the first piece from the editor.</div>';
+  $('mediaShelves').innerHTML=chunks||'<div class="empty-review">Nothing has been added to this shelf yet.</div>';
 
   $('mediaShelves').querySelectorAll('.journal-card').forEach(function(card){
     const open=function(){
@@ -1159,18 +1159,23 @@ function setupComments(d){
 
 async function load(){
   try{
-    let content=null,site=null;
+    const contentResponse=await fetch('./content/creative-content.json?v='+Date.now(),{cache:'no-store'});
+    if(!contentResponse.ok)throw new Error('Creative content could not be loaded.');
+    const content=await contentResponse.json();
+
+    let site={};
     try{
-      const p=localStorage.getItem('websiteStudioPreview');
-      if(p){const x=JSON.parse(p);content=x?.files?.['content/creative-content.json']||null;site=x?.files?.['content/creative-site.json']||null;}
-    }catch(e){}
-    if(!content){const res=await fetch('./content/creative-content.json?v='+Date.now(),{cache:'no-store'});if(!res.ok)throw new Error('Content file not found');content=await res.json();}
-    if(!site){try{const sr=await fetch('./content/creative-site.json?v='+Date.now(),{cache:'no-store'});if(sr.ok)site=await sr.json();}catch(e){}}
-    content.__site=site||{};
+      const siteResponse=await fetch('./content/creative-site.json?v='+Date.now(),{cache:'no-store'});
+      if(siteResponse.ok)site=await siteResponse.json();
+    }catch(error){
+      console.warn('Creative layout settings could not be loaded.',error);
+    }
+
+    content.__site=site;
     return content;
-  }catch(err){
-    console.warn(err);
-    $('toast').textContent='Using built-in layout fallback';
+  }catch(error){
+    console.warn('Creative content could not be loaded.',error);
+    $('toast').textContent='Some creative content could not be loaded.';
     $('toast').style.display='block';
     setTimeout(()=>$('toast').style.display='none',2400);
     return fallback;
@@ -1193,11 +1198,11 @@ async function load(){
   if(siteTheme.gold)root.style.setProperty('--gold',siteTheme.gold);
   if(design.baseFontSize)root.style.fontSize=design.baseFontSize+'px';
   if(design.maxWidth){document.querySelector('.wrap').style.maxWidth=design.maxWidth+'px';}
-  if(design.h1Size)root.style.setProperty('--studio-h1-size',design.h1Size+'rem');
-  if(design.h2Size)root.style.setProperty('--studio-h2-size',design.h2Size+'rem');
-  if(design.sectionSpacing)root.style.setProperty('--studio-section-space',design.sectionSpacing+'px');
-  if(design.posterHeight)root.style.setProperty('--studio-poster-height',design.posterHeight+'vh');
-  if(design.posterRotation!==undefined)root.style.setProperty('--studio-poster-rotation',design.posterRotation+'deg');
+  if(design.h1Size)root.style.setProperty('--creative-h1-size',design.h1Size+'rem');
+  if(design.h2Size)root.style.setProperty('--creative-h2-size',design.h2Size+'rem');
+  if(design.sectionSpacing)root.style.setProperty('--creative-section-space',design.sectionSpacing+'px');
+  if(design.posterHeight)root.style.setProperty('--creative-poster-height',design.posterHeight+'vh');
+  if(design.posterRotation!==undefined)root.style.setProperty('--creative-poster-rotation',design.posterRotation+'deg');
   const sectionOrder=d.__site?.order||['reviews','obsessions','comments'];
   const sectionMap={
     reviews:document.getElementById('reviews'),

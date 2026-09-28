@@ -109,73 +109,94 @@
   <span>© 2026 Simran Sainand Revankar</span>
 </footer>
 <script>
-(async()=>{
- try{
-  let d=null;
+(async function loadHomepageContent(){
   try{
-   const p=localStorage.getItem('websiteStudioPreview');
-   if(p){const x=JSON.parse(p);d=x?.files?.['content/home.json']||null;}
-  }catch(e){}
-  if(!d){const q=await fetch('./content/home.json?v='+Date.now(),{cache:'no-store'});if(q.ok)d=await q.json();}
-  if(!d)return;
-  const set=(s,v)=>{const e=document.querySelector(s);if(e&&v!=null)e.textContent=v};
-  const escStudio=v=>String(v??'').replace(/[&<>\"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','\"':'&quot;',\"'\":'&#39;'}[c]));
-  const ap=d.academicProfile||{};
-  set('.academic-kicker',ap.eyebrow);
-  set('.academic-degree',ap.degree);
-  const apSummary=document.querySelector('.academic-profile p');if(apSummary&&ap.summary!=null)apSummary.textContent=ap.summary;
-  const apTags=document.querySelector('.academic-tags');if(apTags&&Array.isArray(ap.tags))apTags.innerHTML=ap.tags.map(x=>'<span>'+escStudio(x)+'</span>').join('');
-  set('.hero-kicker',d.kicker);set('.hero h1',d.headline);set('.hero-lead',d.intro);
-  document.querySelectorAll('.identity span').forEach((e,i)=>{if(d.identity?.[i]!=null)e.textContent=d.identity[i]});
-  document.querySelectorAll('.rail span').forEach((e,i)=>{if(d.rail?.[i]!=null)e.innerHTML='<b>0'+(i+1)+'</b> '+d.rail[i]});
-  set('.focus-heading .eyebrow',d.focusEyebrow);set('.focus-heading h2',d.focusTitle);set('.focus-heading p',d.focusIntro);
-  document.querySelectorAll('.question-grid article').forEach((e,i)=>{const q=d.questions?.[i];if(q){set.call(null,'',null);e.querySelector('span').textContent=q.number||String(i+1).padStart(2,'0');e.querySelector('h3').textContent=q.title||'';e.querySelector('p').textContent=q.text||'';}});
-  set('.contact .eyebrow',d.contact?.eyebrow);set('.contact h2',d.contact?.title);set('.contact p',d.contact?.text);
-  const a=document.querySelector('.contact a');if(a&&d.contact?.email){a.href='mailto:'+d.contact.email+'?subject=Research%20collaboration%20through%20website';}
-  set('.footer span:first-child',d.footerLeft);
-  const custom=document.getElementById('studioCustomSections');
-  if(custom){
-    custom.innerHTML=(d.customSections||[]).filter(s=>s.enabled!==false).map((s,i)=>'<section class="home-shell studio-custom-section" style="--studio-accent:'+(s.accent||'var(--forest)')+'"><div class="eyebrow">'+escStudio(s.eyebrow||'')+'</div><h2>'+escStudio(s.title||'')+'</h2><p>'+escStudio(s.text||'').replace(/\n/g,'<br>')+'</p>'+(s.link?'<a href="'+escStudio(s.link)+'">'+escStudio(s.linkLabel||'Explore ↗')+'</a>':'')+'</section>').join('');
-  }
-  const homeOrder=d.homeOrder||['hero','rail','focus','contact'];
-  const sectionVisibility=d.sectionVisibility||{};
-  const main=document.querySelector('main');
-  if(main){
-    const map={
-      hero:main.querySelector('.hero'),
-      rail:main.querySelector('.signal-rail'),
-      focus:main.querySelector('.focus'),
-      contact:main.querySelector('.contact')
+    const response=await fetch('./content/home.json?v='+Date.now(),{cache:'no-store'});
+    if(!response.ok)return;
+    const data=await response.json();
+
+    const setText=(selector,value)=>{
+      const element=document.querySelector(selector);
+      if(element&&value!=null)element.textContent=value;
     };
-    homeOrder.forEach(id=>{const el=map[id];if(el&&sectionVisibility[id]!==false)main.appendChild(el);});
-    Object.entries(map).forEach(([id,el])=>{if(el)el.style.display=sectionVisibility[id]===false?'none':'';});
-    const customEl=document.getElementById('studioCustomSections');if(customEl)main.appendChild(customEl);
-  }
-  try{
-    let theme=null;
-    const p=localStorage.getItem('websiteStudioPreview');
-    if(p){const x=JSON.parse(p);theme=x?.files?.['content/site-theme.json']||null;}
-    if(!theme){const q=await fetch('./content/site-theme.json?v='+Date.now(),{cache:'no-store'});if(q.ok)theme=await q.json();}
-    if(theme) Object.entries(theme).forEach(([k,v])=>document.documentElement.style.setProperty('--'+k,v));
-    if(theme){
+
+    const profile=data.academicProfile||{};
+    setText('.academic-kicker',profile.eyebrow);
+    setText('.academic-degree',profile.degree);
+
+    const profileSummary=document.querySelector('.academic-profile p');
+    if(profileSummary&&profile.summary!=null)profileSummary.textContent=profile.summary;
+
+    const profileTags=document.querySelector('.academic-tags');
+    if(profileTags&&Array.isArray(profile.tags)){
+      profileTags.replaceChildren(...profile.tags.map(tag=>{
+        const span=document.createElement('span');
+        span.textContent=tag;
+        return span;
+      }));
+    }
+
+    setText('.hero-kicker',data.kicker);
+    setText('.hero h1',data.headline);
+    setText('.focus-heading .eyebrow',data.focusEyebrow);
+    setText('.focus-heading h2',data.focusTitle);
+
+    const contact=data.contact||{};
+    setText('.home-email .eyebrow',contact.eyebrow);
+    setText('.home-email h2',contact.title);
+    setText('.home-email p',contact.text);
+
+    const contactLink=document.querySelector('.home-email-link');
+    if(contactLink&&contact.email){
+      contactLink.href='mailto:'+contact.email+'?subject=Research%20through%20website';
+    }
+
+    setText('.footer span:first-child',data.footerLeft);
+
+    const sections={
+      hero:document.querySelector('.hero'),
+      focus:document.querySelector('.focus'),
+      contact:document.querySelector('.home-email')
+    };
+    const visibility=data.sectionVisibility||{};
+    const order=data.homeOrder||['hero','focus','contact'];
+    const main=document.querySelector('main');
+
+    if(main){
+      order.forEach(id=>{
+        const section=sections[id];
+        if(section&&visibility[id]!==false)main.appendChild(section);
+      });
+      Object.entries(sections).forEach(([id,section])=>{
+        if(section)section.style.display=visibility[id]===false?'none':'';
+      });
+    }
+
+    const themeResponse=await fetch('./content/site-theme.json?v='+Date.now(),{cache:'no-store'});
+    if(themeResponse.ok){
+      const theme=await themeResponse.json();
       const root=document.documentElement;
-      if(theme.baseFontSize)root.style.setProperty('--studio-base-size',theme.baseFontSize+'px');
-      if(theme.maxWidth)root.style.setProperty('--studio-max-width',theme.maxWidth+'px');
-      if(theme.sectionSpacing)root.style.setProperty('--studio-section-space',theme.sectionSpacing+'px');
-      if(theme.cardRadius!==undefined)root.style.setProperty('--studio-radius',theme.cardRadius+'px');
-      if(theme.serifWeight)root.style.setProperty('--studio-serif-weight',theme.serifWeight);
+
+      ['forest','forest2','clay','sand','cream','paper','ink','muted'].forEach(key=>{
+        if(theme[key])root.style.setProperty('--'+key,theme[key]);
+      });
+
+      if(theme.baseFontSize)root.style.setProperty('--site-base-size',theme.baseFontSize+'px');
+      if(theme.maxWidth)root.style.setProperty('--site-max-width',theme.maxWidth+'px');
+      if(theme.sectionSpacing)root.style.setProperty('--site-section-space',theme.sectionSpacing+'px');
+      if(theme.cardRadius!==undefined)root.style.setProperty('--site-radius',theme.cardRadius+'px');
+      if(theme.serifWeight)root.style.setProperty('--site-serif-weight',theme.serifWeight);
       if(theme.serif)root.style.setProperty('--serif','"'+theme.serif+'",Georgia,serif');
       if(theme.sans)root.style.setProperty('--sans','"'+theme.sans+'",Arial,sans-serif');
       if(theme.mono)root.style.setProperty('--mono','"'+theme.mono+'",monospace');
-      const fonts=[theme.serif,theme.sans,theme.mono].filter(Boolean).filter(f=>!['Georgia','Arial','Courier New'].includes(f));
-      if(fonts.length){const link=document.createElement('link');link.rel='stylesheet';link.href='https://fonts.googleapis.com/css2?'+fonts.map(f=>'family='+encodeURIComponent(f).replace(/%20/g,'+')+':wght@400;500;600;700').join('&')+'&display=swap';document.head.appendChild(link);};
     }
-  }catch(e){}
- }catch(e){console.warn('Website Studio content load failed',e);}
+  }catch(error){
+    console.warn('Could not load homepage content.',error);
+  }
 })();
 </script>
 <script>
-(async function renderEditableSiteNav(){
+(async function renderSiteNav(){
   try{
     const r=await fetch('content/main-site.json?v='+Date.now(),{cache:'no-store'});
     if(!r.ok)return;

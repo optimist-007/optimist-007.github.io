@@ -10,22 +10,22 @@
 @media(max-width:880px){.home-navlinks{gap:13px}.hero{grid-template-columns:1fr;padding-top:65px}.hero-art{min-height:380px}.question-grid{grid-template-columns:1fr}.focus-heading{display:block}.focus-heading p{margin-top:15px}}
 @media(max-width:560px){.home-shell{width:min(100% - 28px,1160px)}.home-navlinks{display:none}.hero h1{font-size:4rem}.hero{padding-top:54px}.hero-art{min-height:330px}.rail{justify-content:flex-start}.focus{padding:62px 0}.question-grid article{min-height:205px}}
 
-/* Website Studio design controls */
-:root{--studio-base-size:18px;--studio-max-width:1160px;--studio-section-space:84px;--studio-radius:0px;--studio-serif-weight:500;--studio-motion:1}
-body{font-size:var(--studio-base-size)}
-.home-shell{width:min(var(--studio-max-width),calc(100% - 52px))}
+/* Site-wide layout variables */
+:root{--site-base-size:18px;--site-max-width:1160px;--site-section-space:84px;--site-radius:0px;--site-serif-weight:500;--site-motion:1}
+body{font-size:var(--site-base-size)}
+.home-shell{width:min(var(--site-max-width),calc(100% - 52px))}
 .home-brand{font-family:var(--sans)}
-.hero h1,.focus-heading h2,.question-grid h3,.contact h2{font-family:var(--serif);font-weight:var(--studio-serif-weight)}
-.hero{padding-top:var(--studio-section-space);padding-bottom:calc(var(--studio-section-space) * .86)}
-.focus{padding-top:var(--studio-section-space);padding-bottom:var(--studio-section-space)}
-.question-grid article{border-radius:var(--studio-radius)}
-.studio-custom-section{padding:var(--studio-section-space) 0;border-top:1px solid var(--line);max-width:var(--studio-max-width)}
-.studio-custom-section h2{font:var(--studio-serif-weight) clamp(2.7rem,5vw,5rem)/.92 var(--serif);color:var(--forest);letter-spacing:-.05em;margin:8px 0 15px;max-width:820px}
-.studio-custom-section p{max-width:760px;color:var(--muted);margin:0 0 20px}
-.studio-custom-section a{color:var(--forest);font:700 .75rem var(--mono);text-transform:uppercase;letter-spacing:.1em}
+.hero h1,.focus-heading h2,.question-grid h3,.contact h2{font-family:var(--serif);font-weight:var(--site-serif-weight)}
+.hero{padding-top:var(--site-section-space);padding-bottom:calc(var(--site-section-space) * .86)}
+.focus{padding-top:var(--site-section-space);padding-bottom:var(--site-section-space)}
+.question-grid article{border-radius:var(--site-radius)}
+.custom-section{padding:var(--site-section-space) 0;border-top:1px solid var(--line);max-width:var(--site-max-width)}
+.custom-section h2{font:var(--site-serif-weight) clamp(2.7rem,5vw,5rem)/.92 var(--serif);color:var(--forest);letter-spacing:-.05em;margin:8px 0 15px;max-width:820px}
+.custom-section p{max-width:760px;color:var(--muted);margin:0 0 20px}
+.custom-section a{color:var(--forest);font:700 .75rem var(--mono);text-transform:uppercase;letter-spacing:.1em}
 
 
-/* Richer editorial treatment */
+/* Editorial homepage treatment */
 body{background:var(--cream);color:var(--ink)}
 .home-header{background:rgba(248,247,243,.96);border-bottom-color:rgba(36,72,56,.18)}
 .hero{position:relative;padding-top:78px;padding-bottom:86px;grid-template-columns:minmax(0,.96fr) minmax(360px,1.04fr);gap:48px}
@@ -161,7 +161,7 @@ body{background:var(--cream);color:var(--ink)}
 .home-email{padding:58px 0!important}
 
 
-/* ===== V2 LIVELY MATERIALS-SCIENCE VISUAL PASS =====
+/* Materials-science visual layer */
    Presentation only: existing content, order and page architecture are preserved. */
 .home-header{box-shadow:0 8px 30px rgba(30,55,43,.035)}
 .home-navlinks a{position:relative;padding:29px 0 25px}
@@ -234,7 +234,7 @@ body{background:var(--cream);color:var(--ink)}
 .home-navlinks a.active:after{right:0}
 
 
-/* ===== V5 EDITORIAL HOMEPAGE ===== */
+/* Editorial homepage composition */
 :root{--home-shell:1320px;--home-gutter:clamp(24px,4vw,64px)}
 .home-shell{width:min(var(--home-shell),calc(100% - (var(--home-gutter) * 2)))!important}
 .home-header{height:86px;min-height:86px;background:rgba(248,247,243,.95);box-shadow:none}
@@ -398,7 +398,7 @@ body{background:var(--cream);color:var(--ink)}
 }
 
 
-/* ===== V6 COMPACT HOMEPAGE RHYTHM ===== */
+/* Compact homepage rhythm */
 .hero{min-height:590px!important;padding:54px 0 50px!important;gap:56px!important}
 .hero-art{min-height:470px!important}
 .academic-profile{padding:22px 0!important}
@@ -412,7 +412,7 @@ body{background:var(--cream);color:var(--ink)}
 }
 
 
-/* ===== V7 READABILITY + ACCESSIBILITY ===== */
+/* Readability and accessibility */
 body{font-size:18px!important;line-height:1.76!important}
 .home-navlinks a{
   font-size:.76rem!important;
@@ -445,7 +445,7 @@ a:focus-visible,button:focus-visible,[tabindex]:focus-visible{
 }
 
 
-/* ===== V8 CANONICAL TYPOGRAPHY SCALE ===== */
+/* Typography scale */
 :root{
   --type-display:clamp(3.8rem,6vw,6.2rem);
   --type-section:clamp(2.7rem,4.2vw,4.4rem);
@@ -486,7 +486,7 @@ body{font-size:18px!important;line-height:1.72!important}
 }
 
 
-/* ===== V9 RESEARCH MAP REDESIGN ===== */
+/* Research pathway layout */
 .focus{
   width:100%!important;
   padding:56px 0 62px!important;
@@ -663,7 +663,7 @@ body{font-size:18px!important;line-height:1.72!important}
 }
 
 
-/* ===== V10 INTERACTIVE RESEARCH EXPERIENCE ===== */
+/* Interactive states */
 .site-scroll-progress{
   position:fixed;left:0;top:0;width:100%;height:3px;z-index:100;
   transform:scaleX(0);transform-origin:left center;
@@ -747,7 +747,7 @@ body{font-size:18px!important;line-height:1.72!important}
 }
 
 
-/* ===== V7 TIGHTER SITE RHYTHM ===== */
+/* Final spacing adjustments */
 /* Keep the existing design, but remove oversized empty vertical bands. */
 .home-header,.home-nav{height:76px!important;min-height:76px!important}
 .home-navlinks a{padding-top:24px!important;padding-bottom:21px!important}
@@ -789,7 +789,7 @@ body{font-size:18px!important;line-height:1.72!important}
 }
 
 
-/* ===== V10 COMPACT HOMEPAGE RHYTHM =====
+/* Compact responsive rhythm */
    Reduces unnecessary scrolling while preserving the existing composition. */
 .home-nav{min-height:70px!important}
 .hero{

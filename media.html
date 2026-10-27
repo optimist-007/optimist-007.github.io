@@ -9,15 +9,25 @@
 <link rel="stylesheet" href="assets/research-readable.css?v=12">
 <style>
 .media-showcase{padding:0 0 42px}
-.media-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
-.media-card{background:#f8f7f3;border:1px solid rgba(36,41,35,.12);padding:13px;box-shadow:0 12px 30px rgba(36,41,35,.08)}
+.media-grid{display:grid;grid-template-columns:1fr;gap:20px}
+.media-card{background:#f8f7f3;border:1px solid rgba(36,41,35,.12);padding:16px;box-shadow:0 12px 30px rgba(36,41,35,.08);min-width:0}
 .media-card img,.media-card video{width:100%;display:block;max-height:520px;object-fit:contain;background:#ece9e2}
 .media-card video{max-height:520px}
-.media-card h3{margin:13px 0 5px}
-.media-card p{margin:0;color:#667069}
+.media-card h3{margin:0 0 10px;overflow-wrap:anywhere}
+.media-card p{margin:0;color:#667069;line-height:1.7;overflow-wrap:anywhere}
+.media-image-card{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(240px,.85fr);gap:28px;align-items:center}
+.media-image-wrap{min-width:0;background:#ece9e2}
+.media-image-card .media-image-wrap img{max-height:460px}
+.media-image-card .media-copy{min-width:0;padding:14px 10px}
+.media-image-card .media-caption{line-height:1.75}
 .media-kind{font:600 .68rem/1.2 "DM Mono",monospace;text-transform:uppercase;letter-spacing:.12em;color:#37624f}
 .media-empty{padding:35px 0;color:#667069}
-@media(max-width:800px){.media-grid{grid-template-columns:1fr}}
+@media(max-width:800px){
+  .media-grid{grid-template-columns:1fr}
+  .media-image-card{grid-template-columns:1fr;gap:16px}
+  .media-image-card .media-copy{padding:4px 2px 8px}
+  .media-image-card .media-image-wrap img{max-height:420px}
+}
 </style>
 </head>
 <body>
@@ -54,13 +64,17 @@ function imageCard(x){
  const src=x.path||x.image||x.src||x.url||'';
  if(!src)return '';
 
- return '<article class="media-card">'+
-   '<img src="'+esc(src)+'" '+
-   'alt="'+esc(x.alt||x.caption||x.title||'Research image')+'" '+
-   'loading="lazy">'+
-   '<h3>'+esc(x.name||x.title||'Research image')+'</h3>'+
-   (x.caption?'<p>'+esc(x.caption)+'</p>':'')+
-   '</article>';
+ return '<article class="media-card media-image-card">'+
+   '<div class="media-image-wrap">'+
+     '<img src="'+esc(src)+'" '+
+     'alt="'+esc(x.alt||x.caption||x.title||'Research image')+'" '+
+     'loading="lazy">'+
+   '</div>'+
+   '<div class="media-copy">'+
+     '<h3>'+esc(x.name||x.title||'Research image')+'</h3>'+
+     (x.caption?'<p class="media-caption">'+esc(x.caption)+'</p>':'')+
+   '</div>'+
+ '</article>';
 }
 function videoCard(x){
  const src=x.video||x.src||x.url||x.link||'';

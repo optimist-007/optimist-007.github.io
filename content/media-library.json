@@ -3,11 +3,14 @@
     "path": "media/images/Picture1.jpg",
     "title": "Internship at CFTRI",
     "caption": "With Sachin sir's group.",
-    "institution": "CSIR-Central Food Technological Research Institute (CFTRI), Mysuru"
+    "institution": "CSIR-Central Food Technological Research Institute (CFTRI), Mysuru",
+    "category": "Internship"
   },
   {
     "path": "media/images/WhatsApp Image 2025-01-31 at 22.06.08_60fe5868.jpg",
     "title": "Poster Presentation",
-    "caption": "International Symposium on Nanomaterials for Health and Energy, 2024"
+    "caption": "International Symposium on Nanomaterials for Health and Energy, 2024",
+    "institution": "JSS Science and Technology University",
+    "category": "Poster presentation"
   }
 ]

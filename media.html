@@ -6,7 +6,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Media | Simran Sainand Revankar</title>
-<link rel="stylesheet" href="assets/research-readable.css?v=13">
+<link rel="stylesheet" href="assets/research-readable.css?v=14">
 <style>
 .media-showcase{padding:0 0 42px}
 .media-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
@@ -68,6 +68,65 @@
   .media-card h3{font-size:.9rem}
   .media-card p{font-size:.82rem;line-height:1.45}
 }
+
+/* Compact institution gallery: cards stay small and fill available slots as photos are added. */
+#gallery .media-institution-group+.media-institution-group{
+  margin-top:22px!important;
+}
+#gallery .media-institution-heading{
+  margin-bottom:12px!important;
+  padding-bottom:9px!important;
+}
+#gallery .media-group-images{
+  display:grid!important;
+  grid-template-columns:repeat(auto-fill,minmax(180px,220px))!important;
+  gap:12px!important;
+  justify-content:start!important;
+  align-items:start!important;
+}
+#gallery .media-card,
+#gallery .media-card:nth-child(3n+1),
+#gallery .media-card:nth-child(3n+2){
+  grid-column:auto!important;
+  width:100%!important;
+  max-width:220px!important;
+  padding:8px!important;
+  background:#f8f7f3!important;
+  border:1px solid rgba(36,41,35,.12)!important;
+  box-shadow:0 6px 16px rgba(36,41,35,.05)!important;
+}
+#gallery .media-image-wrap{
+  height:170px!important;
+}
+#gallery .media-image-wrap img,
+#gallery .media-card img,
+#gallery .media-image-card .media-image-wrap img{
+  display:block!important;
+  width:100%!important;
+  height:100%!important;
+  max-width:100%!important;
+  max-height:none!important;
+  aspect-ratio:auto!important;
+  object-fit:contain!important;
+  object-position:center center!important;
+  transform:none!important;
+}
+@media(max-width:560px){
+  #gallery .media-group-images{
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+    gap:10px!important;
+  }
+  #gallery .media-card,
+  #gallery .media-card:nth-child(3n+1),
+  #gallery .media-card:nth-child(3n+2){
+    max-width:none!important;
+    padding:7px!important;
+  }
+  #gallery .media-image-wrap{
+    height:130px!important;
+  }
+}
+
 </style>
 </head>
 <body>

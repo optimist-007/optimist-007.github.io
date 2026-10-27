@@ -1,1 +1,14 @@
-[]
+[
+  {
+    "path": "media/images/Picture1.jpg",
+    "title": "Internship at CFTRI",
+    "alt": "",
+    "caption": "With Sachin sir's group."
+  },
+  {
+    "path": "media/images/thin-film-fabrication.jpg",
+    "title": "Thin-film fabrication",
+    "alt": "Thin-film samples prepared during materials research",
+    "caption": "Samples prepared during thin-film fabrication and processing."
+  }
+]

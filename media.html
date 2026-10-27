@@ -6,97 +6,62 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Media | Simran Sainand Revankar</title>
-<link rel="stylesheet" href="assets/research-readable.css?v=14">
+<link rel="stylesheet" href="assets/research-readable.css?v=15">
 <style>
-.media-showcase{padding:0 0 42px}
+/* Media page: compact, consistent cards with no forced cropping */
+.media-showcase{padding:28px 0 42px!important}
 .media-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
-#gallery.media-grid{grid-template-columns:1fr}
-.media-institution-group{grid-column:1/-1;min-width:0}
-.media-institution-group+.media-institution-group{margin-top:36px}
-.media-institution-heading{margin:0 0 18px;padding-bottom:12px;border-bottom:1px solid rgba(36,41,35,.16);font-size:1.25rem;line-height:1.4;letter-spacing:.025em;color:#37624f;overflow-wrap:anywhere}
-.media-group-images{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;min-width:0}
-.media-card{background:#f8f7f3;border:1px solid rgba(36,41,35,.12);padding:10px;box-shadow:0 8px 20px rgba(36,41,35,.06);min-width:0}
-.media-card img{display:block;width:auto;height:auto;max-width:100%;max-height:100%;aspect-ratio:auto;object-fit:contain;margin-inline:auto}
-.media-card video{width:100%;display:block;max-height:520px;object-fit:contain;background:#ece9e2}
-.media-image-wrap{height:220px;display:flex;align-items:center;justify-content:center;overflow:hidden}
-.media-image-wrap img{flex:0 1 auto}
-.media-card h3{font-size:.98rem;line-height:1.4;margin:7px 0 5px;overflow-wrap:anywhere}
-.media-card p{font-size:.88rem;margin:0;color:#667069;line-height:1.55;overflow-wrap:anywhere}
-.media-image-card{display:flex;flex-direction:column;align-items:stretch;gap:0}
-.media-image-wrap{min-width:0;background:#ece9e2}
-.media-image-card .media-image-wrap img{width:auto;height:auto;max-width:100%;max-height:100%;object-fit:contain}
- /* Override the shared stylesheet's global object-fit:cover and forced 4:3 ratio.
-    Keep the whole photograph visible, including faces and edges. */
-#gallery .media-image-wrap{height:220px!important;overflow:hidden}
-#gallery .media-image-wrap img,
-#gallery .media-image-card .media-image-wrap img{
-  display:block!important;
-  width:100%!important;
-  height:100%!important;
-  max-width:100%!important;
-  max-height:none!important;
-  aspect-ratio:auto!important;
-  object-fit:contain!important;
-  object-position:center center!important;
-  transform:none!important;
-}
-#gallery .media-card:hover img{transform:none!important}
-.media-image-card .media-copy{min-width:0;padding:10px 2px 2px}
-.media-image-card .media-caption{line-height:1.7}
-.media-category{display:inline-block;align-self:flex-start;margin:0 0 8px;font:600 .66rem/1.4 "DM Mono",monospace;text-transform:uppercase;letter-spacing:.1em;color:#37624f}
-.media-kind{font:600 .68rem/1.2 "DM Mono",monospace;text-transform:uppercase;letter-spacing:.12em;color:#37624f}
-.media-empty{padding:35px 0;color:#667069}
-@media(max-width:1000px){
-  .media-group-images{grid-template-columns:repeat(2,minmax(0,1fr))}
-}
-@media(max-width:560px){
-  .media-grid{grid-template-columns:1fr}
-  .media-group-images{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
-  .media-card{padding:8px}
-  #gallery .media-image-wrap{height:160px!important}
-  #gallery .media-image-wrap img,
-  #gallery .media-image-card .media-image-wrap img{
-    width:100%!important;
-    height:100%!important;
-    max-width:100%!important;
-    max-height:none!important;
-    aspect-ratio:auto!important;
-    object-fit:contain!important;
-    object-position:center center!important;
-  }
-  .media-image-card .media-copy{padding:8px 1px 1px}
-  .media-card h3{font-size:.9rem}
-  .media-card p{font-size:.82rem;line-height:1.45}
-}
+#gallery.media-grid{display:block}
+#videos.media-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
 
-/* Compact institution gallery: cards stay small and fill available slots as photos are added. */
-#gallery .media-institution-group+.media-institution-group{
-  margin-top:22px!important;
-}
+#gallery .media-institution-group{min-width:0;margin:0}
+#gallery .media-institution-group+.media-institution-group{margin-top:24px}
 #gallery .media-institution-heading{
-  margin-bottom:12px!important;
-  padding-bottom:9px!important;
+  margin:0 0 12px!important;
+  padding:0 0 9px;
+  border-bottom:1px solid var(--line);
+  color:var(--forest);
+  font-family:var(--serif);
+  font-size:clamp(1.7rem,2.4vw,2.2rem)!important;
+  font-weight:500;
+  line-height:1.08!important;
+  letter-spacing:-.025em!important;
+  text-transform:none;
+  overflow-wrap:anywhere
 }
 #gallery .media-group-images{
   display:grid!important;
-  grid-template-columns:repeat(auto-fill,minmax(180px,220px))!important;
-  gap:12px!important;
-  justify-content:start!important;
-  align-items:start!important;
+  grid-template-columns:repeat(auto-fill,minmax(220px,1fr))!important;
+  gap:14px!important;
+  align-items:start;
+  justify-content:start;
+  min-width:0
 }
 #gallery .media-card,
 #gallery .media-card:nth-child(3n+1),
 #gallery .media-card:nth-child(3n+2){
   grid-column:auto!important;
   width:100%!important;
-  max-width:220px!important;
-  padding:8px!important;
-  background:#f8f7f3!important;
-  border:1px solid rgba(36,41,35,.12)!important;
-  box-shadow:0 6px 16px rgba(36,41,35,.05)!important;
+  max-width:none!important;
+  min-width:0;
+  margin:0;
+  padding:10px!important;
+  background:rgba(251,248,240,.78)!important;
+  border:1px solid var(--line)!important;
+  box-shadow:none!important;
+  overflow:hidden
 }
+#gallery .media-card:after{content:none!important;display:none!important}
+#gallery .media-card:hover{transform:none!important;box-shadow:none!important}
+#gallery .media-image-card{display:flex;flex-direction:column;align-items:stretch;gap:0}
 #gallery .media-image-wrap{
-  height:170px!important;
+  width:100%;
+  height:190px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+  background:var(--paper)
 }
 #gallery .media-image-wrap img,
 #gallery .media-card img,
@@ -108,25 +73,63 @@
   max-height:none!important;
   aspect-ratio:auto!important;
   object-fit:contain!important;
-  object-position:center center!important;
+  object-position:center!important;
   transform:none!important;
+  margin:0!important;
+  border:0!important
 }
-@media(max-width:560px){
-  #gallery .media-group-images{
-    grid-template-columns:repeat(2,minmax(0,1fr))!important;
-    gap:10px!important;
-  }
-  #gallery .media-card,
-  #gallery .media-card:nth-child(3n+1),
-  #gallery .media-card:nth-child(3n+2){
-    max-width:none!important;
-    padding:7px!important;
-  }
-  #gallery .media-image-wrap{
-    height:130px!important;
-  }
+#gallery .media-image-card .media-copy{min-width:0;padding:10px 2px 1px}
+#gallery .media-category{
+  display:block;
+  margin:0 0 5px;
+  color:var(--clay);
+  font:600 .64rem/1.4 var(--mono)!important;
+  letter-spacing:.1em;
+  text-transform:uppercase
+}
+#gallery .media-card h3{
+  margin:0 0 6px!important;
+  color:var(--forest);
+  font-family:var(--serif)!important;
+  font-size:1.45rem!important;
+  font-weight:500;
+  line-height:1.12!important;
+  letter-spacing:-.025em!important;
+  overflow-wrap:anywhere
+}
+#gallery .media-card p{
+  margin:0!important;
+  color:var(--muted);
+  font-size:.87rem!important;
+  line-height:1.5!important;
+  overflow-wrap:anywhere
 }
 
+/* Keep the future video section tidy without changing how videos are loaded. */
+#videos .media-card{min-width:0;padding:12px;background:rgba(251,248,240,.78);border:1px solid var(--line);box-shadow:none}
+#videos .media-card:after{content:none!important;display:none!important}
+#videos .media-card h3{font-size:1.35rem!important;line-height:1.15!important;margin:8px 0!important}
+#videos .media-card p{font-size:.9rem!important;line-height:1.55!important}
+#videos .media-card video{display:block;width:100%;max-height:420px;object-fit:contain;background:var(--paper)}
+
+@media(max-width:900px){
+  #gallery .media-group-images{grid-template-columns:repeat(auto-fill,minmax(200px,1fr))!important;gap:12px!important}
+  #gallery .media-image-wrap{height:175px}
+}
+@media(max-width:560px){
+  .media-grid{grid-template-columns:1fr}
+  #gallery .media-institution-group+.media-institution-group{margin-top:20px}
+  #gallery .media-group-images{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:10px!important}
+  #gallery .media-card,
+  #gallery .media-card:nth-child(3n+1),
+  #gallery .media-card:nth-child(3n+2){padding:7px!important}
+  #gallery .media-image-wrap{height:135px}
+  #gallery .media-image-card .media-copy{padding:8px 1px 1px}
+  #gallery .media-card h3{font-size:1.08rem!important;line-height:1.15!important}
+  #gallery .media-card p{font-size:.78rem!important;line-height:1.45!important}
+  #gallery .media-category{font-size:.57rem!important}
+  #videos.media-grid{grid-template-columns:1fr}
+}
 </style>
 </head>
 <body>

@@ -1,1 +1,18 @@
-[]
+[
+  {
+    "path": "media/images/semiconductor-industry-original-art.svg",
+    "title": "Semiconductor industry illustration",
+    "alt": "Original illustration related to the semiconductor industry",
+    "caption": "Original visual artwork."
+  },
+  {
+    "path": "media/images/whatsapp-image-2026-09-21-at-13837-pm.jpeg",
+    "title": "Research image",
+    "alt": "Image uploaded to the research media archive on September 21, 2026"
+  },
+  {
+    "path": "media/images/whatsapp-image-2026-09-21-at-13838-pm-1.jpeg",
+    "title": "Research image",
+    "alt": "Image uploaded to the research media archive on September 21, 2026"
+  }
+]

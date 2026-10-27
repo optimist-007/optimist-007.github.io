@@ -53,7 +53,14 @@ const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&
 function imageCard(x){
  const src=x.path||x.image||x.src||x.url||'';
  if(!src)return '';
- return '<article class="media-card"><div class="media-kind">Image</div><img src="'+esc(src)+'" alt="'+esc(x.alt||x.caption||x.title||'Research image')+'" loading="lazy"><h3>'+esc(x.name||x.title||'Research image')+'</h3>'+(x.caption?'<p>'+esc(x.caption)+'</p>':'')+'</article>';
+
+ return '<article class="media-card">'+
+   '<img src="'+esc(src)+'" '+
+   'alt="'+esc(x.alt||x.caption||x.title||'Research image')+'" '+
+   'loading="lazy">'+
+   '<h3>'+esc(x.name||x.title||'Research image')+'</h3>'+
+   (x.caption?'<p>'+esc(x.caption)+'</p>':'')+
+   '</article>';
 }
 function videoCard(x){
  const src=x.video||x.src||x.url||x.link||'';

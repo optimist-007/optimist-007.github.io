@@ -11,6 +11,10 @@
 .media-showcase{padding:0 0 42px}
 .media-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
 #gallery.media-grid{grid-template-columns:1fr}
+.media-institution-group{grid-column:1/-1;min-width:0}
+.media-institution-group+.media-institution-group{margin-top:26px}
+.media-institution-heading{margin:0 0 16px;padding-bottom:10px;border-bottom:1px solid rgba(36,41,35,.16);font-size:1.05rem;line-height:1.45;letter-spacing:.08em;text-transform:uppercase;color:#37624f;overflow-wrap:anywhere}
+.media-group-images{display:grid;grid-template-columns:1fr;gap:20px;min-width:0}
 .media-card{background:#f8f7f3;border:1px solid rgba(36,41,35,.12);padding:16px;box-shadow:0 12px 30px rgba(36,41,35,.08);min-width:0}
 .media-card img,.media-card video{width:100%;display:block;max-height:520px;object-fit:contain;background:#ece9e2}
 .media-card video{max-height:520px}
@@ -24,7 +28,7 @@
 .media-kind{font:600 .68rem/1.2 "DM Mono",monospace;text-transform:uppercase;letter-spacing:.12em;color:#37624f}
 .media-empty{padding:35px 0;color:#667069}
 @media(max-width:800px){
-  .media-grid{grid-template-columns:1fr}
+  .media-grid,.media-group-images{grid-template-columns:1fr}
   .media-image-card{grid-template-columns:1fr;gap:16px}
   .media-image-card .media-copy{padding:4px 2px 8px}
   .media-image-card .media-image-wrap img{max-height:420px}
@@ -85,6 +89,28 @@ function videoCard(x){
  (isEmbed?'<p style="padding:35px 0"><a href="'+esc(src)+'" target="_blank" rel="noopener">Watch video ↗</a></p>':'<video controls preload="metadata" src="'+esc(src)+'"></video>')+
  '<h3>'+esc(x.title||'Video note')+'</h3>'+(x.description||x.caption?'<p>'+esc(x.description||x.caption)+'</p>':'')+'</article>';
 }
+function institutionGroups(items){
+ const groups=new Map();
+
+ items.forEach(item=>{
+  const institution=String(
+   item.institution||item.organization||item.institutionName||''
+  ).trim()||'Institution not specified';
+
+  if(!groups.has(institution))groups.set(institution,[]);
+  groups.get(institution).push(item);
+ });
+
+ return Array.from(groups,([institution,groupItems])=>
+  '<section class="media-institution-group">'+
+    '<h2 class="media-institution-heading">'+esc(institution)+'</h2>'+
+    '<div class="media-group-images">'+
+      groupItems.map(imageCard).join('')+
+    '</div>'+
+  '</section>'
+ ).join('');
+}
+
 async function load(){
  try{
   const [m,c]=await Promise.all([
@@ -94,10 +120,26 @@ async function load(){
   const images=Array.isArray(m)?m:(Array.isArray(m.images)?m.images:[]);
   const creative=Array.isArray(c.mediaEntries)?c.mediaEntries:[];
   const posts=Array.isArray(c.posts)?c.posts:[];
-  const allImages=images.concat(creative.filter(x=>x.enabled!==false&&x.image).map(x=>({image:x.image,title:x.title,alt:x.alt,caption:x.text})));
-  const allVideos=creative.filter(x=>x.enabled!==false&&x.video).map(x=>({video:x.video,title:x.title,caption:x.text}));
-  posts.forEach(p=>(p.media||[]).forEach(x=>{if(x.type==='image'&&x.src)allImages.push({image:x.src,title:p.title,alt:x.alt,caption:x.caption});if(x.type==='video'&&x.src)allVideos.push({video:x.src,title:p.title,caption:x.caption});}));
-  document.getElementById('gallery').innerHTML=allImages.map(imageCard).join('')||'';
+  const allImages=images.concat(
+   creative.filter(x=>x.enabled!==false&&x.image).map(x=>({
+    image:x.image,title:x.title,alt:x.alt,caption:x.text,
+    institution:x.institution||x.organization||x.institutionName||''
+   }))
+  );
+  const allVideos=creative.filter(x=>x.enabled!==false&&x.video).map(x=>({
+   video:x.video,title:x.title,caption:x.text
+  }));
+  posts.forEach(p=>(p.media||[]).forEach(x=>{
+   if(x.type==='image'&&x.src)allImages.push({
+    image:x.src,title:p.title,alt:x.alt,caption:x.caption,
+    institution:x.institution||x.organization||p.institution||p.organization||''
+   });
+   if(x.type==='video'&&x.src)allVideos.push({
+    video:x.src,title:p.title,caption:x.caption
+   });
+  }));
+  document.getElementById('gallery').innerHTML=
+   institutionGroups(allImages)||'';
   document.getElementById('videos').innerHTML=allVideos.map(videoCard).join('')||'';
  }catch(e){
   document.getElementById('gallery').innerHTML='';

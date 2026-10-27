@@ -12,26 +12,25 @@
 .media-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
 #gallery.media-grid{grid-template-columns:1fr}
 .media-institution-group{grid-column:1/-1;min-width:0}
-.media-institution-group+.media-institution-group{margin-top:26px}
-.media-institution-heading{margin:0 0 16px;padding-bottom:10px;border-bottom:1px solid rgba(36,41,35,.16);font-size:1.05rem;line-height:1.45;letter-spacing:.08em;text-transform:uppercase;color:#37624f;overflow-wrap:anywhere}
-.media-group-images{display:grid;grid-template-columns:1fr;gap:20px;min-width:0}
-.media-card{background:#f8f7f3;border:1px solid rgba(36,41,35,.12);padding:16px;box-shadow:0 12px 30px rgba(36,41,35,.08);min-width:0}
-.media-card img,.media-card video{width:100%;display:block;max-height:520px;object-fit:contain;background:#ece9e2}
-.media-card video{max-height:520px}
-.media-card h3{margin:0 0 10px;overflow-wrap:anywhere}
+.media-institution-group+.media-institution-group{margin-top:36px}
+.media-institution-heading{margin:0 0 18px;padding-bottom:12px;border-bottom:1px solid rgba(36,41,35,.16);font-size:1.25rem;line-height:1.4;letter-spacing:.025em;color:#37624f;overflow-wrap:anywhere}
+.media-group-images{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;min-width:0}
+.media-card{background:#f8f7f3;border:1px solid rgba(36,41,35,.12);padding:13px;box-shadow:0 12px 30px rgba(36,41,35,.08);min-width:0}
+.media-card img,.media-card video{width:100%;display:block;max-height:340px;aspect-ratio:4/3;object-fit:contain;background:#ece9e2}
+.media-card video{max-height:520px;aspect-ratio:auto}
+.media-card h3{margin:7px 0 6px;overflow-wrap:anywhere}
 .media-card p{margin:0;color:#667069;line-height:1.7;overflow-wrap:anywhere}
-.media-image-card{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(240px,.85fr);gap:28px;align-items:center}
+.media-image-card{display:flex;flex-direction:column;align-items:stretch;gap:0}
 .media-image-wrap{min-width:0;background:#ece9e2}
-.media-image-card .media-image-wrap img{max-height:460px}
-.media-image-card .media-copy{min-width:0;padding:14px 10px}
-.media-image-card .media-caption{line-height:1.75}
+.media-image-card .media-image-wrap img{max-height:340px}
+.media-image-card .media-copy{min-width:0;padding:13px 3px 3px}
+.media-image-card .media-caption{line-height:1.7}
+.media-category{display:inline-block;align-self:flex-start;margin:0 0 8px;font:600 .66rem/1.4 "DM Mono",monospace;text-transform:uppercase;letter-spacing:.1em;color:#37624f}
 .media-kind{font:600 .68rem/1.2 "DM Mono",monospace;text-transform:uppercase;letter-spacing:.12em;color:#37624f}
 .media-empty{padding:35px 0;color:#667069}
 @media(max-width:800px){
   .media-grid,.media-group-images{grid-template-columns:1fr}
-  .media-image-card{grid-template-columns:1fr;gap:16px}
-  .media-image-card .media-copy{padding:4px 2px 8px}
-  .media-image-card .media-image-wrap img{max-height:420px}
+  .media-card img,.media-image-card .media-image-wrap img{max-height:420px}
 }
 </style>
 </head>
@@ -76,6 +75,7 @@ function imageCard(x){
      'loading="lazy">'+
    '</div>'+
    '<div class="media-copy">'+
+     (x.category?'<div class="media-category">'+esc(x.category)+'</div>':'')+
      '<h3>'+esc(x.name||x.title||'Research image')+'</h3>'+
      (x.caption?'<p class="media-caption">'+esc(x.caption)+'</p>':'')+
    '</div>'+

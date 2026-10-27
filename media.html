@@ -6,7 +6,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Media | Simran Sainand Revankar</title>
-<link rel="stylesheet" href="assets/research-readable.css?v=12">
+<link rel="stylesheet" href="assets/research-readable.css?v=13">
 <style>
 .media-showcase{padding:0 0 42px}
 .media-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
@@ -25,6 +25,22 @@
 .media-image-card{display:flex;flex-direction:column;align-items:stretch;gap:0}
 .media-image-wrap{min-width:0;background:#ece9e2}
 .media-image-card .media-image-wrap img{width:auto;height:auto;max-width:100%;max-height:100%;object-fit:contain}
+ /* Override the shared stylesheet's global object-fit:cover and forced 4:3 ratio.
+    Keep the whole photograph visible, including faces and edges. */
+#gallery .media-image-wrap{height:220px!important;overflow:hidden}
+#gallery .media-image-wrap img,
+#gallery .media-image-card .media-image-wrap img{
+  display:block!important;
+  width:100%!important;
+  height:100%!important;
+  max-width:100%!important;
+  max-height:none!important;
+  aspect-ratio:auto!important;
+  object-fit:contain!important;
+  object-position:center center!important;
+  transform:none!important;
+}
+#gallery .media-card:hover img{transform:none!important}
 .media-image-card .media-copy{min-width:0;padding:10px 2px 2px}
 .media-image-card .media-caption{line-height:1.7}
 .media-category{display:inline-block;align-self:flex-start;margin:0 0 8px;font:600 .66rem/1.4 "DM Mono",monospace;text-transform:uppercase;letter-spacing:.1em;color:#37624f}
@@ -37,8 +53,17 @@
   .media-grid{grid-template-columns:1fr}
   .media-group-images{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
   .media-card{padding:8px}
-  .media-image-wrap{height:160px}
-  .media-image-card .media-image-wrap img{width:auto;height:auto;max-width:100%;max-height:100%;object-fit:contain}
+  #gallery .media-image-wrap{height:160px!important}
+  #gallery .media-image-wrap img,
+  #gallery .media-image-card .media-image-wrap img{
+    width:100%!important;
+    height:100%!important;
+    max-width:100%!important;
+    max-height:none!important;
+    aspect-ratio:auto!important;
+    object-fit:contain!important;
+    object-position:center center!important;
+  }
   .media-image-card .media-copy{padding:8px 1px 1px}
   .media-card h3{font-size:.9rem}
   .media-card p{font-size:.82rem;line-height:1.45}

@@ -148,9 +148,6 @@ h3{font-size:clamp(2rem,3.5vw,3.5rem);line-height:.9;margin:7px 0 12px}
 .archive-card:nth-child(2){transform:translateY(12px)}
 .archive-card:nth-child(3){transform:translateY(-7px)}
 .archive-card:after{content:"↗";position:absolute;right:18px;bottom:10px;font-family:var(--serif);font-size:3rem;color:rgba(106,48,68,.16)}
-.comment-box{background:var(--paper-2);border:1px solid var(--line);padding:24px;min-height:160px}
-.comment-box .tiny-label{margin-bottom:4px}
-.utterances{max-width:none}
 .modal{position:fixed;inset:0;background:rgba(31,24,24,.72);display:none;align-items:center;justify-content:center;padding:22px;z-index:30;backdrop-filter:blur(7px)}
 .modal.open{display:flex}
 .dialog{
@@ -1045,7 +1042,7 @@ function renderJournalShelf(d){
     const open=function(){
       const title=card.getAttribute('data-journal-title')||'Journal entry';
       const body=card.querySelector('.journal-full')?.innerHTML||'';
-      $('dialogImage').innerHTML=(card.querySelector('.journal-thumb img')?'<img class="creative-modal-image" src="'+esc(card.querySelector('.journal-thumb img').getAttribute('src')||'')+'" alt="'+esc(title)+'">':'')+'<div class="journal-modal-cover"><div class="media-kind">'+esc(card.querySelector('.media-kind')?.textContent||'Creative entry')+'</div><strong>'+esc(title)+'</strong></div>';
+      $('dialogImage').innerHTML=(card.querySelector('.journal-thumb img')?'<img class="creative-modal-image" src="'+esc(card.querySelector('.journal-thumb img').getAttribute('src')||'')+'" alt="'+esc(title)+'">':'')+'<div class="journal-modal-cover"><div class="media-kind">'+esc(card.querySelector('.media-kind')?.textContent||'Creative entry')+'</div></div>';
       $('dialogContent').innerHTML='<div class="eyebrow">Journal entry</div><h2>'+esc(title)+'</h2><div class="review-body">'+body+'</div>';
       $('modal').classList.add('open');
       $('modal').setAttribute('aria-hidden','false');
@@ -1090,7 +1087,7 @@ function renderMediaShelves(d){
     const open=function(){
       const title=card.getAttribute('data-journal-title')||'Journal entry';
       const body=card.querySelector('.journal-full')?.innerHTML||'';
-      $('dialogImage').innerHTML='<div class="journal-modal-cover"><div class="media-kind">Journal / random thoughts</div><strong>'+esc(title)+'</strong></div>';
+      $('dialogImage').innerHTML='<div class="journal-modal-cover"><div class="media-kind">Journal / random thoughts</div></div>';
       $('dialogContent').innerHTML='<div class="eyebrow">Journal entry</div><h2>'+esc(title)+'</h2><div class="review-body">'+body+'</div>';
       $('modal').classList.add('open');
       $('modal').setAttribute('aria-hidden','false');
@@ -1138,8 +1135,6 @@ function observeReveals(){
   },{threshold:.12});
   nodes.forEach(n=>io.observe(n));
 }
-
-function setupComments(d){const box=$('commentBox');if(box)box.innerHTML='<div class="tiny-label">Comments are closed</div>'; }
 
 async function load(){
   try{

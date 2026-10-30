@@ -171,7 +171,6 @@
   margin:6px 0 22px;
   color:var(--forest)
 }
-.comments{margin-top:28px;padding-top:22px}
 
 @media(max-width:900px){
   .blog-card,.blog-card:nth-child(n){grid-column:span 12}
@@ -205,7 +204,6 @@
 <div class="blog-reader-copy"><div class="reader-top"><div><div class="eyebrow" id="rmeta"></div><h2 id="rtitle"></h2></div><button class="close" id="close" aria-label="Close article">×</button></div>
 <div class="event-note" id="revent" style="display:none"></div><a class="blog-external" id="rlink" style="display:none" target="_blank" rel="noopener">Related link ↗</a>
 <div class="reader-body" id="rbody"></div>
-<section class="comments"><p class="muted">Comments are closed.</p><div class="comments-host" id="commentsHost"></div></section>
 </div></article></div>
 <footer class="wrap site-footer"><span>Research · writing · curiosity</span></footer>
 <script>
@@ -280,7 +278,6 @@ function openPost(p){
  if(p.image){const im=document.createElement('img');im.src=p.image;im.alt=p.title||'Blog image';media.appendChild(im)}
  (p.media||[]).forEach(m=>{if(!m.src)return;const im=document.createElement('img');im.src=m.src;im.alt=m.caption||p.title||'Blog media';media.appendChild(im);if(m.caption){const cap=document.createElement('div');cap.className='caption';cap.textContent=m.caption;media.appendChild(cap)}});
  if(!media.children.length){media.innerHTML='<div style="margin:auto;color:#dfe6df;font:600 .68rem var(--mono);text-transform:uppercase;letter-spacing:.1em">Written note</div>'}
- // Comments are disabled; no third-party script is loaded.
  document.getElementById('reader').classList.add('open');document.body.style.overflow='hidden';
 }
 function close(){document.getElementById('reader').classList.remove('open');document.body.style.overflow=''}

@@ -1042,8 +1042,8 @@ function renderJournalShelf(d){
     const open=function(){
       const title=card.getAttribute('data-journal-title')||'Journal entry';
       const body=card.querySelector('.journal-full')?.innerHTML||'';
-      $('dialogImage').innerHTML=(card.querySelector('.journal-thumb img')?'<img class="creative-modal-image" src="'+esc(card.querySelector('.journal-thumb img').getAttribute('src')||'')+'" alt="'+esc(title)+'">':'')+'<div class="journal-modal-cover"><div class="media-kind">'+esc(card.querySelector('.media-kind')?.textContent||'Creative entry')+'</div></div>';
-      $('dialogContent').innerHTML='<div class="eyebrow">Journal entry</div><h2>'+esc(title)+'</h2><div class="review-body">'+body+'</div>';
+      $('dialogImage').innerHTML=(card.querySelector('.journal-thumb img')?'<img class="creative-modal-image" src="'+esc(card.querySelector('.journal-thumb img').getAttribute('src')||'')+'" alt="'+esc(title)+'">':'')+'<div class="journal-modal-cover"><div class="media-kind">'+esc(card.querySelector('.media-kind')?.textContent||'Creative entry')+'</div><strong>'+esc(title)+'</strong></div>';
+      $('dialogContent').innerHTML='<div class="eyebrow">Journal entry</div><div class="review-body">'+body+'</div>';
       $('modal').classList.add('open');
       $('modal').setAttribute('aria-hidden','false');
       document.body.style.overflow='hidden';
@@ -1087,8 +1087,8 @@ function renderMediaShelves(d){
     const open=function(){
       const title=card.getAttribute('data-journal-title')||'Journal entry';
       const body=card.querySelector('.journal-full')?.innerHTML||'';
-      $('dialogImage').innerHTML='<div class="journal-modal-cover"><div class="media-kind">Journal / random thoughts</div></div>';
-      $('dialogContent').innerHTML='<div class="eyebrow">Journal entry</div><h2>'+esc(title)+'</h2><div class="review-body">'+body+'</div>';
+      $('dialogImage').innerHTML='<div class="journal-modal-cover"><div class="media-kind">Journal / random thoughts</div><strong>'+esc(title)+'</strong></div>';
+      $('dialogContent').innerHTML='<div class="eyebrow">Journal entry</div><div class="review-body">'+body+'</div>';
       $('modal').classList.add('open');
       $('modal').setAttribute('aria-hidden','false');
       document.body.style.overflow='hidden';

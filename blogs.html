@@ -77,44 +77,73 @@
 
 .blog-filters{display:none}
 
-.blog-grid{
-  display:grid;
-  grid-template-columns:repeat(12,1fr);
-  gap:16px
+#blogGrid{display:block}
+.blog-group{margin:0 0 34px}
+.blog-group+.blog-group{margin-top:34px}
+.blog-group-heading-row{
+  display:flex;
+  align-items:baseline;
+  justify-content:space-between;
+  gap:14px;
+  margin:0 0 12px;
+  padding:0 0 9px;
+  border-bottom:1px solid var(--line)
 }
-.blog-card{
-  grid-column:span 6;
+.blog-group-heading{
+  margin:0!important;
+  color:var(--forest);
+  font-family:var(--serif);
+  font-size:clamp(1.7rem,2.4vw,2.2rem)!important;
+  font-weight:500;
+  line-height:1.08!important;
+  letter-spacing:-.025em!important;
+  text-transform:none;
+  overflow-wrap:anywhere
+}
+.blog-group-count{
+  flex:none;
+  color:var(--muted);
+  font:600 .68rem var(--mono);
+  letter-spacing:.07em;
+  text-transform:uppercase
+}
+.blog-group-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));
+  gap:14px;
+  align-items:stretch
+}
+.blog-group-grid .blog-card{
+  grid-column:auto!important;
   display:grid;
   grid-template-columns:minmax(0,1fr);
   align-content:space-between;
-  min-height:260px;
-  padding:24px;
-  background:rgba(255,255,255,.42);
-  border:1px solid var(--line);
+  min-height:230px;
+  min-width:0;
+  margin:0;
+  padding:22px!important;
+  background:rgba(251,248,240,.78)!important;
+  color:var(--ink)!important;
+  border:1px solid var(--line)!important;
+  box-shadow:none;
   text-decoration:none;
-  transition:transform .2s ease,box-shadow .2s ease,background .2s ease
+  transition:transform .2s ease,box-shadow .2s ease
 }
-.blog-card:nth-child(3n+1){grid-column:span 7}
-.blog-card:nth-child(3n+2){grid-column:span 5}
-.blog-card.featured{
-  background:var(--forest);
-  color:var(--cream)
+.blog-group-grid .blog-card:hover{
+  transform:translateY(-2px);
+  box-shadow:0 12px 28px rgba(35,56,45,.08)
 }
-.blog-card.featured h3{color:var(--cream)!important}
-.blog-card.featured p{color:#e4e9e5!important}
-.blog-card:hover{
-  transform:translateY(-3px);
-  box-shadow:0 14px 34px rgba(35,56,45,.08)
-}
-.blog-card h3{
+.blog-group-grid .blog-card h3{
   margin:7px 0 8px;
   max-width:650px;
-  font-size:clamp(1.5rem,2.15vw,2.05rem);
-  line-height:1.02
+  color:var(--forest);
+  font-size:clamp(1.4rem,2vw,1.8rem);
+  line-height:1.04
 }
-.blog-card p{
+.blog-group-grid .blog-card p{
   margin:0;
   max-width:620px;
+  color:var(--muted);
   font-size:.93rem;
   line-height:1.5
 }
@@ -124,15 +153,13 @@
   letter-spacing:.08em;
   color:var(--clay)
 }
-.blog-card.featured .blog-meta{color:#e7cb91}
 .blog-media-count{
   margin-top:18px;
+  color:var(--muted);
   font:600 .72rem var(--mono);
   text-transform:uppercase;
-  letter-spacing:.07em;
-  color:var(--muted)
+  letter-spacing:.07em
 }
-.blog-card.featured .blog-media-count{color:#d9dfda}
 
 .reader-box.blog-reader{
   padding:0;
@@ -260,13 +287,33 @@ function renderTalkSubsections(){
 function renderCards(){
  let list=active==='All'?blogs:blogs.filter(p=>active==='Conference + workshop'?(normalizeType(p)==='Conference experience'||normalizeType(p)==='Workshop'):normalizeType(p)===active);
  if(active==='Talk / lecture' && talkActive!=='All talks') list=list.filter(p=>(p.subjectRelation||'Connected to my work')===talkActive);
- document.getElementById('blogGrid').innerHTML=list.length?list.map((p,i)=>{
-   const original=blogs.indexOf(p), media=Array.isArray(p.media)?p.media.filter(x=>x.src):[];
-   const isTalk=normalizeType(p)==='Talk / lecture';
-   const label=isTalk && p.subjectRelation ? p.subjectRelation : (p.category||p.type||'Research note');
-   return '<a class="blog-card '+(i===0?'featured':'')+'" href="#" data-i="'+original+'"><div><div class="blog-meta">'+esc(label)+(p.date?' · '+esc(p.date):'')+'</div><h3>'+esc(p.title||'Untitled')+'</h3><p>'+esc(p.excerpt||String(p.body||'').slice(0,120))+'…</p></div><div><div class="blog-media-count">'+(media.length?media.length+' media item'+(media.length>1?'s':''):'Written note')+' · Open full post ↗</div></div></a>';
- }).join('') :'';
- document.querySelectorAll('[data-i]').forEach(x=>x.onclick=e=>{e.preventDefault();openPost(blogs[Number(x.dataset.i)])});
+
+ const groups=[];
+ list.forEach(p=>{
+   // Where an institution or venue is supplied, use it as the group heading.
+   // Otherwise, group personal and explanatory writing by its existing category.
+   const event=String(p.event||'').trim();
+   const heading=event || String(p.category||p.type||normalizeType(p)||'Other notes').trim();
+   let group=groups.find(g=>g.heading===heading);
+   if(!group){group={heading,posts:[]};groups.push(group);}
+   group.posts.push(p);
+ });
+
+ const host=document.getElementById('blogGrid');
+ host.innerHTML=groups.map(group=>{
+   const cards=group.posts.map(p=>{
+     const original=blogs.indexOf(p), media=Array.isArray(p.media)?p.media.filter(x=>x.src):[];
+     const isTalk=normalizeType(p)==='Talk / lecture';
+     const label=isTalk && p.subjectRelation ? p.subjectRelation : (p.category||p.type||'Research note');
+     const date=String(p.date||'').trim();
+     const showDate=date && !(group.heading && date.toLowerCase().includes(group.heading.toLowerCase()));
+     return '<a class="blog-card" href="#" data-i="'+original+'"><div><div class="blog-meta">'+esc(label)+(showDate?' · '+esc(date):'')+'</div><h3>'+esc(p.title||'Untitled')+'</h3><p>'+esc(p.excerpt||String(p.body||'').slice(0,120))+'…</p></div><div><div class="blog-media-count">'+(media.length?media.length+' media item'+(media.length>1?'s':''):'Written note')+' · Open full post ↗</div></div></a>';
+   }).join('');
+   const count=group.posts.length;
+   return '<section class="blog-group"><div class="blog-group-heading-row"><h2 class="blog-group-heading">'+esc(group.heading)+'</h2><span class="blog-group-count">'+count+' '+(count===1?'entry':'entries')+'</span></div><div class="blog-group-grid">'+cards+'</div></section>';
+ }).join('');
+
+ host.querySelectorAll('[data-i]').forEach(x=>x.onclick=e=>{e.preventDefault();openPost(blogs[Number(x.dataset.i)])});
 }
 function openPost(p){
  document.getElementById('rmeta').textContent=p.category||p.type||'Research note';

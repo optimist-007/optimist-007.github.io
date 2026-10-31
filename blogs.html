@@ -77,18 +77,24 @@
 
 .blog-filters{display:none}
 
-#blogGrid{display:block}
-.blog-group{margin:0 0 34px}
-.blog-group+.blog-group{margin-top:34px}
+#blogGrid{
+  display:grid;
+  grid-template-columns:repeat(12,1fr);
+  gap:16px;
+  align-items:stretch
+}
+.blog-group{display:contents}
 .blog-group-heading-row{
+  grid-column:1/-1;
   display:flex;
   align-items:baseline;
   justify-content:space-between;
   gap:14px;
-  margin:0 0 12px;
+  margin:26px 0 0;
   padding:0 0 9px;
   border-bottom:1px solid var(--line)
 }
+.blog-group:first-child .blog-group-heading-row{margin-top:0}
 .blog-group-heading{
   margin:0!important;
   color:var(--forest);
@@ -107,11 +113,6 @@
   letter-spacing:.07em;
   text-transform:uppercase
 }
-.blog-grid{
-  display:grid;
-  grid-template-columns:repeat(12,1fr);
-  gap:16px
-}
 .blog-card{
   grid-column:span 6;
   display:grid;
@@ -124,8 +125,8 @@
   text-decoration:none;
   transition:transform .2s ease,box-shadow .2s ease,background .2s ease
 }
-.blog-card:nth-child(3n+1){grid-column:span 7}
-.blog-card:nth-child(3n+2){grid-column:span 5}
+.blog-card.blog-card-wide{grid-column:span 7}
+.blog-card.blog-card-narrow{grid-column:span 5}
 .blog-card.featured{
   background:var(--forest);
   color:var(--cream)
@@ -293,8 +294,6 @@ function renderCards(){
 
  const groups=[];
  list.forEach(p=>{
-   // Where an institution or venue is supplied, use it as the group heading.
-   // Otherwise, group personal and explanatory writing by its existing category.
    const event=String(p.event||'').trim();
    const heading=event || String(p.category||p.type||normalizeType(p)||'Other notes').trim();
    let group=groups.find(g=>g.heading===heading);
@@ -303,6 +302,7 @@ function renderCards(){
  });
 
  const host=document.getElementById('blogGrid');
+ let cardIndex=0;
  host.innerHTML=groups.map(group=>{
    const cards=group.posts.map(p=>{
      const original=blogs.indexOf(p), media=Array.isArray(p.media)?p.media.filter(x=>x.src):[];
@@ -310,10 +310,12 @@ function renderCards(){
      const label=isTalk && p.subjectRelation ? p.subjectRelation : (p.category||p.type||'Research note');
      const date=String(p.date||'').trim();
      const showDate=date && !(group.heading && date.toLowerCase().includes(group.heading.toLowerCase()));
-     return '<a class="blog-card '+(p===list[0]?'featured':'')+'" href="#" data-i="'+original+'"><div><div class="blog-meta">'+esc(label)+(showDate?' · '+esc(date):'')+'</div><h3>'+esc(p.title||'Untitled')+'</h3><p>'+esc(p.excerpt||String(p.body||'').slice(0,120))+'…</p></div><div><div class="blog-media-count">'+(media.length?media.length+' media item'+(media.length>1?'s':''):'Written note')+' · Open full post ↗</div></div></a>';
+     const layoutClass=cardIndex%3===0?' blog-card-wide':cardIndex%3===1?' blog-card-narrow':'';
+     cardIndex++;
+     return '<a class="blog-card'+layoutClass+(p===list[0]?' featured':'')+'" href="#" data-i="'+original+'"><div><div class="blog-meta">'+esc(label)+(showDate?' · '+esc(date):'')+'</div><h3>'+esc(p.title||'Untitled')+'</h3><p>'+esc(p.excerpt||String(p.body||'').slice(0,120))+'…</p></div><div><div class="blog-media-count">'+(media.length?media.length+' media item'+(media.length>1?'s':''):'Written note')+' · Open full post ↗</div></div></a>';
    }).join('');
    const count=group.posts.length;
-   return '<section class="blog-group"><div class="blog-group-heading-row"><h2 class="blog-group-heading">'+esc(group.heading)+'</h2><span class="blog-group-count">'+count+' '+(count===1?'entry':'entries')+'</span></div><div class="blog-grid">'+cards+'</div></section>';
+   return '<section class="blog-group"><div class="blog-group-heading-row"><h2 class="blog-group-heading">'+esc(group.heading)+'</h2><span class="blog-group-count">'+count+' '+(count===1?'entry':'entries')+'</span></div>'+cards+'</section>';
  }).join('');
 
  host.querySelectorAll('[data-i]').forEach(x=>x.onclick=e=>{e.preventDefault();openPost(blogs[Number(x.dataset.i)])});

@@ -109,29 +109,39 @@
 }
 .blog-group-grid{
   display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));
-  gap:14px;
+  grid-template-columns:repeat(12,1fr);
+  gap:16px;
   align-items:stretch
 }
 .blog-group-grid .blog-card{
-  grid-column:auto!important;
+  grid-column:span 6;
   display:grid;
   grid-template-columns:minmax(0,1fr);
   align-content:space-between;
-  min-height:230px;
+  min-height:260px;
   min-width:0;
   margin:0;
-  padding:22px!important;
-  background:rgba(251,248,240,.78)!important;
+  padding:24px!important;
+  background:rgba(255,255,255,.42)!important;
   color:var(--ink)!important;
   border:1px solid var(--line)!important;
   box-shadow:none;
   text-decoration:none;
   transition:transform .2s ease,box-shadow .2s ease
 }
+.blog-group-grid .blog-card:nth-child(3n+1){grid-column:span 7}
+.blog-group-grid .blog-card:nth-child(3n+2){grid-column:span 5}
+.blog-group-grid .blog-card.featured{
+  background:var(--forest)!important;
+  color:var(--cream)!important
+}
+.blog-group-grid .blog-card.featured h3{color:var(--cream)!important}
+.blog-group-grid .blog-card.featured p{color:#e4e9e5!important}
+.blog-group-grid .blog-card.featured .blog-meta{color:#e7cb91}
+.blog-group-grid .blog-card.featured .blog-media-count{color:#d9dfda}
 .blog-group-grid .blog-card:hover{
-  transform:translateY(-2px);
-  box-shadow:0 12px 28px rgba(35,56,45,.08)
+  transform:translateY(-3px);
+  box-shadow:0 14px 34px rgba(35,56,45,.08)
 }
 .blog-group-grid .blog-card h3{
   margin:7px 0 8px;
@@ -200,7 +210,7 @@
 }
 
 @media(max-width:900px){
-  .blog-card,.blog-card:nth-child(n){grid-column:span 12}
+  .blog-group-grid .blog-card,.blog-group-grid .blog-card:nth-child(n){grid-column:span 12}
   .reader-box.blog-reader{grid-template-columns:1fr}
   .blog-reader-media{min-height:220px;max-height:340px}
   .blog-reader-copy{padding:28px}
@@ -307,7 +317,7 @@ function renderCards(){
      const label=isTalk && p.subjectRelation ? p.subjectRelation : (p.category||p.type||'Research note');
      const date=String(p.date||'').trim();
      const showDate=date && !(group.heading && date.toLowerCase().includes(group.heading.toLowerCase()));
-     return '<a class="blog-card" href="#" data-i="'+original+'"><div><div class="blog-meta">'+esc(label)+(showDate?' · '+esc(date):'')+'</div><h3>'+esc(p.title||'Untitled')+'</h3><p>'+esc(p.excerpt||String(p.body||'').slice(0,120))+'…</p></div><div><div class="blog-media-count">'+(media.length?media.length+' media item'+(media.length>1?'s':''):'Written note')+' · Open full post ↗</div></div></a>';
+     return '<a class="blog-card '+(p===list[0]?'featured':'')+'" href="#" data-i="'+original+'"><div><div class="blog-meta">'+esc(label)+(showDate?' · '+esc(date):'')+'</div><h3>'+esc(p.title||'Untitled')+'</h3><p>'+esc(p.excerpt||String(p.body||'').slice(0,120))+'…</p></div><div><div class="blog-media-count">'+(media.length?media.length+' media item'+(media.length>1?'s':''):'Written note')+' · Open full post ↗</div></div></a>';
    }).join('');
    const count=group.posts.length;
    return '<section class="blog-group"><div class="blog-group-heading-row"><h2 class="blog-group-heading">'+esc(group.heading)+'</h2><span class="blog-group-count">'+count+' '+(count===1?'entry':'entries')+'</span></div><div class="blog-group-grid">'+cards+'</div></section>';

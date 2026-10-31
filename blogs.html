@@ -107,53 +107,44 @@
   letter-spacing:.07em;
   text-transform:uppercase
 }
-.blog-group-grid{
+.blog-grid{
   display:grid;
   grid-template-columns:repeat(12,1fr);
-  gap:16px;
-  align-items:stretch
+  gap:16px
 }
-.blog-group-grid .blog-card{
+.blog-card{
   grid-column:span 6;
   display:grid;
   grid-template-columns:minmax(0,1fr);
   align-content:space-between;
   min-height:260px;
-  min-width:0;
-  margin:0;
-  padding:24px!important;
-  background:rgba(255,255,255,.42)!important;
-  color:var(--ink)!important;
-  border:1px solid var(--line)!important;
-  box-shadow:none;
+  padding:24px;
+  background:rgba(255,255,255,.42);
+  border:1px solid var(--line);
   text-decoration:none;
-  transition:transform .2s ease,box-shadow .2s ease
+  transition:transform .2s ease,box-shadow .2s ease,background .2s ease
 }
-.blog-group-grid .blog-card:nth-child(3n+1){grid-column:span 7}
-.blog-group-grid .blog-card:nth-child(3n+2){grid-column:span 5}
-.blog-group-grid .blog-card.featured{
-  background:var(--forest)!important;
-  color:var(--cream)!important
+.blog-card:nth-child(3n+1){grid-column:span 7}
+.blog-card:nth-child(3n+2){grid-column:span 5}
+.blog-card.featured{
+  background:var(--forest);
+  color:var(--cream)
 }
-.blog-group-grid .blog-card.featured h3{color:var(--cream)!important}
-.blog-group-grid .blog-card.featured p{color:#e4e9e5!important}
-.blog-group-grid .blog-card.featured .blog-meta{color:#e7cb91}
-.blog-group-grid .blog-card.featured .blog-media-count{color:#d9dfda}
-.blog-group-grid .blog-card:hover{
+.blog-card.featured h3{color:var(--cream)!important}
+.blog-card.featured p{color:#e4e9e5!important}
+.blog-card:hover{
   transform:translateY(-3px);
   box-shadow:0 14px 34px rgba(35,56,45,.08)
 }
-.blog-group-grid .blog-card h3{
+.blog-card h3{
   margin:7px 0 8px;
   max-width:650px;
-  color:var(--forest);
-  font-size:clamp(1.4rem,2vw,1.8rem);
-  line-height:1.04
+  font-size:clamp(1.5rem,2.15vw,2.05rem);
+  line-height:1.02
 }
-.blog-group-grid .blog-card p{
+.blog-card p{
   margin:0;
   max-width:620px;
-  color:var(--muted);
   font-size:.93rem;
   line-height:1.5
 }
@@ -163,13 +154,15 @@
   letter-spacing:.08em;
   color:var(--clay)
 }
+.blog-card.featured .blog-meta{color:#e7cb91}
 .blog-media-count{
   margin-top:18px;
-  color:var(--muted);
   font:600 .72rem var(--mono);
   text-transform:uppercase;
-  letter-spacing:.07em
+  letter-spacing:.07em;
+  color:var(--muted)
 }
+.blog-card.featured .blog-media-count{color:#d9dfda}
 
 .reader-box.blog-reader{
   padding:0;
@@ -210,7 +203,7 @@
 }
 
 @media(max-width:900px){
-  .blog-group-grid .blog-card,.blog-group-grid .blog-card:nth-child(n){grid-column:span 12}
+  .blog-card,.blog-card:nth-child(n){grid-column:span 12}
   .reader-box.blog-reader{grid-template-columns:1fr}
   .blog-reader-media{min-height:220px;max-height:340px}
   .blog-reader-copy{padding:28px}
@@ -320,7 +313,7 @@ function renderCards(){
      return '<a class="blog-card '+(p===list[0]?'featured':'')+'" href="#" data-i="'+original+'"><div><div class="blog-meta">'+esc(label)+(showDate?' · '+esc(date):'')+'</div><h3>'+esc(p.title||'Untitled')+'</h3><p>'+esc(p.excerpt||String(p.body||'').slice(0,120))+'…</p></div><div><div class="blog-media-count">'+(media.length?media.length+' media item'+(media.length>1?'s':''):'Written note')+' · Open full post ↗</div></div></a>';
    }).join('');
    const count=group.posts.length;
-   return '<section class="blog-group"><div class="blog-group-heading-row"><h2 class="blog-group-heading">'+esc(group.heading)+'</h2><span class="blog-group-count">'+count+' '+(count===1?'entry':'entries')+'</span></div><div class="blog-group-grid">'+cards+'</div></section>';
+   return '<section class="blog-group"><div class="blog-group-heading-row"><h2 class="blog-group-heading">'+esc(group.heading)+'</h2><span class="blog-group-count">'+count+' '+(count===1?'entry':'entries')+'</span></div><div class="blog-grid">'+cards+'</div></section>';
  }).join('');
 
  host.querySelectorAll('[data-i]').forEach(x=>x.onclick=e=>{e.preventDefault();openPost(blogs[Number(x.dataset.i)])});

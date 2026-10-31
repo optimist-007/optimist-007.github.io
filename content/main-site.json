@@ -24,11 +24,6 @@
     {
       "label": "CV ↗",
       "href": "media/docs/CV.pdf"
-    },
-    {
-      "label": "Creative side ↗",
-      "href": "creative.html",
-      "className": "creative"
     }
   ],
   "theme": {

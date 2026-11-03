@@ -1035,11 +1035,11 @@ a:focus-visible,button:focus-visible,[tabindex]:focus-visible{
 }
 
 
-/* ===== CURRENT CHAPTER: FOUR COMPACT BOXES ===== */
+/* ===== CURRENT CHAPTER: THREE SHORT BOXES ===== */
 #currentChapter{
   width:100%;
-  max-width:1120px;
-  margin:26px auto 0;
+  max-width:1000px;
+  margin:30px auto 0;
 }
 #currentChapter .chapter-head{
   display:flex;
@@ -1048,24 +1048,27 @@ a:focus-visible,button:focus-visible,[tabindex]:focus-visible{
   justify-content:center;
   gap:0;
   text-align:center;
-  margin:0 auto 12px;
+  margin:0 auto 13px;
   padding:0;
 }
 #currentChapter .chapter-head>div{width:100%;text-align:center}
-#currentChapter .chapter-head .eyebrow{margin:0 0 4px;font-size:.6rem}
+#currentChapter .chapter-head .eyebrow{margin:0 0 5px;font-size:.62rem}
 #currentChapter .chapter-head h2{
   margin:0 auto;
   max-width:100%;
-  font-size:clamp(1.9rem,3.2vw,2.7rem);
+  font-size:clamp(2rem,3.6vw,3rem);
   line-height:1;
   text-align:center;
 }
 #currentChapter .chapter-intro{display:none}
 #currentChapter .chapter-grid{
   display:grid;
-  grid-template-columns:repeat(4,minmax(0,1fr));
-  gap:10px;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:12px 14px;
   align-items:stretch;
+  width:100%;
+  max-width:920px;
+  margin:0 auto;
 }
 #currentChapter .chapter-card{
   display:flex;
@@ -1073,45 +1076,50 @@ a:focus-visible,button:focus-visible,[tabindex]:focus-visible{
   align-items:flex-start;
   justify-content:flex-start;
   min-width:0;
-  min-height:106px;
-  padding:13px 14px 12px;
+  min-height:104px;
+  padding:14px 17px;
   background:rgba(245,240,231,.55);
   border:1px solid var(--line);
   box-shadow:none;
   text-align:left;
 }
 #currentChapter .chapter-card:nth-child(n){background:rgba(245,240,231,.55)}
+#currentChapter .chapter-card:nth-child(3){
+  grid-column:1 / -1;
+  width:calc(50% - 7px);
+  justify-self:center;
+}
 #currentChapter .chapter-card-top{
   display:flex;
   align-items:center;
   justify-content:flex-start;
   gap:8px;
   width:100%;
-  margin:0 0 8px;
+  margin:0 0 9px;
 }
 #currentChapter .chapter-index{
   color:var(--wine);
-  font:600 .55rem var(--mono);
-  letter-spacing:.09em;
+  font:600 .58rem var(--mono);
+  letter-spacing:.1em;
   text-transform:uppercase;
 }
 #currentChapter .chapter-card h3{
   max-width:100%;
   margin:0;
   color:var(--ink);
-  font:500 clamp(1.2rem,1.65vw,1.55rem)/1.02 var(--serif);
-  letter-spacing:-.025em;
+  font:500 clamp(1.45rem,2.1vw,2rem)/1 var(--serif);
+  letter-spacing:-.03em;
   text-wrap:balance;
 }
 #currentChapter .chapter-card-title{
-  margin:6px 0 0;
+  margin:7px 0 0;
   color:var(--wine);
-  font:500 .98rem/1.15 var(--serif);
+  font:500 1.05rem/1.15 var(--serif);
 }
 #currentChapter .chapter-card-byline{
   margin:3px 0 0;
   color:var(--muted);
-  font:.56rem/1.4 var(--mono);
+  font:.61rem/1.4 var(--mono);
   letter-spacing:.04em;
   text-transform:uppercase;
 }
@@ -1119,8 +1127,8 @@ a:focus-visible,button:focus-visible,[tabindex]:focus-visible{
   width:100%;
   margin:7px 0 0;
   color:#504646;
-  font-size:.75rem;
-  line-height:1.4;
+  font-size:.82rem;
+  line-height:1.48;
   white-space:pre-line;
   overflow-wrap:anywhere;
 }
@@ -1128,35 +1136,34 @@ a:focus-visible,button:focus-visible,[tabindex]:focus-visible{
 #currentChapter .chapter-card img{
   display:block;
   width:100%;
-  max-height:76px;
+  max-height:110px;
   object-fit:cover;
-  margin:7px 0 0;
+  margin:8px 0 0;
   border:1px solid var(--line);
 }
 #currentChapter .chapter-card-link{
   display:inline-flex;
   align-items:center;
   gap:5px;
-  margin-top:7px;
+  margin-top:8px;
   color:var(--wine);
-  font:700 .56rem var(--mono);
+  font:700 .6rem var(--mono);
   letter-spacing:.05em;
   text-transform:uppercase;
   text-underline-offset:3px;
 }
 #currentChapter .chapter-card-updated{display:none}
 #currentChapter .chapter-art{display:none!important}
-@media(max-width:700px){
+@media(max-width:620px){
   #currentChapter{margin-top:24px}
-  #currentChapter .chapter-head{margin-bottom:10px}
-  #currentChapter .chapter-head h2{font-size:2rem}
-  #currentChapter .chapter-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
-  #currentChapter .chapter-card{min-height:94px;padding:11px 12px}
-  #currentChapter .chapter-card h3{font-size:1.28rem}
+  #currentChapter .chapter-grid{gap:9px}
+  #currentChapter .chapter-card{min-height:94px;padding:12px 13px}
+  #currentChapter .chapter-card:nth-child(3){width:calc(50% - 5px)}
+  #currentChapter .chapter-card h3{font-size:1.35rem}
 }
-@media(max-width:360px){
-  #currentChapter .chapter-card{padding:10px}
-  #currentChapter .chapter-card h3{font-size:1.16rem}
+@media(max-width:380px){
+  #currentChapter .chapter-grid{grid-template-columns:1fr}
+  #currentChapter .chapter-card:nth-child(3){grid-column:auto;width:100%}
 }
 
 </style>
@@ -1545,12 +1552,11 @@ function renderCurrentChapter(d){
   const chapter=d.currentChapter||{};
   const source=Array.isArray(chapter.entries)?chapter.entries:[];
   const categories=[
-    {id:'reading',category:'Currently reading',subtitle:'A book, a page, or a passage.'},
-    {id:'watching',category:'Currently watching',subtitle:'A film or series on the screen.'},
-    {id:'listening',category:'Currently listening',subtitle:'A song, artist, or playlist on repeat.'},
-    {id:'noticing',category:"Things I've been noticing",subtitle:'Small things worth remembering.'}
+    {id:'reading',category:'Currently reading'},
+    {id:'noticing',category:"Small things I've noticed"},
+    {id:'indulged',category:'Currently indulged in'}
   ];
-  $('currentChapterIntro').textContent=chapter.intro||'Books, films, music and small observations.';
+  $('currentChapterIntro').textContent='';
   $('currentChapterGrid').innerHTML=categories.map(function(base,index){
     const entry=source.find(function(item){return item&&item.id===base.id;})||{};
     const category=entry.category||base.category;

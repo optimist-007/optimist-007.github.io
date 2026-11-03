@@ -1576,6 +1576,127 @@ body{
   border-color:var(--wine)!important;
 }
 
+
+/* ===== COMPACT, READABLE EDITORIAL RHYTHM ===== */
+.wrap{padding-bottom:38px!important}
+.ticker-wrap{margin-bottom:24px!important}
+.section{margin-top:40px!important}
+#currentChapter{margin-top:38px!important}
+#currentChapter .chapter-head{margin-bottom:15px!important;padding-bottom:10px!important}
+#currentChapter #currentChapterGrid{gap:11px!important}
+#currentChapter .chapter-row-top{gap:11px!important}
+#currentChapter .chapter-card,
+#currentChapter .chapter-row-bottom .chapter-card{
+  height:184px!important;min-height:184px!important;max-height:184px!important;
+  padding:15px 18px!important;
+}
+#currentChapter .chapter-card-top{margin-bottom:8px!important}
+#currentChapter .chapter-card h3{font-size:clamp(1.55rem,2.15vw,2.1rem)!important;line-height:1!important}
+#currentChapter .chapter-card-title{margin-top:6px!important;font-size:1.06rem!important;line-height:1.15!important}
+#currentChapter .chapter-card-byline{margin-top:4px!important;font-size:.57rem!important}
+#currentChapter .chapter-card-note{margin-top:6px!important;font-size:.78rem!important;line-height:1.38!important}
+#currentChapter .chapter-card-link{margin-top:6px!important}
+#currentChapter .chapter-card-content{max-width:calc(100% - 142px)!important}
+#currentChapter .chapter-graphic{
+  right:16px!important;width:104px!important;height:104px!important;
+  opacity:.92!important;
+}
+#currentChapter .chapter-graphic svg{width:100%!important;height:100%!important}
+#currentChapter .chapter-graphic:before,
+#currentChapter .chapter-graphic:after{display:none!important}
+
+/* Reviews: tighter cards, consistent poster/text alignment and readable excerpts */
+#reviews .section-head,#obsessions .section-head{margin-bottom:14px!important;padding-bottom:10px!important}
+#reviews .section-head h2,#obsessions .section-head h2{margin-bottom:0!important}
+#reviews .filters{margin:0 0 16px!important;gap:7px!important}
+#reviews .filter{padding:6px 10px!important}
+#reviewList{gap:12px!important}
+#reviewList .review-stage,
+#reviewList .review-stage.reverse{
+  grid-template-columns:142px minmax(0,1fr)!important;
+  gap:16px!important;
+  padding:13px!important;
+  min-height:0!important;
+  align-items:center!important;
+}
+#reviewList .poster-wrap{height:196px!important;min-height:196px!important}
+#reviewList .poster{height:196px!important;min-height:196px!important}
+#reviewList .review-copy{align-self:center!important}
+#reviewList .review-title{margin:5px 0 7px!important;line-height:.98!important}
+#reviewList .review-excerpt{
+  font-size:.88rem!important;line-height:1.48!important;
+  -webkit-line-clamp:4!important;margin:0!important;
+}
+#reviewList .review-copy .read-link{margin-top:9px!important}
+#reviewList .review-number{font-size:2.5rem!important;top:-4px!important}
+
+/* Obsessions: compact rows and controlled text measure */
+#obsessions .obsession-board{gap:12px!important}
+#obsessions .obsession-label{padding:18px!important}
+#obsessions .obsession-label h2{font-size:clamp(2.1rem,3.2vw,3.2rem)!important;line-height:.92!important}
+#obsessions .obsession-items{gap:9px!important}
+#obsessions .obsession-item{padding:13px 16px!important;min-height:0!important}
+#obsessions .playlist-item{gap:8px!important}
+#obsessions .obsession-playlist-head strong{font-size:1.55rem!important;line-height:1.02!important}
+#obsessions .obsession-playlist-note{font-size:.88rem!important;line-height:1.45!important}
+#obsessions .obsession-tracks{gap:5px!important}
+#obsessions .obsession-track{padding:4px 7px!important}
+#obsessions .obsession-play-link{margin-top:5px!important}
+
+/* Journal shelf: smaller section lead-in and more useful card proportions */
+.journal-bottom{margin-top:40px!important;padding-top:8px!important}
+.journal-bottom-head{padding:12px 0 8px!important}
+.journal-bottom .media-shelf{gap:12px!important}
+.journal-bottom .journal-card{
+  min-height:135px!important;padding:22px 64px 24px 4%!important;
+}
+.journal-bottom .journal-card-copy h3{
+  font-size:clamp(2.1rem,3.8vw,3.5rem)!important;line-height:.94!important;
+}
+.journal-bottom .journal-card-copy .media-kind{margin-bottom:6px!important}
+.journal-bottom .journal-card:after{width:40px!important;height:40px!important}
+
+/* Keep compact rhythm on phones without squeezing the type */
+@media(max-width:700px){
+  .wrap{padding:16px 5vw 28px!important}
+  .ticker-wrap{margin-bottom:20px!important}
+  .section{margin-top:32px!important}
+  #currentChapter{margin-top:30px!important}
+  #currentChapter .chapter-card,
+  #currentChapter .chapter-row-bottom .chapter-card{
+    height:164px!important;min-height:164px!important;max-height:164px!important;
+    padding:13px 14px!important;
+  }
+  #currentChapter .chapter-card-content{max-width:calc(100% - 104px)!important}
+  #currentChapter .chapter-graphic{width:82px!important;height:82px!important;right:5px!important}
+  #currentChapter .chapter-card h3{font-size:1.5rem!important}
+  #currentChapter .chapter-card-title{font-size:.94rem!important}
+  #currentChapter .chapter-card-byline{font-size:.5rem!important}
+  #currentChapter .chapter-card-note{font-size:.73rem!important}
+  #reviewList{grid-template-columns:1fr!important}
+  #reviewList .review-stage,#reviewList .review-stage.reverse{
+    grid-template-columns:104px minmax(0,1fr)!important;
+    gap:12px!important;padding:11px!important;
+  }
+  #reviewList .poster-wrap,#reviewList .poster{height:158px!important;min-height:158px!important}
+  #reviewList .review-title{font-size:1.5rem!important}
+  #reviewList .review-excerpt{font-size:.82rem!important;-webkit-line-clamp:3!important}
+  #reviewList .review-copy .read-link{font-size:.62rem!important;margin-top:7px!important}
+  #obsessions .obsession-board{grid-template-columns:1fr!important}
+  #obsessions .obsession-label{display:none!important}
+  .journal-bottom{margin-top:30px!important}
+  .journal-bottom .journal-card{
+    min-height:125px!important;padding:20px 52px 20px 5%!important;
+  }
+  .journal-bottom .journal-card-copy h3{font-size:clamp(2rem,8vw,3rem)!important}
+}
+@media(max-width:380px){
+  #currentChapter .chapter-card-content{max-width:calc(100% - 88px)!important}
+  #currentChapter .chapter-graphic{width:70px!important;height:70px!important;right:3px!important}
+  #reviewList .review-stage,#reviewList .review-stage.reverse{grid-template-columns:92px minmax(0,1fr)!important}
+  #reviewList .poster-wrap,#reviewList .poster{height:144px!important;min-height:144px!important}
+}
+
 </style>
 </head>
 <body>
@@ -1968,9 +2089,9 @@ function renderCurrentChapter(d){
     {id:'indulged',category:'Currently indulged in'}
   ];
   const art={
-    reading:'<svg viewBox="0 0 150 140" aria-hidden="true"><path d="M14 105 C30 50 53 50 73 91 S112 126 137 37" fill="none" stroke="#6a3044" stroke-width="1.8"/><path d="M9 117 C32 67 52 67 73 103 S111 136 142 51" fill="none" stroke="#9b783d" stroke-width="1.1"/><path d="M26 84 C49 31 69 36 89 66 S120 92 135 20" fill="none" stroke="#9b783d" stroke-width="1.1"/><path d="M19 49 A43 43 0 0 1 90 26" fill="none" stroke="#6a3044" stroke-width="1.2"/><circle cx="111" cy="20" r="5" fill="#9b783d"/><circle cx="24" cy="115" r="3" fill="#6a3044"/><circle cx="132" cy="106" r="2.5" fill="#9b783d"/></svg>',
-    noticing:'<svg viewBox="0 0 150 140" aria-hidden="true"><path d="M75 15 C112 15 136 40 136 72 C136 105 108 127 76 127 C42 127 15 103 15 72 C15 40 42 15 75 15Z" fill="none" stroke="#6a3044" stroke-width="1.5"/><path d="M75 27 C103 27 124 46 124 72 C124 98 102 115 76 115 C49 115 27 96 27 72 C27 47 49 27 75 27Z" fill="none" stroke="#9b783d" stroke-width="1.2"/><path d="M12 86 C40 62 64 101 89 74 S126 53 143 33" fill="none" stroke="#6a3044" stroke-width="1.8"/><path d="M10 98 C40 74 64 113 91 87 S126 67 146 46" fill="none" stroke="#9b783d" stroke-width="1.1"/><circle cx="117" cy="19" r="4" fill="#9b783d"/><circle cx="25" cy="42" r="3" fill="#6a3044"/></svg>',
-    indulged:'<svg viewBox="0 0 150 140" aria-hidden="true"><ellipse cx="75" cy="70" rx="56" ry="27" fill="none" stroke="#6a3044" stroke-width="1.6" transform="rotate(-24 75 70)"/><ellipse cx="75" cy="70" rx="38" ry="56" fill="none" stroke="#9b783d" stroke-width="1.3" transform="rotate(28 75 70)"/><path d="M16 95 C43 54 65 108 91 68 S124 45 139 30" fill="none" stroke="#6a3044" stroke-width="1.8"/><path d="M13 107 C42 67 65 120 94 82 S126 59 143 45" fill="none" stroke="#9b783d" stroke-width="1.1"/><path d="M40 22 L44 31 L54 35 L44 39 L40 49 L36 39 L26 35 L36 31Z" fill="none" stroke="#6a3044" stroke-width="1.1"/><circle cx="117" cy="111" r="4" fill="#9b783d"/><circle cx="22" cy="83" r="3" fill="#6a3044"/></svg>'
+    reading:'<svg viewBox="0 0 160 140" aria-hidden="true" fill="none"><path d="M20 35 Q48 25 78 42 V112 Q48 95 20 104 Z" stroke="#71394b" stroke-width="2.2" stroke-linejoin="round"/><path d="M140 35 Q112 25 82 42 V112 Q112 95 140 104 Z" stroke="#71394b" stroke-width="2.2" stroke-linejoin="round"/><path d="M80 42 V113" stroke="#a17d42" stroke-width="2"/><path d="M31 52 Q49 48 65 57 M31 65 Q49 61 65 70 M95 57 Q111 48 129 52 M95 70 Q111 61 129 65" stroke="#a17d42" stroke-width="1.5" stroke-linecap="round"/><path d="M20 104 Q49 96 78 112 Q109 96 140 104" stroke="#71394b" stroke-width="2.2" stroke-linecap="round"/></svg>',
+    noticing:'<svg viewBox="0 0 160 140" aria-hidden="true" fill="none"><path d="M17 70 Q48 29 80 29 Q112 29 143 70 Q112 111 80 111 Q48 111 17 70Z" stroke="#71394b" stroke-width="2.2" stroke-linejoin="round"/><circle cx="80" cy="70" r="23" stroke="#a17d42" stroke-width="2"/><circle cx="80" cy="70" r="9" fill="#71394b"/><path d="M119 22 L123 33 L134 37 L123 41 L119 52 L115 41 L104 37 L115 33 Z" stroke="#a17d42" stroke-width="1.6" stroke-linejoin="round"/></svg>',
+    indulged:'<svg viewBox="0 0 160 140" aria-hidden="true" fill="none"><path d="M80 15 L61 30 L80 40 L99 30 Z" stroke="#a17d42" stroke-width="2" stroke-linejoin="round"/><path d="M61 30 L48 45 L58 51 L67 43 L72 57 L62 115 Q80 123 98 115 L88 57 L93 43 L102 51 L112 45 L99 30" stroke="#71394b" stroke-width="2.2" stroke-linejoin="round"/><path d="M72 57 Q80 64 88 57 M67 88 Q80 94 93 88 M62 115 Q80 122 98 115" stroke="#a17d42" stroke-width="1.7" stroke-linecap="round"/><path d="M80 15 V7 M75 7 H85" stroke="#71394b" stroke-width="1.6" stroke-linecap="round"/></svg>'
   };
   $('currentChapterIntro').textContent='';
   const cards=categories.map(function(base,index){

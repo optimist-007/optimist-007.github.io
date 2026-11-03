@@ -1324,6 +1324,98 @@ a:focus-visible,button:focus-visible,[tabindex]:focus-visible{
   #currentChapter .chapter-graphic{width:78px!important;height:90px!important;right:3px!important}
 }
 
+
+/* ===== EDITORIAL COLOUR PASS: warm base, distinct section accents ===== */
+:root{
+  --sage:#71836f;
+  --sage-soft:#e2e8dc;
+  --rose-soft:#f0e0df;
+  --blue-soft:#e0e8eb;
+  --lavender-soft:#e9e2ed;
+  --clay:#a96550;
+  --clay-soft:#f0e2d8;
+}
+body{
+  background:
+    radial-gradient(ellipse at 8% 17%,rgba(113,131,111,.13),transparent 27%),
+    radial-gradient(ellipse at 92% 34%,rgba(169,101,80,.10),transparent 28%),
+    radial-gradient(ellipse at 70% 88%,rgba(128,111,147,.09),transparent 26%),
+    var(--paper);
+}
+.note{
+  background:linear-gradient(145deg,#e4e9df 0%,#f1eadf 100%)!important;
+  border-color:rgba(113,131,111,.32)!important;
+  box-shadow:10px 10px 0 rgba(113,131,111,.12)!important;
+}
+.note .scribble{color:#65785f!important}
+.ticker-wrap{
+  background:linear-gradient(90deg,rgba(240,224,223,.88),rgba(224,232,235,.86),rgba(226,232,220,.88))!important;
+}
+.ticker span{color:#654452!important}
+.ticker b{color:var(--clay)!important}
+
+/* Current chapter: each card gets its own quiet colour note */
+#currentChapter .chapter-row-top .chapter-card:first-child{
+  background:linear-gradient(135deg,#f3e9e4 0%,#eadbd6 100%)!important;
+}
+#currentChapter .chapter-row-top .chapter-card:nth-child(2){
+  background:linear-gradient(135deg,#e8e9df 0%,#dce5d8 100%)!important;
+}
+#currentChapter .chapter-row-bottom .chapter-card{
+  background:linear-gradient(135deg,#e5e9ed 0%,#e5dfea 100%)!important;
+}
+#currentChapter .chapter-index{color:#795064!important}
+
+/* Review archive: subtle blue-grey paper instead of another beige panel */
+#reviews .section-head{border-color:rgba(91,119,130,.28)!important}
+#reviews .section-head .eyebrow{color:#587987!important}
+#reviews .filter{
+  border-color:rgba(91,119,130,.32)!important;
+  background:rgba(224,232,235,.55)!important;
+  color:#526b75!important;
+}
+#reviews .filter:hover,#reviews .filter.active{
+  background:#587987!important;color:#fffaf1!important;border-color:#587987!important;
+}
+#reviewList .review-stage:nth-child(4n+1){background:linear-gradient(135deg,#e6ecec,#f1e9e3)!important}
+#reviewList .review-stage:nth-child(4n+2){background:linear-gradient(135deg,#eee4e7,#f2e9df)!important}
+#reviewList .review-stage:nth-child(4n+3){background:linear-gradient(135deg,#e7eadf,#f1ebdf)!important}
+#reviewList .review-stage:nth-child(4n){background:linear-gradient(135deg,#e8e3ed,#f2e9e2)!important}
+#reviewList .review-number{color:rgba(88,121,135,.16)!important}
+
+/* Obsessions: a botanical sage + clay pairing */
+#obsessions .section-head{border-color:rgba(113,131,111,.34)!important}
+#obsessions .section-head .eyebrow{color:#65785f!important}
+#obsessions .obsession-label{
+  background:linear-gradient(155deg,#657a65 0%,#465b50 100%)!important;
+  color:#f7f1e7!important;
+}
+#obsessions .obsession-item{
+  background:linear-gradient(110deg,#e3e9dc,#eee7dc)!important;
+  border-left-color:#a96550!important;
+}
+#obsessions .obsession-track{
+  background:#f4eee4!important;
+  border-color:rgba(113,131,111,.28)!important;
+}
+#obsessions .obsession-play-link{color:#8a5142!important}
+
+/* Journal: a little lavender, like a different page in the same notebook */
+.journal-bottom{
+  padding:22px clamp(18px,5vw,64px) 30px!important;
+  background:linear-gradient(135deg,#e8e2eb 0%,#eee6e0 55%,#e2e8e2 100%)!important;
+  border-top:1px solid rgba(128,111,147,.25)!important;
+}
+.journal-bottom-head .eyebrow{color:#725d80!important}
+.journal-bottom .journal-card{
+  background:rgba(250,246,239,.78)!important;
+  border-color:rgba(128,111,147,.26)!important;
+  box-shadow:0 14px 34px rgba(70,57,76,.08)!important;
+}
+@media(max-width:700px){
+  .journal-bottom{padding:18px 16px 24px!important}
+}
+
 </style>
 </head>
 <body>

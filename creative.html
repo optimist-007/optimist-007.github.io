@@ -1482,6 +1482,100 @@ body{
   }
 }
 
+
+/* ===== REFINED EDITORIAL PALETTE: restrained, tonal, no pastel gradients ===== */
+:root{
+  --ink:#352b2b;
+  --wine:#71394b;
+  --brass:#a17d42;
+  --paper:#eee7dc;
+}
+body{
+  background:var(--paper)!important;
+}
+.note{
+  background:#e8e1d5!important;
+  border-color:rgba(113,57,75,.22)!important;
+  box-shadow:8px 8px 0 rgba(53,43,43,.045)!important;
+}
+.ticker-wrap{
+  background:#e7dfd3!important;
+}
+.ticker span{color:var(--wine)!important}
+.ticker b{color:var(--brass)!important}
+
+/* Restore one coherent family of warm paper tones across chapter cards */
+#currentChapter .chapter-row-top .chapter-card:first-child,
+#currentChapter .chapter-row-top .chapter-card:nth-child(2),
+#currentChapter .chapter-row-bottom .chapter-card{
+  background:#f1ebe2!important;
+  border-color:rgba(89,68,59,.22)!important;
+}
+#currentChapter .chapter-index{color:var(--wine)!important}
+
+/* Reviews: remove alternating pastel cards; use tonal paper and wine details */
+#reviews .section-head{border-color:rgba(113,57,75,.22)!important}
+#reviews .section-head .eyebrow{color:var(--wine)!important}
+#reviews .filter{
+  border-color:rgba(113,57,75,.28)!important;
+  background:transparent!important;
+  color:var(--wine)!important;
+}
+#reviews .filter:hover,#reviews .filter.active{
+  background:var(--wine)!important;
+  color:#f6f0e7!important;
+  border-color:var(--wine)!important;
+}
+#reviewList .review-stage{
+  background:#f1ebe2!important;
+  border-color:rgba(89,68,59,.18)!important;
+}
+#reviewList .review-number{color:rgba(113,57,75,.13)!important}
+
+/* Obsessions: one deep, muted olive panel, with warm ivory type */
+#obsessions .section-head{border-color:rgba(113,57,75,.22)!important}
+#obsessions .section-head .eyebrow{color:var(--wine)!important}
+#obsessions .obsession-label{
+  background:#59665b!important;
+  border-color:#59665b!important;
+  box-shadow:none!important;
+  color:#f2ece2!important;
+}
+#obsessions .obsession-label .tiny-label{color:rgba(242,236,226,.72)!important}
+#obsessions .obsession-label h2{color:#f5efe5!important}
+#obsessions .obsession-item{
+  background:#e8e1d5!important;
+  border-left-color:var(--wine)!important;
+}
+#obsessions .obsession-track{
+  background:#f1ebe2!important;
+  border-color:rgba(89,68,59,.20)!important;
+}
+#obsessions .obsession-play-link{color:var(--wine)!important}
+
+/* Journal: parchment, espresso type, restrained wine/brass details */
+.journal-bottom{
+  background:#e7dfd3!important;
+  border-top:1px solid rgba(113,57,75,.18)!important;
+}
+.journal-bottom-head .eyebrow{color:var(--wine)!important}
+.journal-bottom .journal-card{
+  background:#f1ebe2!important;
+  border:1px solid rgba(89,68,59,.18)!important;
+  box-shadow:0 8px 22px rgba(53,43,43,.045)!important;
+}
+.journal-bottom .journal-card-copy h3{color:#352b2b!important}
+.journal-bottom .journal-card:before{color:rgba(53,43,43,.55)!important}
+.journal-bottom .journal-card:after{
+  color:var(--wine)!important;
+  border-color:rgba(113,57,75,.38)!important;
+}
+.journal-bottom .journal-card:hover:after,
+.journal-bottom .journal-card:focus:after{
+  background:rgba(113,57,75,.06)!important;
+  border-color:var(--wine)!important;
+}
+
 </style>
 </head>
 <body>

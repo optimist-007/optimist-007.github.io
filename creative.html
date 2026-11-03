@@ -1649,7 +1649,7 @@ function renderCurrentChapter(d){
     if(byline)card+='<p class="chapter-card-byline">'+esc(byline)+'</p>';
     if(image)card+='<img src="'+esc(image)+'" alt="'+esc(title||category)+'" loading="lazy">';
     if(note)card+='<p class="chapter-card-note">'+nl(note)+'</p>';
-    if(link)card+='<a class="chapter-card-link" href="'+esc(link)+'" target="_blank" rel="noopener noreferrer">Goodreads review ↗</a>';
+    if(link)card+='<a class="chapter-card-link" href="'+esc(link)+'" target="_blank" rel="noopener noreferrer">Goodreads page ↗</a>';
     card+='</div></article>';
     return card;
   });

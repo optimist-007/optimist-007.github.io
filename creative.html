@@ -1035,11 +1035,11 @@ a:focus-visible,button:focus-visible,[tabindex]:focus-visible{
 }
 
 
-/* ===== CURRENT CHAPTER: NEUTRAL EDITORIAL GRAPHICS ===== */
+/* ===== CURRENT CHAPTER: FIXED EDITORIAL GRID + VISIBLE VECTOR ART ===== */
 #currentChapter{
   width:100%;
   max-width:1080px;
-  margin:34px auto 0;
+  margin:38px auto 0;
 }
 #currentChapter .chapter-head{
   display:flex;
@@ -1048,122 +1048,106 @@ a:focus-visible,button:focus-visible,[tabindex]:focus-visible{
   justify-content:center;
   gap:0;
   text-align:center;
-  margin:0 auto 18px;
+  margin:0 auto 20px;
   padding:0;
 }
 #currentChapter .chapter-head>div{width:100%;text-align:center}
 #currentChapter .chapter-head .eyebrow{
-  margin:0 0 6px;
+  margin:0 0 7px;
   font-size:.65rem;
   letter-spacing:.16em;
 }
 #currentChapter .chapter-head h2{
   margin:0 auto;
   max-width:100%;
-  font-size:clamp(2.5rem,4.3vw,4rem);
+  font-size:clamp(2.6rem,4.6vw,4.2rem);
   line-height:.96;
   text-align:center;
 }
 #currentChapter .chapter-intro{display:none}
 #currentChapterGrid{
-  display:flex!important;
-  flex-direction:column;
-  gap:14px;
+  display:grid!important;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  grid-auto-rows:232px;
+  align-items:stretch;
+  gap:16px;
   width:100%;
-  max-width:980px;
+  max-width:1000px;
   margin:0 auto;
-}
-#currentChapter .chapter-row-top{
-  display:grid;
-  grid-template-columns:minmax(0,1fr) minmax(0,1fr);
-  gap:14px;
-  width:100%;
-}
-#currentChapter .chapter-row-bottom{
-  display:flex;
-  justify-content:center;
-  width:100%;
 }
 #currentChapter .chapter-card{
   position:relative;
   isolation:isolate;
   display:flex;
+  align-items:center;
   min-width:0;
-  min-height:170px;
+  width:100%;
+  height:232px;
+  min-height:232px;
+  max-height:232px;
   overflow:hidden;
-  align-items:stretch;
   padding:20px 22px;
   background:
-    radial-gradient(circle at 92% 18%,rgba(155,120,61,.08),transparent 27%),
-    linear-gradient(135deg,rgba(245,240,231,.85),rgba(232,223,209,.58));
-  border:1px solid rgba(90,70,61,.22);
-  border-radius:3px;
-  box-shadow:0 9px 22px rgba(52,43,43,.045);
+    radial-gradient(ellipse at 88% 18%,rgba(155,120,61,.13),transparent 34%),
+    linear-gradient(135deg,#f5f0e7 0%,#eae1d5 100%);
+  border:1px solid rgba(106,75,62,.3);
+  border-radius:13px;
+  box-shadow:0 12px 28px rgba(52,43,43,.07);
   text-align:left;
+}
+#currentChapter .chapter-card:nth-child(2){
+  background:
+    radial-gradient(ellipse at 91% 86%,rgba(106,48,68,.10),transparent 36%),
+    linear-gradient(135deg,#f3ede3 0%,#e9dfd1 100%);
+}
+#currentChapter .chapter-card:nth-child(3){
+  grid-column:1 / -1;
+  justify-self:center;
+  width:58%;
+  height:178px;
+  min-height:178px;
+  max-height:178px;
+  background:
+    radial-gradient(ellipse at 92% 18%,rgba(155,120,61,.14),transparent 34%),
+    linear-gradient(135deg,#f5f0e7 0%,#e9dfd2 100%);
 }
 #currentChapter .chapter-card-content{
   position:relative;
   z-index:2;
   width:100%;
-  max-width:calc(100% - 92px);
+  max-width:calc(100% - 128px);
+  min-width:0;
 }
-#currentChapter .chapter-decoration{
+#currentChapter .chapter-graphic{
   position:absolute;
   z-index:1;
-  right:18px;
-  top:50%;
-  width:102px;
-  height:102px;
-  transform:translateY(-50%);
-  border:1px solid rgba(106,48,68,.18);
-  border-radius:50%;
-  pointer-events:none;
-  opacity:.82;
-}
-#currentChapter .chapter-decoration:before{
-  content:"";
-  position:absolute;
-  inset:12px -5px;
-  border:1px solid rgba(155,120,61,.28);
-  border-radius:50%;
-  transform:rotate(-34deg) scaleX(.72);
-}
-#currentChapter .chapter-decoration:after{
-  content:"";
-  position:absolute;
-  width:7px;
-  height:7px;
-  top:12px;
   right:12px;
-  border-radius:50%;
-  background:rgba(106,48,68,.32);
-  box-shadow:-69px 63px 0 -2px rgba(106,48,68,.35),-18px 74px 0 -3px rgba(155,120,61,.5);
-}
-#currentChapter .chapter-row-top .chapter-card:nth-child(2) .chapter-decoration{
-  transform:translateY(-50%) rotate(35deg);
-  border-radius:46% 54% 52% 48%;
-}
-#currentChapter .chapter-row-bottom .chapter-card{
-  width:54%;
-  max-width:500px;
-  min-height:142px;
-  background:
-    radial-gradient(circle at 90% 82%,rgba(106,48,68,.07),transparent 30%),
-    linear-gradient(145deg,rgba(245,240,231,.88),rgba(232,223,209,.62));
-}
-/* The third card shares the same abstract ornament as the others. */
-#currentChapter .chapter-row-bottom .chapter-decoration{
-  right:18px;
-  width:102px;
-  height:102px;
+  top:50%;
+  width:132px;
+  height:142px;
   transform:translateY(-50%);
+  display:grid;
+  place-items:center;
+  pointer-events:none;
+  opacity:.98;
+}
+#currentChapter .chapter-graphic svg{
+  display:block;
+  width:100%;
+  height:100%;
+  overflow:visible;
+}
+#currentChapter .chapter-card:nth-child(3) .chapter-graphic{
+  width:122px;
+  height:124px;
+  right:18px;
 }
 #currentChapter .chapter-card-top{
   display:flex;
   align-items:center;
   gap:8px;
   width:100%;
-  margin:0 0 14px;
+  margin:0 0 13px;
 }
 #currentChapter .chapter-index{
   color:var(--wine);
@@ -1175,7 +1159,7 @@ a:focus-visible,button:focus-visible,[tabindex]:focus-visible{
   max-width:100%;
   margin:0;
   color:var(--ink);
-  font:500 clamp(1.6rem,2.3vw,2.35rem)/.98 var(--serif);
+  font:500 clamp(1.7rem,2.3vw,2.35rem)/.98 var(--serif);
   letter-spacing:-.035em;
   text-wrap:balance;
 }
@@ -1187,62 +1171,65 @@ a:focus-visible,button:focus-visible,[tabindex]:focus-visible{
 #currentChapter .chapter-card-byline{
   margin:5px 0 0;
   color:var(--muted);
-  font:.62rem/1.5 var(--mono);
-  letter-spacing:.045em;
+  font:.61rem/1.45 var(--mono);
+  letter-spacing:.035em;
   text-transform:uppercase;
 }
 #currentChapter .chapter-card-note{
   width:100%;
-  margin:10px 0 0;
+  margin:9px 0 0;
   color:#504646;
-  font-size:.86rem;
-  line-height:1.52;
+  font-size:.83rem;
+  line-height:1.45;
   white-space:pre-line;
   overflow-wrap:anywhere;
-}
-#currentChapter .chapter-card-subtitle{display:none}
-#currentChapter .chapter-card img{
-  display:block;
-  width:100%;
-  max-height:110px;
-  object-fit:cover;
-  margin:9px 0 0;
-  border:1px solid var(--line);
 }
 #currentChapter .chapter-card-link{
   display:inline-flex;
   align-items:center;
   gap:6px;
-  margin-top:10px;
+  margin-top:9px;
   color:var(--wine);
   font:700 .61rem var(--mono);
   letter-spacing:.08em;
   text-transform:uppercase;
   text-underline-offset:3px;
 }
-#currentChapter .chapter-card-updated{display:none}
-#currentChapter .chapter-art{display:none!important}
-@media(max-width:700px){
-  #currentChapter{margin-top:28px}
-  #currentChapter .chapter-head h2{font-size:2.55rem}
-  #currentChapterGrid{gap:10px}
-  #currentChapter .chapter-row-top{gap:10px}
-  #currentChapter .chapter-card{min-height:154px;padding:15px 14px}
-  #currentChapter .chapter-card-content{max-width:100%}
-  #currentChapter .chapter-decoration{right:8px;top:13px;width:52px;height:52px;transform:none;opacity:.45}
-  #currentChapter .chapter-card-top{margin-bottom:10px}
-  #currentChapter .chapter-card h3{font-size:1.5rem}
-  #currentChapter .chapter-card-title{font-size:1rem}
-  #currentChapter .chapter-card-byline{font-size:.54rem}
-  #currentChapter .chapter-card-note{font-size:.75rem;line-height:1.4}
-  #currentChapter .chapter-row-bottom .chapter-card{width:54%;min-height:120px}
-  #currentChapter .chapter-row-bottom .chapter-decoration{top:13px;right:8px;width:52px;height:52px;transform:none}
+#currentChapter .chapter-card-subtitle,
+#currentChapter .chapter-card-updated,
+#currentChapter .chapter-art,
+#currentChapter .chapter-decoration{display:none!important}
+@media(max-width:900px){
+  #currentChapterGrid{grid-auto-rows:250px}
+  #currentChapter .chapter-card{height:250px;min-height:250px;max-height:250px;padding:18px}
+  #currentChapter .chapter-card:nth-child(3){height:185px;min-height:185px;max-height:185px}
+  #currentChapter .chapter-card-content{max-width:calc(100% - 105px)}
+  #currentChapter .chapter-graphic{width:112px;height:122px;right:6px}
 }
-@media(max-width:420px){
-  #currentChapter .chapter-row-top{grid-template-columns:1fr}
-  #currentChapter .chapter-card{min-height:0}
-  #currentChapter .chapter-card-content{max-width:calc(100% - 52px)}
-  #currentChapter .chapter-row-bottom .chapter-card{width:100%;max-width:none}
+@media(max-width:700px){
+  #currentChapter{margin-top:30px}
+  #currentChapter .chapter-head{margin-bottom:15px}
+  #currentChapter .chapter-head h2{font-size:2.7rem}
+  #currentChapterGrid{grid-template-columns:1fr;grid-auto-rows:auto;gap:11px}
+  #currentChapter .chapter-card,
+  #currentChapter .chapter-card:nth-child(3){
+    grid-column:auto;
+    justify-self:stretch;
+    width:100%;
+    height:auto;
+    min-height:180px;
+    max-height:none;
+    padding:17px 18px;
+  }
+  #currentChapter .chapter-card:nth-child(3){min-height:150px}
+  #currentChapter .chapter-card-content{max-width:calc(100% - 105px)}
+  #currentChapter .chapter-graphic{width:100px;height:112px;right:5px}
+  #currentChapter .chapter-card h3{font-size:1.75rem}
+  #currentChapter .chapter-card-note{font-size:.8rem}
+}
+@media(max-width:380px){
+  #currentChapter .chapter-card-content{max-width:calc(100% - 82px)}
+  #currentChapter .chapter-graphic{width:82px;height:95px;right:2px}
 }
 
 </style>
@@ -1635,8 +1622,13 @@ function renderCurrentChapter(d){
     {id:'noticing',category:"Small things I've noticed"},
     {id:'indulged',category:'Currently indulged in'}
   ];
+  const art={
+    reading:'<svg viewBox="0 0 150 140" aria-hidden="true"><path d="M14 105 C30 50 53 50 73 91 S112 126 137 37" fill="none" stroke="#6a3044" stroke-width="1.8"/><path d="M9 117 C32 67 52 67 73 103 S111 136 142 51" fill="none" stroke="#9b783d" stroke-width="1.1"/><path d="M26 84 C49 31 69 36 89 66 S120 92 135 20" fill="none" stroke="#9b783d" stroke-width="1.1"/><path d="M19 49 A43 43 0 0 1 90 26" fill="none" stroke="#6a3044" stroke-width="1.2"/><circle cx="111" cy="20" r="5" fill="#9b783d"/><circle cx="24" cy="115" r="3" fill="#6a3044"/><circle cx="132" cy="106" r="2.5" fill="#9b783d"/></svg>',
+    noticing:'<svg viewBox="0 0 150 140" aria-hidden="true"><path d="M75 15 C112 15 136 40 136 72 C136 105 108 127 76 127 C42 127 15 103 15 72 C15 40 42 15 75 15Z" fill="none" stroke="#6a3044" stroke-width="1.5"/><path d="M75 27 C103 27 124 46 124 72 C124 98 102 115 76 115 C49 115 27 96 27 72 C27 47 49 27 75 27Z" fill="none" stroke="#9b783d" stroke-width="1.2"/><path d="M12 86 C40 62 64 101 89 74 S126 53 143 33" fill="none" stroke="#6a3044" stroke-width="1.8"/><path d="M10 98 C40 74 64 113 91 87 S126 67 146 46" fill="none" stroke="#9b783d" stroke-width="1.1"/><circle cx="117" cy="19" r="4" fill="#9b783d"/><circle cx="25" cy="42" r="3" fill="#6a3044"/></svg>',
+    indulged:'<svg viewBox="0 0 150 140" aria-hidden="true"><ellipse cx="75" cy="70" rx="56" ry="27" fill="none" stroke="#6a3044" stroke-width="1.6" transform="rotate(-24 75 70)"/><ellipse cx="75" cy="70" rx="38" ry="56" fill="none" stroke="#9b783d" stroke-width="1.3" transform="rotate(28 75 70)"/><path d="M16 95 C43 54 65 108 91 68 S124 45 139 30" fill="none" stroke="#6a3044" stroke-width="1.8"/><path d="M13 107 C42 67 65 120 94 82 S126 59 143 45" fill="none" stroke="#9b783d" stroke-width="1.1"/><path d="M40 22 L44 31 L54 35 L44 39 L40 49 L36 39 L26 35 L36 31Z" fill="none" stroke="#6a3044" stroke-width="1.1"/><circle cx="117" cy="111" r="4" fill="#9b783d"/><circle cx="22" cy="83" r="3" fill="#6a3044"/></svg>'
+  };
   $('currentChapterIntro').textContent='';
-  function renderCard(base,index){
+  $('currentChapterGrid').innerHTML=categories.map(function(base,index){
     const entry=source.find(function(item){return item&&item.id===base.id;})||{};
     const category=entry.category||base.category;
     const title=String(entry.title||'').trim();
@@ -1645,7 +1637,7 @@ function renderCurrentChapter(d){
     const image=chapterSafeUrl(entry.image);
     const link=chapterSafeUrl(entry.link);
     let card='<article class="chapter-card">';
-    card+='<div class="chapter-decoration" aria-hidden="true"></div>';
+    card+='<div class="chapter-graphic">'+art[base.id]+'</div>';
     card+='<div class="chapter-card-content">';
     card+='<div class="chapter-card-top"><span class="chapter-index">0'+(index+1)+' · THE CURRENT CHAPTER</span></div>';
     card+='<h3>'+esc(category)+'</h3>';
@@ -1653,13 +1645,10 @@ function renderCurrentChapter(d){
     if(byline)card+='<p class="chapter-card-byline">'+esc(byline)+'</p>';
     if(image)card+='<img src="'+esc(image)+'" alt="'+esc(title||category)+'" loading="lazy">';
     if(note)card+='<p class="chapter-card-note">'+nl(note)+'</p>';
-    if(link)card+='<a class="chapter-card-link" href="'+esc(link)+'" target="_blank" rel="noopener noreferrer">Read on Goodreads ↗</a>';
+    if(link)card+='<a class="chapter-card-link" href="'+esc(link)+'" target="_blank" rel="noopener noreferrer">Goodreads review ↗</a>';
     card+='</div></article>';
     return card;
-  }
-  $('currentChapterGrid').innerHTML=
-    '<div class="chapter-row-top">'+renderCard(categories[0],0)+renderCard(categories[1],1)+'</div>'+
-    '<div class="chapter-row-bottom">'+renderCard(categories[2],2)+'</div>';
+  }).join('');
 }
 
 function openReview(r){

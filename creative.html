@@ -1035,88 +1035,83 @@ a:focus-visible,button:focus-visible,[tabindex]:focus-visible{
 }
 
 
-/* ===== CURRENT CHAPTER: COMPACT INLINE STRIP ===== */
+/* ===== CURRENT CHAPTER: FOUR COMPACT BOXES ===== */
 #currentChapter{
   width:100%;
   max-width:1120px;
-  margin:38px auto 0;
+  margin:26px auto 0;
 }
 #currentChapter .chapter-head{
   display:flex;
   flex-direction:column;
   align-items:center;
   justify-content:center;
-  gap:5px;
+  gap:0;
   text-align:center;
-  margin:0 auto 16px;
-  padding:0 0 12px;
+  margin:0 auto 12px;
+  padding:0;
 }
 #currentChapter .chapter-head>div{width:100%;text-align:center}
-#currentChapter .chapter-head .eyebrow{margin:0 0 6px;font-size:.64rem}
+#currentChapter .chapter-head .eyebrow{margin:0 0 4px;font-size:.6rem}
 #currentChapter .chapter-head h2{
   margin:0 auto;
   max-width:100%;
-  font-size:clamp(2.1rem,4vw,3.25rem);
-  line-height:.96;
+  font-size:clamp(1.9rem,3.2vw,2.7rem);
+  line-height:1;
   text-align:center;
 }
-#currentChapter .chapter-intro{
-  max-width:520px;
-  margin:0 auto;
-  text-align:center;
-  font-size:.86rem;
-  line-height:1.45;
-}
+#currentChapter .chapter-intro{display:none}
 #currentChapter .chapter-grid{
   display:grid;
   grid-template-columns:repeat(4,minmax(0,1fr));
-  gap:12px;
+  gap:10px;
   align-items:stretch;
 }
 #currentChapter .chapter-card{
   display:flex;
   flex-direction:column;
   align-items:flex-start;
+  justify-content:flex-start;
   min-width:0;
-  min-height:0;
-  padding:15px 16px 16px;
-  background:rgba(245,240,231,.56);
+  min-height:106px;
+  padding:13px 14px 12px;
+  background:rgba(245,240,231,.55);
   border:1px solid var(--line);
   box-shadow:none;
   text-align:left;
 }
-#currentChapter .chapter-card:nth-child(n){background:rgba(245,240,231,.56)}
+#currentChapter .chapter-card:nth-child(n){background:rgba(245,240,231,.55)}
 #currentChapter .chapter-card-top{
   display:flex;
   align-items:center;
   justify-content:flex-start;
   gap:8px;
   width:100%;
-  margin:0 0 12px;
+  margin:0 0 8px;
 }
 #currentChapter .chapter-index{
   color:var(--wine);
-  font:600 .59rem var(--mono);
-  letter-spacing:.1em;
+  font:600 .55rem var(--mono);
+  letter-spacing:.09em;
   text-transform:uppercase;
 }
 #currentChapter .chapter-card h3{
   max-width:100%;
-  margin:0 0 6px;
+  margin:0;
   color:var(--ink);
-  font:500 clamp(1.35rem,1.8vw,1.75rem)/1 var(--serif);
+  font:500 clamp(1.2rem,1.65vw,1.55rem)/1.02 var(--serif);
   letter-spacing:-.025em;
   text-wrap:balance;
 }
 #currentChapter .chapter-card-title{
-  margin:3px 0 3px;
+  margin:6px 0 0;
   color:var(--wine);
-  font:500 1.08rem/1.15 var(--serif);
+  font:500 .98rem/1.15 var(--serif);
 }
 #currentChapter .chapter-card-byline{
-  margin:0 0 7px;
+  margin:3px 0 0;
   color:var(--muted);
-  font:.61rem/1.45 var(--mono);
+  font:.56rem/1.4 var(--mono);
   letter-spacing:.04em;
   text-transform:uppercase;
 }
@@ -1124,63 +1119,44 @@ a:focus-visible,button:focus-visible,[tabindex]:focus-visible{
   width:100%;
   margin:7px 0 0;
   color:#504646;
-  font-size:.82rem;
-  line-height:1.5;
+  font-size:.75rem;
+  line-height:1.4;
   white-space:pre-line;
   overflow-wrap:anywhere;
 }
-#currentChapter .chapter-card-subtitle{
-  margin:0;
-  color:var(--muted);
-  font-size:.79rem;
-  line-height:1.45;
-}
+#currentChapter .chapter-card-subtitle{display:none}
 #currentChapter .chapter-card img{
   display:block;
   width:100%;
-  max-height:125px;
+  max-height:76px;
   object-fit:cover;
-  margin:8px 0 0;
+  margin:7px 0 0;
   border:1px solid var(--line);
 }
 #currentChapter .chapter-card-link{
   display:inline-flex;
   align-items:center;
-  gap:6px;
-  margin-top:10px;
+  gap:5px;
+  margin-top:7px;
   color:var(--wine);
-  font:700 .61rem var(--mono);
-  letter-spacing:.06em;
+  font:700 .56rem var(--mono);
+  letter-spacing:.05em;
   text-transform:uppercase;
   text-underline-offset:3px;
 }
-#currentChapter .chapter-card-updated{
-  margin:10px 0 0;
-  color:var(--muted);
-  font:.57rem var(--mono);
-  letter-spacing:.06em;
-  text-transform:uppercase;
-}
+#currentChapter .chapter-card-updated{display:none}
 #currentChapter .chapter-art{display:none!important}
-@media(max-width:900px){
-  #currentChapter .chapter-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
-  #currentChapter .chapter-card h3{font-size:1.6rem}
-}
-@media(max-width:560px){
-  #currentChapter{margin-top:30px}
-  #currentChapter .chapter-head{margin-bottom:12px;padding-bottom:10px}
-  #currentChapter .chapter-head h2{font-size:2.35rem}
-  #currentChapter .chapter-intro{font-size:.8rem}
+@media(max-width:700px){
+  #currentChapter{margin-top:24px}
+  #currentChapter .chapter-head{margin-bottom:10px}
+  #currentChapter .chapter-head h2{font-size:2rem}
   #currentChapter .chapter-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
-  #currentChapter .chapter-card{padding:12px 11px}
-  #currentChapter .chapter-card-top{margin-bottom:9px}
-  #currentChapter .chapter-index{font-size:.53rem;letter-spacing:.06em}
-  #currentChapter .chapter-card h3{font-size:1.32rem;line-height:1.02}
-  #currentChapter .chapter-card-title{font-size:.98rem}
-  #currentChapter .chapter-card-note{font-size:.77rem;line-height:1.43}
+  #currentChapter .chapter-card{min-height:94px;padding:11px 12px}
+  #currentChapter .chapter-card h3{font-size:1.28rem}
 }
-@media(max-width:350px){
-  #currentChapter .chapter-grid{grid-template-columns:1fr}
+@media(max-width:360px){
+  #currentChapter .chapter-card{padding:10px}
+  #currentChapter .chapter-card h3{font-size:1.16rem}
 }
 
 </style>
@@ -1583,17 +1559,14 @@ function renderCurrentChapter(d){
     const note=String(entry.note||'').trim();
     const image=chapterSafeUrl(entry.image);
     const link=chapterSafeUrl(entry.link);
-    const subtitle=String(entry.subtitle||base.subtitle).trim();
     let card='<article class="chapter-card">';
-    card+='<div class="chapter-card-top"><span class="chapter-index">0'+(index+1)+' · THE CURRENT CHAPTER</span></div>';
+    card+='<div class="chapter-card-top"><span class="chapter-index">0'+(index+1)+'</span></div>';
     card+='<h3>'+esc(category)+'</h3>';
     if(title)card+='<div class="chapter-card-title">'+esc(title)+'</div>';
     if(byline)card+='<p class="chapter-card-byline">'+esc(byline)+'</p>';
     if(image)card+='<img src="'+esc(image)+'" alt="'+esc(title||category)+'" loading="lazy">';
     if(note)card+='<p class="chapter-card-note">'+nl(note)+'</p>';
-    if(!title&&!byline&&!note&&!image)card+='<p class="chapter-card-subtitle">'+esc(subtitle)+'</p>';
     if(link)card+='<a class="chapter-card-link" href="'+esc(link)+'" target="_blank" rel="noopener noreferrer">Open link ↗</a>';
-    if(entry.updated)card+='<p class="chapter-card-updated">Updated · '+esc(entry.updated)+'</p>';
     card+='</article>';
     return card;
   }).join('');

@@ -738,6 +738,199 @@ a:focus-visible,button:focus-visible,[tabindex]:focus-visible{
   }
 }
 
+
+/* ===== JOURNAL READER REFINEMENT ===== */
+/* Give text-only journal entries a designed cover instead of a tall empty
+   dark image well. Keep the article pane independently scrollable. */
+#modal.journal-modal-open .dialog{
+  width:min(1080px,100%);
+  height:min(86vh,860px);
+  max-height:86vh;
+  min-height:0;
+  overflow:hidden;
+  grid-template-columns:minmax(260px,.78fr) minmax(0,1.22fr);
+  background:var(--paper);
+}
+#modal.journal-modal-open .dialog-image{
+  min-height:0;
+  height:100%;
+  min-width:0;
+  overflow:hidden;
+  display:flex;
+  align-items:stretch;
+  justify-content:stretch;
+  background:#472d36;
+}
+#modal.journal-modal-open .journal-modal-cover{
+  width:100%;
+  min-height:100%;
+  height:100%;
+  padding:clamp(28px,4vw,54px);
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  align-items:flex-start;
+  position:relative;
+  isolation:isolate;
+  overflow:hidden;
+  color:#f7f0e7;
+  background:
+    radial-gradient(circle at 84% 16%,rgba(245,235,220,.13),transparent 28%),
+    radial-gradient(circle at 8% 88%,rgba(190,145,112,.18),transparent 32%),
+    linear-gradient(152deg,#714354 0%,#542f3c 58%,#39292e 100%);
+}
+#modal.journal-modal-open .journal-modal-cover:before{
+  content:"";
+  position:absolute;
+  inset:22px;
+  border:1px solid rgba(247,240,231,.22);
+  pointer-events:none;
+  z-index:-1;
+}
+#modal.journal-modal-open .journal-modal-cover:after{
+  content:"";
+  position:absolute;
+  width:clamp(150px,20vw,250px);
+  aspect-ratio:1;
+  right:-16%;
+  bottom:12%;
+  border:1px solid rgba(247,240,231,.18);
+  border-radius:50%;
+  box-shadow:0 0 0 22px rgba(247,240,231,.035),0 0 0 44px rgba(247,240,231,.025);
+  pointer-events:none;
+  z-index:-1;
+}
+#modal.journal-modal-open .journal-modal-cover .media-kind{
+  max-width:20ch;
+  color:rgba(247,240,231,.78);
+  font:600 .68rem/1.6 var(--mono);
+  letter-spacing:.16em;
+  text-transform:uppercase;
+}
+#modal.journal-modal-open .journal-modal-cover strong{
+  display:block;
+  max-width:10ch;
+  margin:0;
+  font:500 clamp(2.6rem,4.4vw,4.8rem)/.9 var(--serif);
+  letter-spacing:-.055em;
+  text-wrap:balance;
+}
+#modal.journal-modal-open .dialog-copy{
+  height:100%;
+  min-height:0;
+  min-width:0;
+  overflow-y:auto;
+  overscroll-behavior:contain;
+  padding:clamp(64px,7vh,78px) clamp(28px,4.8vw,58px) 48px;
+  background:var(--paper);
+  scrollbar-width:thin;
+  scrollbar-color:rgba(94,39,59,.35) transparent;
+}
+#modal.journal-modal-open #dialogContent{
+  width:100%;
+  max-width:54ch;
+  margin:0 auto;
+}
+#modal.journal-modal-open #dialogContent > .eyebrow{
+  margin:0 0 22px;
+  color:var(--wine);
+  font-size:.7rem;
+  letter-spacing:.16em;
+}
+#modal.journal-modal-open #dialogContent .review-body{
+  margin:0;
+  max-width:54ch;
+  color:#504646;
+  font-size:clamp(1rem,1.08vw,1.12rem);
+  line-height:1.82;
+  letter-spacing:.002em;
+  white-space:pre-line;
+  overflow-wrap:anywhere;
+}
+#modal.journal-modal-open .dialog-copy .close{
+  z-index:5;
+  top:15px;
+  right:16px;
+  width:44px;
+  height:44px;
+  background:rgba(238,232,220,.96);
+  box-shadow:0 3px 12px rgba(52,43,43,.08);
+}
+#modal.journal-modal-open .dialog-copy .close:hover{
+  background:var(--ink);
+  color:var(--paper);
+}
+@media(max-width:900px){
+  #modal.journal-modal-open .dialog{
+    width:min(900px,100%);
+    grid-template-columns:minmax(220px,.72fr) minmax(0,1.28fr);
+    height:min(88vh,860px);
+    max-height:88vh;
+  }
+  #modal.journal-modal-open .journal-modal-cover{
+    padding:28px;
+  }
+  #modal.journal-modal-open .dialog-copy{
+    padding:64px 28px 36px;
+  }
+}
+@media(max-width:680px){
+  #modal.journal-modal-open{
+    padding:10px;
+    align-items:center;
+  }
+  #modal.journal-modal-open .dialog{
+    width:100%;
+    height:92vh;
+    max-height:92vh;
+    grid-template-columns:minmax(0,1fr);
+    grid-template-rows:minmax(170px,25vh) minmax(0,1fr);
+    overflow:hidden;
+  }
+  #modal.journal-modal-open .dialog-image{
+    height:auto;
+    min-height:0;
+  }
+  #modal.journal-modal-open .journal-modal-cover{
+    min-height:0;
+    height:100%;
+    padding:22px 26px;
+  }
+  #modal.journal-modal-open .journal-modal-cover:before{
+    inset:12px;
+  }
+  #modal.journal-modal-open .journal-modal-cover:after{
+    width:145px;
+    right:-8%;
+    bottom:-44%;
+  }
+  #modal.journal-modal-open .journal-modal-cover .media-kind{
+    font-size:.62rem;
+  }
+  #modal.journal-modal-open .journal-modal-cover strong{
+    max-width:14ch;
+    font-size:clamp(2rem,8vw,3.1rem);
+    line-height:.92;
+  }
+  #modal.journal-modal-open .dialog-copy{
+    height:100%;
+    padding:56px 24px 28px;
+  }
+  #modal.journal-modal-open .dialog-copy .close{
+    top:10px;
+    right:10px;
+    width:40px;
+    height:40px;
+  }
+  #modal.journal-modal-open #dialogContent > .eyebrow{
+    margin-bottom:16px;
+  }
+  #modal.journal-modal-open #dialogContent .review-body{
+    font-size:1rem;
+    line-height:1.78;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -1044,6 +1237,7 @@ function renderJournalShelf(d){
       const body=card.querySelector('.journal-full')?.innerHTML||'';
       $('dialogImage').innerHTML=(card.querySelector('.journal-thumb img')?'<img class="creative-modal-image" src="'+esc(card.querySelector('.journal-thumb img').getAttribute('src')||'')+'" alt="'+esc(title)+'">':'')+'<div class="journal-modal-cover"><div class="media-kind">'+esc(card.querySelector('.media-kind')?.textContent||'Creative entry')+'</div><strong>'+esc(title)+'</strong></div>';
       $('dialogContent').innerHTML='<div class="eyebrow">Journal entry</div><div class="review-body">'+body+'</div>';
+      $('modal').classList.add('journal-modal-open');
       $('modal').classList.add('open');
       $('modal').setAttribute('aria-hidden','false');
       document.body.style.overflow='hidden';
@@ -1089,6 +1283,7 @@ function renderMediaShelves(d){
       const body=card.querySelector('.journal-full')?.innerHTML||'';
       $('dialogImage').innerHTML='<div class="journal-modal-cover"><div class="media-kind">Journal / random thoughts</div><strong>'+esc(title)+'</strong></div>';
       $('dialogContent').innerHTML='<div class="eyebrow">Journal entry</div><div class="review-body">'+body+'</div>';
+      $('modal').classList.add('journal-modal-open');
       $('modal').classList.add('open');
       $('modal').setAttribute('aria-hidden','false');
       document.body.style.overflow='hidden';
@@ -1099,6 +1294,7 @@ function renderMediaShelves(d){
 }
 
 function openReview(r){
+  $('modal').classList.remove('journal-modal-open');
   $('dialogImage').innerHTML = imageBlock(r.image,r.title);
   $('dialogContent').innerHTML =
     '<div class="eyebrow">'+esc(cleanType(r.type))+'</div>'+
@@ -1119,7 +1315,7 @@ function openReview(r){
 }
 
 function closeModal(){
-  $('modal').classList.remove('open');
+  $('modal').classList.remove('open','journal-modal-open');
   $('modal').setAttribute('aria-hidden','true');
   document.body.style.overflow='';
 }

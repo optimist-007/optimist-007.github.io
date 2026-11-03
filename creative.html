@@ -1292,6 +1292,38 @@ a:focus-visible,button:focus-visible,[tabindex]:focus-visible{
   }
 }
 
+
+/* Current chapter: tighter layout and clearer text/graphic separation */
+#currentChapter{margin-top:42px!important}
+#currentChapter .chapter-head{margin-bottom:14px!important;padding-bottom:10px!important}
+#currentChapter #currentChapterGrid{gap:12px!important}
+#currentChapter #currentChapterGrid > .chapter-row-top{gap:12px!important}
+#currentChapter #currentChapterGrid > .chapter-row-top > .chapter-card,
+#currentChapter #currentChapterGrid > .chapter-row-bottom > .chapter-card{
+  height:200px!important;min-height:200px!important;max-height:200px!important;
+  padding:17px 19px!important;
+}
+#currentChapter .chapter-card-content{max-width:calc(100% - 158px)!important}
+#currentChapter .chapter-graphic{
+  width:118px!important;height:128px!important;right:18px!important;
+}
+@media(max-width:700px){
+  #currentChapter{margin-top:28px!important}
+  #currentChapter #currentChapterGrid{gap:10px!important}
+  #currentChapter #currentChapterGrid > .chapter-row-top{gap:10px!important}
+  #currentChapter #currentChapterGrid > .chapter-row-top > .chapter-card,
+  #currentChapter #currentChapterGrid > .chapter-row-bottom > .chapter-card{
+    height:180px!important;min-height:180px!important;max-height:180px!important;
+    padding:15px 17px!important;
+  }
+  #currentChapter .chapter-card-content{max-width:calc(100% - 112px)!important}
+  #currentChapter .chapter-graphic{width:94px!important;height:104px!important;right:6px!important}
+}
+@media(max-width:380px){
+  #currentChapter .chapter-card-content{max-width:calc(100% - 94px)!important}
+  #currentChapter .chapter-graphic{width:78px!important;height:90px!important;right:3px!important}
+}
+
 </style>
 </head>
 <body>

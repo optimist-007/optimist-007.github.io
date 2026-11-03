@@ -1416,6 +1416,72 @@ body{
   .journal-bottom{padding:18px 16px 24px!important}
 }
 
+
+/* ===== FIX: obsession panel wrapping + journal contrast ===== */
+#obsessions .obsession-label{
+  min-width:0!important;
+  overflow:hidden!important;
+  background:linear-gradient(155deg,#657a65 0%,#465b50 100%)!important;
+  padding:24px!important;
+}
+#obsessions .obsession-label .tiny-label{
+  color:rgba(250,246,237,.78)!important;
+}
+#obsessions .obsession-label h2{
+  width:100%!important;
+  max-width:100%!important;
+  font-size:clamp(2.35rem,4.2vw,4rem)!important;
+  line-height:.92!important;
+  letter-spacing:-.055em!important;
+  overflow-wrap:break-word!important;
+  word-break:normal!important;
+  text-wrap:pretty!important;
+}
+.journal-bottom{
+  background:
+    radial-gradient(ellipse at 10% 15%,rgba(255,255,255,.22),transparent 30%),
+    linear-gradient(125deg,#ded4e4 0%,#e8dfe9 52%,#dfe6df 100%)!important;
+}
+.journal-bottom .journal-card{
+  background:rgba(248,243,237,.72)!important;
+  border:1px solid rgba(105,82,116,.16)!important;
+  box-shadow:0 12px 30px rgba(72,55,80,.07)!important;
+}
+.journal-bottom .journal-card-copy h3{
+  color:#49364e!important;
+}
+.journal-bottom .journal-card:before{
+  color:rgba(73,54,78,.58)!important;
+}
+.journal-bottom .journal-card:after{
+  color:#725d80!important;
+  border-color:rgba(114,93,128,.5)!important;
+}
+.journal-bottom .journal-card:hover:after,
+.journal-bottom .journal-card:focus:after{
+  background:rgba(114,93,128,.10)!important;
+  border-color:#725d80!important;
+}
+@media(max-width:620px){
+  #obsessions .obsession-label{
+    padding:22px 20px!important;
+    min-height:250px!important;
+  }
+  #obsessions .obsession-label h2{
+    font-size:clamp(2.15rem,9vw,3.1rem)!important;
+    line-height:.94!important;
+    letter-spacing:-.055em!important;
+  }
+  .journal-bottom .journal-card{
+    background:rgba(248,243,237,.78)!important;
+  }
+  .journal-bottom .journal-card-copy h3{
+    font-size:clamp(2.6rem,10vw,4rem)!important;
+    line-height:.92!important;
+    overflow-wrap:break-word!important;
+  }
+}
+
 </style>
 </head>
 <body>

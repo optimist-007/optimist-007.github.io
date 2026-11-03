@@ -1094,13 +1094,12 @@ a:focus-visible,button:focus-visible,[tabindex]:focus-visible{
   box-shadow:0 12px 28px rgba(52,43,43,.07);
   text-align:left;
 }
-#currentChapter .chapter-card:nth-child(2){
+#currentChapter .chapter-row-top .chapter-card:nth-child(2){
   background:
     radial-gradient(ellipse at 91% 86%,rgba(106,48,68,.10),transparent 36%),
     linear-gradient(135deg,#f3ede3 0%,#e9dfd1 100%);
 }
-#currentChapter .chapter-card:nth-child(3){
-  grid-column:1 / -1;
+#currentChapter .chapter-row-bottom .chapter-card{
   justify-self:center;
   width:58%;
   height:178px;
@@ -1136,7 +1135,7 @@ a:focus-visible,button:focus-visible,[tabindex]:focus-visible{
   height:100%;
   overflow:visible;
 }
-#currentChapter .chapter-card:nth-child(3) .chapter-graphic{
+#currentChapter .chapter-row-bottom .chapter-card .chapter-graphic{
   width:122px;
   height:124px;
   right:18px;
@@ -1201,7 +1200,7 @@ a:focus-visible,button:focus-visible,[tabindex]:focus-visible{
 @media(max-width:900px){
   #currentChapterGrid{grid-auto-rows:250px}
   #currentChapter .chapter-card{height:250px;min-height:250px;max-height:250px;padding:18px}
-  #currentChapter .chapter-card:nth-child(3){height:185px;min-height:185px;max-height:185px}
+  #currentChapter .chapter-row-bottom .chapter-card{width:58%;height:185px;min-height:185px;max-height:185px}
   #currentChapter .chapter-card-content{max-width:calc(100% - 105px)}
   #currentChapter .chapter-graphic{width:112px;height:122px;right:6px}
 }
@@ -1210,8 +1209,9 @@ a:focus-visible,button:focus-visible,[tabindex]:focus-visible{
   #currentChapter .chapter-head{margin-bottom:15px}
   #currentChapter .chapter-head h2{font-size:2.7rem}
   #currentChapterGrid{grid-template-columns:1fr;grid-auto-rows:auto;gap:11px}
+  #currentChapter .chapter-row-top{grid-template-columns:1fr}
   #currentChapter .chapter-card,
-  #currentChapter .chapter-card:nth-child(3){
+  #currentChapter .chapter-row-bottom .chapter-card{
     grid-column:auto;
     justify-self:stretch;
     width:100%;
@@ -1220,7 +1220,7 @@ a:focus-visible,button:focus-visible,[tabindex]:focus-visible{
     max-height:none;
     padding:17px 18px;
   }
-  #currentChapter .chapter-card:nth-child(3){min-height:150px}
+  #currentChapter .chapter-row-bottom .chapter-card{width:100%;min-height:150px}
   #currentChapter .chapter-card-content{max-width:calc(100% - 105px)}
   #currentChapter .chapter-graphic{width:100px;height:112px;right:5px}
   #currentChapter .chapter-card h3{font-size:1.75rem}

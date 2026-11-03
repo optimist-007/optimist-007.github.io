@@ -1035,42 +1035,42 @@ a:focus-visible,button:focus-visible,[tabindex]:focus-visible{
 }
 
 
-/* ===== CURRENT CHAPTER: INLINE EDITORIAL CONTENT ===== */
+/* ===== CURRENT CHAPTER: COMPACT INLINE STRIP ===== */
 #currentChapter{
   width:100%;
-  max-width:1060px;
-  margin:clamp(52px,7vw,78px) auto 0;
+  max-width:1120px;
+  margin:38px auto 0;
 }
 #currentChapter .chapter-head{
   display:flex;
   flex-direction:column;
   align-items:center;
   justify-content:center;
-  gap:10px;
+  gap:5px;
   text-align:center;
-  margin:0 auto 26px;
-  padding:0 0 22px;
+  margin:0 auto 16px;
+  padding:0 0 12px;
 }
 #currentChapter .chapter-head>div{width:100%;text-align:center}
-#currentChapter .chapter-head .eyebrow{margin:0 0 12px}
+#currentChapter .chapter-head .eyebrow{margin:0 0 6px;font-size:.64rem}
 #currentChapter .chapter-head h2{
   margin:0 auto;
   max-width:100%;
-  font-size:clamp(2.8rem,5.5vw,4.8rem);
-  line-height:.92;
+  font-size:clamp(2.1rem,4vw,3.25rem);
+  line-height:.96;
   text-align:center;
 }
 #currentChapter .chapter-intro{
-  max-width:560px;
+  max-width:520px;
   margin:0 auto;
   text-align:center;
-  font-size:.98rem;
-  line-height:1.6;
+  font-size:.86rem;
+  line-height:1.45;
 }
 #currentChapter .chapter-grid{
   display:grid;
-  grid-template-columns:repeat(2,minmax(0,1fr));
-  gap:18px;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:12px;
   align-items:stretch;
 }
 #currentChapter .chapter-card{
@@ -1078,100 +1078,109 @@ a:focus-visible,button:focus-visible,[tabindex]:focus-visible{
   flex-direction:column;
   align-items:flex-start;
   min-width:0;
-  min-height:220px;
-  padding:24px 26px;
-  background:var(--paper-2);
+  min-height:0;
+  padding:15px 16px 16px;
+  background:rgba(245,240,231,.56);
   border:1px solid var(--line);
-  box-shadow:0 10px 24px rgba(52,43,43,.045);
+  box-shadow:none;
   text-align:left;
 }
-#currentChapter .chapter-card:nth-child(2),
-#currentChapter .chapter-card:nth-child(3),
-#currentChapter .chapter-card:nth-child(4){background:var(--paper-2)}
+#currentChapter .chapter-card:nth-child(n){background:rgba(245,240,231,.56)}
 #currentChapter .chapter-card-top{
   display:flex;
   align-items:center;
-  justify-content:space-between;
-  gap:10px;
+  justify-content:flex-start;
+  gap:8px;
   width:100%;
-  margin-bottom:26px;
+  margin:0 0 12px;
 }
 #currentChapter .chapter-index{
   color:var(--wine);
-  font:600 .68rem var(--mono);
-  letter-spacing:.13em;
+  font:600 .59rem var(--mono);
+  letter-spacing:.1em;
   text-transform:uppercase;
 }
 #currentChapter .chapter-card h3{
   max-width:100%;
-  margin:0 0 10px;
+  margin:0 0 6px;
   color:var(--ink);
-  font:500 clamp(2rem,3.4vw,3rem)/.95 var(--serif);
-  letter-spacing:-.04em;
+  font:500 clamp(1.35rem,1.8vw,1.75rem)/1 var(--serif);
+  letter-spacing:-.025em;
   text-wrap:balance;
 }
 #currentChapter .chapter-card-title{
-  margin:4px 0 5px;
+  margin:3px 0 3px;
   color:var(--wine);
-  font:500 1.55rem/1.12 var(--serif);
+  font:500 1.08rem/1.15 var(--serif);
 }
 #currentChapter .chapter-card-byline{
-  margin:0 0 14px;
+  margin:0 0 7px;
   color:var(--muted);
-  font: .7rem/1.5 var(--mono);
-  letter-spacing:.07em;
+  font:.61rem/1.45 var(--mono);
+  letter-spacing:.04em;
   text-transform:uppercase;
 }
 #currentChapter .chapter-card-note{
   width:100%;
-  margin:12px 0 0;
+  margin:7px 0 0;
   color:#504646;
-  font-size:.96rem;
-  line-height:1.7;
+  font-size:.82rem;
+  line-height:1.5;
   white-space:pre-line;
   overflow-wrap:anywhere;
 }
 #currentChapter .chapter-card-subtitle{
   margin:0;
   color:var(--muted);
-  font-size:.92rem;
-  line-height:1.6;
+  font-size:.79rem;
+  line-height:1.45;
 }
 #currentChapter .chapter-card img{
   display:block;
   width:100%;
-  max-height:240px;
+  max-height:125px;
   object-fit:cover;
-  margin:14px 0 0;
+  margin:8px 0 0;
   border:1px solid var(--line);
 }
 #currentChapter .chapter-card-link{
   display:inline-flex;
   align-items:center;
-  gap:8px;
-  margin-top:17px;
+  gap:6px;
+  margin-top:10px;
   color:var(--wine);
-  font:700 .68rem var(--mono);
-  letter-spacing:.09em;
+  font:700 .61rem var(--mono);
+  letter-spacing:.06em;
   text-transform:uppercase;
-  text-underline-offset:4px;
+  text-underline-offset:3px;
 }
 #currentChapter .chapter-card-updated{
-  margin:18px 0 0;
+  margin:10px 0 0;
   color:var(--muted);
-  font: .64rem var(--mono);
-  letter-spacing:.08em;
+  font:.57rem var(--mono);
+  letter-spacing:.06em;
   text-transform:uppercase;
 }
 #currentChapter .chapter-art{display:none!important}
-@media(max-width:720px){
-  #currentChapter{margin-top:48px}
-  #currentChapter .chapter-head{margin-bottom:18px;padding-bottom:18px}
-  #currentChapter .chapter-head h2{font-size:clamp(2.5rem,10vw,3.5rem)}
-  #currentChapter .chapter-grid{grid-template-columns:1fr;gap:12px}
-  #currentChapter .chapter-card{min-height:0;padding:21px 20px}
-  #currentChapter .chapter-card-top{margin-bottom:19px}
-  #currentChapter .chapter-card h3{font-size:2.2rem}
+@media(max-width:900px){
+  #currentChapter .chapter-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  #currentChapter .chapter-card h3{font-size:1.6rem}
+}
+@media(max-width:560px){
+  #currentChapter{margin-top:30px}
+  #currentChapter .chapter-head{margin-bottom:12px;padding-bottom:10px}
+  #currentChapter .chapter-head h2{font-size:2.35rem}
+  #currentChapter .chapter-intro{font-size:.8rem}
+  #currentChapter .chapter-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+  #currentChapter .chapter-card{padding:12px 11px}
+  #currentChapter .chapter-card-top{margin-bottom:9px}
+  #currentChapter .chapter-index{font-size:.53rem;letter-spacing:.06em}
+  #currentChapter .chapter-card h3{font-size:1.32rem;line-height:1.02}
+  #currentChapter .chapter-card-title{font-size:.98rem}
+  #currentChapter .chapter-card-note{font-size:.77rem;line-height:1.43}
+}
+@media(max-width:350px){
+  #currentChapter .chapter-grid{grid-template-columns:1fr}
 }
 
 </style>

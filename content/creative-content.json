@@ -166,12 +166,12 @@
     }
   ],
   "currentChapter": {
-    "intro": "A little window into what has caught my attention lately.",
+    "intro": "Books, films, music and small observations.",
     "entries": [
       {
         "id": "reading",
         "category": "Currently reading",
-        "subtitle": "A book, a page, or a passage",
+        "subtitle": "A book, a page, or a passage.",
         "title": "",
         "byline": "",
         "note": "",
@@ -182,7 +182,7 @@
       {
         "id": "watching",
         "category": "Currently watching",
-        "subtitle": "A film or series",
+        "subtitle": "A film or series on the screen.",
         "title": "",
         "byline": "",
         "note": "",
@@ -193,7 +193,7 @@
       {
         "id": "listening",
         "category": "Currently listening",
-        "subtitle": "A song, artist, or playlist",
+        "subtitle": "A song, artist, or playlist on repeat.",
         "title": "",
         "byline": "",
         "note": "",
@@ -204,7 +204,7 @@
       {
         "id": "noticing",
         "category": "Things I've been noticing",
-        "subtitle": "Small things worth remembering",
+        "subtitle": "Small things worth remembering.",
         "title": "",
         "byline": "",
         "note": "",

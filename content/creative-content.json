@@ -171,21 +171,19 @@
       {
         "id": "reading",
         "category": "Currently reading",
-        "subtitle": "",
-        "title": "",
-        "byline": "",
-        "note": "",
+        "title": "The Golden Notebook",
+        "byline": "Doris Lessing · Goodreads 3.77/5",
+        "note": "Goodreads reader review · Karen (11 January 2026):\n“Reading The Golden Notebook felt less like finishing a story and more like sitting with someone else’s life for a while.”\n\n25,528 Goodreads ratings.",
         "image": "",
-        "link": "",
+        "link": "https://www.goodreads.com/book/show/1411020",
         "updated": ""
       },
       {
         "id": "noticing",
         "category": "Small things I've noticed",
-        "subtitle": "",
         "title": "",
         "byline": "",
-        "note": "",
+        "note": "I am finally happy being a jack of all trades and master of none.",
         "image": "",
         "link": "",
         "updated": ""
@@ -193,7 +191,12 @@
       {
         "id": "indulged",
         "category": "Currently indulged in",
-        "subtitle": ""
+        "title": "",
+        "byline": "",
+        "note": "Making my own Pinterest-y clothes.",
+        "image": "",
+        "link": "",
+        "updated": ""
       }
     ]
   }
